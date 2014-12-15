@@ -1,3 +1,3 @@
-plan_it_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: PlanItUserBundle:Default:index }
+PlanItUserBundle_homepage:
+    path:     /
+    defaults: { _controller: PlanItUserBundle:Page:index }
