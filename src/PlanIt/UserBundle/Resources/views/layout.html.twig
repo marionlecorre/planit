@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets '@PlanItUserBundle/Resources/assets/sass/sidebar.scss' filter="sass" %}
+    {% stylesheets '@PlanItUserBundle/Resources/public/css/sidebar.scss' filter="sass" %}
 	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
 	{% endstylesheets %}
 {% endblock %}
