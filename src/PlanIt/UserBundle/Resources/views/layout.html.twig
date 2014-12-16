@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets '@PlanItUserBundle/Resources/public/css/general.scss' filter="sass" %}
+    {% stylesheets '@PlanItUserBundle/Resources/assets/sass/*.scss' filter="compass" output="all.css" %}
 	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
 	{% endstylesheets %}
 {% endblock %}
