@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets filter='compass' 
+    {% stylesheets filter='sass' output='css/style.css'
         "@PlanItUserBundle/Resources/public/css/sidebar.scss" 
     %}
         <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
