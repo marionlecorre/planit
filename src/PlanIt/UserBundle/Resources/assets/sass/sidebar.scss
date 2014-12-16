@@ -1,4 +1,4 @@
-
+@import 'general';
 #sidebar {
 	background-color: blue;
 	left: 0;
@@ -6,4 +6,10 @@
 	top:0;
 	width: 180px;
 
+	#logo {
+		font-family: arial;
+		.blue {
+			color: $blue_logo;
+		}
+	}
 }
