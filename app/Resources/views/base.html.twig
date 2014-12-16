@@ -2,12 +2,58 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Plan It{% endblock %}</title>
+        {% block stylesheets %}
+    
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %} 
+            {% block header %}
+            {% endblock %}
+
+            {% block sidebar %}
+                <div id="sidebar">
+                <div id="logo">PLAN <span class="blue">IT</span></div>
+                <div id="search">
+                    <form>
+                      <input name="search" type="search">
+                      <input type="submit" value="Find">
+                    </form>
+                </div>
+                <div class="user">
+                    <img src="{{ asset(['images/', 'test.jpg']|join) }}" />
+                    <span class="name">Ali Babouche {# {{ name }} #}</span> 
+                    <span class="counter-event">3 événements cours {# {{ name }} #}</span>
+                </div>
+                {% block navigation %}
+                    <ul>
+                        <li>Evénements</li>
+                        <ul>
+                            <li>Anniversaire Florent</li>
+                            <ul>
+                                <li>Général</li>
+                                <li>Gestion des invités</li>
+                                <li>Gestion du budget</li>
+                            </ul>
+                            <li>Mariage Aurélie</li>
+                            <li>Anniversaire papa</li>
+                        </ul>
+                        <li>Mon compte</li>
+                        <li>Aide</li>
+                    </ul>
+                {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% block footer %}
+            {% endblock %}
+
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

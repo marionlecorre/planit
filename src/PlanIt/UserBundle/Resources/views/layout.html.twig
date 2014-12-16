@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets filter='compass' 
+        "@PlanItUserBundle/Resources/public/css/sidebar.scss" 
+    %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+{% endblock %}
+
+ 
