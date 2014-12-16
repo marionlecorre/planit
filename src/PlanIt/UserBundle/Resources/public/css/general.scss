@@ -15,6 +15,8 @@
 
 
 /*COLORS*/
+$header: #f1f1f1;
+
 $menu: #252525;
 $menu_module: #2e2d2d;
 $blue_logo: #61c0a5;
@@ -29,3 +31,25 @@ $place_module: #857198;
 $todo_module: #dc4888;
 $transport_module : #ff9f37;
 $add_module : #f1f1f1;
+
+/*MIXIN*/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($vertical, $horizontal, $scale, $blur, $color) {
+  -webkit-box-shadow: $vertical $horizontal $scale $blur $color ;
+     -moz-box-shadow: $vertical $horizontal $scale $blur $color;
+      -ms-box-shadow: $vertical $horizontal $scale $blur $color;
+          box-shadow: $vertical $horizontal $scale $blur $color;
+}
+
+/*GENERAL*/
+body {
+  margin: 0;
+  padding: 0;
+}
+

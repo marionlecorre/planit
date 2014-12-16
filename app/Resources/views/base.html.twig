@@ -11,6 +11,12 @@
     <body>
         {% block body %} 
             {% block header %}
+                <header>
+                    <div class="user">
+                        <img src="{{ asset(['images/', 'test.jpg']|join) }}" />
+                        <span class="name">Ali Babouche {# {{ name }} #}</span> 
+                    </div>
+                </header>
             {% endblock %}
 
             {% block sidebar %}
@@ -18,8 +24,8 @@
                 <div id="logo">PLAN <span class="blue">IT</span></div>
                 <div id="search">
                     <form>
-                      <input name="search" type="search">
-                      <input type="submit" value="Find">
+                      <input name="search" type="search" class="search" placeholder="Rechercher">
+                      <input type="submit" value="Find" class="go">
                     </form>
                 </div>
                 <div class="user">
@@ -28,20 +34,20 @@
                     <span class="counter-event">3 événements cours {# {{ name }} #}</span>
                 </div>
                 {% block navigation %}
-                    <ul>
+                    <ul id="menu">
                         <li>Evénements</li>
-                        <ul>
-                            <li>Anniversaire Florent</li>
-                            <ul>
-                                <li>Général</li>
-                                <li>Gestion des invités</li>
-                                <li>Gestion du budget</li>
+                        <ul class="events">
+                            <li class="active">Anniversaire Florent</li>
+                            <ul class="modules">
+                                <li><a href="#">Général</a></li>
+                                <li><a href="#">Gestion des invités</a></li>
+                                <li><a href="#">Gestion du budget</a></li>
                             </ul>
                             <li>Mariage Aurélie</li>
                             <li>Anniversaire papa</li>
                         </ul>
                         <li>Mon compte</li>
-                        <li>Aide</li>
+                        <li class="last">Aide</li>
                     </ul>
                 {% endblock %}
                 </div>
