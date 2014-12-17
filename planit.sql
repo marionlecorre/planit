@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 17 Décembre 2014 à 09:39
+-- Généré le :  Mer 17 Décembre 2014 à 09:57
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `symfony`
+-- Base de données :  `planit`
 --
 
 -- --------------------------------------------------------
