@@ -13,8 +13,8 @@
             {% block header %}
                 <header>
                     <div class="user">
-                        <img src="{{ asset(['images/', 'test.jpg']|join) }}" />
-                        <span class="name">Ali Babouche {# {{ name }} #}</span> 
+                        <img src="{{ asset(['images/', user.image]|join) }}" />
+                        <span class="name">{{user.name}} {{ user.surname }}</span> 
                     </div>
                 </header>
             {% endblock %}
@@ -29,8 +29,8 @@
                     </form>
                 </div>
                 <div class="user">
-                    <img src="{{ asset(['images/', 'test.jpg']|join) }}" />
-                    <span class="name">Ali Babouche {# {{ name }} #}</span> 
+                    <img src="{{ asset(['images/', user.image]|join) }}" />
+                    <span class="name">{{user.name}} {{ user.surname }}</span> 
                     <span class="counter-event">3 événements cours {# {{ name }} #}</span>
                 </div>
                 {% block navigation %}
