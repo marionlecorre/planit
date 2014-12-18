@@ -8,14 +8,14 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body onload="getUser({{user.id}});">
         {% block body %} 
             {% block header %}
                 <header>
-                    <div class="user">
+                    <!--<div class="user">
                         <img src="{{ asset(['images/', user.image]|join) }}" />
                         <span class="name">{{user.name}} {{ user.surname }}</span> 
-                    </div>
+                    </div>-->
                 </header>
             {% endblock %}
 
@@ -60,6 +60,19 @@
             {% endblock %}
 
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts
+                '%kernel.root_dir%/../vendor/jms/twig-js/twig.js'
+                '../app/Resources/js/jquery-2.1.1.min.js'
+                '../app/Resources/js/main.js'
+            %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {% javascripts "../app/Resources/views/templates/header.html.twig"
+               filter="twig_js, ?yui_js" %}
+                <script language="javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>

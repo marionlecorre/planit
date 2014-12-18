@@ -34,14 +34,14 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [PlanItUserBundle]
-    ruby: %libpath.ruby%
+    ruby: %libpath_ruby%
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
         sass:
-            bin: %libpath.sass%
+            bin: %libpath_sass%
         compass:
-            bin: %libpath.compass%
+            bin: %libpath_compass%
 
 # Doctrine Configuration
 doctrine:
@@ -71,3 +71,24 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+
