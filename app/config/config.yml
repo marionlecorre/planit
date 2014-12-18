@@ -40,6 +40,7 @@ assetic:
         cssrewrite: ~
         sass:
             bin: %libpath.sass%
+            apply_to: "\.scss$"
         compass:
             bin: %libpath.compass%
 
