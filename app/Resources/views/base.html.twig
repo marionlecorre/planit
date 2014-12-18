@@ -36,9 +36,9 @@
                 </div>
                 {% block navigation %}
                     <ul id="menu">
-                        <li>Evénements</li>
+                        <li class="events">Evénements</li>
                         <ul class="events">
-                            <li class="active">Anniversaire Florent</li>
+                            <li class="active">Anniversaire Flor...</li>
                             <ul class="modules">
                                 <li><a href="#">Général</a></li>
                                 <li><a href="#">Gestion des invités</a></li>
@@ -47,8 +47,8 @@
                             <li>Mariage Aurélie</li>
                             <li>Anniversaire papa</li>
                         </ul>
-                        <li>Mon compte</li>
-                        <li class="last">Aide</li>
+                        <li class="account">Mon compte</li>
+                        <li class="last help">Aide</li>
                     </ul>
                 {% endblock %}
                 </div>
@@ -62,7 +62,9 @@
 
         {% endblock %}
         {% block javascripts %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+          
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>

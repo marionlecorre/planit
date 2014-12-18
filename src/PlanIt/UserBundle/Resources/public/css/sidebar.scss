@@ -29,10 +29,15 @@
 		input.search {
 			background-color: $menu;
 			border: none;
+			font: 14px 'PT Sans';
+			padding-left: 11px;
+			width: 82%;
 		}
 		input.go {
-			@extend input.search;
-			color: #FFF;
+			background: $menu url($root_path+'/images/picto-menu.png');
+			border: none;
+			text-indent: 999px;
+			width: 10%;
 		}
 	}
 
@@ -86,8 +91,35 @@
 		background-color: $menu_module;
 		border: solid 1px $menu;
 	}
-	ul.events li.active {
-		border-left: solid 8px $blue_logo;
+	ul.events > li {
+		background: url($root_path+'/images/picto-menu.png') no-repeat 98% -139px;
+		&:hover,
+		&.active {
+			border-left: solid 8px $blue_logo;
+			padding-left: 32px !important;
+		}	
+		&.active {
+			background: url($root_path+'/images/picto-menu.png') no-repeat 98% -115px;
+
+		}
+		
+	}
+
+	
+	ul li.events,
+	ul li.account,
+	ul li.help {
+		background: url($root_path+'/images/picto-menu.png') no-repeat;	
+	}
+
+	ul li.events {
+		background-position: 11px -23px;
+	}
+	ul li.account {
+		background-position: 11px -55px;
+	}
+	ul li.help {
+		background-position: 11px -86px;
 	}
 
 }
