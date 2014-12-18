@@ -11,10 +11,8 @@
 
  
 {% block javascripts %}
-    {% javascripts
-        
-    %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    {{ parent() }}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'  %}
+	      <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}

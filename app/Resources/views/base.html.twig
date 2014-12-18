@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Plan It{% endblock %}</title>
         {% block stylesheets %}
-    
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+            <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -35,9 +36,9 @@
                 </div>
                 {% block navigation %}
                     <ul id="menu">
-                        <li>Evénements</li>
+                        <li class="events">Evénements</li>
                         <ul class="events">
-                            <li class="active">Anniversaire Florent</li>
+                            <li class="active">Anniversaire Flor...</li>
                             <ul class="modules">
                                 <li><a href="#">Général</a></li>
                                 <li><a href="#">Gestion des invités</a></li>
@@ -46,8 +47,8 @@
                             <li>Mariage Aurélie</li>
                             <li>Anniversaire papa</li>
                         </ul>
-                        <li>Mon compte</li>
-                        <li class="last">Aide</li>
+                        <li class="account">Mon compte</li>
+                        <li class="last help">Aide</li>
                     </ul>
                 {% endblock %}
                 </div>
@@ -63,7 +64,6 @@
         {% block javascripts %}
             {% javascripts
                 '%kernel.root_dir%/../vendor/jms/twig-js/twig.js'
-                '../app/Resources/js/jquery-2.1.1.min.js'
                 '../app/Resources/js/main.js'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -73,6 +73,10 @@
                filter="twig_js, ?yui_js" %}
                 <script language="javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+          
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

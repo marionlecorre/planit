@@ -1,4 +1,6 @@
 @import 'general';
+
+
 #sidebar {
 	background-color: $menu;
 	bottom : 0;
@@ -10,13 +12,15 @@
 	#logo {
 		box-shadow: -3px 10px 12px #000;
 		color: #FFF;
-		font: 23px arial;
+		font: 23px 'GothamHTF-Medium';
 		height: 60px;
 		line-height: 64px;
 		text-align: center;
 		@include box-shadow(0px,4px,2px,-2px,#1c1c1c);
 		.blue {
 			color: $blue_logo;
+			font-family: 'Roboto';
+			font-weight: 100;
 		}
 	}
 
@@ -25,10 +29,15 @@
 		input.search {
 			background-color: $menu;
 			border: none;
+			font: 14px 'PT Sans';
+			padding-left: 11px;
+			width: 82%;
 		}
 		input.go {
-			@extend input.search;
-			color: #FFF;
+			background: $menu url($root_path+'/images/picto-menu.png');
+			border: none;
+			text-indent: 999px;
+			width: 10%;
 		}
 	}
 
@@ -44,12 +53,12 @@
 		}
 		.name {
 			display: block;
-			font: 12px arial;
+			font: 14px 'PT Sans';
 			color : #e4e4e4;
 			margin-top:5px; 
 		}
 		.counter-event {
-			font: 9px arial;
+			font: 10px 'PT Sans';
 			color : #aeaeae;
 		}
 	}
@@ -63,10 +72,10 @@
 			color: #dddddd;
 			list-style: none;
 			padding: 9px 0 9px 40px;
-			font: 11px arial;
+			font: 14px 'PT Sans';
 			a {
 				color: #dddddd;
-				font: 11px arial;
+				font: 14px 'PT Sans';
 				text-decoration: none;
 				&:active,
 				&:hover {
@@ -82,8 +91,35 @@
 		background-color: $menu_module;
 		border: solid 1px $menu;
 	}
-	ul.events li.active {
-		border-left: solid 8px $blue_logo;
+	ul.events > li {
+		background: url($root_path+'/images/picto-menu.png') no-repeat 98% -139px;
+		&:hover,
+		&.active {
+			border-left: solid 8px $blue_logo;
+			padding-left: 32px !important;
+		}	
+		&.active {
+			background: url($root_path+'/images/picto-menu.png') no-repeat 98% -115px;
+
+		}
+		
+	}
+
+	
+	ul li.events,
+	ul li.account,
+	ul li.help {
+		background: url($root_path+'/images/picto-menu.png') no-repeat;	
+	}
+
+	ul li.events {
+		background-position: 11px -23px;
+	}
+	ul li.account {
+		background-position: 11px -55px;
+	}
+	ul li.help {
+		background-position: 11px -86px;
 	}
 
 }

@@ -39,7 +39,8 @@ assetic:
     filters:
         cssrewrite: ~
         sass:
-            bin: %libpath_sass%
+            bin: %libpath.sass%
+            apply_to: "\.scss$"
         compass:
             bin: %libpath_compass%
 
