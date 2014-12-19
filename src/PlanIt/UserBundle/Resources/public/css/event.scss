@@ -1,0 +1,17 @@
+@import 'general';
+
+#title_event{
+	text-align: center;
+	font-size: 25px;
+	padding:20px 0 20px 0;
+}
+
+#descr_event{
+	img{
+		width:100%;
+		background-size: cover;
+	}
+	p{
+		text-align: justify;
+	}
+}

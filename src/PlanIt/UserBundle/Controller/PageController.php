@@ -16,4 +16,15 @@ class PageController extends Controller
             'user' => $user
         ));
     }
+
+    public function eventAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $user = $em->getRepository('PlanItUserBundle:User')->find($id);
+
+        return $this->render('PlanItUserBundle:Page:event.html.twig', array(
+            'user' => $user
+        ));
+    }
 }

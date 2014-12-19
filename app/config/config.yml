@@ -34,7 +34,7 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [PlanItUserBundle]
-    ruby: %libpath_ruby%
+    ruby: %libpath.ruby%
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -42,7 +42,7 @@ assetic:
             bin: %libpath.sass%
             apply_to: "\.scss$"
         compass:
-            bin: %libpath_compass%
+            bin: %libpath.compass%
 
 # Doctrine Configuration
 doctrine:
@@ -66,12 +66,12 @@ doctrine:
         auto_mapping: true
 
 # Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+#swiftmailer:
+    #transport: "%mailer_transport%"
+    #host:      "%mailer_host%"
+    #username:  "%mailer_user%"
+    #password:  "%mailer_password%"
+    #spool:     { type: memory }
 
 
 fos_rest:
