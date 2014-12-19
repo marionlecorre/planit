@@ -1,0 +1,3 @@
+plan_it_event_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PlanItEventBundle:Default:index }

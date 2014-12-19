@@ -1,0 +1,46 @@
+<?php
+
+namespace PlanIt\EventBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="event")
+ */
+class Event
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $slug;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $begin_date;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $end_date;
+
+
+}

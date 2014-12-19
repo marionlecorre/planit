@@ -9,48 +9,17 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body onload="getUser({{user.id}});">
+    <body onload="getUser({{id}});">
         {% block body %} 
             {% block header %}
                 <header>
-                    <!--<div class="user">
-                        <img src="{{ asset(['images/', user.image]|join) }}" />
-                        <span class="name">{{user.name}} {{ user.surname }}</span> 
-                    </div>-->
+                    <!--Template Header -->
                 </header>
             {% endblock %}
 
             {% block sidebar %}
                 <div id="sidebar">
-                <div id="logo">PLAN <span class="blue">IT</span></div>
-                <div id="search">
-                    <form>
-                      <input name="search" type="search" class="search" placeholder="Rechercher">
-                      <input type="submit" value="Find" class="go">
-                    </form>
-                </div>
-                <div class="user">
-                    <img src="{{ asset(['images/', user.image]|join) }}" />
-                    <span class="name">{{user.name}} {{ user.surname }}</span> 
-                    <span class="counter-event">3 événements cours {# {{ name }} #}</span>
-                </div>
-                {% block navigation %}
-                    <ul id="menu">
-                        <li class="events">Evénements</li>
-                        <ul class="events">
-                            <li class="active">Anniversaire Flor...</li>
-                            <ul class="modules">
-                                <li><a href="#">Général</a></li>
-                                <li><a href="#">Gestion des invités</a></li>
-                                <li><a href="#">Gestion du budget</a></li>
-                            </ul>
-                            <li>Mariage Aurélie</li>
-                            <li>Anniversaire papa</li>
-                        </ul>
-                        <li class="account">Mon compte</li>
-                        <li class="last help">Aide</li>
-                    </ul>
-                {% endblock %}
+                
                 </div>
             {% endblock %}
 
@@ -70,6 +39,7 @@
             {% endjavascripts %}
 
             {% javascripts "../app/Resources/views/templates/header.html.twig"
+            "../app/Resources/views/templates/sidebar.html.twig"
                filter="twig_js, ?yui_js" %}
                 <script language="javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
