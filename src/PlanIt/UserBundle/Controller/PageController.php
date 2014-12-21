@@ -24,7 +24,7 @@ class PageController extends Controller
         ));
     }
 
-    public function eventAction($id)
+    /*public function eventAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -33,5 +33,5 @@ class PageController extends Controller
         return $this->render('PlanItUserBundle:Page:event.html.twig', array(
             'user' => $user
         ));
-    }
+    }*/
 }

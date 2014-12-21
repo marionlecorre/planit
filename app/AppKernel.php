@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TwigJsBundle\JMSTwigJsBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            //new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new PlanIt\RestBundle\PlanItRestBundle(),
             new PlanIt\EventBundle\PlanItEventBundle(),
         );
