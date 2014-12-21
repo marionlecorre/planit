@@ -1,3 +1,6 @@
-plan_it_event_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: PlanItEventBundle:Default:index }
+PlanItEventBundle_event:
+    path:     /event/{id}
+    defaults: { _controller: PlanItEventBundle:Page:event }
+    requirements:
+        _method:  GET
+        id: \d+

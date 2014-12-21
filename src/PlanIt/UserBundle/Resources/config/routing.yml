@@ -4,10 +4,3 @@ PlanItUserBundle_homepage:
     requirements:
         _method:  GET
         id: \d+
-
-PlanItUserBundle_eventpage:
-    path:     /event/{id}
-    defaults: { _controller: PlanItUserBundle:Page:event }
-    requirements:
-        _method:  GET
-        id: \d+
