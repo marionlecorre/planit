@@ -6,6 +6,7 @@ plan_it_rest:
     resource: "@PlanItRestBundle/Resources/config/routing.yml"
     prefix:   /
 
+
 plan_it_user:
     resource: "@PlanItUserBundle/Resources/config/routing.yml"
     prefix:   /

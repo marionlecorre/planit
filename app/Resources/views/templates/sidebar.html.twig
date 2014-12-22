@@ -1,3 +1,4 @@
+
 {% twig_js name="sidebar" %}
 <div id="logo">PLAN <span class="blue">IT</span></div>
 <div id="search">
@@ -7,24 +8,37 @@
     </form>
 </div>
 <div class="user">
-    <img src="/images/{{user.image}}" />
+    <img  src="/images/{{ user.image }}"/>
     <span class="name">{{user.name}} {{ user.surname }}</span> 
     <span class="counter-event">3 événements cours {# {{ name }} #}</span>
 </div>
 {% block navigation %}
     <ul id="menu">
         <li class="events">Evénements</li>
-        <ul class="events">
-            <li class="active">Anniversaire Flor...</li>
+        <ul class="events" id="accordion">
+            <li class="active event">Anniversaire Flor...</li>
             <ul class="modules">
                 <li><a href="#">Général</a></li>
                 <li><a href="#">Gestion des invités</a></li>
                 <li><a href="#">Gestion du budget</a></li>
             </ul>
-            <li>Mariage Aurélie</li>
-            <li>Anniversaire papa</li>
+            <li class="event">Mariage Aurélie</li>
+            <ul class="modules">
+                <li><a href="#">Général</a></li>
+                <li><a href="#">Gestion des invités</a></li>
+                <li><a href="#">Gestion du budget</a></li>
+            </ul>
+            <li class="event">Anniversaire papa</li>
+            <ul class="modules">
+                <li><a href="#">Général</a></li>
+                <li><a href="#">Gestion des invités</a></li>
+                <li><a href="#">Gestion du budget</a></li>
+            </ul>
         </ul>
         <li class="account">Mon compte</li>
         <li class="last help">Aide</li>
     </ul>
 {% endblock %}
+
+
+
