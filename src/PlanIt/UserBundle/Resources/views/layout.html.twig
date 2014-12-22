@@ -10,8 +10,9 @@
 {% endblock %}
 
  {% block javascripts %}
-    {{ parent() }} <!-- pour ne pas effacer les autres js -->
-    {% javascripts '@PlanItUserBundle/Resources/public/js/main.js'  %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'
+                    '%kernel.root_dir%/Resources/js/main.js'  %}
 	      <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

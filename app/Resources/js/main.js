@@ -1,6 +1,6 @@
 function getUser(id){
 	$.ajax({
-	   url : '/app_dev.php/api/users/'+id,
+	   url : '/app_dev.php/api/users/'+id, //API
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
 	   success : function(user, statut){ // code_html contient le HTML renvoyé

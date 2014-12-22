@@ -6,12 +6,6 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
-            <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-            {% stylesheets 
-                '@PlanItUserBundle/Resources/public/css/*.scss' 
-                filter="compass" %}
-                <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
-            {% endstylesheets %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -37,11 +31,8 @@
 
         {% endblock %}
         {% block javascripts %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
             {% javascripts
                 '%kernel.root_dir%/../vendor/jms/twig-js/twig.js'
-                '../app/Resources/js/main.js'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
@@ -51,6 +42,8 @@
                filter="twig_js, ?yui_js" %}
                 <script language="javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
             <script src="//code.highcharts.com/highcharts.js"></script>
             <script src="//code.highcharts.com/modules/exporting.js"></script>
           

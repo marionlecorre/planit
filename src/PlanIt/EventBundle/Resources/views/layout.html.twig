@@ -4,14 +4,15 @@
     {% stylesheets 
     '@PlanItEventBundle/Resources/public/css/*.scss' 
     '@PlanItUserBundle/Resources/public/css/*.scss'
-    filter="compass,cssrewrite" output="css/style.css"%}
+    filter="compass" %}
 	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
 	{% endstylesheets %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItEventBundle/Resources/public/js/*.js' output="js/script.css" %}
+    {% javascripts '@PlanItEventBundle/Resources/public/js/*.js'
+                    '%kernel.root_dir%/Resources/js/main.js'  %}
 	      <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
