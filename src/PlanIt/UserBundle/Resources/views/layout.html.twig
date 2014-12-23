@@ -11,7 +11,9 @@
 
  {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'%}
+    {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'
+    '@PlanItUserBundle/Resources/public/js/listing-scripts.js'
+    %}
 	   <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
