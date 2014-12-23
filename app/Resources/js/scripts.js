@@ -7,3 +7,7 @@ function accordeon(){
 		return false;
 	});
 }
+
+function coucou (){
+	console.log("coucou");
+}

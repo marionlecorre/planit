@@ -49,6 +49,11 @@
             {% endjavascripts %}
           
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            {% javascripts
+                '%kernel.root_dir%/Resources/js/*.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
     </body>
 </html>
