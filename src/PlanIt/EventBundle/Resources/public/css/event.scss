@@ -1,8 +1,13 @@
+@import 'general';
+
 #title_event{
-	text-align: center;
-	font-size: 22px;
+	h1 {
+		text-align: center;
+		font-size: 22px;
+		font-weight: 200;
+		color:#777676;
+	}
 	padding-bottom:20px;
-	color:#777676;
 }
 
 #separator{
@@ -88,22 +93,22 @@
 	}
 
 	#module_invite{
-		background-color:#1d89cf;
+		background-color:$invit_module;
 	}
 	#module_budget {
-		background-color:#f9de2f;
+		background-color:$budget_module;
 	}
 	#module_lieu {
-		background-color:#857198;
+		background-color:$place_module;
 	}
 	#module_todo {
-		background-color:#dc4888;
+		background-color:$todo_module;
 	}
 	#module_transport {
-		background-color:#ff9f37;
+		background-color:$transport_module;
 	}
 	#ajout_module {
-		background-color:#f1f1f1;
+		background-color:$add_module;
 
 		p{
 			color:#7a7a7a;

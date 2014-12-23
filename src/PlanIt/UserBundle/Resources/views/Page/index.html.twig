@@ -2,10 +2,60 @@
 
 {% block content %}
 	<div class="container">
-	    <div class="row">
-	    	<div class="col-md-4"> une colonne 1</div>
-	    	<div class="col-md-4"> une colonne 2</div>
-	    	<div class="col-md-4"> une colonne 3</div>
+		<div class="row" id="title_event">
+			<div class="col-md-12" > <h1>EVENEMENTS</h1> </div>
+		</div>
+
+		<div class="row" id="separator">
+			<div class="col-md-12"> </div>
+		</div>
+
+	    <div class="row listing-events">
+	    	<div class="col-md-3 ">
+	    		<div class="event-thumbnail">
+		    		<div class="head">
+		    			<h2>Anniversaire Florent</h2>
+		    			<span class="date">J-5</span>
+		    		</div>
+		    		<div class="content">
+			    		<img src="{{ asset(['images/', "event/photo_evenement.jpg"]|join) }}" /> 
+			    		<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae distinctio, cum voluptatum fuga labore temporibus aut eum voluptatem mollitia? ablablablablabla </p>
+		    		</div>
+	    		</div>
+	    	</div>
+
+	    	<div class="col-md-3 ">
+	    		<div class="event-thumbnail">
+		    		<div class="head">
+		    			<h2>Mariage Aurélie</h2>
+		    			<span class="date">J-20</span>
+		    		</div>
+		    		<div class="content">
+			    		<img src="{{ asset(['images/', "event/photo_evenement.jpg"]|join) }}" /> 
+			    		<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae distinctio, cum voluptatum fuga labore temporibus aut eum voluptatem mollitia?
+			    		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim accusantium expedita aperiam doloribus ad tenetur fugit ullam a officiis eaque, error placeat dolore nobis voluptatum. Numquam quos provident dolor amet. </p>
+		    		</div>
+		    	</div>
+	    	</div>
+
+	    	<div class="col-md-3 ">
+	    		<div class="event-thumbnail">
+		    		<div class="head">
+		    			<h2>Nouvel An</h2>
+		    			<span class="date">J-5</span>
+		    		</div>
+		    		<div class="content">
+			    		<img src="{{ asset(['images/', "event/photo_evenement.jpg"]|join) }}" /> 
+			    		<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae distinctio, cum voluptatum fuga labore temporibus aut eum voluptatem mollitia? </p>
+		    		</div>
+		    	</div>
+	    	</div>
+	    	
+	    	<div class="col-md-3 ">
+	    		<div class="add event-thumbnail">
+		    		<p> + </p>
+		    	</div>
+	    	</div>
 	    </div>
     </div>
 {% endblock %}
