@@ -3,17 +3,78 @@
 {% block content %}
 	<div class="container">
 		<div class="row" id="title_event">
-			<div class="col-md-12" > Anniversaire Florent </div>
+			<div class="col-md-12" > ANNIVERSAIRE FLORENT </div>
 		</div>
+
+		<div class="row" id="separator">
+			<div class="col-md-12"> </div>
+		</div>
+
 	    <div class="row">
-	    	<div class="col-md-3" id="descr_event" style="border:1px solid red;">
-                    <img src="{{ asset(['images/', "event/photo_evenement.jpg"]|join) }}" />
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exffff ea commodo consequat. </p>
+	    	<div class="col-md-3 descr_event">
+	    			<img src="{{ asset(['images/', "event/photo_evenement.jpg"]|join) }}" /> 
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
 	    	</div>
-	    	<div class="col-md-4 col-lg-offset-1" style="border:1px solid red;"> 
-				<div id="pie_chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+	    	<div class="col-md-5"> 
+				<div id="pie_chart"></div>
 	    	</div>
-	    	<div class="col-md-3 col-lg-offset-1" style="border:1px solid red;"> coucou ! </div>
+	    	<div class="col-md-4"> 
+	    		<div class="info_dte">
+		    		<img src="{{ asset(['images/', "event/info_dte_zzz.png"]|join) }}" /> 
+		    		<p> NOMBRE DE DODOS </br> <span>5</span> </p>
+	    		</div>
+	    		<div class="info_dte">
+		    		<img src="{{ asset(['images/', "event/info_dte_invite.png"]|join) }}" /> 
+		    		<p> NOMBRE D'INSCRITS </br> <span>18</span> </p>
+	    		</div>
+	    		<div class="info_dte info_color">
+		    		<img src="{{ asset(['images/', "event/info_dte_budget.png"]|join) }}" /> 
+		    		<p> BUDGET TOTAL </br> <span>36</span> </p>
+	    		</div>
+	    	</div>
 	    </div>
+
+	    <div class="row" id="mes_modules">
+			<div class="col-md-12">Mes modules</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module" >
+				<div id="module_invite">
+					<img src="{{ asset(['images/', "event/pictos_modules/picto_invite.png"]|join) }}" /> 	
+					<p>Gestion des invités</p>    	
+				</div>	
+	    	</div>
+	    	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+	    		<div id="module_budget">	
+					<img src="{{ asset(['images/', "event/pictos_modules/picto_budget.png"]|join) }}" /> 
+		    		<p>Gestion du budget</p>
+	    		</div>      		
+	    	</div>
+	    	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+	    		<div id="module_lieu">
+					<img src="{{ asset(['images/', "event/pictos_modules/picto_lieu.png"]|join) }}" /> 	 
+		    		<p>Gestion du lieu</p>  
+		    	</div>   		
+	    	</div>
+	    	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
+	    		<div id="module_todo">
+					<img src="{{ asset(['images/', "event/pictos_modules/picto_todo.png"]|join) }}" /> 
+		    		<p>Todo list</p> 
+		    	</div>     		
+	    	</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+				<div id="module_transport">
+					<img src="{{ asset(['images/', "event/pictos_modules/picto_transport.png"]|join) }}" /> 	
+					<p>Gestion du transport</p> 
+				</div>   		
+	    	</div>
+	    	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
+	    		<div id="ajout_module"> 
+		    		<p>+</p> 
+	    		</div>     		
+	    	</div>
+		</div>
+
     </div>
 {% endblock %}
