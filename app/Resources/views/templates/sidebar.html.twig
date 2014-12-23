@@ -16,24 +16,14 @@
     <ul id="menu">
         <li class="events">Evénements</li>
         <ul class="events" id="accordion">
-            <li class="active event">Anniversaire Flor...</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
-            <li class="event">Mariage Aurélie</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
-            <li class="event">Anniversaire papa</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
+            {% for event in user.events %}
+                <li class="active event">{{event.name}}</li>
+                <ul class="modules">
+                    <li><a href="#">Général</a></li>
+                    <li><a href="#">Gestion des invités</a></li>
+                    <li><a href="#">Gestion du budget</a></li>
+                </ul>
+            {% endfor %}
         </ul>
         <li class="account">Mon compte</li>
         <li class="last help">Aide</li>

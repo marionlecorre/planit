@@ -13,4 +13,9 @@ class UserRestController extends Controller
 	    }
 	    return $user;
 	}
+
+	public function getUserEventsAction($id){
+	    $events = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->findByUser($id);
+	    return $events;
+	}
 }

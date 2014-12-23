@@ -5,6 +5,7 @@ namespace PlanIt\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Entity(repositoryClass="PlanIt\UserBundle\Repository\UserRepository")
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
@@ -42,6 +43,17 @@ class User
      */
     protected $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\EventBundle\Entity\Event", mappedBy="user")
+     */
+    protected $events;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -166,5 +178,38 @@ class User
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \PlanIt\EventBundle\Entity\Event $events
+     * @return User
+     */
+    public function addEvent(\PlanIt\EventBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \PlanIt\EventBundle\Entity\Event $events
+     */
+    public function removeEvent(\PlanIt\EventBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }
