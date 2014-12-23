@@ -11,6 +11,7 @@ class EventRestController extends Controller
 	    if(!is_object($event)){
 	      throw $this->createNotFoundException();
 	    }
+	    //Vérifier qu'il appartient bien au User identifié
 	    return $event;
 	}
 }
