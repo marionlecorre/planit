@@ -24,7 +24,7 @@ $(function () {
                 enabled: false
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                pointFormat: '{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {
@@ -39,13 +39,18 @@ $(function () {
             series: [{
                 type: 'pie',
                 name: 'Balance du budget',
-                color: '#0066FF',
+                color: '#0066FF',         
                 data: [
-                    ['Dépenses',   45.0],
+                    {
+                        name: 'Dépenses',
+                        y: 45.0,
+                        sliced: true,
+                        selected: false
+                    },
                     {
                         name: 'Apports',
                         y: 55.0,
-                        sliced: true,
+                        sliced: false,
                         selected: false
                     }
                 ]

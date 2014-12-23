@@ -14,12 +14,6 @@ function getUser(id){
 	                                user : user,
 	                            });
 	       $('#sidebar').html(sidebar_render);
-	       $( "#accordion" ).accordion({
-	       		active: 0,
-				event:"click",
-				header: "li.event",
-				icons: { "header": "ui-icon-triangle-1-e", "activeHeader": "ui-icon-triangle-1-s" }
-			});
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);

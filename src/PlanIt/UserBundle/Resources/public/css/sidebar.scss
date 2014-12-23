@@ -93,21 +93,18 @@
 	}
 	ul.events { 
 		li.event {
-			// background: url('/images/picto-menu.png') no-repeat 98% -139px;
-			background: $menu !important;
+			background: url('/images/picto-menu.png') no-repeat;
+			background-position: 98% -135px;
 			border: 0;
 			@include border-radius(0); 
 			&:hover,
-			&.ui-state-active {
+			&.open {
 				border-left: solid 8px $blue_logo;
 				padding-left: 32px !important;
-			}	
-			// &.active {
-			// 	background: url('/images/picto-menu.png') no-repeat 98% -115px;
-			// }
-			span.ui-icon {
-				left: 86%;
 			}
+			&.open {
+				background-position: 98% -184px;
+			}	
 		}
 	}
 	ul.modules {
