@@ -10,10 +10,11 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $user = $em->getRepository('PlanItUserBundle:User')->find($id);
+        $event = $em->getRepository('PlanItEventBundle:Event')->find($id);
 
         return $this->render('PlanItEventBundle:Page:event.html.twig', array(
-            'id' => $id
+            'event_id' => $id,
+            'user_id' => $event->getUser()->getId()
         ));
     }
 }

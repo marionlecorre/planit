@@ -50,6 +50,11 @@ class Event
     protected $end_date;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $image;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -195,5 +200,28 @@ class Event
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Event
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

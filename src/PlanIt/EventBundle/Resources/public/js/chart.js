@@ -1,4 +1,4 @@
-$(function () {
+/*$(function () {
 
     Highcharts.setOptions({
      colors: ['#e56454', '#a5cd7d']
@@ -58,4 +58,4 @@ $(function () {
         });
     });
 
-});
+});*/
