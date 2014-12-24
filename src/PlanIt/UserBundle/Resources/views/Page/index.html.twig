@@ -1,11 +1,29 @@
 {% extends 'PlanItUserBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItUserBundle/Resources/public/css/*.scss' 
+    filter="compass" %}
+	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
 
 {% block content %}
 	<div class="container">
-	    <div class="row">
-	    	<div class="col-md-4"> une colonne 1</div>
-	    	<div class="col-md-4"> une colonne 2</div>
-	    	<div class="col-md-4"> une colonne 3</div>
-	    </div>
+		<div class="row" id="title_event">
+			<div class="col-md-12" > <h1>EVENEMENTS</h1> </div>
+		</div>
+
+		<div class="row" id="separator">
+			<div class="col-md-12"> </div>
+		</div>
+		<div id="events" class="row listing-events">
+		<!-- Events template -->
+		</div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> getEvents({{user_id}}); </script>
 {% endblock %}

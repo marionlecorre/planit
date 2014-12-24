@@ -1,18 +1,14 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets 
-    '@PlanItUserBundle/Resources/public/css/*.scss' 
-    filter="compass" %}
-	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
-	{% endstylesheets %}
-{% endblock %}
-
  {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% javascripts '@PlanItUserBundle/Resources/views/templates/events.html.twig' filter="twig_js, ?yui_js" %}
+          <script language="javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'
-                    '%kernel.root_dir%/Resources/js/*.js'  %}
-	      <script type="text/javascript" src="{{ asset_url }}"></script>
+                    '@PlanItUserBundle/Resources/public/js/listing-scripts.js'
+                    '%kernel.root_dir%/Resources/js/*.js'
+    %}
+	   <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

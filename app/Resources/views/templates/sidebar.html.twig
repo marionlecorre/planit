@@ -11,30 +11,20 @@
 <div class="user">
     <img  src="/images/{{ user.image }}"/>
     <span class="name">{{user.name}} {{ user.surname }}</span> 
-    <span class="counter-event">3 événements cours {# {{ name }} #}</span>
+    <span class="counter-event">{{ user.events|length }} événements cours</span>
 </div>
 {% block navigation %}
     <ul id="menu">
-        <li class="events">Evénements</li>
+        <li class="events"><a href="/app_dev.php/home/{{ user.id }}">Evénements</a></li>
         <ul class="events" id="accordion">
-            <li class="active event"></span>Anniversaire Flor...</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
-            <li class="event"></span>Mariage Aurélie</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
-            <li class="event"></span>Anniversaire papa</li>
-            <ul class="modules">
-                <li><a href="#">Général</a></li>
-                <li><a href="#">Gestion des invités</a></li>
-                <li><a href="#">Gestion du budget</a></li>
-            </ul>
+            {% for event in user.events %}
+                <li class="active event">{{event.name}}</li>
+                <ul class="modules">
+                    <li><a href="/app_dev.php/event/{{event.id}}">Général</a></li>
+                    <li><a href="#">Gestion des invités</a></li>
+                    <li><a href="#">Gestion du budget</a></li>
+                </ul>
+            {% endfor %}
         </ul>
         <li class="account">Mon compte</li>
         <li class="last help">Aide</li>
