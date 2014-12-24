@@ -1,12 +1,10 @@
 @import 'general';
 
-.listing-events .col-md-3{
-	height: 100%;
-}
 
 .event-thumbnail {
 	border: solid 1px #dad7d7;
 	height: 300px;
+	margin-top:20px;
 
 	.head {
 		background-color: $head_event;
@@ -33,6 +31,9 @@
 			height: 150px;
 			overflow: hidden;
 			margin-bottom : 12px;
+			@media screen and (max-width: 450px) {
+				height: 123px;
+			}
 		}
 		img {
 			margin-bottom :15px;

@@ -130,10 +130,10 @@ class Event
      */
     public function getDescription($length = 3)
     {
-        //if (false === is_null($length) && $length > 0)
+        if (false === is_null($length) && $length > 0)
             return substr($this->description, 0, $length);
-        //else
-            //return $this->description;
+        else
+            return $this->description;
     }
 
     /**
