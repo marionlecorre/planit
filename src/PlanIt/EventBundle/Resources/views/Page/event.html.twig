@@ -1,8 +1,15 @@
 {% extends 'PlanItEventBundle::layout.html.twig' %}
-
 {% block content %}
 	<div id="content_general_event" class="container">
 		<!-- Content template -->
-		
+
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> getEvent({{event_id}}); </script>
+    {% javascripts '@PlanItEventBundle/Resources/public/js/chart.js' %}
+	      <script language="javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}

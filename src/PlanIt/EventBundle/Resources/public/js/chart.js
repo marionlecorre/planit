@@ -1,4 +1,4 @@
-/*$(function () {
+$(function () {
 
     Highcharts.setOptions({
      colors: ['#e56454', '#a5cd7d']
@@ -57,7 +57,7 @@
             }]       
         });
     });
-});*/
+});
 function getMaxDivHeight(){
   var maxHeight = 0;
   $('.event-thumbnail').each(function(i){
@@ -69,5 +69,3 @@ function getMaxDivHeight(){
 $('.listing-events').height(getMaxDivHeight());
 $('.add.event-thumbnail').css("line-height",getMaxDivHeight()+"px");
 
-
-});

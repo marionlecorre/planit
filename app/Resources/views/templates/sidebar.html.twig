@@ -15,7 +15,7 @@
 </div>
 {% block navigation %}
     <ul id="menu">
-        <li class="events">Evénements</li>
+        <li class="events"><a href="/app_dev.php/home/{{ user.id }}">Evénements</a></li>
         <ul class="events" id="accordion">
             {% for event in user.events %}
                 <li class="active event">{{event.name}}</li>
