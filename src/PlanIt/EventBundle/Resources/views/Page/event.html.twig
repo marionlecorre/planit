@@ -9,11 +9,7 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> getEvent({{event_id}}); </script>
-<<<<<<< HEAD
     {% javascripts '@PlanItEventBundle/Resources/public/js/*.js' %}
-=======
-    {% javascripts '@PlanItEventBundle/Resources/public/js/chart.js' %}
->>>>>>> 7012bd62cb1b4d733e550f72c7098f031d20ad72
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

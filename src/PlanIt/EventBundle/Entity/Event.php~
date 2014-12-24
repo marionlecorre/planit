@@ -128,9 +128,12 @@ class Event
      *
      * @return string 
      */
-    public function getDescription()
+    public function getDescription($length = 3)
     {
-        return $this->description;
+        if (false === is_null($length) && $length > 0)
+            return substr($this->description, 0, $length);
+        else
+            return $this->description;
     }
 
     /**

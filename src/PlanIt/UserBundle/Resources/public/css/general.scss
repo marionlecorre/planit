@@ -42,5 +42,21 @@ body {
 .container {
   margin-left: 180px;
   width: inherit;
+  padding:2% 5% 5% 5%;
 }
 .ui-state-focus { outline: none; }
+
+#title{
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 200;
+    color:#777676;
+  }
+  padding-bottom:20px;
+}
+
+#separator{
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 40px;
+}

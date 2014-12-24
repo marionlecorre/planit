@@ -31,14 +31,3 @@ $add_module : #f1f1f1;
           box-shadow: $vertical $horizontal $scale $blur $color;
 }
 
-/*GENERAL*/
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  margin-left: 180px;
-  width: inherit;
-  padding:2% 5% 5% 5%;
-}
