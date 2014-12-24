@@ -1,0 +1,87 @@
+@import 'general';
+
+
+
+.guest-module {
+	font: 13px 'PT Sans';
+	font-weight: 100;
+
+	button {
+		background-color: $color;
+		padding: 4px 18px;
+	}
+	#paying-checkbox {
+		margin-top: 6px;
+		input[type=checkbox] {
+			margin-right: 20px;
+		}
+	}
+
+	.list {
+		margin: 28px 0 39px;
+		.head-list {
+			background-color: $head-list;
+			.name {
+				float:left;
+				margin-right: 20px;
+				font-size: 17px;
+				line-height: 17px;
+			}
+			form {
+				float: left;
+			}
+			.price {
+				float: right;
+			}
+		}
+		.labels.row {
+			margin: 0;
+			padding: 15px 0 10px 0;
+			color: #828282;
+
+			.confirmed, .payed, .send, .delete {
+				text-align: center;
+			}
+		}
+		.row-list.row {
+			margin:0 0 7px 0;
+			background-color: $row-list;
+			padding: 7px 0;
+			@include border-radius(3px); 
+			input[type="text"] {
+				border: none;
+				@include border-radius(3px); 
+				padding: 6px;
+			}
+			.confirmed .light, .payed .light {
+				background-color: #000;
+				height: 11px;
+				width: 11px;
+				margin: 6px auto;
+				@include border-radius(11px); 
+
+				&.yes {
+					background-color: $yes;
+				}
+				&.no {
+					background-color: $no;
+				}
+				&.wait {
+					background-color: $wait;
+				}
+			}
+			.send .picto, .delete .picto {
+				background: url('/images/guests/icon_guests.png') no-repeat;
+				width: 24px;
+				height: 24px;
+				margin: 7px auto 0 auto;
+			}
+			.delete .picto {
+				background-position-x : -51px;
+			}
+		}
+	}
+	
+	
+
+}

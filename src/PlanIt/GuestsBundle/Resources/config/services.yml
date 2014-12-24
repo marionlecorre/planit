@@ -1,0 +1,4 @@
+services:
+#    plan_it_guests.example:
+#        class: PlanIt\GuestsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

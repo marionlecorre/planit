@@ -1,0 +1,14 @@
+
+$color: #1d89cf;
+$no: #c22f0e;
+$yes: #77e469;
+$wait : #e48069;
+$head-list: #d8d7d7;
+$row-list: #f1f1f1;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
