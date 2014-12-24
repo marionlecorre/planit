@@ -24,9 +24,9 @@
 
 .info_dte{
 	
-	background-color: #dfdede;
+	background-color: $neutral;
 	color: #5c5a5a;
-	border-radius: 5px;
+	@include border-radius(5px);
 	height:89px;
 	margin: 20px 0 12px 0;
 	
@@ -49,13 +49,13 @@
 }
 
 .info_color{
-	background-color: #e66454;
+	background-color: $negative;
 	color:#ffffff;
 }
 
 #mes_modules{
-	background-color: #dfdede;
-	border-radius: 5px;
+	background-color: $neutral;
+	@include border-radius(5px);
 	height: 30px;
 	margin-top: 50px;
 	line-height:30px;
