@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 17 Décembre 2014 à 09:57
+-- Généré le :  Mar 23 Décembre 2014 à 15:27
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,53 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `planit`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `event`
+--
+
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `begin_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_3BAE0AA7A76ED395` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `event`
+--
+
+INSERT INTO `event` (`id`, `name`, `slug`, `description`, `begin_date`, `end_date`, `user_id`) VALUES
+(1, 'Anniversaire Florent', 'anniversaire-florent', '22 ans de Flo dans un bar chouette', '2014-11-22 19:00:00', '2014-12-22 23:30:00', 3),
+(2, 'Mariage Aurélie', 'mariage-aurelie', 'Mariage de Ben et Aurélie à Lavaur et Marina en témoin avec une belle robe rose', '2015-09-19 13:00:00', '2015-09-20 19:00:00', 3),
+(3, 'Jour de l''an', 'jour-de-lan', 'Jour de l''an avec les potes à la maison', '2014-12-31 19:00:00', '2015-01-01 05:00:00', 1),
+(4, 'Noël chez Mamie', 'noel-chez-mamie', 'Noël chez Mamie avec Misel', '2014-12-25 12:00:00', '2014-12-25 17:00:00', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `migration_versions`
+--
+
+CREATE TABLE IF NOT EXISTS `migration_versions` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `migration_versions`
+--
+
+INSERT INTO `migration_versions` (`version`) VALUES
+('20141219155432'),
+('20141222222117');
 
 -- --------------------------------------------------------
 
@@ -44,6 +91,16 @@ INSERT INTO `user` (`id`, `name`, `surname`, `mail`, `password`, `image`) VALUES
 (1, 'Ali', 'Babouche', 'alibabouche@gmail.com', 'alibabouche', 'test.jpg'),
 (2, 'Marion', 'Le Cordula', 'marionlecordula@gmail.com', 'moche', 'jackson.jpg'),
 (3, 'Warina', 'Avataneo', 'warina@gmail.com', 'warina', 'grisou.jpg');
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `event`
+--
+ALTER TABLE `event`
+  ADD CONSTRAINT `FK_3BAE0AA7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
