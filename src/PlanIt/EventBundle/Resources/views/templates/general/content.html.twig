@@ -1,0 +1,74 @@
+{% twig_js name="content" %}
+<div class="row" id="title_event">
+	<div class="col-md-12" > {{ evnt.name }} </div>
+</div>
+
+<div class="row" id="separator">
+	<div class="col-md-12"> </div>
+</div>
+
+<div class="row">
+	<div class="col-md-3 descr_event">
+			<img src="/images/event/events_pictures/{{evnt.image}}" /> 
+            <p>{{evnt.description}} </p>
+	</div>
+	<div class="col-md-5"> 
+		<div id="pie_chart"></div>
+	</div>
+	<div class="col-md-4"> 
+		<div class="info_dte">
+    		<img src="/images/event/info_dte_zzz.png" /> 
+    		<p> NOMBRE DE DODOS </br> <span>5</span> </p>
+		</div>
+		<div class="info_dte">
+    		<img src="/images/event/info_dte_invite.png" /> 
+    		<p> NOMBRE D'INSCRITS </br> <span>18</span> </p>
+		</div>
+		<div class="info_dte info_color">
+    		<img src="/images/event/info_dte_budget.png" /> 
+    		<p> BUDGET TOTAL </br> <span>36</span> </p>
+		</div>
+	</div>
+</div>
+
+<div class="row" id="mes_modules">
+	<div class="col-md-12">Mes modules</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module" >
+		<div id="module_invite">
+			<img src="/images/event/pictos_modules/picto_invite.png" /> 	
+			<p>Gestion des invités</p>    	
+		</div>	
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+		<div id="module_budget">	
+			<img src="/images/event/pictos_modules/picto_budget.png" /> 
+    		<p>Gestion du budget</p>
+		</div>      		
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+		<div id="module_lieu">
+			<img src="/images/event/pictos_modules/picto_lieu.png" /> 	 
+    		<p>Gestion du lieu</p>  
+    	</div>   		
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
+		<div id="module_todo">
+			<img src="/images/event/pictos_modules/picto_todo.png" /> 
+    		<p>Todo list</p> 
+    	</div>     		
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+		<div id="module_transport">
+			<img src="/images/event/pictos_modules/picto_transport.png" /> 	
+			<p>Gestion du transport</p> 
+		</div>   		
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
+		<div id="ajout_module"> 
+    		<p>+</p> 
+		</div>     		
+	</div>
+</div>

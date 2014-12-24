@@ -50,6 +50,11 @@ class Event
     protected $end_date;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $image;
+
+    /**
      * Get id
      *
      * @return integer 

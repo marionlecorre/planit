@@ -10,7 +10,7 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body onload="getUser({{id}});">
+    <body onload="getUser({{user_id}});">
         {% block body %} 
             {% block header %}
                 <header>
@@ -38,15 +38,15 @@
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
 
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+            <script src="//code.highcharts.com/highcharts.js"></script>
+            <script src="//code.highcharts.com/modules/exporting.js"></script>
             {% javascripts "../app/Resources/views/templates/header.html.twig"
             "../app/Resources/views/templates/sidebar.html.twig"
                filter="twig_js, ?yui_js" %}
                 <script language="javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-            <script src="//code.highcharts.com/highcharts.js"></script>
-            <script src="//code.highcharts.com/modules/exporting.js"></script>
           
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             {% javascripts

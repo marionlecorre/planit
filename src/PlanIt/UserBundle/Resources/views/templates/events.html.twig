@@ -1,0 +1,21 @@
+{% twig_js name="events" %}
+
+{% for event in user_events %}
+	<div class="col-md-3 ">
+		<div class="event-thumbnail">
+			<div class="head">
+				<h2>{{event.name}}</h2>
+				<span class="date">J-5</span>
+			</div>
+			<div class="content">
+	    		<img src="/images/event/events_pictures/{{event.image}}" /> 
+	    		<p class="description">{{event.description}}</p>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+<div class="col-md-3 ">
+	<div class="add event-thumbnail">
+		<p> + </p>
+	</div>
+</div>

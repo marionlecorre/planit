@@ -11,7 +11,12 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItEventBundle/Resources/public/js/*.js'%}
-	   <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts '@PlanItEventBundle/Resources/views/templates/general/content.html.twig' filter="twig_js, ?yui_js" %}
+          <script language="javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    {% javascripts '@PlanItEventBundle/Resources/public/js/*.js'
+                    '%kernel.root_dir%/Resources/js/*.js'  %}
+	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

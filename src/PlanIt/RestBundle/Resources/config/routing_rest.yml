@@ -5,5 +5,5 @@ users :
 
 events : 
   type: rest
-  resource:     "PlanItRestBundle:UserRest"
+  resource:     "PlanItRestBundle:EventRest"
   name_prefix:  api_
