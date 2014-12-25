@@ -9,6 +9,7 @@
 	button {
 		background-color: $color;
 		padding: 4px 18px;
+		width: 100%;
 	}
 	#paying-checkbox {
 		margin-top: 6px;
@@ -21,14 +22,22 @@
 		margin: 28px 0 39px;
 		.head-list {
 			background-color: $head-list;
+			padding: 13px 27px 13px 10px;
 			.name {
 				float:left;
-				margin-right: 20px;
+				margin-left: 20px;
 				font-size: 17px;
 				line-height: 17px;
 			}
 			form {
 				float: left;
+				width: 71px;
+				.selectize-control {
+					margin-top: -7px;
+					.selectize-input {
+						background-color: $row-list;
+					}
+				}
 			}
 			.price {
 				float: right;
@@ -79,9 +88,17 @@
 			.delete .picto {
 				background-position-x : -51px;
 			}
+			form#payment {
+				width: 61%;
+			}
 		}
 	}
 	
+	// select
+	.selectize-control.single .selectize-input {
+		border: none;
+		padding: 3px 3px 3px 7px;
+	}
 	
 
 }

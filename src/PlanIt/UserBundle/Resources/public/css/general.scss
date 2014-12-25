@@ -45,6 +45,8 @@ body {
   padding:2% 5% 5% 5%;
 }
 .ui-state-focus { outline: none; }
+.select-open, .select-enabled, .select-target-focused,
+a:focus { outline: none !important; }
 
 #title{
   h1 {
