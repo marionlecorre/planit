@@ -17,8 +17,8 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> getModule({{module_id}}); </script>
-    {% javascripts '@PlanItModuleBundle/Resources/public/js/*.js' %}
+{#     {% javascripts '@PlanItModuleBundle/Resources/public/js/*.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
-	{% endjavascripts %}
+	{% endjavascripts %} #}
 {% endblock %}
 

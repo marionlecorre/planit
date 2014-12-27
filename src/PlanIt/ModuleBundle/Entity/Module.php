@@ -42,6 +42,7 @@ class Module
      */
     protected $event;
 
+
     /**
      * Get id
      *
@@ -142,5 +143,45 @@ class Module
     public function getEvent()
     {
         return $this->event;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     * @return Module
+     */
+    public function addGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests[] = $guests;
+
+        return $this;
+    }
+
+    /**
+     * Remove guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     */
+    public function removeGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests->removeElement($guests);
+    }
+
+    /**
+     * Get guests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGuests()
+    {
+        return $this->guests;
     }
 }

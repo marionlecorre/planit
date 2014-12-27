@@ -26,4 +26,5 @@ class ModuleRepository extends EntityRepository
         return $qb->getQuery()
                   ->getResult();
     }
+
 }

@@ -17,6 +17,7 @@ class GuestsModule extends Module
      */
     protected $list_type;
 
+
     /**
      * @ORM\Column(type="integer")
      */
@@ -51,6 +52,11 @@ class GuestsModule extends Module
      */
     protected $event;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\ModuleBundle\Entity\Guest", mappedBy="module")
+     */
+    protected $guests;
+ 
 
     /**
      * Set list_type
@@ -221,5 +227,45 @@ class GuestsModule extends Module
     public function getEvent()
     {
         return $this->event;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     * @return GuestsModule
+     */
+    public function addGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests[] = $guests;
+
+        return $this;
+    }
+
+    /**
+     * Remove guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     */
+    public function removeGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests->removeElement($guests);
+    }
+
+    /**
+     * Get guests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGuests()
+    {
+        return $this->guests;
     }
 }

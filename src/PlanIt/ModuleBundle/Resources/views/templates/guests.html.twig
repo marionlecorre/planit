@@ -1,3 +1,4 @@
+
 {% twig_js name="guests_template" %}
 <div class="container guest-module">
 	<div class="row" id="title">
@@ -45,46 +46,30 @@
 			<p class="delete col-md-1">Supprimer</p>
 		</div>
 		{# Données #}
-		<div class="row-list row">
-			<form action="" id="select-field" class="col-md-1">
-				<input type="checkbox">
-			</form>
-			<div class="name col-md-2"><input type="text" value="Marina Avataneo"></div>
-			<div class="email col-md-3"><input type="text" value="avataneo.marina@gmail.com"></div>
-			<div class="confirmed col-md-1"><div class="light yes"></div></div>
-			<div class="payed col-md-1"><div class="light no"></div></div>
-			<div class="payment col-md-2">
-				<form action="" id="payment">
-				<select name="payment">
-						<option value="none">Espèce</option>
-						<option value="send">CB</option>
-						<option value="delete">Chèque</option>
-				</select>
+		{% for guest in module.guests %}
+			<div class="row-list row">
+				<form action="" id="select-field" class="col-md-1">
+					<input type="checkbox">
 				</form>
+				<div class="name col-md-2"><input type="text" value="{{guest.firstname}} {{guest.last}}"></div>
+				<div class="email col-md-3"><input type="text" value="{{guest.email}}"></div>
+				<div class="confirmed col-md-1"><div class="light state-{{guest.confirmed}}"></div></div>
+				<div class="payed col-md-1"><div class="light state-{{guest.payed}}"></div></div>
+				<div class="payment col-md-2">
+					<form action="" id="payment">
+					<select name="payment">
+							<option value="none">Espèce</option>
+							<option value="send">CB</option>
+							<option value="delete">Chèque</option>
+					</select>
+					</form>
+				</div>
+				<div class="send sent-{{guest.sent}} col-md-1 data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation""><div class="picto"></div></div>
+				<div class="delete col-md-1"><div class="picto"></div></div>
 			</div>
-			<div class="send col-md-1"><div class="picto"></div></div>
-			<div class="delete col-md-1"><div class="picto"></div></div>
-		</div>
-
-		<div class="row-list row">
-			<form action="" id="select-field" class="col-md-1">
-				<input type="checkbox">
-			</form>
-			<div class="name col-md-2"><input type="text" value="Marion Le Corre"></div>
-			<div class="email col-md-3"><input type="text" value="lamoche@gmail.com"></div>
-			<div class="confirmed col-md-1"><div class="light wait"></div></div>
-			<div class="payed col-md-1"><div class="light no"></div></div>
-			<div class="payment col-md-2">
-				<form action="" id="payment">
-				<select name="payment">
-						<option value="none">Espèce</option>
-						<option value="send">CB</option>
-						<option value="delete">Chèque</option>
-				</select>
-				</form>
-			</div>
-			<div class="send col-md-1"><div class="picto"></div></div>
-			<div class="delete col-md-1"><div class="picto"></div></div>
-		</div>
+		{% endfor %}
 	</div>
 </div>
+<script>guests();</script>
+
+

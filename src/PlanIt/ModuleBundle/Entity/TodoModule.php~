@@ -140,4 +140,49 @@ class TodoModule extends Module
     {
         return $this->event;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $guests;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     * @return TodoModule
+     */
+    public function addGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests[] = $guests;
+
+        return $this;
+    }
+
+    /**
+     * Remove guests
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
+     */
+    public function removeGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    {
+        $this->guests->removeElement($guests);
+    }
+
+    /**
+     * Get guests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
 }
