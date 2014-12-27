@@ -7,3 +7,8 @@ events :
   type: rest
   resource:     "PlanItRestBundle:EventRest"
   name_prefix:  api_
+
+modules : 
+  type: rest
+  resource:     "PlanItRestBundle:ModuleRest"
+  name_prefix:  api_

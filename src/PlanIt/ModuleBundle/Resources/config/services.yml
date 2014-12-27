@@ -1,0 +1,4 @@
+services:
+#    plan_it_module.example:
+#        class: PlanIt\ModuleBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

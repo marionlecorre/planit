@@ -1,0 +1,90 @@
+{% twig_js name="guests_template" %}
+<div class="container guest-module">
+	<div class="row" id="title">
+		<div class="col-md-12" > <h1>{{module.event.name|upper}}</h1> </div>
+	</div>
+
+	<div class="row" id="separator">
+		<div class="col-md-12"> </div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3"><button>Ajouter un type d'invité</button></div>
+		<div class="col-md-3"><button>Ajouter un mode de paiement</button></div>
+		<div class="col-md-2 col-md-offset-4">
+			<form id="paying-checkbox" action="">
+				<input type="checkbox" {% if module.payable %} checked {%endif%}>Evenement payant
+			</form>
+		</div>
+	</div>
+
+	<div class="row list" id="imac">
+		{# Tête de liste #}
+		<div class="head-list">
+			<form action="">
+			<select name="actions" id="actions">
+					<option value="none">Action</option>
+					<option value="send">Envoyer</option>
+					<option value="delete">Supprimer</option>
+			</select>
+			</form>
+			<div class="name">Amis Imac</div>
+			<div class="price">40€/pers</div>
+		</div>
+		{# Labels #}
+		<div class="labels row">
+			<form action="" id="select-all" class="col-md-1">
+				<input type="checkbox">
+			</form>
+			<p class="name col-md-2">Nom/Prénom</p>
+			<p class="email col-md-3">Email</p>
+			<p class="confirmed col-md-1">Confirmé</p>
+			<p class="payed col-md-1">Payé</p>
+			<p class="payment col-md-2">Mode de paiement</p>
+			<p class="send col-md-1">Envoyer</p>
+			<p class="delete col-md-1">Supprimer</p>
+		</div>
+		{# Données #}
+		<div class="row-list row">
+			<form action="" id="select-field" class="col-md-1">
+				<input type="checkbox">
+			</form>
+			<div class="name col-md-2"><input type="text" value="Marina Avataneo"></div>
+			<div class="email col-md-3"><input type="text" value="avataneo.marina@gmail.com"></div>
+			<div class="confirmed col-md-1"><div class="light yes"></div></div>
+			<div class="payed col-md-1"><div class="light no"></div></div>
+			<div class="payment col-md-2">
+				<form action="" id="payment">
+				<select name="payment">
+						<option value="none">Espèce</option>
+						<option value="send">CB</option>
+						<option value="delete">Chèque</option>
+				</select>
+				</form>
+			</div>
+			<div class="send col-md-1"><div class="picto"></div></div>
+			<div class="delete col-md-1"><div class="picto"></div></div>
+		</div>
+
+		<div class="row-list row">
+			<form action="" id="select-field" class="col-md-1">
+				<input type="checkbox">
+			</form>
+			<div class="name col-md-2"><input type="text" value="Marion Le Corre"></div>
+			<div class="email col-md-3"><input type="text" value="lamoche@gmail.com"></div>
+			<div class="confirmed col-md-1"><div class="light wait"></div></div>
+			<div class="payed col-md-1"><div class="light no"></div></div>
+			<div class="payment col-md-2">
+				<form action="" id="payment">
+				<select name="payment">
+						<option value="none">Espèce</option>
+						<option value="send">CB</option>
+						<option value="delete">Chèque</option>
+				</select>
+				</form>
+			</div>
+			<div class="send col-md-1"><div class="picto"></div></div>
+			<div class="delete col-md-1"><div class="picto"></div></div>
+		</div>
+	</div>
+</div>

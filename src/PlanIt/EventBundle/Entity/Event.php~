@@ -55,6 +55,11 @@ class Event
     protected $image;
 
     /**
+     * @ORM\OneToMany(targetEntity="PlanIt\ModuleBundle\Entity\Module", mappedBy="event")
+     */
+    protected $modules;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -203,5 +208,68 @@ class Event
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Event
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Module $modules
+     * @return Event
+     */
+    public function addModule(\PlanIt\ModuleBundle\Entity\Module $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \PlanIt\ModuleBundle\Entity\Module $modules
+     */
+    public function removeModule(\PlanIt\ModuleBundle\Entity\Module $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
     }
 }

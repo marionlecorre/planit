@@ -1,0 +1,30 @@
+<?php
+
+namespace PlanIt\ModuleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="PlanIt\ModuleBundle\Repository\PlaceModuleRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="place_module")
+ */
+class PlaceModule extends Module
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $max_capacity_p;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $max_price_p;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $max_time_to_go;
+    
+}
