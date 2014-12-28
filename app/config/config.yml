@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [PlanItUserBundle, PlanItEventBundle]
+    bundles:        [PlanItUserBundle, PlanItEventBundle, PlanItGuestsBundle, PlanItModuleBundle]
     ruby: %libpath.ruby%
     #java: /usr/bin/java
     filters:

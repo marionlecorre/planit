@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new PlanIt\RestBundle\PlanItRestBundle(),
             new PlanIt\EventBundle\PlanItEventBundle(),
+            new PlanIt\GuestsBundle\PlanItGuestsBundle(),
+            new PlanIt\ModuleBundle\PlanItModuleBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -21,8 +21,9 @@
                 <li class="active event">{{event.name}}</li>
                 <ul class="modules">
                     <li><a href="/app_dev.php/event/{{event.id}}">Général</a></li>
-                    <li><a href="#">Gestion des invités</a></li>
-                    <li><a href="#">Gestion du budget</a></li>
+                    {% for module in event.modules %}
+                        <li><a href="/app_dev.php/event/{{event.id}}/module/{{module.id}}">{{module.name}}</a></li>
+                    {% endfor %}
                 </ul>
             {% endfor %}
         </ul>

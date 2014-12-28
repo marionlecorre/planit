@@ -1,3 +1,11 @@
+plan_it_module:
+    resource: "@PlanItModuleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+plan_it_guests:
+    resource: "@PlanItGuestsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 plan_it_event:
     resource: "@PlanItEventBundle/Resources/config/routing.yml"
     prefix:   /

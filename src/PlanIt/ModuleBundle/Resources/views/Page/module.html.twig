@@ -1,0 +1,24 @@
+{% extends 'PlanItModuleBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItModuleBundle/Resources/public/css/*.scss' 
+    filter="compass" %}
+	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+	<section id="module_content">
+	
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> getModule({{module_id}}); </script>
+{#     {% javascripts '@PlanItModuleBundle/Resources/public/js/*.js' %}
+	      <script language="javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %} #}
+{% endblock %}
+

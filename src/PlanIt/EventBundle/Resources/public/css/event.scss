@@ -78,20 +78,20 @@
 		cursor: pointer;
 	}
 
-	#module_invite{
+	#module_guests{
 		background-color:$invit_module;
 	}
 	#module_budget {
 		background-color:$budget_module;
 	}
-	#module_lieu {
+	#module_place {
 		background-color:$place_module;
+	}
+	#module_transportation {
+		background-color:$transport_module;
 	}
 	#module_todo {
 		background-color:$todo_module;
-	}
-	#module_transport {
-		background-color:$transport_module;
 	}
 	#ajout_module {
 		background-color:$add_module;

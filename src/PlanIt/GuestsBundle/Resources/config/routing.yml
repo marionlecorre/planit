@@ -1,0 +1,3 @@
+plan_it_guests_homepage:
+    path:     /guests/{id}
+    defaults: { _controller: PlanItGuestsBundle:Default:index }
