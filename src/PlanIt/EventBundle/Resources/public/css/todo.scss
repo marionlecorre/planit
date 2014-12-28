@@ -1,0 +1,62 @@
+@import 'general';
+
+.todo{
+	background-color: $neutral;
+	padding:10px 30px 10px 30px;
+	@include border-radius(5px);
+	margin: -10px 0 10px 0;
+
+	input{
+		float:right;
+		background-color: #ffffff;
+	}
+
+}
+
+.todo input[type="checkbox"]{
+    background: white;
+}
+
+.checked{
+	background-color: $todo_module;
+	color: #ffffff;
+}
+
+/* LISTE DRAG AND DROP */
+
+.sortable, .exclude {
+	margin: auto;
+	padding: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.sortable.grid {
+	overflow: hidden;
+}
+
+.sortable li, .exclude li {
+	list-style: none;		
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+.handles span {
+	cursor: move;
+}
+
+li.disabled {
+	opacity: 1;
+}
+
+li.sortable-placeholder {
+	border: 1px dashed #CCC;
+	background: none;	
+	padding:0;
+	margin: -10px -10px 20px -10px;
+	height:40px;
+}
