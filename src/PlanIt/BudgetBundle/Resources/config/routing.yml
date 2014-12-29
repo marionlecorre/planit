@@ -1,0 +1,3 @@
+plan_it_budget_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PlanItBudgetBundle:Default:index }

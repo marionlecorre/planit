@@ -25,6 +25,10 @@ class AppKernel extends Kernel
             new PlanIt\EventBundle\PlanItEventBundle(),
             new PlanIt\GuestsBundle\PlanItGuestsBundle(),
             new PlanIt\ModuleBundle\PlanItModuleBundle(),
+            new PlanIt\TodoBundle\PlanItTodoBundle(),
+            new PlanIt\BudgetBundle\PlanItBudgetBundle(),
+            new PlanIt\PlaceBundle\PlanItPlaceBundle(),
+            new PlanIt\TransportationBundle\PlanItTransportationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,72 @@
+{% extends 'PlanItGuestsBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItGuestsBundle/Resources/public/css/*.scss' 
+    filter="compass" %}
+	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+	<section id="module_content">
+	   <div class="container guest-module">
+            <div class="row" id="title">
+                <!--Template title.html.twig -->
+            </div>
+
+            <div class="row" id="separator">
+                <div class="col-md-12"> </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3"><button>Ajouter un type d'invité</button></div>
+                <div class="col-md-3"><button>Ajouter un mode de paiement</button></div>
+                <div class="col-md-2 col-md-offset-4" id="checkbox_payable">                  
+                    <!--Template payable.html.twig -->
+                </div>
+            </div>
+            {% include 'PlanItEventBundle:Page:form.html.twig' %}
+            <div class="row list" id="imac">
+                {# Tête de liste #}
+                <div class="head-list">
+                    <form action="">
+                    <select name="actions" id="actions">
+                            <option value="none">Action</option>
+                            <option value="send">Envoyer</option>
+                            <option value="delete">Supprimer</option>
+                    </select>
+                    </form>
+                    <div class="name">Amis Imac</div>
+                    <div class="price">40€/pers</div>
+                </div>
+                {# Labels #}
+                <div class="labels row">
+                    <form action="" id="select-all" class="col-md-1">
+                        <input type="checkbox">
+                    </form>
+                    <p class="name col-md-2">Nom/Prénom</p>
+                    <p class="email col-md-3">Email</p>
+                    <p class="confirmed col-md-1">Confirmé</p>
+                    <p class="payed col-md-1">Payé</p>
+                    <p class="payment col-md-2">Mode de paiement</p>
+                    <p class="send col-md-1">Envoyer</p>
+                    <p class="delete col-md-1">Supprimer</p>
+                </div>
+                {# Données #}
+                <div id="guests_list">
+                    <!--Template guests.html.twig -->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> getModule({{module_id}}); </script>
+{#     {% javascripts '@PlanItGuestsBundle/Resources/public/js/*.js' %}
+	      <script language="javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %} #}
+{% endblock %}
+

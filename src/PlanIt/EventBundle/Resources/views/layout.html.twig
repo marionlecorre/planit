@@ -10,7 +10,10 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItEventBundle/Resources/views/templates/general/content.html.twig' filter="twig_js, ?yui_js" %}
+    {% javascripts '@PlanItEventBundle/Resources/views/templates/title.html.twig'
+                    '@PlanItEventBundle/Resources/views/templates/form.html.twig'
+                    '@PlanItEventBundle/Resources/views/templates/modules.html.twig'
+                    '@PlanItEventBundle/Resources/views/templates/description.html.twig' filter="twig_js, ?yui_js" %}
           <script language="javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     

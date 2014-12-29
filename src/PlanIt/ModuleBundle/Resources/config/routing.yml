@@ -1,4 +1,4 @@
-PlanItEventBundle_module:
+PlanItModuleBundle_module:
     path:     /event/{event_id}/module/{module_id}
     defaults: { _controller: PlanItModuleBundle:Page:module }
     requirements:

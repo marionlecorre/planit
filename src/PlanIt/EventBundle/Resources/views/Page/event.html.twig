@@ -1,14 +1,67 @@
 {% extends 'PlanItEventBundle::layout.html.twig' %}
 {% block content %}
 	<div id="content_general_event" class="container">
-		<!-- Content template -->
+		<div class="row" id="title">
+			<!--Template title -->
+		</div>
 
+		<div class="row" id="separator">
+			<div class="col-md-12"> </div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 descr_event" id="description">
+					<!-- Template description -->
+			</div>
+			<div class="col-md-5"> 
+				<div id="pie_chart"></div>
+			</div>
+			<div class="col-md-4"> 
+				<div class="info_dte">
+		    		<img src="/images/event/info_dte_zzz.png" /> 
+		    		<p> NOMBRE DE DODOS </br> <span>5</span> </p>
+				</div>
+				<div class="info_dte">
+		    		<img src="/images/event/info_dte_invite.png" /> 
+		    		<p> NOMBRE D'INSCRITS </br> <span>18</span> </p>
+				</div>
+				<div class="info_dte info_color">
+		    		<img src="/images/event/info_dte_budget.png" /> 
+		    		<p> BALANCE DU BUDGET </br> <span>36</span> </p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" id="mes_modules">
+			<div class="col-md-12">Mes modules</div>
+		</div>
+
+		<div class="row">
+			<div id="modules">
+				<!--Template modules -->
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
+				<div id="ajout_module"> 
+		    		<p>+</p> 
+				</div>     		
+			</div>
+			<div id="form_container">
+			</div>
+		</div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> getEvent({{event_id}}); </script>
+    <script>
+	    $('#select-type select').change(function(event) {
+	    	alert('jj')
+	        $.get('/app_dev.php/event/form', {type: $(this).val()}, function(data) {
+	            $('#form-container').html(data);
+	        });
+	    });
+	</script>
     {% javascripts '@PlanItEventBundle/Resources/public/js/*.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}

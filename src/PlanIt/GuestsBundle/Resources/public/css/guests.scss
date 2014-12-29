@@ -69,13 +69,13 @@
 				margin: 6px auto;
 				@include border-radius(11px); 
 
-				&.yes {
+				&.state-1 {
 					background-color: $yes;
 				}
-				&.no {
+				&.state-0 {
 					background-color: $no;
 				}
-				&.wait {
+				&.state-2 {
 					background-color: $wait;
 				}
 			}
@@ -85,8 +85,11 @@
 				height: 24px;
 				margin: 7px auto 0 auto;
 			}
+			.sent-true .picto {
+				background-position-x : -54px;
+			}
 			.delete .picto {
-				background-position-x : -51px;
+				background-position-x : -106px;
 			}
 			form#payment {
 				width: 61%;

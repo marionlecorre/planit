@@ -1,3 +1,6 @@
-plan_it_guests_homepage:
-    path:     /guests/{id}
-    defaults: { _controller: PlanItGuestsBundle:Default:index }
+PlanItGuestsBundle_guest_create:
+    pattern:  /module/{module_id}/guests/create
+    defaults: { _controller: PlanItGuestsBundle:Guest:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+

@@ -3,6 +3,9 @@
 namespace PlanIt\ModuleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\ModuleBundle\Repository\ModuleRepository")
@@ -10,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="module")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap( {"guests" = "GuestsModule", "budget" = "BudgetModule", "todo" = "TodoModule", "place" = "PlaceModule", "transportation" = "TransportationModule"} )
+ * @ORM\DiscriminatorMap( {"guests" = "PlanIt\GuestsBundle\Entity\GuestsModule", "budget" = "PlanIt\BudgetBundle\Entity\BudgetModule", "todo" = "PlanIt\TodoBundle\Entity\TodoModule", "place" = "PlanIt\PlaceBundle\Entity\PlaceModule", "transportation" = "PlanIt\TransportationBundle\Entity\TransportationModule"} )
  */
 class Module
 {
@@ -144,44 +147,15 @@ class Module
     {
         return $this->event;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Add guests
-     *
-     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
-     * @return Module
-     */
-    public function addGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $this->guests[] = $guests;
+        $metadata->addPropertyConstraint('name', new NotBlank(array(
+            'message' => 'You must enter your name'
+        )));
 
-        return $this;
-    }
-
-    /**
-     * Remove guests
-     *
-     * @param \PlanIt\ModuleBundle\Entity\Guest $guests
-     */
-    public function removeGuest(\PlanIt\ModuleBundle\Entity\Guest $guests)
-    {
-        $this->guests->removeElement($guests);
-    }
-
-    /**
-     * Get guests
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGuests()
-    {
-        return $this->guests;
+        $metadata->addPropertyConstraint('name', new Length(array(
+            'max' => "30"
+        )));
     }
 }

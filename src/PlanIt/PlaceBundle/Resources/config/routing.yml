@@ -1,0 +1,3 @@
+plan_it_place_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PlanItPlaceBundle:Default:index }

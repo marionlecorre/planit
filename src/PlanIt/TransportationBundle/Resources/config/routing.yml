@@ -1,0 +1,3 @@
+plan_it_transportation_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PlanItTransportationBundle:Default:index }

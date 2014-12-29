@@ -12,3 +12,8 @@ modules :
   type: rest
   resource:     "PlanItRestBundle:ModuleRest"
   name_prefix:  api_
+
+guests : 
+  type: rest
+  resource:     "PlanItRestBundle:GuestRest"
+  name_prefix:  api_

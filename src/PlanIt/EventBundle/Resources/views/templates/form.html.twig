@@ -1,0 +1,18 @@
+{% twig_js name="form" %}
+<div id="select-type">
+	<select>
+		<option value=""> Choisir un module </option>
+		{% for module in notUse_modules %}
+			<option value="{{module.type}}"> {{module.name}} </option>
+		{% endfor %}
+	</select>
+</div>
+<div id="form-container"></div>
+
+<script>
+    $('#select-type select').change(function(event) {
+        $.get('/app_dev.php/event/form', {type: $(this).val()}, function(data) {
+            $('#form-container').html(data);
+        });
+    });
+</script>

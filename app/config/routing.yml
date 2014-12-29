@@ -1,3 +1,19 @@
+plan_it_transportation:
+    resource: "@PlanItTransportationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+plan_it_place:
+    resource: "@PlanItPlaceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+plan_it_budget:
+    resource: "@PlanItBudgetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+plan_it_todo:
+    resource: "@PlanItTodoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 plan_it_module:
     resource: "@PlanItModuleBundle/Resources/config/routing.yml"
     prefix:   /
