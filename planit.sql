@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:8889
--- Généré le :  Dim 28 Décembre 2014 à 00:15
--- Version du serveur :  5.5.38
--- Version de PHP :  5.6.2
+-- Client :  127.0.0.1
+-- Généré le :  Lun 29 Décembre 2014 à 16:17
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,16 +26,18 @@ SET time_zone = "+00:00";
 -- Structure de la table `event`
 --
 
-CREATE TABLE `event` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `begin_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_3BAE0AA7A76ED395` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `event`
@@ -53,26 +55,29 @@ INSERT INTO `event` (`id`, `name`, `slug`, `description`, `begin_date`, `end_dat
 -- Structure de la table `guest`
 --
 
-CREATE TABLE `guest` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `guest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `confirmed` int(11) NOT NULL,
   `payed` int(11) NOT NULL,
-  `sent` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `sent` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_6D76B531AFC2B591` (`module_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `guest`
 --
 
-INSERT INTO `guest` (`id`, `firstname`, `lastname`, `slug`, `email`, `module_id`, `confirmed`, `payed`, `sent`) VALUES
-(1, 'Warina', 'Avataneo', 'mavataneo', 'warina@grisou.com', 2, 2, 0, 0),
-(2, 'Marion', 'LaMoche', 'mlamoche', 'marion@jackson.com', 2, 1, 0, 0),
-(3, 'Ali', 'Babouche', 'ababouche', 'ali@kira.com', 2, 2, 1, 1);
+INSERT INTO `guest` (`id`, `firstname`, `lastname`, `email`, `module_id`, `confirmed`, `payed`, `sent`) VALUES
+(1, 'Warina', 'Avataneo', 'warina@grisou.com', 2, 2, 0, 0),
+(2, 'Marion', 'LaMoche', 'marion@jackson.com', 2, 1, 0, 0),
+(3, 'Ali', 'Babouche', 'ali@kira.com', 2, 2, 1, 1),
+(9, 'Brice', 'Berthelot', 'brice.berthelot@sfr.fr', 2, 2, 0, 0),
+(10, 'Get on', 'The FLow', 'getontheflow@gmail.com', 2, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -80,8 +85,9 @@ INSERT INTO `guest` (`id`, `firstname`, `lastname`, `slug`, `email`, `module_id`
 -- Structure de la table `migration_versions`
 --
 
-CREATE TABLE `migration_versions` (
-  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+CREATE TABLE IF NOT EXISTS `migration_versions` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -104,7 +110,8 @@ INSERT INTO `migration_versions` (`version`) VALUES
 ('20141227232151'),
 ('20141227232318'),
 ('20141227232942'),
-('20141227233359');
+('20141227233359'),
+('20141228225102');
 
 -- --------------------------------------------------------
 
@@ -112,8 +119,8 @@ INSERT INTO `migration_versions` (`version`) VALUES
 -- Structure de la table `module`
 --
 
-CREATE TABLE `module` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `module` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -127,8 +134,10 @@ CREATE TABLE `module` (
   `max_price_p` int(11) DEFAULT NULL,
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `event_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_C24262871F7E88B` (`event_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `module`
@@ -151,14 +160,15 @@ INSERT INTO `module` (`id`, `name`, `slug`, `type`, `list_type`, `max_guests`, `
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `mail` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `image` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `user`
@@ -170,64 +180,6 @@ INSERT INTO `user` (`id`, `name`, `surname`, `mail`, `password`, `image`) VALUES
 (3, 'Warina', 'Avataneo', 'warina@gmail.com', 'warina', 'grisou.jpg');
 
 --
--- Index pour les tables exportées
---
-
---
--- Index pour la table `event`
---
-ALTER TABLE `event`
- ADD PRIMARY KEY (`id`), ADD KEY `IDX_3BAE0AA7A76ED395` (`user_id`);
-
---
--- Index pour la table `guest`
---
-ALTER TABLE `guest`
- ADD PRIMARY KEY (`id`), ADD KEY `IDX_6D76B531AFC2B591` (`module_id`);
-
---
--- Index pour la table `migration_versions`
---
-ALTER TABLE `migration_versions`
- ADD PRIMARY KEY (`version`);
-
---
--- Index pour la table `module`
---
-ALTER TABLE `module`
- ADD PRIMARY KEY (`id`), ADD KEY `IDX_C24262871F7E88B` (`event_id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `event`
---
-ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `guest`
---
-ALTER TABLE `guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `module`
---
-ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
 -- Contraintes pour les tables exportées
 --
 
@@ -235,19 +187,19 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- Contraintes pour la table `event`
 --
 ALTER TABLE `event`
-ADD CONSTRAINT `FK_3BAE0AA7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK_3BAE0AA7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `guest`
 --
 ALTER TABLE `guest`
-ADD CONSTRAINT `FK_6D76B531AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+  ADD CONSTRAINT `FK_6D76B531AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `module`
 --
 ALTER TABLE `module`
-ADD CONSTRAINT `FK_C24262871F7E88B` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
+  ADD CONSTRAINT `FK_C24262871F7E88B` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
