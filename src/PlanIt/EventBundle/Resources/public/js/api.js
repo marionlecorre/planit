@@ -46,6 +46,7 @@ function getEvent(id){
 	       var form_rend = Twig.render(form,
 	                            {
 	                                notUse_modules : notUse_modules,
+	                                event_id: evnt.id,
 	                            });
 	       $('#form_container').html(form_rend);
 	   },

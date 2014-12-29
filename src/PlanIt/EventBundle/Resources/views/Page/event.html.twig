@@ -54,14 +54,6 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> getEvent({{event_id}}); </script>
-    <script>
-	    $('#select-type select').change(function(event) {
-	    	alert('jj')
-	        $.get('/app_dev.php/event/form', {type: $(this).val()}, function(data) {
-	            $('#form-container').html(data);
-	        });
-	    });
-	</script>
     {% javascripts '@PlanItEventBundle/Resources/public/js/*.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}

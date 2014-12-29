@@ -4,6 +4,8 @@ namespace PlanIt\TransportationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\TransportationBundle\Repository\TransportationModuleRepository")
@@ -135,7 +137,7 @@ class TransportationModule extends Module
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $this->slug = $this->slugify($slug);
 
         return $this;
     }
@@ -195,5 +197,45 @@ class TransportationModule extends Module
     public function getEvent()
     {
         return $this->event;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('max_capacity_t', new NotBlank(array(
+            'message' => 'Merci de renseigner la capacité maximale souhaitée'
+        )));
+
+        $metadata->addPropertyConstraint('max_capacity_t', new NotBlank(array(
+            'message' => 'Merci de renseigner le prix maximal'
+        )));
+
+    }
+
+    public function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // transliterate
+        if (function_exists('iconv'))
+        {
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        // lowercase
+        $text = strtolower($text);
+
+        // remove unwanted characters
+        $text = preg_replace('#[^-\w]+#', '', $text);
+
+        if (empty($text))
+        {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }

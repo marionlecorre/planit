@@ -31,6 +31,7 @@ class PageController extends Controller
     public function formAction()
     {
         $type = $this->get('request')->query->get('type');
+        $event_id = $this->get('request')->query->get('event_id');
 	    switch( $type ) {
 	        case 'guests':
 	            $form = $this->createForm(new GuestsModuleType, new GuestsModule);
@@ -52,6 +53,7 @@ class PageController extends Controller
 	    return $this->render('PlanItEventBundle:Page:form.html.twig', array(
 	       'form' => $form->createView(),
 	       'type' => $type,
+	       'event_id' => $event_id
 	    ));
     }
 }
