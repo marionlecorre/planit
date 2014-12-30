@@ -17,3 +17,28 @@ guests :
   type: rest
   resource:     "PlanItRestBundle:GuestRest"
   name_prefix:  api_
+
+guests_module : 
+  type: rest
+  resource:     "PlanItRestBundle:GuestsModuleRest"
+  name_prefix:  api_
+
+budget_module : 
+  type: rest
+  resource:     "PlanItRestBundle:BudgetModuleRest"
+  name_prefix:  api_
+
+place_module : 
+  type: rest
+  resource:     "PlanItRestBundle:PlaceModuleRest"
+  name_prefix:  api_
+
+transportation_module : 
+  type: rest
+  resource:     "PlanItRestBundle:TransportationModuleRest"
+  name_prefix:  api_
+
+todo_module : 
+  type: rest
+  resource:     "PlanItRestBundle:TodoModuleRest"
+  name_prefix:  api_

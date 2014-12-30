@@ -11,7 +11,7 @@
 
 <script>
     $('#select-type select').change(function(event) {
-        $.get('/app_dev.php/event/form', {type: $(this).val()}, function(data) {
+        $.get('/app_dev.php/event/form', {type: $(this).val(), event_id :{{event_id}}}, function(data) {
             $('#form-container').html(data);
         });
     });
