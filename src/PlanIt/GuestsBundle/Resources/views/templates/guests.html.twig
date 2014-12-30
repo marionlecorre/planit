@@ -1,26 +1,59 @@
 {% twig_js name="guests_list" %}
-{% for guest in guests %}
-    <div class="row-list row">
-        <form action="" id="select-field" class="col-md-1">
-            <input type="checkbox">
-        </form>
-        <div class="name col-md-2"><input type="text" value="{{guest.firstname}} {{guest.last}}"></div>
-        <div class="email col-md-3"><input type="text" value="{{guest.email}}"></div>
-        <div class="confirmed col-md-1"><div class="light state-{{guest.confirmed}}"></div></div>
-        <div class="payed col-md-1"><div class="light state-{{guest.payed}}"></div></div>
-        <div class="payment col-md-2">
-            <form action="" id="payment">
-            <select name="payment">
-                    <option value="none">Espèce</option>
-                    <option value="send">CB</option>
-                    <option value="delete">Chèque</option>
+{% for type in typeGuests %}
+    {# Tête de liste #}
+    <div class="row list">
+        <div class="head-list">
+            <form action="">
+            <select name="actions" id="actions">
+                    <option value="none">Action</option>
+                    <option value="send">Envoyer</option>
+                    <option value="delete">Supprimer</option>
             </select>
             </form>
+            <div class="name">{{type.label}}</div>
+            <div class="price">40€/pers</div>
         </div>
-        <div class="send sent-{{guest.sent}} col-md-1 data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation""><div class="picto"></div></div>
-        <div class="delete col-md-1"><div class="picto"></div></div>
+        {# Labels #}
+        <div class="labels row">
+            <form action="" id="select-all" class="col-md-1">
+                <input type="checkbox">
+            </form>
+            <p class="name col-md-2">Nom/Prénom</p>
+            <p class="email col-md-3">Email</p>
+            <p class="confirmed col-md-1">Confirmé</p>
+            <p class="payed col-md-1">Payé</p>
+            <p class="payment col-md-2">Mode de paiement</p>
+            <p class="send col-md-1">Envoyer</p>
+            <p class="delete col-md-1">Supprimer</p>
+        </div>
+        {# Données #}
+        {% for guest in guests %}
+            {% if guest.type_guest.id == type.id %}
+                <div class="row-list row">
+                    <form action="" id="select-field" class="col-md-1">
+                        <input type="checkbox">
+                    </form>
+                    <div class="name col-md-2"><input type="text" value="{{guest.firstname}} {{guest.last}}"></div>
+                    <div class="email col-md-3"><input type="text" value="{{guest.email}}"></div>
+                    <div class="confirmed col-md-1"><div class="light state-{{guest.confirmed}}"></div></div>
+                    <div class="payed col-md-1"><div class="light state-{{guest.payed}}"></div></div>
+                    <div class="payment col-md-2">
+                        <form action="" id="payment">
+                        <select name="payment">
+                                <option value="none">Espèce</option>
+                                <option value="send">CB</option>
+                                <option value="delete">Chèque</option>
+                        </select>
+                        </form>
+                    </div>
+                    <div class="send sent-{{guest.sent}} col-md-1 data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation""><div class="picto"></div></div>
+                    <div class="delete col-md-1"><div class="picto"></div></div>
+                </div>
+        {% endif %}
+    {% endfor %}
     </div>
 {% endfor %}
+
 <script>guests();</script>
 
 

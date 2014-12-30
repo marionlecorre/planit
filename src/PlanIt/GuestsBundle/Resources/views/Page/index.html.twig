@@ -27,36 +27,8 @@
                 </div>
             </div>
             {% include 'PlanItEventBundle:Page:form.html.twig' %}
-            <div class="row list" id="imac">
-                {# Tête de liste #}
-                <div class="head-list">
-                    <form action="">
-                    <select name="actions" id="actions">
-                            <option value="none">Action</option>
-                            <option value="send">Envoyer</option>
-                            <option value="delete">Supprimer</option>
-                    </select>
-                    </form>
-                    <div class="name">Amis Imac</div>
-                    <div class="price">40€/pers</div>
-                </div>
-                {# Labels #}
-                <div class="labels row">
-                    <form action="" id="select-all" class="col-md-1">
-                        <input type="checkbox">
-                    </form>
-                    <p class="name col-md-2">Nom/Prénom</p>
-                    <p class="email col-md-3">Email</p>
-                    <p class="confirmed col-md-1">Confirmé</p>
-                    <p class="payed col-md-1">Payé</p>
-                    <p class="payment col-md-2">Mode de paiement</p>
-                    <p class="send col-md-1">Envoyer</p>
-                    <p class="delete col-md-1">Supprimer</p>
-                </div>
-                {# Données #}
-                <div id="guests_list">
-                    <!--Template guests.html.twig -->
-                </div>
+            <div id="guests_list">
+                <!--Template guests.html.twig -->
             </div>
         </div>
     </section>

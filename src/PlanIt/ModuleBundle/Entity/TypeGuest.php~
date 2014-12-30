@@ -1,0 +1,53 @@
+<?php
+
+namespace PlanIt\ModuleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="TypeGuest")
+ */
+class TypeGuest
+{
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $label;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $slug;
+
+    /**
+     * @ORM\Column(type="text", length=100)
+     */
+    protected $message;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    protected $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PlanIt\ModuleBundle\Entity\GuestsModule", inversedBy="type_guest")
+     * @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     */
+    protected $module;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\ModuleBundle\Entity\Guest", mappedBy="type_guest")
+     */
+    protected $guests;
+
+
+}

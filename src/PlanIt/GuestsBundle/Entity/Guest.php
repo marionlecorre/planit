@@ -56,6 +56,11 @@ class Guest
     protected $sent;
 
     protected $type_paiement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PlanIt\ModuleBundle\Entity\TypeGuest", inversedBy="guests")
+     * @ORM\JoinColumn(name="type_guest_id", referencedColumnName="id")
+     */
     protected $type_guest;
 
     /**
@@ -279,6 +284,29 @@ class Guest
         $metadata->addPropertyConstraint('email', new Email(array(
             'message' => 'Merci de renseigner une adresse mail valide'
         )));
+    }
 
+    /**
+     * Set type_guest
+     *
+     * @param \PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest
+     * @return Guest
+     */
+
+    public function setTypeGuest(\PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest = null)
+    {
+        $this->type_guest = $typeGuest;
+
+        return $this;
+    }
+
+    /**
+     * Get type_guest
+     *
+     * @return \PlanIt\ModuleBundle\Entity\TypeGuest 
+     */
+    public function getTypeGuest()
+    {
+        return $this->type_guest;
     }
 }

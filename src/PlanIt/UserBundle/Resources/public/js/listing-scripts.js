@@ -12,10 +12,3 @@
 	 	//$('.listing-events').height(maxHeight);
 		//$('.add.event-thumbnail').css("line-height",maxHeight+"px");
 	}
-$(function () {
-
-if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { 
-        document.getElementById(events).innerHTML=xmlhttp.responseText;
-        console.log("coucou");
-   }
- });

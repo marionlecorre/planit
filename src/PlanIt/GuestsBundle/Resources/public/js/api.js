@@ -19,6 +19,7 @@ function getModule(id){
 	   			var guests = Twig.render(guests_list,
 	                            {
 	                                guests : module.guests,
+	                                typeGuests : module.type_guest
 	                            });
 	       		$('#guests_list').html(guests);
 	       /**/
