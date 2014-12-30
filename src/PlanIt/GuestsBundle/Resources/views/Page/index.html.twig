@@ -26,7 +26,7 @@
                     <!--Template payable.html.twig -->
                 </div>
             </div>
-            {% include 'PlanItEventBundle:Page:form.html.twig' %}
+                {{ render(controller('PlanItGuestsBundle:Guest:form', { 'module_id' : module_id } ))}}            
             <div id="guests_list">
                 <!--Template guests.html.twig -->
             </div>

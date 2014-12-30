@@ -215,4 +215,9 @@ class TypeGuest
     {
         return $this->guests;
     }
+
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
 }

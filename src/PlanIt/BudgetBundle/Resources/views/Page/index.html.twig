@@ -1,0 +1,30 @@
+{% extends 'PlanItBudgetBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItTodoBundle/Resources/public/css/*.scss' 
+    filter="compass" %}
+	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row" id="title">
+        <div class="col-md-12" > <h1>Budget</h1> </div>
+    </div>
+
+	<div class="row" id="separator">
+		<div class="col-md-12"> </div>
+	</div>
+	<section>
+
+	</section>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> //getEvent({{event_id}}); </script>
+{% endblock %}
