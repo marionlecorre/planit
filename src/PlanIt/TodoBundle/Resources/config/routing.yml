@@ -1,6 +1,3 @@
-PlanItTodoBundle_todo:
-    path:     /todo/{id}
-    defaults: { _controller: PlanItTodoBundle:Page:index }
-    requirements:
-        _method:  GET
-        id: \d+
+plan_it_todo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PlanItTodoBundle:Default:index }

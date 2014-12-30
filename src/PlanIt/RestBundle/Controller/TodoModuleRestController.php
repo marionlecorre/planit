@@ -12,7 +12,7 @@ class TodoModuleRestController extends Controller
 
 	public function postTodomoduleAction(Request $request, $event_id)
     {
-        $event = $this->getDoctrine()->getRepository('PlanItTodoBundle:Todo')->find($event_id);
+        $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
 
         $todo_module = new TodoModule();
         $todo_module->setEvent($event);
@@ -27,7 +27,7 @@ class TodoModuleRestController extends Controller
             $em->persist($todo_module);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('PlanItTodoBundle_todo', array(
+            return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
                 'id'    => $event->getId()
             )));
         }
