@@ -1,12 +1,4 @@
 {% extends 'PlanItBudgetBundle::layout.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets 
-    '@PlanItTodoBundle/Resources/public/css/*.scss' 
-    filter="compass" %}
-	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
-	{% endstylesheets %}
-{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -18,6 +10,104 @@
 		<div class="col-md-12"> </div>
 	</div>
 	<section>
+		<div class="container_onglet" >			
+			<section>
+				<div class="tabs tabs-style-topline">
+					<div class="row">
+						<nav class="col-md-12">
+							<ul>
+								<li><a href="#section-topline-1"><span>Récapitulatif</span></a></li>
+								<li><a href="#section-topline-2"><span>Boissons</span></a></li>
+								<li><a href="#section-topline-3"><span>Nourriture</span></a></li>
+								<li><a href="#section-topline-4"><span>Autres</span></a></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="content-wrap">						
+						<section id="section-topline-1">
+							<div class="col-md-4"> 
+								<div class="pie_chart" id="pie_chart_depenses"></div>
+								<div class="bt_budget"><button id="bouton_depense">Ajouter une dépense</button></div>
+							</div>
+
+							<div class="col-md-4"> 
+								<div class="pie_chart" id="pie_chart_apports"></div>
+								<div class="bt_budget"><button id="bouton_ajout">Ajouter un apport</button></div>
+							</div>
+
+							<div class="col-md-4"> 
+								<div class="info_dte info_color">
+						    		<img src="/images/budget/info_dte_balance.png" /> 
+						    		<p> BALANCE </br> <span>-158€</span> </p>
+								</div>							
+								<div class="info_dte">
+						    		<img src="/images/budget/info_dte_limite.png" /> 
+						    		<p> BUDGET LIMITE</br> <span>1000 €</span> </p>
+								</div>
+							</div>
+						</section>
+						<section id="section-topline-2">
+							<div class="responsive-table-line">
+								<table class="table table-bordered table-condensed table-body-center" >
+									<thead>
+										<tr>
+											<th>Article</th>
+											<th>Quantité</th>
+											<th>En stock</th>
+											<th>A acheter</th>
+											<th>Prix unitaire</th>
+											<th>Prix total</th>
+											<th>Consommé</th>
+											<th>Acheté</th>											
+											<th>Supprimer</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td data-title="Article">Cocal Cola</td>
+											<td data-title="Quantité">8</td>
+											<td data-title="En stock">0</td>
+											<td data-title="A acheter">3</td>
+											<td data-title="Prix unitaire">3.25</td>
+											<td data-title="Prix total">18.65</td>
+											<td data-title="Consommé">5</td>
+											<td data-title="Acheté"><input type="checkbox" /></td>
+											<td data-title="Supprimer">X</td>
+										</tr>
+										<tr>
+											<td data-title="Article">Rhum</td>
+											<td data-title="Quantité">8</td>
+											<td data-title="En stock">0</td>
+											<td data-title="A acheter">3</td>
+											<td data-title="Prix unitaire">3.25</td>
+											<td data-title="Prix total">18.65</td>
+											<td data-title="Consommé">5</td>
+											<td data-title="Acheté"><input type="checkbox" /></td>
+											<td data-title="Supprimer">X</td>
+										</tr>
+										<tr>
+											<td data-title="Article">Sprite</td>
+											<td data-title="Quantité">8</td>
+											<td data-title="En stock">0</td>
+											<td data-title="A acheter">3</td>
+											<td data-title="Prix unitaire">3.25</td>
+											<td data-title="Prix total">18.65</td>
+											<td data-title="Consommé">5</td>
+											<td data-title="Acheté"><input type="checkbox" checked="checked" /></td>
+											<td data-title="Supprimer">X</td>
+										</tr>
+																		
+									</tbody>
+								</table>
+							</div>
+						</section>
+						<section id="section-topline-3"><p>3</p></section>
+						<section id="section-topline-4"><p>4</p></section>
+					</div><!-- /content -->
+				</div><!-- /tabs -->
+			</section>
+			
+		</div><!-- /container -->	
 
 	</section>
 </div>
@@ -27,4 +117,11 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> //getEvent({{event_id}}); </script>
+   	<script>
+		(function() {
+			[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+				new CBPFWTabs( el );
+			});
+		})();
+	</script>
 {% endblock %}

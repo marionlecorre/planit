@@ -1,0 +1,32 @@
+@font-face {  font-family: "GothamHTF-Medium";  src: url('/fonts/GothamHTF-Medium.otf') format("opentype"); }
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,100);
+
+
+/*COLORS*/
+
+$positive: #a5cd7d;
+$negative: #e56454;
+$neutral: #dfdede;
+
+$invit_module: #1d89cf;
+$budget_module: #847299;
+$place_module: #f9de2f;
+$todo_module: #ff9f37;
+$transport_module : #dc4888;
+$add_module : #f1f1f1;
+
+/*MIXIN*/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($vertical, $horizontal, $scale, $blur, $color) {
+  -webkit-box-shadow: $vertical $horizontal $scale $blur $color ;
+     -moz-box-shadow: $vertical $horizontal $scale $blur $color;
+      -ms-box-shadow: $vertical $horizontal $scale $blur $color;
+          box-shadow: $vertical $horizontal $scale $blur $color;
+}
