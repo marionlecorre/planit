@@ -20,6 +20,7 @@
 		<div id="events" class="row listing-events">
 		<!-- Events template -->
 		</div>
+		{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user_id } ))}}
     </div>
 {% endblock %}
 
