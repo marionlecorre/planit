@@ -1,0 +1,377 @@
+@import 'general';
+
+/*pie chart*/
+.pie_chart{
+	height: 300px; 
+	max-width: 550px; 
+	margin: 0 auto;
+}
+
+.bt_budget button{
+	margin:10% 0 10% 0;
+	padding:7px 30px 7px 30px;
+	width: 75%;	
+	background-color:$budget_module;
+}
+
+#bouton_depense{
+	background-color: $negative;
+}
+
+.info_dte{	
+	background-color: $neutral;
+	color: #5c5a5a;
+	@include border-radius(5px);
+	height:89px;
+	margin: 20px 0 12px 0;
+	font-size: 14px;
+	
+	span{
+		font-size: 25px;
+		position:relative;
+		padding-top: 10px;
+	}
+
+	p{
+		text-align: center;
+		padding: 20px;
+		position:relative;
+		margin-bottom: 15px;
+	}
+
+	img{
+		position:absolute;
+		right: 15px;
+	}
+
+}
+
+.info_color{
+	background-color: $negative;
+	color:#ffffff;
+	margin-top: 80px;
+}
+
+@media (min-width: 992px) {
+
+	.info_dte{	
+			width:75%;
+			float:right;		
+	}
+
+}
+
+/*CONTENT ONGLETS*/
+
+table{
+	font-size: 12px;
+
+	th{
+		text-align: center;
+		color:#fff;
+		background-color: $budget_module;
+		cursor: default;
+	}
+	/* ntlignes paires. */
+	tbody tr:nth-child(even) { 
+		background-color:#eedcff;
+	}
+
+	/* impaires. */
+	tbody tr:nth-child(odd) { 
+		background-color:#f4f3f5; 
+	}
+
+	tbody td { 
+		height: 33px;
+		vertical-align: middle !important;
+	}
+
+	/* Effet de survol au passage du curseur. */
+	tbody tr:hover { 
+		background-color:$neutral;
+	}
+
+
+}
+
+
+table.table.table-condensed th{
+    border: none;
+}
+
+table.table.table-condensed td{
+    border: none;
+}
+
+
+/* tableau*/
+@media (max-width:770px) {
+	.responsive-table-line td:before { content: attr(data-title); }
+	.responsive-table-line table, 
+	.responsive-table-line thead, 
+	.responsive-table-line tbody, 
+	.responsive-table-line th, 
+	.responsive-table-line td, 
+	.responsive-table-line tr { display: block; }
+
+	.responsive-table-line thead tr { 
+		display:none;
+	}
+	.responsive-table-line td { 
+		position: relative;
+		border: none;
+		padding-left: 25% !important; 
+		white-space: normal;
+		text-align:center; 
+	}
+
+	tr{
+		border-bottom: 1px solid $neutral;
+	}
+
+	thead tr{
+		border-bottom: 1px solid #4c2570;
+	}
+
+	tbody td:nth-child(even) { 
+		background-color:#eedcff;
+	}
+
+	/* impaires. */
+	tbody td:nth-child(odd) { 
+		background-color:#f4f3f5; 
+	}
+	 
+	.responsive-table-line td:before { 
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 25%; 
+		padding-right: 15px; 
+		height:100%;
+		white-space: nowrap;
+		text-overflow: ellipsis !important;
+		overflow:hidden !important;
+		text-align:center;
+		background-color:$budget_module;
+		color: #fff;
+		padding:2px;
+	}
+}
+
+
+
+/*demo.css*/
+a {
+	color: $budget_module;
+	text-decoration: none;
+	outline: none;
+	font-size: 1.2em;
+}
+
+a:hover, a:focus {
+	color: #74777b;
+}
+
+.hidden {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.container_onglet > section {
+	font-size: 1.25em;
+	min-height: 100%;
+}
+
+.container_onglet  {
+	margin:0;
+}
+
+p {
+	text-align: center;
+	padding: 1em;
+}
+
+
+/* 2eme css  tab.css*/
+
+/* Default tab style */
+
+.tabs {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	width: 100%;
+	font-weight: 300;
+}
+
+/* Nav */
+.tabs nav {
+	text-align: center;
+}
+
+.tabs nav ul {
+	position: relative;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+	margin: 0 auto;
+	padding: 0;
+	max-width: 1200px;
+	list-style: none;
+	-ms-box-orient: horizontal;
+	-ms-box-pack: center;
+	-webkit-flex-flow: row wrap;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+}
+
+.tabs nav ul li {
+	position: relative;
+	z-index: 1;
+	display: block;
+	margin: 0;
+	text-align: center;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+
+.tabs nav a {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 2.5;
+}
+
+.tabs nav a span {
+	vertical-align: middle;
+	font-size: 0.75em;
+}
+
+.tabs nav li.tab-current a {
+	color: #74777b;
+}
+
+.tabs nav a:focus {
+	outline: none;
+}
+
+
+/* Content */
+.content-wrap {
+	position: relative;
+}
+
+.content-wrap section {
+	display: none;
+	margin: 0 auto;
+	padding-top: 1em;
+	max-width: 1200px;
+	text-align: center;
+}
+
+.content-wrap section.content-current {
+	display: block;
+	margin:20px 0 0 0;
+
+}
+
+.content-wrap section p {
+	margin: 0;
+	line-height: 1;
+}
+
+/* Fallback */
+.no-js .content-wrap section {
+	display: block;
+	padding-bottom: 2em;
+}
+
+.no-flexbox nav ul {
+	display: block;
+}
+
+.no-flexbox nav ul li {
+	min-width: 15%;
+	display: inline-block;
+}
+
+@media screen and (max-width: 58em) {
+	.tabs nav a.icon span {
+		display: none;
+	}
+	.tabs nav a:before {
+		margin-right: 0;
+	}
+}
+
+
+/*tabstyles.css */ 
+
+/*****************************/
+/* Top Line */
+/*****************************/
+
+.tabs-style-topline {
+	max-width: 1200px;
+}
+
+.tabs-style-topline nav li {
+	border: 1px solid rgba(40,44,42,0.1);
+}
+
+.tabs-style-topline nav li:not(:last-child) {
+	border-right: none;
+}
+
+.tabs-style-topline nav li.tab-current {
+	border-top-color: $budget_module;
+	border-bottom: none;
+}
+
+.tabs-style-topline nav a {
+	padding: 0.65em 0 0.5em;
+	background: rgba(40,44,42,0.05);
+	color: #74777b;
+	line-height: 1;
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+}
+
+.tabs-style-topline nav a:hover,
+.tabs-style-topline nav a:focus {
+	color: $budget_module;
+}
+
+.tabs-style-topline nav li.tab-current a {
+	background: none;
+	box-shadow: inset 0 3px 0 $budget_module;
+	color: $budget_module;
+}
+
+.tabs-style-topline .icon::before {
+	display: block;
+	margin: 0;
+}
+
+.tabs-style-topline nav a span {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	font-size: 0.5em;
+}

@@ -1,0 +1,68 @@
+{% extends 'PlanItTodoBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItTodoBundle/Resources/public/css/*.scss' 
+    filter="compass" %}
+	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row" id="title">
+        <div class="col-md-12" > <h1>Todo list</h1> </div>
+    </div>
+
+	<div class="row" id="separator">
+		<div class="col-md-12"> </div>
+	</div>
+	<section>
+		<ul class="sortable">
+		    <li>	    	
+					<div class="col-md-12 col-sm-12 col-xs-12 todo" id="todo1">
+		    			Acheter la bague <input type="checkbox" name="todo1" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 	    		
+		    		</div>			
+		    </li>
+		    <li>	    	
+					<div class="col-md-12 col-sm-12 col-xs-12 todo">
+		    			Inviter des gens <input type="checkbox"  name="todo2" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
+		    		</div>
+		    </li>
+		    <li>	
+		    		<div class="col-md-12 col-sm-12 col-xs-12 todo checked">
+		    			Vouloir se marier <input type="checkbox" checked="checked" name="todo5" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');">
+					</div>	    	
+					
+		    </li>
+		    <li>	    	
+					<div class="col-md-12 col-sm-12 col-xs-12 todo checked">
+		    			Avoir quelqu'un avec qui se marier <input type="checkbox" checked="checked" name="todo4" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
+		    		</div>
+		    </li>
+		    <li>	    	
+					<div class="col-md-12 col-sm-12 col-xs-12 todo">
+		    			Aller chez le coiffeur <input type="checkbox"  name="todo3" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
+		    		</div>	
+		    </li>
+		</ul>
+
+		 <div class="row">
+	        <div class="col-md-3 col-sm-4 col-xs-12 bt_todo"><button>Ajouter une tâche</button></div>     
+	        <div class="col-md-3 col-sm-4 col-xs-12 bt_todo"><button>Valider</button></div>          
+	    </div>
+
+	</section>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script> //getEvent({{event_id}}); </script>
+    <script>
+	    $('.sortable').sortable({
+	    	items: ':not(.disabled)'
+		});
+	</script>
+{% endblock %}
