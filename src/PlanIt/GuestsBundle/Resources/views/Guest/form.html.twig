@@ -1,6 +1,22 @@
 <form action="/app_dev.php/api/guests/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
-    {{ form_widget(form) }}
-    <p>
-        <input type="submit" value="Submit">
-    </p>
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un invité</h4>
+                </div>
+                <div class="modal-body">
+                	{{ form_errors(form) }}
+					<input type="hidden" name="type" id="type_added_guest">
+			        {{ form_row(form.firstname) }}
+			        {{ form_row(form.lastname) }}
+			        {{ form_row(form.email) }}
+
+				    <p>
+				        <input type="submit" value="Submit">
+				    </p>
+                </div>
+            </div>
+      </div>
+    </div>
 </form>
