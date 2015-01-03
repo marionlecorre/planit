@@ -33,6 +33,13 @@ $add_event : #f1f1f1;
           box-shadow: $vertical $horizontal $scale $blur $color;
 }
 
+@mixin border-radius-multi($radius1, $radius2, $radius3 ,$radius4) {
+  -webkit-border-radius: $radius1 $radius2  $radius3 $radius4;
+     -moz-border-radius: $radius1 $radius2 $radius3 $radius4;
+      -ms-border-radius: $radius1 $radius2 $radius3 $radius4;
+          border-radius: $radius1 $radius2 $radius3 $radius4;
+}
+
 /*GENERAL*/
 body {
   margin: 0;
@@ -74,4 +81,39 @@ button {
   height: 41px;
   @include border-radius(3px); 
   padding: 13px 27px;
+}
+
+.modal-dialog {
+  margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+  .modal-content{
+    .modal-header {
+      background-color: $header; 
+      @include border-radius-multi(4px,4px,0,0); 
+      text-align: center;
+      border-bottom: solid 2px;
+    }
+    .modal-body {
+      input[type="text"], input[type="email"] {
+        border: solid 1px #d8d7d7;
+        @include border-radius(3px); 
+        padding: 6px;
+        display: block;
+        margin: 12px auto;
+        width: 200px;
+      }
+      input[type="submit"] {
+        border: none;
+        display: block;
+        margin: auto;
+        color: #FFF;
+        @include border-radius(3px); 
+        font-size: 13px;
+        width: 200px;
+      }
+    }
+
+  }
 }

@@ -41,12 +41,23 @@
 				<!--Template modules -->
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
-				<div id="ajout_module"> 
+				<div id="ajout_module" data-toggle="modal" data-target="#basicModal"> 
 		    		<p>+</p> 
 				</div>     		
 			</div>
-			<div id="form_container">
-			</div>
+			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                <h4 class="modal-title" id="myModalLabel">Ajouter un invité</h4>
+		                </div>
+		                <div class="modal-body">
+						<div id="form_container">
+						</div>
+						</div>
+		            </div>
+		      </div>
+		    </div>
 		</div>
     </div>
 {% endblock %}
