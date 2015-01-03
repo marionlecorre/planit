@@ -309,4 +309,8 @@ class Guest
     {
         return $this->type_guest;
     }
+
+    protected function test(){
+        echo 'test';
+    }
 }

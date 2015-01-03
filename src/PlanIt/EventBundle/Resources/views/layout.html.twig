@@ -2,7 +2,8 @@
 {% block stylesheets %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     {% stylesheets 
-    '@PlanItEventBundle/Resources/public/css/*.scss' 
+    '@PlanItEventBundle/Resources/public/css/event.scss'
+    '@PlanItEventBundle/Resources/public/css/general.scss' 
     filter="compass" %}
 	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
 	{% endstylesheets %}
