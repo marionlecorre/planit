@@ -4,6 +4,7 @@ function guests(){
 	    sortField: 'text'
 	});
 	$('.sent-true').tooltip();
+	$('.light').tooltip();
 }
 
 
@@ -15,3 +16,4 @@ function guests(){
     		var id_type = $(e.relatedTarget).data('type');
     		$("#type_added_guest").attr("value",id_type);
 	});
+

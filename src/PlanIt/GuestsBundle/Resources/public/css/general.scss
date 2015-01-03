@@ -5,10 +5,57 @@ $yes: #77e469;
 $wait : #e48069;
 $head-list: #d8d7d7;
 $row-list: #f1f1f1;
+$header: #f1f1f1;
+
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
       -ms-border-radius: $radius;
           border-radius: $radius;
+}
+
+@mixin border-radius-multi($radius1, $radius2, $radius3 ,$radius4) {
+  -webkit-border-radius: $radius1 $radius2  $radius3 $radius4;
+     -moz-border-radius: $radius1 $radius2 $radius3 $radius4;
+      -ms-border-radius: $radius1 $radius2 $radius3 $radius4;
+          border-radius: $radius1 $radius2 $radius3 $radius4;
+}
+
+.modal-dialog {
+	margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+	.modal-content{
+		.modal-header {
+			background-color: $header; 
+			@include border-radius-multi(4px,4px,0,0); 
+			text-align: center;
+			color: $color;
+			border-bottom: solid 2px;
+			border-color: $color;
+		}
+		.modal-body {
+			input[type="text"], input[type="email"] {
+				border: solid 1px $head-list;
+				@include border-radius(3px); 
+				padding: 6px;
+				display: block;
+				margin: 12px auto;
+				width: 200px;
+			}
+			input[type="submit"] {
+				border: none;
+				display: block;
+				margin: auto;
+			    color: #FFF;
+			    @include border-radius(3px); 
+			    font-size: 13px;
+				background-color: $color;
+				width: 200px;
+			}
+		}
+
+	}
 }

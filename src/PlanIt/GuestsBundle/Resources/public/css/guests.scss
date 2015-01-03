@@ -1,10 +1,13 @@
 @import 'general';
 
+header {
+	border-color: $color;
+}
 
 
 .guest-module {
-	font: 13px 'PT Sans';
-	font-weight: 100;
+	// font: 13px 'PT Sans';
+	// font-weight: 100;
 
 	button {
 		background-color: $color;
@@ -13,6 +16,7 @@
 	}
 	#paying-checkbox {
 		margin-top: 6px;
+		font-size: 12px;
 		input[type=checkbox] {
 			margin-right: 20px;
 		}
@@ -36,6 +40,7 @@
 					margin-top: -7px;
 					.selectize-input {
 						background-color: $row-list;
+						padding: 5px;
 					}
 				}
 			}
@@ -52,7 +57,7 @@
 				text-align: center;
 			}
 		}
-		.row-list.row {
+	 	.row-list.row {
 			margin:0 0 7px 0;
 			background-color: $row-list;
 			padding: 7px 0;
@@ -61,12 +66,13 @@
 				border: none;
 				@include border-radius(3px); 
 				padding: 6px;
+				width: 100%;
 			}
 			.confirmed .light, .payed .light {
 				background-color: #000;
 				height: 11px;
 				width: 11px;
-				margin: 6px auto;
+				margin: 12px auto;
 				@include border-radius(11px); 
 
 				&.state-1 {
@@ -97,14 +103,12 @@
 		}
 		.add-guest {
 			margin: 7px -15px 0 0;
-		}
-	}
+	 	}
+	 }
 	
-	// select
+	select
 	.selectize-control.single .selectize-input {
 		border: none;
 		padding: 3px 3px 3px 7px;
 	}
-	
-
 }
