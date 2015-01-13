@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% stylesheets 
+    '@PlanItTodoBundle/Resources/public/css/todo.scss' 
+    filter="compass" %}
+          <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    {% javascripts  %}
+          <script language="javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    {% javascripts '@PlanItTodoBundle/Resources/public/js/*.js'
+                    '%kernel.root_dir%/Resources/js/*.js'  %}
+          <script language="javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

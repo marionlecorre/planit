@@ -1,9 +1,13 @@
 @import 'general';
 
+header {
+	border-color: $color;
+}
+
 .todo{
 	background-color: $neutral;
 	padding:10px 30px 10px 30px;
-	margin: -10px 0px 10px 0px;
+	margin: -10px 15px 10px 15px;
 	@include border-radius(5px);
 	input{
 		float:right;
@@ -16,16 +20,18 @@
 }
 
 .checked{
-	background-color: $todo_module;
+	background-color: $color;
 	color: #ffffff;
 }
 
 .bt_todo button{
-	background-color: $todo_module;
-	padding:5px;
+	background-color: $color;
+	padding: 4px 18px;
 	width: 100%;
-	margin-top: 10px;
+	margin-bottom: 40px;
 }
+
+
 
 /* LISTE DRAG AND DROP */
 .sortable, .exclude {
