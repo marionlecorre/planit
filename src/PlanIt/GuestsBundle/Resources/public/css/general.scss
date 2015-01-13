@@ -24,4 +24,7 @@ $header: #f1f1f1;
 	input[type="submit"] {
 		background-color: $color;
 	}
+	input[type="text"],input[type="email"] { 
+		display: block;
+	}
 }

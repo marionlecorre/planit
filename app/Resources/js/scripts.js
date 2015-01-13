@@ -8,6 +8,18 @@ function accordeon(){
 	});
 }
 
-function coucou (){
-	console.log("coucou");
-}
+
+$('#basicModal').on("hover",function(){
+    $('#basicModal').modal({"backdrop" : true});
+});
+$('#basicModal').on("show.bs.modal",function(e){
+    $('select').selectize({
+        create: true,
+        sortField: 'text'
+    });
+});
+
+$("form input.date").datepicker({
+    dateFormat: 'dd/mm/yy', 
+    firstDay:1
+}).attr("readonly","readonly");

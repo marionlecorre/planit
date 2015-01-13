@@ -17,9 +17,9 @@ class PlaceModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('max_capacity_p')
-            ->add('max_price_p')
-            ->add('max_time_to_go')
+            ->add('max_capacity_p', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Capacité maximum')))
+            ->add('max_price_p', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix maximum')))
+            ->add('max_time_to_go', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Temps de trajet maximum')))
         ;
     }
     

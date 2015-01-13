@@ -15,11 +15,25 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('begin_date')
-            ->add('end_date')
-            ->add('image', 'file')
+            ->add('name', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Nom')))
+            ->add('description','text',array('label'  => false, 'attr' => array('placeholder' => 'Description')))
+            ->add('begin_date','date', array(
+                                'widget' => 'single_text',
+                                'input' => 'datetime',
+                                'format' => 'dd/MM/yyyy',
+                                'attr' => array('class' => 'date'),
+                                'label'  => false, 
+                                'attr' => array('placeholder' => 'Date de début')
+                                ))
+            ->add('end_date','date', array(
+                                'widget' => 'single_text',
+                                'input' => 'datetime',
+                                'format' => 'dd/MM/yyyy',
+                                'attr' => array('class' => 'date'),
+                                'label'  => false, 
+                                'attr' => array('placeholder' => 'Date de fin')
+                                ))
+            ->add('image', 'file',array('label'  => 'Choisissez une image'))
         ;
     }
     

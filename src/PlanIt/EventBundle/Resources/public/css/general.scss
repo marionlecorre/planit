@@ -16,6 +16,8 @@ $todo_module: #ff9f37;
 $transport_module : #dc4888;
 $add_module : #f1f1f1;
 
+$blue_logo: #61c0a5;
+
 /*MIXIN*/
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -31,3 +33,12 @@ $add_module : #f1f1f1;
           box-shadow: $vertical $horizontal $scale $blur $color;
 }
 
+.modal-header {
+	color: $blue_logo;
+	border-color: $blue_logo;
+}
+.modal-body {
+	input[type="submit"] {
+		background-color: $blue_logo;
+	}
+}

@@ -263,7 +263,6 @@ class Guest
         return $this->sent;
     }
 
-<<<<<<< Updated upstream:src/PlanIt/GuestsBundle/Entity/Guest.php~
 
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -285,14 +284,15 @@ class Guest
         $metadata->addPropertyConstraint('email', new Email(array(
             'message' => 'Merci de renseigner une adresse mail valide'
         )));
+    }
 
-=======
     /**
      * Set type_guest
      *
      * @param \PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest
      * @return Guest
      */
+
     public function setTypeGuest(\PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest = null)
     {
         $this->type_guest = $typeGuest;
@@ -308,6 +308,9 @@ class Guest
     public function getTypeGuest()
     {
         return $this->type_guest;
->>>>>>> Stashed changes:src/PlanIt/ModuleBundle/Entity/Guest.php~
+    }
+
+    protected function test(){
+        echo 'test';
     }
 }

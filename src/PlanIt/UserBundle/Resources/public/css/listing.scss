@@ -56,3 +56,23 @@
 		line-height: 300px;
 	}
 }
+
+label[for="planit_eventbundle_event_image"] {
+	display: block;
+	max-width: 200px;
+	margin: 5px auto;
+	font-weight: 700;
+	background: #6B6666;
+	padding: 5px 20px;
+	color: #fff;
+	@include border-radius(3px);
+}
+.modal-header {
+	color: $blue_logo;
+	border-color: $blue_logo;
+}
+.modal-body {
+	input[type="submit"] {
+		background-color: $blue_logo;
+	}
+}

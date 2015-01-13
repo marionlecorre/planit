@@ -6,8 +6,6 @@
                 </div>
                 <div class="modal-body">
                     <form action="/app_dev.php/api/guests/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
-
-                	{{ form_errors(form) }}
                     <input type="hidden" name="type" id="type_added_guest">
                         {{ form_errors(form.firstname) }}
                         {{ form_widget(form.firstname , { 'attr': {'class': "firstname",'placeholder': "Prénom"} }) }}

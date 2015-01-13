@@ -56,15 +56,10 @@ $(function () {
                 ]
             }]       
         });
-
-        $('#basicModal').on("hover",function(){
-            $('#basicModal').modal({"backdrop" : true});
-        });
+        
     });
 
-    
-
-
 });
+
 
 

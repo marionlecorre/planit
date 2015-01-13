@@ -8,7 +8,4 @@
 		      	console.log("max"+maxHeight);
 		    }
 	  	});
-	  	console.log("final max"+maxHeight);
-	 	//$('.listing-events').height(maxHeight);
-		//$('.add.event-thumbnail').css("line-height",maxHeight+"px");
 	}

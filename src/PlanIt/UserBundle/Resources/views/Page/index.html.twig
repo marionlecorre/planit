@@ -20,7 +20,18 @@
 		<div id="events" class="row listing-events">
 		<!-- Events template -->
 		</div>
-		{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user_id } ))}}
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                <h4 class="modal-title" id="myModalLabel">Ajouter un événement</h4>
+		                </div>
+		                <div class="modal-body">
+							{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user_id } ))}}
+						</div>
+		            </div>
+		      </div>
+		    </div>
     </div>
 {% endblock %}
 

@@ -107,12 +107,22 @@ button {
       input[type="submit"] {
         border: none;
         display: block;
-        margin: auto;
+        margin: 20px auto;
         color: #FFF;
         @include border-radius(3px); 
         font-size: 13px;
         width: 200px;
       }
+
+      input[type="file"] {
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        opacity: 0.01;
+        cursor: pointer;
+      }
+
     }
 
   }

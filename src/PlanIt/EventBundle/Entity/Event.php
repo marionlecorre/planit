@@ -43,11 +43,15 @@ class Event
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
     protected $begin_date;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
     protected $end_date;
 
