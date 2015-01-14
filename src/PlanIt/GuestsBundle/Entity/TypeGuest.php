@@ -3,6 +3,9 @@
 namespace PlanIt\GuestsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity
@@ -22,11 +25,6 @@ class TypeGuest
      * @ORM\Column(type="string", length=30)
      */
     protected $label;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
-    protected $slug;
 
     /**
      * @ORM\Column(type="text", length=100)
@@ -89,29 +87,6 @@ class TypeGuest
     public function getLabel()
     {
         return $this->label;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return TypeGuest
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
