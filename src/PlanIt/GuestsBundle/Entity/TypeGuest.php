@@ -1,6 +1,6 @@
 <?php
 
-namespace PlanIt\ModuleBundle\Entity;
+namespace PlanIt\GuestsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -219,5 +219,19 @@ class TypeGuest
     public function __toString()
     {
         return $this->getLabel();
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('label', new NotBlank(array(
+            'message' => 'Merci de renseigner le nom du type d\'invité'
+        )));
+        $metadata->addPropertyConstraint('message', new Length(array(
+            'max' => "300"
+        )));
+
+        $metadata->addPropertyConstraint('price', new NotBlank(array(
+            'message' => 'Merci de renseigner le prix pour ce type d\'invité'
+        )));
     }
 }

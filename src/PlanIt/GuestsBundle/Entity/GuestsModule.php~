@@ -61,7 +61,7 @@ class GuestsModule extends Module
     protected $guests;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanIt\ModuleBundle\Entity\TypeGuest", mappedBy="module")
+     * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", mappedBy="module")
      */
     protected $type_guest;
  
@@ -280,10 +280,10 @@ class GuestsModule extends Module
     /**
      * Add type_guest
      *
-     * @param \PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
      * @return GuestsModule
      */
-    public function addTypeGuest(\PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest)
+    public function addTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest)
     {
         $this->type_guest[] = $typeGuest;
 
@@ -293,9 +293,9 @@ class GuestsModule extends Module
     /**
      * Remove type_guest
      *
-     * @param \PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
      */
-    public function removeTypeGuest(\PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest)
+    public function removeTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest)
     {
         $this->type_guest->removeElement($typeGuest);
     }

@@ -18,6 +18,11 @@ guests :
   resource:     "PlanItRestBundle:GuestRest"
   name_prefix:  api_
 
+typeguest : 
+  type: rest
+  resource:     "PlanItRestBundle:TypeGuestRest"
+  name_prefix:  api_
+
 guests_module : 
   type: rest
   resource:     "PlanItRestBundle:GuestsModuleRest"

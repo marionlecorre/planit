@@ -1,4 +1,4 @@
-	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal fade addGuestModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -6,13 +6,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="/app_dev.php/api/guests/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
-                    <input type="hidden" name="type" id="type_added_guest">
-                        {{ form_errors(form.firstname) }}
-                        {{ form_widget(form.firstname , { 'attr': {'class': "firstname",'placeholder': "Prénom"} }) }}
-    			        {{ form_errors(form.lastname) }}
-                        {{ form_widget(form.lastname, { 'attr': {'class': "lastname",'placeholder': "Nom"} }) }}
-                        {{ form_errors(form.email) }}
-                        {{ form_widget(form.email, { 'attr': {'class': "email",'placeholder': "Email"} }) }}
+                        {{ form_widget(form) }}
 
 				    <p>
 				        <input type="submit" value="Ajouter">

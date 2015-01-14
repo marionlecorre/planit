@@ -58,7 +58,7 @@ class Guest
     protected $type_paiement;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanIt\ModuleBundle\Entity\TypeGuest", inversedBy="guests")
+     * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", inversedBy="guests")
      * @ORM\JoinColumn(name="type_guest_id", referencedColumnName="id")
      */
     protected $type_guest;
@@ -289,11 +289,11 @@ class Guest
     /**
      * Set type_guest
      *
-     * @param \PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
      * @return Guest
      */
 
-    public function setTypeGuest(\PlanIt\ModuleBundle\Entity\TypeGuest $typeGuest = null)
+    public function setTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest = null)
     {
         $this->type_guest = $typeGuest;
 
@@ -303,7 +303,7 @@ class Guest
     /**
      * Get type_guest
      *
-     * @return \PlanIt\ModuleBundle\Entity\TypeGuest 
+     * @return \PlanIt\GuestsBundle\Entity\TypeGuest 
      */
     public function getTypeGuest()
     {

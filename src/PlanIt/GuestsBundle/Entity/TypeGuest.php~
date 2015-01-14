@@ -1,6 +1,6 @@
 <?php
 
-namespace PlanIt\ModuleBundle\Entity;
+namespace PlanIt\GuestsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

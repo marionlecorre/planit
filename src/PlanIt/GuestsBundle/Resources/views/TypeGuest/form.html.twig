@@ -1,0 +1,19 @@
+	<div class="modal fade addTypeGuestModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un type d'invité</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/types/{{module_id}}/guests" method="post" {{ form_enctype(form) }} class="blogger">
+                    {{ form_widget(form) }}
+
+				    <p>
+				        <input type="submit" value="Ajouter">
+				    </p>
+                    </form>
+
+                </div>
+            </div>
+      </div>
+    </div>

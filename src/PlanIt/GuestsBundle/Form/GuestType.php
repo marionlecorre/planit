@@ -15,10 +15,10 @@ class GuestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type_guest')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
+            ->add('type_guest',null, array('label'  => false))
+            ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'Prénom')))
+            ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom')))
+            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'Email')))
         ;
     }
     
