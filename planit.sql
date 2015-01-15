@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 30 Décembre 2014 à 12:04
+-- Généré le :  Jeu 15 Janvier 2015 à 13:19
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `event` (
   `begin_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `event`
@@ -45,7 +45,8 @@ INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `begin_date
 (1, 1, 'Nouvel An', 'nouvelan', 'On va boire du champagne faire la fête et tout et tout', '2014-12-31 00:00:00', '2015-01-01 00:00:00', 'nouvel-an.jpg'),
 (2, 2, 'Noël', 'noel', 'Petit papa noel quand tu descendras du ciel... tu m''amèneras un macbook Pro stp', '2014-12-24 00:00:00', '2014-12-25 00:00:00', 'noel.jpg'),
 (3, 3, 'Anniversaire Florent', 'annivflorent', 'Hapyy birthday to youuu Diabeto <3 get on the flow', '2014-11-19 00:00:00', '2014-11-20 00:00:00', 'photo_evenement.jpg'),
-(4, 3, 'Mariage d''Aurélie', 'mariageaurelie', 'Beau mariage à Lavaur avec Marina en demoiselle d''honneur en robe rose', '2015-04-16 00:00:00', '2015-04-17 00:00:00', 'mariage.jpg');
+(4, 3, 'Mariage d''Aurélie', 'mariageaurelie', 'Beau mariage à Lavaur avec Marina en demoiselle d''honneur en robe rose', '2015-04-16 00:00:00', '2015-04-17 00:00:00', 'mariage.jpg'),
+(5, 3, 'Gala', 'Gala', 'Soirée de ouf sur une péniche', '2015-01-23 20:00:00', '2015-01-24 05:00:00', '3-5245.jpeg');
 
 -- --------------------------------------------------------
 
@@ -78,6 +79,16 @@ INSERT INTO `Guest` (`id`, `type_guest_id`, `module_id`, `firstname`, `lastname`
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `migration_versions`
+--
+
+CREATE TABLE `migration_versions` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `module`
 --
 
@@ -97,7 +108,7 @@ CREATE TABLE `module` (
   `max_time_to_go` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -107,7 +118,9 @@ INSERT INTO `module` (`id`, `event_id`, `name`, `slug`, `int_type`, `type`, `lis
 (2, 1, 'Invités', 'guests', 1, 'guests', NULL, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 2, 'TODO', 'todo', 2, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 3, 'Invités', 'guests', 1, 'guests', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 4, 'invités', 'guests', 1, 'guests', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(5, 4, 'invités', 'guests', 1, 'guests', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 2, 'Invitations', 'invitations', 1, 'guests', 1, 300, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 5, 'Invitations', 'invitations', 1, 'guests', 1, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,18 +132,18 @@ CREATE TABLE `TypeGuest` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `message` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `price` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `TypeGuest`
 --
 
-INSERT INTO `TypeGuest` (`id`, `module_id`, `label`, `slug`, `message`, `price`) VALUES
-(1, 4, 'Amis IMAC', 'imac', 'coucou mes amis imac', 20),
-(2, 4, 'Amis SRC', 'src', 'coucou mes amis src', 30);
+INSERT INTO `TypeGuest` (`id`, `module_id`, `label`, `message`, `price`) VALUES
+(1, 4, 'Amis IMAC', 'coucou mes amis imac', 20),
+(2, 4, 'Amis SRC', 'coucou mes amis src', 30),
+(3, 4, 'Famille', 'Coucou', 70);
 
 -- --------------------------------------------------------
 
@@ -173,6 +186,12 @@ ALTER TABLE `Guest`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_6D76B53157B581A4` (`type_guest_id`), ADD KEY `IDX_6D76B531AFC2B591` (`module_id`);
 
 --
+-- Index pour la table `migration_versions`
+--
+ALTER TABLE `migration_versions`
+ ADD PRIMARY KEY (`version`);
+
+--
 -- Index pour la table `module`
 --
 ALTER TABLE `module`
@@ -198,7 +217,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `Guest`
 --
@@ -208,12 +227,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `TypeGuest`
 --
 ALTER TABLE `TypeGuest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
@@ -233,8 +252,8 @@ ADD CONSTRAINT `FK_3BAE0AA7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (
 -- Contraintes pour la table `Guest`
 --
 ALTER TABLE `Guest`
-ADD CONSTRAINT `FK_6D76B531AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`),
-ADD CONSTRAINT `FK_6D76B53157B581A4` FOREIGN KEY (`type_guest_id`) REFERENCES `TypeGuest` (`id`);
+ADD CONSTRAINT `FK_6D76B53157B581A4` FOREIGN KEY (`type_guest_id`) REFERENCES `TypeGuest` (`id`),
+ADD CONSTRAINT `FK_6D76B531AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `module`
