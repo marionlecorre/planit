@@ -64,6 +64,12 @@ class GuestsModule extends Module
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", mappedBy="module")
      */
     protected $type_guest;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="PaymentMeans")
+     * @ORM\JoinTable(name="paymentmeans_module")
+     **/
+    protected $payment_means;
  
 
     /**
@@ -344,5 +350,38 @@ class GuestsModule extends Module
         }
 
         return $text;
+    }
+
+    /**
+     * Add payment_means
+     *
+     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans
+     * @return GuestsModule
+     */
+    public function addPaymentMean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans)
+    {
+        $this->payment_means[] = $paymentMeans;
+
+        return $this;
+    }
+
+    /**
+     * Remove payment_means
+     *
+     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans
+     */
+    public function removePaymentMean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans)
+    {
+        $this->payment_means->removeElement($paymentMeans);
+    }
+
+    /**
+     * Get payment_means
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPaymentMeans()
+    {
+        return $this->payment_means;
     }
 }

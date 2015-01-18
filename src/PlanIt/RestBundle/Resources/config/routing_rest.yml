@@ -23,6 +23,11 @@ typeguest :
   resource:     "PlanItRestBundle:TypeGuestRest"
   name_prefix:  api_
 
+paymentmean : 
+  type: rest
+  resource:     "PlanItRestBundle:PaymentMeansRest"
+  name_prefix:  api_
+
 guests_module : 
   type: rest
   resource:     "PlanItRestBundle:GuestsModuleRest"

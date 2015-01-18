@@ -70,6 +70,12 @@ class Guest
     protected $module;
 
     /**
+     * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\PaymentMeans", inversedBy="guests")
+     * @ORM\JoinColumn(name="paymentmean_id", referencedColumnName="id")
+     */
+    protected $paymentmean;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -312,5 +318,28 @@ class Guest
 
     protected function test(){
         echo 'test';
+    }
+
+    /**
+     * Set paymentmean
+     *
+     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmean
+     * @return Guest
+     */
+    public function setPaymentmean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmean = null)
+    {
+        $this->paymentmean = $paymentmean;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentmean
+     *
+     * @return \PlanIt\GuestsBundle\Entity\PaymentMeans 
+     */
+    public function getPaymentmean()
+    {
+        return $this->paymentmean;
     }
 }
