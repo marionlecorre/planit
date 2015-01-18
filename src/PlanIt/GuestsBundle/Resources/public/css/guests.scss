@@ -43,6 +43,7 @@ header {
 			}
 			.price {
 				float: right;
+				margin-right: 49px;
 			}
 		}
 		.labels.row {
@@ -107,5 +108,15 @@ header {
 	.selectize-control.single .selectize-input {
 		border: none;
 		padding: 3px 3px 3px 7px;
+	}
+
+	.accordion-head {
+		background: url('/images/accordion.png') no-repeat;
+		background-position: 97% -61px;
+		border: 0;
+		@include border-radius(0); 
+		&.open {
+			background-position: 97% 18px;
+		}	
 	}
 }
