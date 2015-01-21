@@ -40,5 +40,8 @@ $blue_logo: #61c0a5;
 .modal-body {
 	input[type="submit"] {
 		background-color: $blue_logo;
+    &:hover {
+      background-color: darken($blue_logo,5%);
+    }
 	}
 }

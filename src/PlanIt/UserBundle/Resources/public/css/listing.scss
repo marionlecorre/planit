@@ -1,54 +1,63 @@
 @import 'general';
 
-
-.event-thumbnail {
-	border: solid 1px #dad7d7;
-	height: 300px;
-	margin-top:20px;
-
-	.head {
-		background-color: $head_event;
-		padding: 16px 15px;
-		height: 44px;
-		h2,.date {
-			color: $text_listing;
-			margin : 0;
-			font: 16px 'PT Sans';
-			font-weight: 500;
-		}
-		h2{
-			float: left;
-		}
-		.date {
-			float: right;
-		}
+.event_button {
+	&:hover {
+		text-decoration: none;
 	}
+	.event-thumbnail {
+		border: solid 1px #dad7d7;
+		height: 300px;
+		&:hover {
+			border-color: darken(#dad7d7,15%);
+		}
 
-	.content {
-		padding: 15px;
-		.image-cropper {
-		  	position: relative;
-			height: 150px;
-			overflow: hidden;
-			margin-bottom : 12px;
-			@media screen and (max-width: 450px) {
-				height: 123px;
+		.head {
+			background-color: $head_event;
+			padding: 16px 15px;
+			height: 44px;
+			h2,.date {
+				color: $text_listing;
+				margin : 0;
+				font: 16px 'PT Sans';
+				font-weight: 500;
+			}
+			h2{
+				float: left;
+			}
+			.date {
+				float: right;
 			}
 		}
-		img {
-			margin-bottom :15px;
-			width:100%;
-		}
-		.description {
-			text-align: justify;
-			color: $text_listing;
-			font: 12px 'PT Sans';
+
+		.content {
+			padding: 15px;
+			.image-cropper {
+			  	position: relative;
+				height: 150px;
+				overflow: hidden;
+				margin-bottom : 12px;
+				@media screen and (max-width: 450px) {
+					height: 123px;
+				}
+			}
+			img {
+				margin-bottom :15px;
+				width:100%;
+			}
+			.description {
+				text-align: justify;
+				color: $text_listing;
+				font: 12px 'PT Sans';
+			}
 		}
 	}
 }
 
 .event-thumbnail.add {
 	background: $add_event;
+	&:hover {
+			background-color: darken($add_event, 5%);
+		}
 	p {
 		color: #777777;
 		text-align: center;
@@ -74,5 +83,8 @@ label[for="planit_eventbundle_event_image"] {
 .modal-body {
 	input[type="submit"] {
 		background-color: $blue_logo;
+		&:hover {
+			background-color: darken($blue_logo,5%);
+		}
 	}
 }

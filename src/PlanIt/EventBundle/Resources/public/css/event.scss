@@ -80,21 +80,39 @@
 
 	#module_guests{
 		background-color:$invit_module;
+		&:hover {
+			background-color: darken($invit_module, 5%);
+		}
 	}
 	#module_budget {
 		background-color:$budget_module;
+		&:hover {
+			background-color: darken($budget_module, 5%);
+		}
 	}
 	#module_place {
 		background-color:$place_module;
+		&:hover {
+			background-color: darken($place_module, 5%);
+		}
 	}
 	#module_transportation {
 		background-color:$transport_module;
+		&:hover {
+			background-color: darken($transport_module, 5%);
+		}
 	}
 	#module_todo {
 		background-color:$todo_module;
+		&:hover {
+			background-color: darken($todo_module, 5%);
+		}
 	}
 	#ajout_module {
 		background-color:$add_module;
+		&:hover {
+			background-color: darken($add_module, 5%);
+		}
 
 		p{
 			color:#7a7a7a;
