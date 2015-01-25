@@ -42,4 +42,13 @@ class GuestRestController extends Controller
             'module_id'   => $guest->getModule()->getId()
         )));
     }
+
+    public function deleteGuestAction($guest_id){
+        //alert("coucou");
+        //$guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Module')->find($guest_id);
+        // $em = $em = $this->getDoctrine()
+        //                ->getEntityManager();
+        //     $em->remove($guest);
+        //     $em->flush();
+    }
 }

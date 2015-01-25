@@ -24,6 +24,7 @@ class GuestController extends Controller
         ));
     }
 
+
     protected function getModule($module_id)
     {
         $em = $this->getDoctrine()

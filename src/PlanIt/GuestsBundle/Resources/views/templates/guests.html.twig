@@ -48,7 +48,7 @@
                             </form>
                         </div>
                         <div class="send sent-{{guest.sent}} col-md-1 data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation""><div class="picto"></div></div>
-                        <div class="delete col-md-1"><div class="picto"></div></div>
+                        <div class="delete col-md-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
                     </div>
             {% endif %}
         {% endfor %}
@@ -58,6 +58,23 @@
     
     </div>
 {% endfor %}
+
+<div class="modal fade deleteGuestModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Voulez vous vraiment supprimer cet invité?</h4>
+            </div>
+            <div class="modal-body">
+                <form method="delete"  class="blogger">
+                    <input type="submit" value="Oui">
+                </form>
+                    <button class="btn btn-default" data-dismiss="modal"> Non </button>
+
+            </div>
+        </div>
+  </div>
+</div>
 
 <script>guests();</script>
 
