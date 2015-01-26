@@ -24,16 +24,15 @@ class PaymentMeansModuleType extends AbstractType
 
         $builder->add('PaymentMeans', 'entity', array(
             'class' => 'PlanItGuestsBundle:PaymentMeans',
-            'query_builder' => function(EntityRepository $er) use ($this->options) {
+            'query_builder' => function(EntityRepository $er) {
                 return $er->createQueryBuilder('p')
                 ->where($er->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
                 ->setParameter('ids', $er->createQueryBuilder('pp')
                 ->select('pp.id')
                 ->leftjoin('pp.modules', 'm')
-                ->where('m.id = :module_id')
+                ->where('m.id = 4')
                 ->getQuery()
-                ->getResult(), \Doctrine\DBAL\Connection::PARAM_INT_ARRAY)
-                ->setParameter('module_id', $this->options['module_id']);
+                ->getResult(), \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
             },
         ));
     }
@@ -56,8 +55,8 @@ class PaymentMeansModuleType extends AbstractType
         return 'planit_guestsbundle_paymentmeans';
     }
 
-    public function __construct(array $options)
-    {
-        $this->options = $options;
-    }
+    // public function __construct(array $options)
+    // {
+    //     $this->options = $options;
+    // }
 }

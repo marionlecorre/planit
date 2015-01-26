@@ -12,20 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaymentMeansRepository extends EntityRepository
 {
-    public function findByModule($module_id)
-    {
-//         SELECT id FROM PaymentMeans AS p
-// INNER JOIN paymentmeans_module AS pm ON pm.paymentmeans_id = p.id
-// WHERE pm.guestsmodule_id = 4
-		$module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
-
-        $qb = $this->createQueryBuilder('p')
-                   ->select('p.id')
-                   ->join('p.module', 'm', 'WITH', 'm.id = :module_id');
-                   ->setParameter('module_id', $module->getId());
-
-        return $qb->getQuery()
-                  ->getResult();
-    }
-
 }
