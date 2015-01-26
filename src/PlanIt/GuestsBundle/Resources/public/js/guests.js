@@ -6,6 +6,11 @@ function guests(){
 	$('.sent-true').tooltip();
 	$('.light').tooltip();
 	accordeonGuest();
+	
+	$('.deleteGuestModal').on("show.bs.modal",function(e){
+		var id = $(e.relatedTarget).data('type');
+		$("form").attr("action","/app_dev.php/api/guests/"+id);
+	});
 }
 
 
@@ -21,3 +26,5 @@ function accordeonGuest(){
 		}
 	});
 }
+
+

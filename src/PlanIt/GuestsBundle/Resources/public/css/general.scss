@@ -23,8 +23,38 @@ $header: #f1f1f1;
 .modal-body {
 	input[type="submit"] {
 		background-color: $color;
+		&:hover {
+			background-color: darken($color, 5%);
+		}
 	}
 	input[type="text"],input[type="email"] { 
 		display: block;
+	}
+}
+
+.modal.validate {
+	form {
+		width: 30%;
+		float: left;
+		margin-left: 20%;
+		input[type="submit"] {
+			background: url("/images/utils.png") no-repeat 50% 0px;
+			margin: 0 !important;
+			height: 82px;
+			padding-top: 26px;
+			color: #000 !important;
+			background-size: 17%;
+		}
+	}
+	
+	button {
+		background: url("/images/utils.png") no-repeat 50% -75px;
+		width: 30%;
+		height: 70px;
+		display: inline-block;
+		background-size: 20%;
+		padding-top: 42px;
+		font-size: 13px;
+		border: none;
 	}
 }

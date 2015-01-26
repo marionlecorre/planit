@@ -82,12 +82,18 @@ header {
 				&.state-2 {
 					background-color: $wait;
 				}
+				&:hover {
+					cursor: pointer;
+				}
 			}
 			.send .picto, .delete .picto {
 				background: url('/images/guests/icon_guests.png') no-repeat;
 				width: 24px;
 				height: 24px;
 				margin: 7px auto 0 auto;
+				&:hover {
+					cursor: pointer;
+				}
 			}
 			.sent-true .picto {
 				background-position-x : -54px;
