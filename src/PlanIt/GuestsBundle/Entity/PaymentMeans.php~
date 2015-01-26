@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
+ * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\PaymentMeansRepository")
  * @ORM\Entity
  * @ORM\Table(name="PaymentMeans")
  */
@@ -31,6 +32,12 @@ class PaymentMeans
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="paymentmean")
      */
     protected $guests;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="payment_means")
+     **/
+    protected $modules;
+
     /**
      * Constructor
      */
@@ -126,5 +133,10 @@ class PaymentMeans
     public function getGuests()
     {
         return $this->guests;
+    }
+
+    public function __toString()
+    {
+        return $this->getLabel();
     }
 }

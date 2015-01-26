@@ -66,7 +66,7 @@ class GuestsModule extends Module
     protected $type_guest;
 
     /**
-     * @ORM\ManyToMany(targetEntity="PaymentMeans")
+     * @ORM\ManyToMany(targetEntity="PaymentMeans", inversedBy="users")
      * @ORM\JoinTable(name="paymentmeans_module")
      **/
     protected $payment_means;
@@ -248,6 +248,8 @@ class GuestsModule extends Module
     public function __construct()
     {
         $this->guests = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->type_guest = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->payment_means = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

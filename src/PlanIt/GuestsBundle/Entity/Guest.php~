@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
+ * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestRepository")
  * @ORM\Entity
  * @ORM\Table(name="Guest")
  */

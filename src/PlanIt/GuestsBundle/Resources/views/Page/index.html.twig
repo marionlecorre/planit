@@ -22,12 +22,13 @@
             {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module_id } ))}}
             <div class="row">
                 <div class="col-md-3"><button data-toggle="modal" data-target=".addTypeGuestModal">Ajouter un invité</button></div>
-                <div class="col-md-3"><button>Ajouter un mode de paiement</button></div>
+                <div class="col-md-3"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
                 <div class="col-md-2 col-md-offset-4" id="checkbox_payable">                  
                     <!--Template payable.html.twig -->
                 </div>
             </div>
-                 {{ render(controller('PlanItGuestsBundle:Guest:form', { 'module_id' : module_id } ))}}          
+                 {{ render(controller('PlanItGuestsBundle:Guest:form', { 'module_id' : module_id } ))}}
+                 {{ render(controller('PlanItGuestsBundle:PaymentMeans:form', { 'module_id' : module_id } ))}}          
             <div id="guests_list">
                 <!--Template guests.html.twig -->
                 

@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
+ * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\PaymentMeansRepository")
  * @ORM\Entity
  * @ORM\Table(name="PaymentMeans")
  */
@@ -31,6 +32,12 @@ class PaymentMeans
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="paymentmean")
      */
     protected $guests;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="payment_means")
+     **/
+    protected $modules;
+
     /**
      * Constructor
      */
@@ -126,5 +133,43 @@ class PaymentMeans
     public function getGuests()
     {
         return $this->guests;
+    }
+
+    public function __toString()
+    {
+        return $this->getLabel();
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \PlanIt\GuestsBundle\Entity\GuestsModule $modules
+     * @return PaymentMeans
+     */
+    public function addModule(\PlanIt\GuestsBundle\Entity\GuestsModule $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \PlanIt\GuestsBundle\Entity\GuestsModule $modules
+     */
+    public function removeModule(\PlanIt\GuestsBundle\Entity\GuestsModule $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
     }
 }
