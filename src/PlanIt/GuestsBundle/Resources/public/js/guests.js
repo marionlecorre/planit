@@ -9,7 +9,7 @@ function guests(){
 	
 	$('.deleteGuestModal').on("show.bs.modal",function(e){
 		var id = $(e.relatedTarget).data('type');
-		$("form").attr("action","/app_dev.php/api/guests/"+id);
+		$("#delete_confirm").attr("onclick","deleteGuest("+id+")");
 	});
 }
 
@@ -26,5 +26,3 @@ function accordeonGuest(){
 		}
 	});
 }
-
-

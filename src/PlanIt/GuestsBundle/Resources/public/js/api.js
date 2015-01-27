@@ -30,3 +30,17 @@ function getModule(id){
 	});
 }
 
+function deleteGuest(id){
+	$.ajax({
+	   url : '/app_dev.php/api/guests/'+id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(data){ // code_html contient le HTML renvoyé
+	       location.reload(true);
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+

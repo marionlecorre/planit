@@ -20,8 +20,6 @@ class GuestRestController extends Controller
         $form    = $this->createForm(new GuestType(), $guest);
         $form->handleRequest($request);
         $data = $form->getData();
-        // var_dump($data);
-        // $guest->test();
 
         if ($form->isValid()) {
             $guest->setConfirmed(2);
@@ -44,11 +42,12 @@ class GuestRestController extends Controller
     }
 
     public function deleteGuestAction($guest_id){
-        //alert("coucou");
-        //$guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Module')->find($guest_id);
-        // $em = $em = $this->getDoctrine()
-        //                ->getEntityManager();
-        //     $em->remove($guest);
-        //     $em->flush();
+        $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
+        //return $guest;
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($guest);
+        $em->flush();
+
     }
 }
