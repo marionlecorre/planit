@@ -14,7 +14,7 @@ class PaymentMeansController extends Controller
 
 
         $paymentmeans = new PaymentMeans();
-        $form   = $this->createForm(new PaymentMeansModuleType(), $module);
+        $form   = $this->createForm(new PaymentMeansModuleType($module), $module);
 
         return $this->render('PlanItGuestsBundle:PaymentMeans:form.html.twig', array(
             'paymentmeans' => $paymentmeans,

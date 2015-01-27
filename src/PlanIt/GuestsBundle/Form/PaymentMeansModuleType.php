@@ -12,27 +12,27 @@ use Doctrine\ORM\EntityRepository;
 class PaymentMeansModuleType extends AbstractType
 {
 
-    private $options = array();
-    /**
+    protected $module;
+    /*
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // $builder
-        //     ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Libellé')));
-
+        $module = $this->module;
         $builder->add('PaymentMeans', 'entity', array(
             'class' => 'PlanItGuestsBundle:PaymentMeans',
-            'query_builder' => function(EntityRepository $er) {
+            'query_builder' => function(EntityRepository $er) use ($module) {
                 return $er->createQueryBuilder('p')
                 ->where($er->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
                 ->setParameter('ids', $er->createQueryBuilder('pp')
                 ->select('pp.id')
                 ->leftjoin('pp.modules', 'm')
-                ->where('m.id = 4')
+                ->where('m.id = :module_id')
+                ->setParameter('module_id', $module->getId())
                 ->getQuery()
-                ->getResult(), \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
+                ->getResult()
+                , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
             },
         ));
     }
@@ -55,8 +55,8 @@ class PaymentMeansModuleType extends AbstractType
         return 'planit_guestsbundle_paymentmeans';
     }
 
-    // public function __construct(array $options)
-    // {
-    //     $this->options = $options;
-    // }
+    public function __construct(\PlanIt\ModuleBundle\Entity\Module $module)
+    {
+        $this->module = $module;
+    }
 }
