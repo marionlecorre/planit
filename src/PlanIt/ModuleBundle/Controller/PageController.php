@@ -3,6 +3,8 @@
 namespace PlanIt\ModuleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use PlanIt\GuestsBundle\Entity\GuestsModule;
+
 
 class PageController extends Controller
 {
@@ -17,7 +19,9 @@ class PageController extends Controller
                 return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
                     'module_id' => $module_id,
-                    'user_id' => $event->getUser()->getId()
+                    'user_id' => $event->getUser()->getId(),
+                    'module_type' => $module->getGuestmoduleType(),
+                    'payable' => $module->getPayable()
                 ));
             break;
 
