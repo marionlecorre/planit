@@ -14,7 +14,8 @@
     {% javascripts '@PlanItEventBundle/Resources/views/templates/title.html.twig'
                     '@PlanItEventBundle/Resources/views/templates/form.html.twig'
                     '@PlanItEventBundle/Resources/views/templates/modules.html.twig'
-                    '@PlanItEventBundle/Resources/views/templates/description.html.twig' filter="twig_js, ?yui_js" %}
+                    '@PlanItEventBundle/Resources/views/templates/description.html.twig'
+                    '@PlanItEventBundle/Resources/views/templates/infos.html.twig' filter="twig_js, ?yui_js" %}
           <script language="javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     
@@ -22,4 +23,5 @@
                     '%kernel.root_dir%/Resources/js/*.js'  %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
+    <script src="{{ asset('js/moment.min.js') }}"></script>
 {% endblock %}
