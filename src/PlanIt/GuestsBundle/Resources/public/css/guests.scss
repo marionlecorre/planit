@@ -8,7 +8,7 @@ header {
 .guest-module {
 	button {
 		background-color: $color;
-		padding: 4px 18px;
+		padding: 4px 17px;
 		width: 100%;
 	}
 	#paying-checkbox {
@@ -50,7 +50,11 @@ header {
 			margin: 0;
 			padding: 15px 0 10px 0;
 			color: #828282;
-
+			form input[type="checkbox"]{
+				display: block;
+				margin: 3px auto;
+				width: 14px;
+			}
 			.confirmed, .payed, .send, .delete {
 				text-align: center;
 			}
@@ -65,6 +69,11 @@ header {
 				@include border-radius(3px); 
 				padding: 6px;
 				width: 100%;
+			}
+			input[type="checkbox"]{
+				display: block;
+				margin: 10px auto;
+				width: 14px;
 			}
 			.confirmed .light, .payed .light {
 				background-color: #000;

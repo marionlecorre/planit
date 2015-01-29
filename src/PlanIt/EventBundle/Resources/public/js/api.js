@@ -14,7 +14,35 @@ function getEvent(id){
 	                                description : evnt.description,
 	                                image : evnt.image,
 	                            });
-	       $('#description').html(description_rend);	       
+	       $('#description').html(description_rend);
+			
+
+	       	// DODOS
+			dodos = dateDiff(new Date(evnt.begin_date),new Date());
+			if(dodos > 0){
+				dodos = "C'est fini!";
+			}
+			else {
+				dodos = -1 * dodos;
+			}
+			// INVITÉS
+			for(var i=0;i<evnt.modules.length;i++){
+				if(evnt.modules[i].type=="guests"){
+					var list_guest= evnt.modules[i];
+					var counter=0;
+					for(var j=0;j<list_guest.guests.length;j++){
+						if(list_guest.guests[j].confirmed == 1){
+							counter++;
+						}
+					}
+				}
+			}
+	       var infos_rend = Twig.render(infos,
+	                            {
+	                                days : dodos,
+	                                guests : counter,
+	                            });
+	       $('#infos').html(infos_rend);	       
 	       var modules_rend = Twig.render(modules,
 	                            {
 	                                evnt : evnt,
@@ -54,5 +82,24 @@ function getEvent(id){
 	         alert(erreur);
 	       },
 	});
+}
+
+function dateDiff(date1, date2){
+    var diff = {}                           // Initialisation du retour
+    var tmp = date2 - date1;
+ 
+    tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+    diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+ 
+    tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+    diff.min = tmp % 60;                    // Extraction du nombre de minutes
+ 
+    tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+    diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+     
+    tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+    diff.day = tmp;
+     
+    return tmp;
 }
 

@@ -18,7 +18,7 @@ class GuestsModule extends Module
     /**
      * @ORM\Column(type="integer", length=1)
      */
-    protected $list_type;
+    protected $listType;
 
 
     /**
@@ -30,6 +30,13 @@ class GuestsModule extends Module
      * @ORM\Column(type="boolean")
      */
     protected $payable;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    // invitation =>0, inscription=>1
+    protected $guestmodule_type;
+
     /**
      * @var integer
      */
@@ -80,7 +87,7 @@ class GuestsModule extends Module
      */
     public function setListType($listType)
     {
-        $this->list_type = $listType;
+        $this->listType = $listType;
 
         return $this;
     }
@@ -92,7 +99,7 @@ class GuestsModule extends Module
      */
     public function getListType()
     {
-        return $this->list_type;
+        return $this->listType;
     }
 
     /**
@@ -385,5 +392,28 @@ class GuestsModule extends Module
     public function getPaymentMeans()
     {
         return $this->payment_means;
+    }
+
+    /**
+     * Set guestmodule_type
+     *
+     * @param boolean $guestmoduleType
+     * @return GuestsModule
+     */
+    public function setGuestmoduleType($guestmoduleType)
+    {
+        $this->guestmodule_type = $guestmoduleType;
+
+        return $this;
+    }
+
+    /**
+     * Get guestmodule_type
+     *
+     * @return boolean 
+     */
+    public function getGuestmoduleType()
+    {
+        return $this->guestmodule_type;
     }
 }

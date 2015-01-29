@@ -96,32 +96,43 @@ button {
       border-bottom: solid 2px;
     }
     .modal-body {
-      input[type="text"], input[type="email"] {
-        border: solid 1px #d8d7d7;
-        @include border-radius(3px); 
-        padding: 6px;
-        display: block;
-        margin: 12px auto;
-        width: 200px;
-      }
-      input[type="submit"] {
-        border: none;
-        display: block;
-        margin: 20px auto;
-        color: #FFF;
-        @include border-radius(3px); 
-        font-size: 13px;
-        width: 200px;
-      }
+      #form-container{
+        div {
+          margin:auto;
+          width: 200px;
+          label {
+            font-weight: normal;
+            margin-right: 20px;
+          }
+        }
+        input[type="text"], input[type="email"] {
+          border: solid 1px #d8d7d7;
+          @include border-radius(3px); 
+          padding: 6px;
+          display: block;
+          margin: 12px auto;
+          width: 200px;
+        }
+        input[type="submit"] {
+          border: none;
+          display: block;
+          margin: 20px auto;
+          color: #FFF;
+          @include border-radius(3px); 
+          font-size: 13px;
+          width: 200px;
+        }
 
-      input[type="file"] {
-        position: absolute;
-        display: inline-block;
-        left: 0;
-        top: 0;
-        opacity: 0.01;
-        cursor: pointer;
+        input[type="file"] {
+          position: absolute;
+          display: inline-block;
+          left: 0;
+          top: 0;
+          opacity: 0.01;
+          cursor: pointer;
+        }
       }
+      
 
     }
 

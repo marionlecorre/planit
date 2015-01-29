@@ -20,7 +20,8 @@ function getModule(id){
 	                            {
 	                                payment_means:module.payment_means,
 	                                guests : module.guests,
-	                                typeGuests : module.type_guest
+	                                typeGuests : module.type_guest,
+	                                moduleGuestType : module.guestmodule_type
 	                            });
 	       		$('#guests_list').html(guests);
 	       /**/
