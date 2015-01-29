@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\GuestsBundle\Entity\Guest;
 use PlanIt\GuestsBundle\Form\GuestType;
+use PlanIt\GuestsBundle\Form\UpdateGuestType;
 
 class GuestRestController extends Controller
 {
@@ -17,12 +18,11 @@ class GuestRestController extends Controller
         $guest = new Guest();
         $guest->setModule($module);
 
-        $form    = $this->createForm(new GuestType(), $guest);
+        $form = $this->createForm(new GuestType(), $guest);
         $form->handleRequest($request);
         $data = $form->getData();
-
         if ($form->isValid()) {
-            $guest->setConfirmed(2);
+            $guest->setConfirmed(0);
             $guest->setPayed(0);
             $guest->setSent(0);
             $em = $this->getDoctrine()
@@ -41,13 +41,28 @@ class GuestRestController extends Controller
         )));
     }
 
-    public function deleteGuestAction($guest_id){
+    public function deleteGuestAction($guest_id)
+    {
         $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
-        //return $guest;
         $em = $em = $this->getDoctrine()
                        ->getEntityManager();
         $em->remove($guest);
         $em->flush();
 
     }
+
+    public function putGuestAction(Request $request, $guest_id)
+    {
+        $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
+        $form = $this->createForm(new UpdateGuestType(), $guest, array('method' => 'PUT'));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($guest);
+            $em->flush();
+        }
+    }   
+
+
+
 }

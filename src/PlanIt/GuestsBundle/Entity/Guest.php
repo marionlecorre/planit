@@ -56,7 +56,6 @@ class Guest
     //0 => no, 1 => yes, 2 => waiting
     protected $sent;
 
-    protected $type_paiement;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", inversedBy="guests")

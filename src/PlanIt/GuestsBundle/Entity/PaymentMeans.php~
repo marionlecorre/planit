@@ -139,4 +139,37 @@ class PaymentMeans
     {
         return $this->getLabel();
     }
+
+    /**
+     * Add modules
+     *
+     * @param \PlanIt\GuestsBundle\Entity\GuestsModule $modules
+     * @return PaymentMeans
+     */
+    public function addModule(\PlanIt\GuestsBundle\Entity\GuestsModule $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \PlanIt\GuestsBundle\Entity\GuestsModule $modules
+     */
+    public function removeModule(\PlanIt\GuestsBundle\Entity\GuestsModule $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
 }

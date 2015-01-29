@@ -19,7 +19,8 @@
                 <form action="" id="select-all" class="col-md-1">
                     <input type="checkbox">
                 </form>
-                <p class="name col-md-2">Nom/Prénom</p>
+                <p class="name col-md-1">Prénom</p>
+                <p class="name col-md-1">Nom</p>
                 <p class="email col-md-3">Email</p>
                 <p class="confirmed col-md-1">Confirmé</p>
                 <p class="payed col-md-1">Payé</p>
@@ -34,20 +35,24 @@
                         <form action="" id="select-field" class="col-md-1">
                             <input type="checkbox">
                         </form>
-                        <div class="name col-md-2"><input type="text" value="{{guest.firstname}} {{guest.last}}"></div>
-                        <div class="email col-md-3"><input type="text" value="{{guest.email}}"></div>
-                        <div class="confirmed col-md-1"><div class="light state-{{guest.confirmed}} data-placement="top" data-original-title="Cliquez pour modifier""></div></div>
-                        <div class="payed col-md-1"><div class="light state-{{guest.payed}} data-placement="top" data-original-title="Cliquez pour modifier""></div></div>
+                        <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.type_guest.id}}">
+                        <div class="firstname col-md-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>
+                        <div class="lastname col-md-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
+                        <div class="email col-md-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
+                        <div class="confirmed col-md-1"><div onclick="updateGuest({{guest.id}}, 'confirmed')" id="confirmed-{{guest.id}}" data-type="{{guest.confirmed}}" class="light state-{{guest.confirmed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div></div>
+                        <div class="payed col-md-1">
+                                <div onclick="updateGuest({{guest.id}}, 'payed')" id="payed-{{guest.id}}" data-type="{{guest.payed}}" class="light state-{{guest.payed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div>
+                        </div>
                         <div class="payment col-md-2">
                             <form action="" id="payment">
-                            <select name="payment">
-                                    <option value="none">Espèce</option>
-                                    <option value="send">CB</option>
-                                    <option value="delete">Chèque</option>
+                            <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
+                                {% for payment in payment_means %}
+                                    <option value="{{payment.id}}" {% if guest.paymentmean.id == payment.id %} selected {% endif %}>{{payment.label}}</option>
+                                {% endfor %}
                             </select>
                             </form>
                         </div>
-                        <div class="send sent-{{guest.sent}} col-md-1 data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation""><div class="picto"></div></div>
+                        <div id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
                         <div class="delete col-md-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
                     </div>
             {% endif %}
