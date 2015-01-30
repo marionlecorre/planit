@@ -1,11 +1,8 @@
-
-	function setMaxDivHeight(){
-		var maxHeight = 0;
-		$('.event-thumbnail').each(function(i){
-		    if(this.offsetHeight > maxHeight){
-		    	console.log("longueur"+this.offsetHeight);
-		      	maxHeight = this.offsetHeight;
-		      	console.log("max"+maxHeight);
-		    }
-	  	});
-	}
+$(function(){
+	$( '#planit_eventbundle_event_begin_date' ).datepicker({
+    	dateFormat: "dd/mm/yy"
+	})
+	$( '#planit_eventbundle_event_end_date' ).datepicker({
+    	format: 'dd/mm/yy'
+	})
+});

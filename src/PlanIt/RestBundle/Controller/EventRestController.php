@@ -39,7 +39,6 @@ class EventRestController extends Controller
 			$rand = rand(1, 99999);
 			$file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
 			$event->setImage($user_id.'-'.$rand.'.'.$extension);
-
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($event);

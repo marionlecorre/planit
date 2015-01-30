@@ -1,4 +1,9 @@
-services:
+# services:
 #    plan_it_user.example:
 #        class: PlanIt\UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    UserBundle.twig.created_ago:
+        class: PlanIt\UserBundle\Twig\Extensions\UserExtension
+        tags:
+            - { name: twig.extension }
