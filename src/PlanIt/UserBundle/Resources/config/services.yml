@@ -3,7 +3,15 @@
 #        class: PlanIt\UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
 services:
-    UserBundle.twig.created_ago:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+    user.twig.extension:
         class: PlanIt\UserBundle\Twig\Extensions\UserExtension
         tags:
             - { name: twig.extension }

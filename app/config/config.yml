@@ -30,6 +30,18 @@ twig:
     strict_variables: "%kernel.debug%"
 
 
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
@@ -90,6 +102,7 @@ fos_rest:
         default_engine: twig
     routing_loader:
         default_format: json
+
 
 
 
