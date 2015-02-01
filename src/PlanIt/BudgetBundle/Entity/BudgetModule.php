@@ -49,6 +49,11 @@ class BudgetModule extends Module
      */
     protected $type_item;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="module")
+     */
+    protected $items;
+
 
     /**
      * Set max_budget
@@ -251,5 +256,38 @@ class BudgetModule extends Module
     public function getTypeItem()
     {
         return $this->type_item;
+    }
+
+    /**
+     * Add items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     * @return BudgetModule
+     */
+    public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items[] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     */
+    public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 }

@@ -1,0 +1,93 @@
+{% twig_js name="typeitem_template" %}
+
+{# GENERAL #}
+<section id="section-topline-general">
+	<div class="col-md-4"> 
+		<div class="pie_chart" id="pie_chart_depenses"></div>
+		<div class="bt_budget"><button id="bouton_depense">Ajouter une dépense</button></div>
+	</div>
+
+	<div class="col-md-4"> 
+		<div class="pie_chart" id="pie_chart_apports"></div>
+		<div class="bt_budget"><button id="bouton_ajout">Ajouter un apport</button></div>
+	</div>
+
+	<div class="col-md-4"> 
+		<div class="info_dte info_color">
+			<img src="/images/budget/info_dte_balance.png" /> 
+			<p> BALANCE </br> <span>-158€</span> </p>
+		</div>							
+		<div class="info_dte">
+			<img src="/images/budget/info_dte_limite.png" /> 
+			<p> BUDGET LIMITE</br> <span>1000 €</span> </p>
+		</div>
+	</div>
+</section>
+
+{# TYPE ITEMS #}
+{% for type_item in module.type_item %}
+	<section id="section-topline-{{type_item.id}}">
+		<div class="responsive-table-line">
+			<table class="table table-bordered table-condensed table-body-center" >
+				<thead>
+					<tr>
+						<th>Article *</th>
+						<th>Quantité *</th>
+						<th>En stock *</th>
+						<th>A acheter</th>
+						<th>Prix unitaire *</th>
+						<th>Prix total</th>
+						<th>Consommé *</th>
+						<th>Acheté *</th>											
+						<th>Supprimer</th>
+					</tr>
+				</thead>
+				
+				
+				<tbody>
+					{% for item in type_item.items %}
+						<tr>
+							<td data-title="Article">
+								<input type="text" id="name-item-{{item.id}}" value="{{item.name}}">
+							</td>
+							<td data-title="Quantité">
+								<input type="text" id="quantity-item-{{item.id}}" value="{{item.quantity}}">
+							</td>
+							<td data-title="En stock">
+								<input type="text" id="stock-item-{{item.id}}" value="{{item.stock}}">
+							</td>
+							<td data-title="A acheter">
+								{{item.quantity - item.stock}}
+							</td>
+							<td data-title="Prix unitaire">
+								<input type="text" id="price-item-{{item.id}}" value="{{item.price}}">
+							</td>
+							<td data-title="Prix total">
+								{{item.price * (item.quantity - item.stock)}}
+							</td>
+							<td data-title="Consommé">
+								<input type="text" id="consummate-item-{{item.id}}" value="{{item.consummate}}">
+							</td>
+							<td data-title="Acheté">
+								<input type="checkbox" {% if item.bought %} checked {%endif%}/>
+							</td>
+							<td data-title="Supprimer">X</td>
+						</tr>
+					{% endfor %}							
+				</tbody>
+			</table>
+			<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
+		</div>
+	</section>
+{% endfor %}
+
+
+<script>
+		(function() {
+			[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+				new CBPFWTabs( el );
+			});
+		})();
+		chartApport();
+		chartDepense();
+	</script>

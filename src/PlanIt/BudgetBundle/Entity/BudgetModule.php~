@@ -49,6 +49,11 @@ class BudgetModule extends Module
      */
     protected $type_item;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="module")
+     */
+    protected $items;
+
 
     /**
      * Set max_budget
@@ -212,4 +217,77 @@ class BudgetModule extends Module
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->type_item = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add type_item
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
+     * @return BudgetModule
+     */
+    public function addTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
+    {
+        $this->type_item[] = $typeItem;
+
+        return $this;
+    }
+
+    /**
+     * Remove type_item
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
+     */
+    public function removeTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
+    {
+        $this->type_item->removeElement($typeItem);
+    }
+
+    /**
+     * Get type_item
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTypeItem()
+    {
+        return $this->type_item;
+    }
+
+    /**
+     * Add items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     * @return BudgetModule
+     */
+    public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items[] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     */
+    public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

@@ -38,6 +38,10 @@ class TypeItem
      */
     protected $module;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="type_item")
+     */
+    protected $items;
 
     /**
      * Get id
@@ -116,5 +120,45 @@ class TypeItem
     public function getModule()
     {
         return $this->module;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     * @return TypeItem
+     */
+    public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items[] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Item $items
+     */
+    public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 }

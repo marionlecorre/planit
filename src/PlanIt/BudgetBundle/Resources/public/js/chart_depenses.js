@@ -1,7 +1,7 @@
-$(function () {
+// $(function () {
 
-    $(document).ready(function () {
-
+//     $(document).ready(function () {
+    function chartDepense(){
         // Build the chart
         chart = new Highcharts.Chart({
             chart: {
@@ -44,9 +44,10 @@ $(function () {
                      ]
             }]       
         });
-    });
+    }
+//     });
 
 
-});
+// });
 
 

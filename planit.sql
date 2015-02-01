@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 01 Février 2015 à 13:57
+-- Généré le :  Dim 01 Février 2015 à 16:36
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -81,6 +81,35 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `firstname`, `lastname`
 (6, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
 (7, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
 (9, 6, 2, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `item`
+--
+
+CREATE TABLE `item` (
+`id` int(11) NOT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `type_item_id` int(11) DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `price` double NOT NULL,
+  `stock` double NOT NULL,
+  `quantity` double NOT NULL,
+  `consummate` double NOT NULL,
+  `bought` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `item`
+--
+
+INSERT INTO `item` (`id`, `module_id`, `type_item_id`, `name`, `price`, `stock`, `quantity`, `consummate`, `bought`) VALUES
+(1, 12, 1, 'Coca Cola', 8, 0, 3, 0, 1),
+(2, 12, 1, 'Rhum', 14, 2, 4, 0, 0),
+(3, 12, 2, 'Cookies', 10, 0, 12, 0, 1),
+(4, 12, 2, 'Riz', 2, 3, 9, 0, 0),
+(5, 12, 1, 'Sprite', 3, 0, 10, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +232,15 @@ CREATE TABLE `type_item` (
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `type` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `type_item`
+--
+
+INSERT INTO `type_item` (`id`, `module_id`, `name`, `type`) VALUES
+(1, 12, 'Boissons', 0),
+(2, 12, 'Nourriture', 0);
 
 -- --------------------------------------------------------
 
@@ -244,6 +281,12 @@ ALTER TABLE `event`
 --
 ALTER TABLE `guest`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_6D76B53157B581A4` (`type_guest_id`), ADD KEY `IDX_6D76B531AFC2B591` (`module_id`), ADD KEY `IDX_6D76B5311594D248` (`paymentmean_id`);
+
+--
+-- Index pour la table `item`
+--
+ALTER TABLE `item`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_1F1B251EAFC2B591` (`module_id`), ADD KEY `IDX_1F1B251E3A4E3DAB` (`type_item_id`);
 
 --
 -- Index pour la table `migration_versions`
@@ -302,6 +345,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 ALTER TABLE `guest`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT pour la table `item`
+--
+ALTER TABLE `item`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
@@ -320,7 +368,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT pour la table `type_item`
 --
 ALTER TABLE `type_item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
@@ -343,6 +391,13 @@ ALTER TABLE `guest`
 ADD CONSTRAINT `FK_6D76B5311594D248` FOREIGN KEY (`paymentmean_id`) REFERENCES `PaymentMeans` (`id`),
 ADD CONSTRAINT `FK_6D76B53157B581A4` FOREIGN KEY (`type_guest_id`) REFERENCES `TypeGuest` (`id`),
 ADD CONSTRAINT `FK_6D76B531AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+
+--
+-- Contraintes pour la table `item`
+--
+ALTER TABLE `item`
+ADD CONSTRAINT `FK_1F1B251E3A4E3DAB` FOREIGN KEY (`type_item_id`) REFERENCES `type_item` (`id`),
+ADD CONSTRAINT `FK_1F1B251EAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `module`

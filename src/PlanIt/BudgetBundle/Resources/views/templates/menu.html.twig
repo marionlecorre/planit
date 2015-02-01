@@ -1,0 +1,6 @@
+{% twig_js name="tab" %}
+
+<li><a href="#section-topline-general"><span>Récapitulatif</span></a></li>
+{% for type_item in module.type_item %}
+	<li><a href="#section-topline-{{type_item.id}}"><span>{{type_item.name}}</span></a></li>
+{% endfor %}

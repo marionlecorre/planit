@@ -75,24 +75,40 @@ table{
 	/* ntlignes paires. */
 	tbody tr:nth-child(even) { 
 		background-color:#eedcff;
+		td input {
+			background-color:#eedcff;
+		}
 	}
 
 	/* impaires. */
 	tbody tr:nth-child(odd) { 
-		background-color:#f4f3f5; 
+		background-color:#f4f3f5;
+		td input {
+			background-color:#f4f3f5;
+		} 
 	}
 
 	tbody td { 
 		height: 33px;
 		vertical-align: middle !important;
+		input {
+			border: none;
+			text-align: center;
+			&:focus {
+				border : solid 1px $budget_module;
+				background-color: #FFF !important;
+				outline : none;
+			}
+		}
 	}
 
 	/* Effet de survol au passage du curseur. */
 	tbody tr:hover { 
 		background-color:$neutral;
+		td input {
+			background-color:$neutral;
+		} 
 	}
-
-
 }
 
 
@@ -102,6 +118,11 @@ table.table.table-condensed th{
 
 table.table.table-condensed td{
     border: none;
+}
+
+span#legend {
+	float: right;
+	font-size: 11px;
 }
 
 
