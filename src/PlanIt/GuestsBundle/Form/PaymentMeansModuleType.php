@@ -13,6 +13,8 @@ class PaymentMeansModuleType extends AbstractType
 {
 
     protected $module;
+    protected $payments;
+
     /*
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -20,21 +22,29 @@ class PaymentMeansModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $module = $this->module;
-        $builder->add('PaymentMeans', 'entity', array(
-            'class' => 'PlanItGuestsBundle:PaymentMeans',
-            'query_builder' => function(EntityRepository $er) use ($module) {
-                return $er->createQueryBuilder('p')
-                ->where($er->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
-                ->setParameter('ids', $er->createQueryBuilder('pp')
-                ->select('pp.id')
-                ->leftjoin('pp.modules', 'm')
-                ->where('m.id = :module_id')
-                ->setParameter('module_id', $module->getId())
-                ->getQuery()
-                ->getResult()
-                , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
-            },
-        ));
+
+        if(empty($paymentmeans)){
+            $builder->add('PaymentMeans', 'entity', array(
+                'class' => 'PlanItGuestsBundle:PaymentMeans',
+                'property' => 'label',
+            ));
+        }else{
+            $builder->add('PaymentMeans', 'entity', array(
+                'class' => 'PlanItGuestsBundle:PaymentMeans',
+                'query_builder' => function(EntityRepository $er) use ($module) {
+                    return $er->createQueryBuilder('p')
+                    ->where($er->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
+                    ->setParameter('ids', $er->createQueryBuilder('pp')
+                    ->select('pp.id')
+                    ->leftjoin('pp.modules', 'm')
+                    ->where('m.id = :module_id')
+                    ->setParameter('module_id', $module->getId())
+                    ->getQuery()
+                    ->getResult()
+                    , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
+                },
+            ));
+        }
     }
     
     /**
@@ -55,8 +65,9 @@ class PaymentMeansModuleType extends AbstractType
         return 'planit_guestsbundle_paymentmeans';
     }
 
-    public function __construct(\PlanIt\ModuleBundle\Entity\Module $module)
+    public function __construct(\PlanIt\ModuleBundle\Entity\Module $module, array $payments)
     {
         $this->module = $module;
+        $this->payments = $payments;
     }
 }

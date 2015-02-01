@@ -11,6 +11,10 @@ function guests(){
 		var id = $(e.relatedTarget).data('type');
 		$("#delete_confirm").attr("onclick","deleteGuest("+id+")");
 	});
+	$('.addGuestModal').on("show.bs.modal",function(e){
+		var typeguest = $(e.relatedTarget).data('type');
+		$("#form-post-guest").attr("action","/app_dev.php/api/guests/"+typeguest);
+	});
 }
 
 

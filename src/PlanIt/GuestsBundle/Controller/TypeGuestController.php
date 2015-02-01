@@ -18,7 +18,7 @@ class TypeGuestController extends Controller
         $form   = $this->createForm(new TypeGuestType(), $typeguest);
 
         return $this->render('PlanItGuestsBundle:TypeGuest:form.html.twig', array(
-            'typeguest' => $typeguest,
+            'typeguest' => $typeguest->getId(),
             'form'   => $form->createView(),
             'module_id' => $module_id
         ));

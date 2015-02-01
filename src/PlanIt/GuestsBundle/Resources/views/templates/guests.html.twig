@@ -13,7 +13,7 @@
                 </select>
                 </form>
             <div class="name">{{type.label}}</div>
-            <div class="price">40€/pers</div>
+            <div class="price">{{type.price}}€/pers</div>
         </div>
         {# Labels #}
         <div class="accordion-body">
@@ -54,11 +54,15 @@
                         </div>
                         <div class="payment col-md-2">
                             <form action="" id="payment">
-                            <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
-                                {% for payment in payment_means %}
-                                    <option value="{{payment.id}}" {% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}>{{payment.label}}</option>
-                                {% endfor %}
-                            </select>
+                                {% if payment_means is empty %}
+                                    <span> Aucun moyen de paiement </span>
+                                {%else %}
+                                <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
+                                    {% for payment in payment_means %}
+                                        <option value="{{payment.id}}" {% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}>{{payment.label}}</option>
+                                    {% endfor %}
+                                </select>
+                                {% endif %}
                             </form>
                         </div>
                         {% if moduleGuestType == false %}

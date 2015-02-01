@@ -10,9 +10,8 @@ use PlanIt\GuestsBundle\Form\TypeGuestType;
 class TypeGuestRestController extends Controller
 {
 
-	public function postTypeGuestAction(Request $request, $module_id)
+	public function postTypeguestAction(Request $request, $module_id)
     {
-	    //var_dump("coucou");
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
 
         $typeguest = new TypeGuest();

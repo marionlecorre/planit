@@ -11,20 +11,21 @@ use PlanIt\GuestsBundle\Form\UpdateGuestType;
 class GuestRestController extends Controller
 {
 
-	public function postGuestAction(Request $request, $module_id)
+	public function postGuestAction(Request $request, $typeguest_id)
     {
-	    $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+	    $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($typeguest->getModule()->getId());
 
         $guest = new Guest();
         $guest->setModule($module);
 
         $form = $this->createForm(new GuestType(), $guest);
         $form->handleRequest($request);
-        $data = $form->getData();
         if ($form->isValid()) {
             $guest->setConfirmed(0);
             $guest->setPayed(0);
             $guest->setSent(0);
+            $guest->setTypeGuest($typeguest);
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($guest);

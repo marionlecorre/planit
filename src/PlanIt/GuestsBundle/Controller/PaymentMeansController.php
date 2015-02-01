@@ -14,7 +14,17 @@ class PaymentMeansController extends Controller
 
 
         $paymentmeans = new PaymentMeans();
-        $form   = $this->createForm(new PaymentMeansModuleType($module), $module);
+        $payments = $this->getDoctrine()
+            ->getEntityManager()
+            ->getRepository('PlanItGuestsBundle:PaymentMeans')
+            ->createQueryBuilder('pp')
+                ->select('pp.id')
+                ->leftjoin('pp.modules', 'm')
+                ->where('m.id = :module_id')
+                ->setParameter('module_id', $module->getId())
+                ->getQuery()
+                ->getResult();
+        $form   = $this->createForm(new PaymentMeansModuleType($module, $payments), $module);
 
         return $this->render('PlanItGuestsBundle:PaymentMeans:form.html.twig', array(
             'paymentmeans' => $paymentmeans,
