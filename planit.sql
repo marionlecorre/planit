@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 28 Janvier 2015 à 22:00
+-- Généré le :  Dim 01 Février 2015 à 13:57
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `event` (
   `begin_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `event`
@@ -47,7 +47,8 @@ INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `begin_date
 (3, 3, 'Anniversaire Florent', 'annivflorent', 'Hapyy birthday to youuu Diabeto <3 get on the flow', '2014-11-19 00:00:00', '2014-11-20 00:00:00', 'photo_evenement.jpg'),
 (4, 3, 'Mariage d''Aurélie', 'mariageaurelie', 'Beau mariage à Lavaur avec Marina en demoiselle d''honneur en robe rose', '2015-04-16 00:00:00', '2015-04-17 00:00:00', 'mariage.jpg'),
 (5, 3, 'Gala', 'Gala', 'Soirée de ouf sur une péniche', '2015-01-23 20:00:00', '2015-01-24 05:00:00', '3-5245.jpeg'),
-(6, 1, 'Allez je fais du sport', 'Allez je fais du sport', 'pour ne plus être grosse', '0015-01-22 00:06:32', '0015-01-23 00:06:32', '1-62570.jpeg');
+(6, 1, 'Allez je fais du sport', 'Allez je fais du sport', 'pour ne plus être grosse', '2015-01-22 00:06:32', '2015-01-23 00:06:32', '1-62570.jpeg'),
+(7, 1, 'Boire du café', 'Boire du café', 'Le café c''est la vie', '2015-02-12 00:00:00', '2015-02-13 00:00:00', '1-44121.jpeg');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,7 @@ CREATE TABLE `guest` (
   `payed` int(11) NOT NULL,
   `sent` tinyint(1) NOT NULL,
   `paymentmean_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `guest`
@@ -78,7 +79,8 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `firstname`, `lastname`
 (3, 1, 4, 'Marina', 'Avataneo', 'warina@grisou.com', 1, 0, 0, NULL),
 (5, 2, 4, 'Test', 'test', 'test@g.com', 2, 0, 0, NULL),
 (6, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
-(7, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1);
+(7, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
+(9, 6, 2, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,7 @@ CREATE TABLE `module` (
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
   `guestmodule_type` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -129,7 +131,8 @@ INSERT INTO `module` (`id`, `event_id`, `name`, `slug`, `int_type`, `type`, `lis
 (8, 6, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 1000, NULL, NULL, NULL, NULL, NULL, NULL),
 (9, 6, 'Lieu', 'lieu', 3, 'place', NULL, NULL, NULL, NULL, 100, 600, '2', NULL, NULL, NULL),
 (10, 6, 'Transport', 'transport', 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 60, 500, NULL),
-(11, 6, 'TODO', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(11, 6, 'TODO', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 5, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 2000, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +178,7 @@ CREATE TABLE `TypeGuest` (
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `message` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `price` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `TypeGuest`
@@ -186,7 +189,21 @@ INSERT INTO `TypeGuest` (`id`, `module_id`, `label`, `message`, `price`) VALUES
 (2, 4, 'Amis SRC', 'coucou mes amis src', 30),
 (3, 4, 'Famille', 'Coucou', 70),
 (4, 7, 'Imac adhérents', 'Bonjour viens au gala', 26),
-(5, 6, 'Famille', 'Coucou ma famille', 0);
+(5, 6, 'Famille', 'Coucou ma famille', 0),
+(6, 2, 'Amis de Toulouse', 'bonne année !!!!', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_item`
+--
+
+CREATE TABLE `type_item` (
+`id` int(11) NOT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `type` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -259,6 +276,12 @@ ALTER TABLE `TypeGuest`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_65AD8281AFC2B591` (`module_id`);
 
 --
+-- Index pour la table `type_item`
+--
+ALTER TABLE `type_item`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_C814E016AFC2B591` (`module_id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -272,17 +295,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `guest`
 --
 ALTER TABLE `guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `PaymentMeans`
 --
@@ -292,7 +315,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `TypeGuest`
 --
 ALTER TABLE `TypeGuest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `type_item`
+--
+ALTER TABLE `type_item`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
@@ -334,6 +362,12 @@ ADD CONSTRAINT `FK_A4BA4E099F63E055` FOREIGN KEY (`paymentmeans_id`) REFERENCES 
 --
 ALTER TABLE `TypeGuest`
 ADD CONSTRAINT `FK_65AD8281AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+
+--
+-- Contraintes pour la table `type_item`
+--
+ALTER TABLE `type_item`
+ADD CONSTRAINT `FK_C814E016AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

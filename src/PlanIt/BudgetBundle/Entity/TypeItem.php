@@ -38,4 +38,83 @@ class TypeItem
      */
     protected $module;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return TypeItem
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set type
+     *
+     * @param boolean $type
+     * @return TypeItem
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return boolean 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set module
+     *
+     * @param \PlanIt\BudgetBundle\Entity\BudgetModule $module
+     * @return TypeItem
+     */
+    public function setModule(\PlanIt\BudgetBundle\Entity\BudgetModule $module = null)
+    {
+        $this->module = $module;
+
+        return $this;
+    }
+
+    /**
+     * Get module
+     *
+     * @return \PlanIt\BudgetBundle\Entity\BudgetModule 
+     */
+    public function getModule()
+    {
+        return $this->module;
+    }
 }

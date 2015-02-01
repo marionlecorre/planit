@@ -212,4 +212,44 @@ class BudgetModule extends Module
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->type_item = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add type_item
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
+     * @return BudgetModule
+     */
+    public function addTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
+    {
+        $this->type_item[] = $typeItem;
+
+        return $this;
+    }
+
+    /**
+     * Remove type_item
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
+     */
+    public function removeTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
+    {
+        $this->type_item->removeElement($typeItem);
+    }
+
+    /**
+     * Get type_item
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTypeItem()
+    {
+        return $this->type_item;
+    }
 }

@@ -87,7 +87,7 @@ class GuestsModule extends Module
      */
     public function setListType($listType)
     {
-        $this->list_type = $listType;
+        $this->listType = $listType;
 
         return $this;
     }
@@ -99,7 +99,7 @@ class GuestsModule extends Module
      */
     public function getListType()
     {
-        return $this->list_type;
+        return $this->listType;
     }
 
     /**

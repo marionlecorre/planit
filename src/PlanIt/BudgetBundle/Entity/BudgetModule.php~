@@ -44,6 +44,11 @@ class BudgetModule extends Module
      */
     protected $event;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\TypeItem", mappedBy="module")
+     */
+    protected $type_item;
+
 
     /**
      * Set max_budget
