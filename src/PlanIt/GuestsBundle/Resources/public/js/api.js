@@ -37,8 +37,16 @@ function deleteGuest(id){
 	   url : '/app_dev.php/api/guests/'+id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(data){ // code_html contient le HTML renvoyé
-	       location.reload(true);
+	   success : function(module){ // code_html contient le HTML renvoyé
+	       //location.reload(true);
+	       var guests = Twig.render(guests_list,
+	                            {
+	                                payment_means:module.payment_means,
+	                                guests : module.guests,
+	                                typeGuests : module.type_guest,
+	                                moduleGuestType : module.guestmodule_type
+	                            });
+	       		$('#guests_list').html(guests);
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
@@ -66,8 +74,7 @@ function updateGuest(id, attr){
 		"payed" : payed,
 		"confirmed" : confirmed,
 		"sent" : sent,
-		"paymentmean" : $("#paymentmean-"+id).val(),
-		"_token" : "Dys5DcUyXOhsryIkwADnyuxBh5Raa825ot6txg7pA7U"
+		"paymentmean" : $("#paymentmean-"+id).val()
 	}}
 	$.ajax({
 	   url : '/app_dev.php/api/guests/'+id, //API
@@ -75,8 +82,14 @@ function updateGuest(id, attr){
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   	// console.log(data)
-	       location.reload(true);
+	   	if(attr == "confirmed"){
+			$("#confirmed-"+id).attr('class', "light state-"+confirmed);
+			$("#confirmed-"+id).attr('data-type', confirmed);
+
+		}else if(attr == "payed"){
+			$("#payed-"+id).attr('class', "light state-"+payed);
+			$("#payed-"+id).attr('data-type', payed);
+		}
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

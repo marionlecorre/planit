@@ -48,6 +48,7 @@ class GuestRestController extends Controller
                        ->getEntityManager();
         $em->remove($guest);
         $em->flush();
+        return $guest->getModule();
 
     }
 

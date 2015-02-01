@@ -32,7 +32,11 @@ class UpdateGuestType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest',
+            'csrf_protection' => false,
+            'csrf_field_name' => '_token',
+            // a unique key to help generate the secret token
+            'intention'       => 'guest_update',
         ));
     }
 
