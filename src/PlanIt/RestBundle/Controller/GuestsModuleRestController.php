@@ -32,9 +32,18 @@ class GuestsModuleRestController extends Controller
             )));
         }
 
-        /*return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-            'event_id'    => $guest->getModule()->getEvent()->getId(),
-            'module_id'   => $comment->getModule()->getId()
-        ));*/
+        return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+            'id'    => $event_id
+        )));
+    }
+
+    public function putGuestsmodulePayableAction(Request $request, $module_id)
+    {
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        $module->setPayable($request->request->get('payable'));
+        $em = $this->getDoctrine()
+                   ->getEntityManager();
+        $em->persist($module);
+        $em->flush();
     }
 }

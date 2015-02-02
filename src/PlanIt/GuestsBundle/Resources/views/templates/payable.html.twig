@@ -1,4 +1,4 @@
 {% twig_js name="guests_payable" %}
 <form id="paying-checkbox" action="">
-	<input type="checkbox" {% if payable %} checked {%endif%}>Evenement payant
+	<input id="payable-{{module_id}}" onclick="updatePayable({{module_id}})" type="checkbox" {% if payable %} checked {%endif%}>Evenement payant
 </form>

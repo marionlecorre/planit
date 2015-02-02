@@ -13,6 +13,7 @@ function getModule(id){
 	       		var payable = Twig.render(guests_payable,
 	                            {
 	                                payable : module.payable,
+	                                module_id:module.id
 	                            });
 	       		$('#checkbox_payable').html(payable);
 
@@ -90,6 +91,22 @@ function updateGuest(id, attr){
 			$("#payed-"+id).attr('class', "light state-"+payed);
 			$("#payed-"+id).attr('data-type', payed);
 		}
+	   },
+	   error : function(resultat, statut, erreur){
+	         console.log(resultat);
+	       },
+	});
+}
+
+function updatePayable(module_id){
+	var payable = $("#payable-"+module_id).is(':checked');
+	$.ajax({
+	   url : '/app_dev.php/api/guestsmodules/'+module_id+'/payable', //API
+	   type : 'PUT',
+	   dataType : 'json',
+	   data : {payable : $("#payable-"+module_id).is(':checked')},
+	   success : function(data){ // code_html contient le HTML renvoyé
+
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
