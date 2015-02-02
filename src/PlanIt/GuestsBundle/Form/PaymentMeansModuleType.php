@@ -22,8 +22,9 @@ class PaymentMeansModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $module = $this->module;
+        $payments = $this->payments;
 
-        if(empty($paymentmeans)){
+        if(empty($payments)){
             $builder->add('PaymentMeans', 'entity', array(
                 'class' => 'PlanItGuestsBundle:PaymentMeans',
                 'property' => 'label',

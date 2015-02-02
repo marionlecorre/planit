@@ -45,5 +45,6 @@ class GuestsModuleRestController extends Controller
                    ->getEntityManager();
         $em->persist($module);
         $em->flush();
+        return $module;
     }
 }

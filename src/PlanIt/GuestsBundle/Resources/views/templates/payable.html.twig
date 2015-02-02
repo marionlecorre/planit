@@ -1,4 +1,10 @@
 {% twig_js name="guests_payable" %}
-<form id="paying-checkbox" action="">
-	<input id="payable-{{module_id}}" onclick="updatePayable({{module_id}})" type="checkbox" {% if payable %} checked {%endif%}>Evenement payant
-</form>
+<div class="col-md-3"><button data-toggle="modal" data-target=".addTypeGuestModal">Ajouter un type d'invité</button></div>
+{% if payable %}
+    <div class="col-md-3"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
+{% endif %}
+<div class="col-md-2 pull-right" id="checkbox_payable">                  
+    <form id="paying-checkbox" action="">
+		<input id="payable-{{module_id}}" onclick="updatePayable({{module_id}})" type="checkbox" {% if payable %} checked {%endif%}>Evenement payant
+	</form>
+</div>
