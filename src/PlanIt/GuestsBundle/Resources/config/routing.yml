@@ -1,6 +1,5 @@
-PlanItGuestsBundle_guest_create:
-    pattern:  /module/{module_id}/guests/create
-    defaults: { _controller: PlanItGuestsBundle:Guest:create }
+PlanItGuestBundle_answer:
+    path:     /answer/{guest_id_encode}
+    defaults: { _controller: PlanItGuestsBundle:Guest:answer }
     requirements:
-        _method:  POST
-        blog_id: \d+
+        _method:  GET

@@ -125,12 +125,18 @@ function updatePayable(module_id){
 }
 
 function sendMail(guest_id){
-	alert(guest_id);
 	$.ajax({
 	   url : '/app_dev.php/api/guests/'+guest_id+'/mails', //API
 	   type : 'POST',
-	   success : function(data){ // code_html contient le HTML renvoyé
-	   		console.log(data);
+	   success : function(module){ // code_html contient le HTML renvoyé
+	   		var guests = Twig.render(guests_list,
+	                        {
+	                            payment_means:module.payment_means,
+	                            guests : module.guests,
+	                            typeGuests : module.type_guest,
+	                            moduleGuestType : module.guestmodule_type
+	                        });
+	   		$('#guests_list').html(guests);
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

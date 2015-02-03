@@ -66,7 +66,7 @@
                             </form>
                         </div>
                         {% if moduleGuestType == false %}
-                            <div onclick="sendMail({{guest.id}})" id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
+                            <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
                             <div class="delete col-md-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
                         {% elseif moduleGuestType == true %}
                             <div class="delete col-md-2"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>

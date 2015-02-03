@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\GuestsBundle\Entity\Guest;
 use PlanIt\GuestsBundle\Form\GuestType;
 use PlanIt\GuestsBundle\Form\UpdateGuestType;
+use PlanIt\GuestsBundle\Form\GuestAnswerType;
 
 class GuestRestController extends Controller
 {
@@ -63,7 +64,19 @@ class GuestRestController extends Controller
             $em->persist($guest);
             $em->flush();
         }
-    } 
+    }
+
+    public function postGuestAnswerAction(Request $request, $guest_id)
+    {
+        $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
+        $form = $this->createForm(new GuestAnswerType(), $guest);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($guest);
+            $em->flush();
+        }
+    }
 
     public function postGuestMailAction(Request $request, $guest_id)
     {
@@ -71,10 +84,20 @@ class GuestRestController extends Controller
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($guest->getModule()->getEvent()->getId());
         $message = \Swift_Message::newInstance()
             ->setSubject('Invitation à l\'évènement : '.$event->getName())
-            ->setFrom('planit@contact.com')
+            ->setFrom($event->getUser()->getMail())
             ->setTo($guest->getEmail())
-            ->setBody($guest->getTypeGuest()->getMessage().'<br/> Le prix de l\'évènement est de '.$guest->getTypeGuest()->getPrice().'€ par personne <br/> Marion Le Corre', 'text/html');
+            ->setBody($guest->getTypeGuest()->getMessage().'<br/> 
+                Le prix de l\'évènement est de '.$guest->getTypeGuest()->getPrice().'€ par personne <br/> 
+                Merci de confirmer votre présence grâce au lien suivant : <br/>
+                http://planit.dev:8888/app_dev.php/answer/'.base64_encode($guest->getId()).'<br>'
+                .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');
         $this->get('mailer')->send($message);
+        $guest->setSent(1);
+        $em = $this->getDoctrine()->getManager();
+            $em->persist($guest);
+            $em->flush();
+
+        return $guest->getModule();
     }
 
 

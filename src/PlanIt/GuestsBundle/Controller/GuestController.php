@@ -5,6 +5,7 @@ namespace PlanIt\GuestsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\GuestsBundle\Entity\Guest;
 use PlanIt\GuestsBundle\Form\GuestType;
+use PlanIt\GuestsBundle\Form\GuestAnswerType;
 
 class GuestController extends Controller
 {
@@ -21,6 +22,21 @@ class GuestController extends Controller
             'guest' => $guest,
             'form'   => $form->createView(),
             'module_id' => $module_id
+        ));
+    }
+
+    public function answerAction($guest_id_encode)
+    {
+        $em = $this->getDoctrine()
+                    ->getEntityManager();
+
+        $guest = $em->getRepository('PlanItGuestsBundle:Guest')->find(base64_decode($guest_id_encode));
+
+        $form   = $this->createForm(new GuestAnswerType(), $guest);
+
+        return $this->render('PlanItGuestsBundle:Guest:form-answer.html.twig', array(
+            'guest' => $guest,
+            'form'   => $form->createView()
         ));
     }
 
