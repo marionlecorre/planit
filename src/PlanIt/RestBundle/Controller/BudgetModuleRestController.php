@@ -31,11 +31,10 @@ class BudgetModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
-
-        /*return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-            'event_id'    => $guest->getModule()->getEvent()->getId(),
-            'module_id'   => $comment->getModule()->getId()
-        ));*/
+        // return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
+        //     'event_id'    => $guest->getModule()->getEvent()->getId(),
+        //     'module_id'   => $comment->getModule()->getId()
+        // ));
     }
 
     public function getListInflowAction($module_id){

@@ -20,6 +20,10 @@ class BudgetModule extends Module
      */
     protected $max_budget;
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $base;
+    /**
      * @var integer
      */
     protected $id;

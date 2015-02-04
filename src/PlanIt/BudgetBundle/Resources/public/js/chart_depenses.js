@@ -27,8 +27,8 @@ function getListExpense(id){
             data.xA.push(obj);
             empty = false;
           });
-          chartDepense(data['xA'], empty); 
         }
+        chartDepense(data['xA'], empty); 
         
         
        },

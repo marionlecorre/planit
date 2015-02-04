@@ -15,9 +15,9 @@ class TypeGuestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom')))
-            ->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation')))
-            ->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix')))
+            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
+            ->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')))
+            ->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix *')))
         ;
     }
     

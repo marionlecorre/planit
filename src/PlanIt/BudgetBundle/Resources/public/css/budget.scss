@@ -47,9 +47,18 @@
 }
 
 .info_color{
-	background-color: $negative;
+	background: $neutral url("/images/budget/info_dte_balance.png") no-repeat;
+	background-position: 100% 2px;
 	color:#ffffff;
 	margin-top: 80px;
+	&.positif {
+		background-color: $color;
+		background-position: 100% -149px;
+	}
+	&.negatif {
+		background-color: $negative;
+		background-position: 100% -294px;
+	}
 }
 
 @media (min-width: 992px) {
@@ -65,6 +74,7 @@
 
 table{
 	font-size: 12px;
+	margin-bottom: 2px;
 
 	th{
 		text-align: center;
@@ -123,7 +133,18 @@ table.table.table-condensed td{
 span#legend {
 	float: right;
 	font-size: 11px;
+	margin-bottom: 22px;
 }
+
+.add-item {
+	clear: both;
+	button {
+		background-color: $color;
+		padding: 4px 17px;
+		width: 100%;
+	}
+}
+
 
 
 /* tableau*/

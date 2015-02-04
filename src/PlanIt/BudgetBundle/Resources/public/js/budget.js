@@ -4,4 +4,11 @@ function budget(){
 		var module_id = $(e.relatedTarget).data('id');
 		$("#form-post-typeitem").attr("action","/app_dev.php/api/types/"+type+"/items/"+module_id);
 	});
+
+	if( parseInt($("#balance span").text()) > 0 ){
+		$("#balance").addClass("positif");
+	}
+	else if ( parseInt($("#balance span").text()) < 0 ){
+		$("#balance").addClass("negatif");
+	}
 }

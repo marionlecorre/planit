@@ -15,7 +15,7 @@ class TypeItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Titre')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Titre *')))
         ;
     }
     

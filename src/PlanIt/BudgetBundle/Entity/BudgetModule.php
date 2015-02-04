@@ -20,6 +20,10 @@ class BudgetModule extends Module
      */
     protected $max_budget;
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $base;
+    /**
      * @var integer
      */
     protected $id;
@@ -290,4 +294,27 @@ class BudgetModule extends Module
     // {
     //     return $this->items;
     // }
+
+    /**
+     * Set base
+     *
+     * @param integer $base
+     * @return BudgetModule
+     */
+    public function setBase($base)
+    {
+        $this->base = $base;
+
+        return $this;
+    }
+
+    /**
+     * Get base
+     *
+     * @return integer 
+     */
+    public function getBase()
+    {
+        return $this->base;
+    }
 }

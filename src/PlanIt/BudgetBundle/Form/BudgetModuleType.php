@@ -17,7 +17,8 @@ class BudgetModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('max_budget', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Budget maximum')))
+            ->add('max_budget', 'text', array('label'  => false,'required' => false, 'attr' => array('placeholder' => 'Budget maximum (€)'), 'empty_data' => 0 ))
+            ->add('base', 'text', array('label'  => false,'required' => false, 'attr' => array('placeholder' => 'Apport de base (€)'), 'empty_data' => 0))
         ;
     }
     
