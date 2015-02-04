@@ -1,5 +1,9 @@
 @import 'general';
 
+#events{
+	cursor: pointer;
+}
+
 .event_button {
 	&:hover {
 		text-decoration: none;
@@ -46,6 +50,7 @@
 				text-align: justify;
 				color: $text_listing;
 				font: 12px 'PT Sans';
+				margin-top:5px;
 			}
 		}
 	}

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72f87f2d55fe8f19a9e1284eebe6f218",
+    "hash": "faab2257576d4820f6accb86da5619ff",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -842,19 +842,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "6badeaa8d65d81fcc777c8e57509d96ff71cc3ba"
+                "reference": "3473e6dc74014211e937f754b1009c53c51ecea9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/6badeaa8d65d81fcc777c8e57509d96ff71cc3ba",
-                "reference": "6badeaa8d65d81fcc777c8e57509d96ff71cc3ba",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/3473e6dc74014211e937f754b1009c53c51ecea9",
+                "reference": "3473e6dc74014211e937f754b1009c53c51ecea9",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "~1.0",
                 "php": ">=5.3.9",
                 "psr/log": "~1.0",
-                "symfony/framework-bundle": "~2.2",
+                "symfony/framework-bundle": "~2.3",
                 "willdurand/jsonp-callback-validator": "~1.0",
                 "willdurand/negotiation": "~1.2"
             },
@@ -864,12 +864,12 @@
             },
             "require-dev": {
                 "jms/serializer-bundle": "~0.12",
-                "sensio/framework-extra-bundle": "~2.2",
-                "symfony/form": "~2.2",
-                "symfony/security": "~2.2",
-                "symfony/serializer": "~2.2",
-                "symfony/validator": "~2.2",
-                "symfony/yaml": "~2.2"
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony/form": "~2.3",
+                "symfony/security": "~2.3",
+                "symfony/serializer": "~2.3",
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "suggest": {
                 "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires ~0.12",
@@ -911,7 +911,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-01-29 06:57:15"
+            "time": "2015-02-03 08:47:28"
         },
         {
             "name": "incenteev/composer-parameter-handler",
