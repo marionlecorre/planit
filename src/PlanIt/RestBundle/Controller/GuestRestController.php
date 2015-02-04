@@ -8,11 +8,12 @@ use PlanIt\GuestsBundle\Entity\Guest;
 use PlanIt\GuestsBundle\Form\GuestType;
 use PlanIt\GuestsBundle\Form\UpdateGuestType;
 use PlanIt\GuestsBundle\Form\GuestAnswerType;
+use PlanIt\GuestsBundle\Form\GuestInscriptionType;
 
 class GuestRestController extends Controller
 {
 
-	public function postGuestAction(Request $request, $typeguest_id)
+    public function postGuestAction(Request $request, $typeguest_id)
     {
 	    $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($typeguest->getModule()->getId());
@@ -75,6 +76,28 @@ class GuestRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
             $em->flush();
+        }
+    }
+
+    public function postGuestInscriptionAction(Request $request, $module_id)
+    {
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+
+        $guest = new Guest();
+        $guest->setModule($module);
+
+        $form = $this->createForm(new GuestInscriptionType($module), $guest);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $guest->setConfirmed(1);
+            $guest->setPayed(0);
+            $guest->setSent(1);
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($guest);
+            $em->flush();
+
+            return 'Merci';
         }
     }
 

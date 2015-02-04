@@ -4,6 +4,25 @@ function getModule(id){
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	   			$.ajax({
+				   url : '/app_dev.php/api/guestsmodules/'+id+'/inscritpionlink', //API
+				   type : 'GET',
+				   dataType : 'json', // On désire recevoir du HTML
+				   success : function(link, statut){ // code_html contient le HTML renvoyé
+				       		var payable = Twig.render(guests_payable,
+				                            {
+				                                payable : module.payable,
+				                                module_id:module.id,
+				                                moduleGuestType:module.guestmodule_type,
+				                                link:link
+				                            });
+				       		$('#header_list').html(payable);
+				       /**/
+				   },
+				   error : function(resultat, statut, erreur){
+				         alert(erreur);
+				       },
+				});
 	   			var title = Twig.render(guests_title,
 	                            {
 	                                name : module.name,
@@ -13,7 +32,8 @@ function getModule(id){
 	       		var payable = Twig.render(guests_payable,
 	                            {
 	                                payable : module.payable,
-	                                module_id:module.id
+	                                module_id:module.id,
+	                                moduleGuestType:module.guestmodule_type
 	                            });
 	       		$('#header_list').html(payable);
 
@@ -110,13 +130,15 @@ function updatePayable(module_id){
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : {payable : payable},
-	   success : function(module){ // code_html contient le HTML renvoyé
+	   success : function(data){ // code_html contient le HTML renvoyé
 	   		var payable = Twig.render(guests_payable,
-	                            {
-	                                payable : module.payable,
-	                                module_id:module.id
-	                            });
-	       		$('#header_list').html(payable);
+                            {
+                                payable : data.module.payable,
+                                module_id: data.module.id,
+                                moduleGuestType: data.module.guestmodule_type,
+                                link:data.link
+                            });
+       		$('#header_list').html(payable);
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -141,6 +163,53 @@ function sendMail(guest_id){
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
 	       },
+	});
+}
+
+function multipleAction(){
+	$("input:checkbox[name='checkbox-action']:checked").each(function()
+	{
+	    if($("#actions").val() == "send"){
+	    	var id = $(this).attr('id');
+	    	$.ajax({
+			   url : '/app_dev.php/api/guests/'+id+'/mails', //API
+			   type : 'POST',
+			   success : function(module){ // code_html contient le HTML renvoyé
+			   		var guests = Twig.render(guests_list,
+			                        {
+			                            payment_means:module.payment_means,
+			                            guests : module.guests,
+			                            typeGuests : module.type_guest,
+			                            moduleGuestType : module.guestmodule_type
+			                        });
+			   		$('#guests_list').html(guests);
+			   },
+			   error : function(resultat, statut, erreur){
+			         console.log(resultat);
+			       },
+			});
+	    }else if($("#actions").val() == "delete"){
+	    	var id = $(this).attr('id');
+	    	$.ajax({
+			   url : '/app_dev.php/api/guests/'+id, //API
+			   type : 'DELETE',
+			   dataType : 'json',
+			   success : function(module){ // code_html contient le HTML renvoyé
+			       //location.reload(true);
+			       var guests = Twig.render(guests_list,
+			                            {
+			                                payment_means:module.payment_means,
+			                                guests : module.guests,
+			                                typeGuests : module.type_guest,
+			                                moduleGuestType : module.guestmodule_type
+			                            });
+			       		$('#guests_list').html(guests);
+			   },
+			   error : function(resultat, statut, erreur){
+			         alert(erreur);
+			       },
+			});
+	    }
 	});
 }
 

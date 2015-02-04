@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\GuestsBundle\Entity\Guest;
 use PlanIt\GuestsBundle\Form\GuestType;
 use PlanIt\GuestsBundle\Form\GuestAnswerType;
+use PlanIt\GuestsBundle\Form\GuestInscriptionType;
 
 class GuestController extends Controller
 {
@@ -37,6 +38,25 @@ class GuestController extends Controller
         return $this->render('PlanItGuestsBundle:Guest:form-answer.html.twig', array(
             'guest' => $guest,
             'form'   => $form->createView()
+        ));
+    }
+
+    public function inscriptionAction($module_id_encode)
+    {
+        $em = $this->getDoctrine()
+                    ->getEntityManager();
+
+        $module = $em->getRepository('PlanItModuleBundle:Module')->find(base64_decode($module_id_encode));
+
+
+        $guest = new Guest();
+        $guest->setModule($module);
+        $form   = $this->createForm(new GuestInscriptionType($module), $guest);
+
+        return $this->render('PlanItGuestsBundle:Guest:form-inscription.html.twig', array(
+            'guest' => $guest,
+            'form'   => $form->createView(),
+            'module_id' => $module->getId()
         ));
     }
 

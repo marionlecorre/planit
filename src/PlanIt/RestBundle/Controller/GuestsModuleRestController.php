@@ -10,7 +10,12 @@ use PlanIt\GuestsBundle\Form\GuestsModuleType;
 class GuestsModuleRestController extends Controller
 {
 
-	public function postGuestsmoduleAction(Request $request, $event_id)
+	public function getGuestsmoduleInscritpionlinkAction($id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($id);
+        return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
+    }
+
+    public function postGuestsmoduleAction(Request $request, $event_id)
     {
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
 
@@ -45,6 +50,11 @@ class GuestsModuleRestController extends Controller
                    ->getEntityManager();
         $em->persist($module);
         $em->flush();
-        return $module;
+
+        $link = 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
+        return array(
+            'module' => $module,
+            'link' => $link
+            );
     }
 }

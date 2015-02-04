@@ -3,3 +3,9 @@ PlanItGuestBundle_answer:
     defaults: { _controller: PlanItGuestsBundle:Guest:answer }
     requirements:
         _method:  GET
+
+PlanItGuestBundle_inscritpion:
+    path:     /inscription/{module_id_encode}
+    defaults: { _controller: PlanItGuestsBundle:Guest:inscription }
+    requirements:
+        _method:  GET

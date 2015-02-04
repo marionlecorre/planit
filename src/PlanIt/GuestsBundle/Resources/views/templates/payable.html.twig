@@ -1,5 +1,8 @@
 {% twig_js name="guests_payable" %}
 <div class="col-md-3"><button data-toggle="modal" data-target=".addTypeGuestModal">Ajouter un type d'invité</button></div>
+{% if moduleGuestType == 1 %}
+    <div class="col-md-3"><button data-toggle="modal" data-target=".getInscrptionLink">Générer l'URL d'inscription</button></div>
+{% endif %}
 {% if payable %}
     <div class="col-md-3"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
 {% endif %}
@@ -7,4 +10,17 @@
     <form id="paying-checkbox" action="">
 		<input id="payable-{{module_id}}" onclick="updatePayable({{module_id}})" type="checkbox" {% if payable %} checked {%endif%}>Evenement payant
 	</form>
+</div>
+
+<div class="modal fade getInscrptionLink" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Lien du formulaire d'inscritption</h4>
+            </div>
+            <div class="modal-body">
+                <span> {{link}} </span>
+            </div>
+        </div>
+  </div>
 </div>
