@@ -38,6 +38,11 @@ budget_module :
   resource:     "PlanItRestBundle:BudgetModuleRest"
   name_prefix:  api_
 
+typeitem_module : 
+  type: rest
+  resource:     "PlanItRestBundle:TypeItemRest"
+  name_prefix:  api_
+
 place_module : 
   type: rest
   resource:     "PlanItRestBundle:PlaceModuleRest"

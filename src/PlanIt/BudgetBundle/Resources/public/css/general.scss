@@ -9,12 +9,8 @@ $positive: #a5cd7d;
 $negative: #e56454;
 $neutral: #dfdede;
 
-$invit_module: #1d89cf;
-$budget_module: #847299;
-$place_module: #f9de2f;
-$todo_module: #ff9f37;
-$transport_module : #dc4888;
-$add_module : #f1f1f1;
+$color: #847299;
+
 
 /*MIXIN*/
 @mixin border-radius($radius) {
@@ -29,4 +25,20 @@ $add_module : #f1f1f1;
      -moz-box-shadow: $vertical $horizontal $scale $blur $color;
       -ms-box-shadow: $vertical $horizontal $scale $blur $color;
           box-shadow: $vertical $horizontal $scale $blur $color;
+}
+
+.modal-header {
+	color: $color;
+	border-color: $color;
+}
+.modal-body {
+	input[type="submit"] {
+		background-color: $color;
+		&:hover {
+			background-color: darken($color, 5%);
+		}
+	}
+	input[type="text"] { 
+		display: block;
+	}
 }

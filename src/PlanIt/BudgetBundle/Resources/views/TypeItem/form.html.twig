@@ -1,0 +1,18 @@
+<div class="modal fade addTypeItemModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Ajouter une catégorie</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-post-typeitem" action="" method="post" {{ form_enctype(form) }}>
+                    {{ form_widget(form) }}
+
+			    <p>
+			        <input type="submit" value="Ajouter">
+			    </p>
+                </form>
+            </div>
+        </div>
+  </div>
+</div>

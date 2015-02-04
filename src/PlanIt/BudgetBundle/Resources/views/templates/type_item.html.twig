@@ -4,12 +4,12 @@
 <section id="section-topline-general">
 	<div class="col-md-4"> 
 		<div class="pie_chart" id="pie_chart_depenses"></div>
-		<div class="bt_budget"><button id="bouton_depense">Ajouter une dépense</button></div>
+		<div class="bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeItemModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
 	</div>
 
 	<div class="col-md-4"> 
 		<div class="pie_chart" id="pie_chart_apports"></div>
-		<div class="bt_budget"><button id="bouton_ajout">Ajouter un apport</button></div>
+		<div class="bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addTypeItemModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
 	</div>
 
 	<div class="col-md-4"> 
@@ -92,3 +92,4 @@
 </script>
     <script>getListInflow({{module.id}});</script>
     <script>getListExpense({{module.id}});</script>
+    <script>budget();</script>

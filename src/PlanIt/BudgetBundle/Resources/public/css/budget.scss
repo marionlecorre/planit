@@ -11,7 +11,7 @@
 	margin:10% 0 10% 0;
 	padding:7px 30px 7px 30px;
 	width: 75%;	
-	background-color:$budget_module;
+	background-color:$color;
 }
 
 #bouton_depense{
@@ -69,7 +69,7 @@ table{
 	th{
 		text-align: center;
 		color:#fff;
-		background-color: $budget_module;
+		background-color: $color;
 		cursor: default;
 	}
 	/* ntlignes paires. */
@@ -95,7 +95,7 @@ table{
 			border: none;
 			text-align: center;
 			&:focus {
-				border : solid 1px $budget_module;
+				border : solid 1px $color;
 				background-color: #FFF !important;
 				outline : none;
 			}
@@ -175,7 +175,7 @@ span#legend {
 		text-overflow: ellipsis !important;
 		overflow:hidden !important;
 		text-align:center;
-		background-color:$budget_module;
+		background-color:$color;
 		color: #fff;
 		padding:2px;
 	}
@@ -185,7 +185,7 @@ span#legend {
 
 /*demo.css*/
 a {
-	color: $budget_module;
+	color: $color;
 	text-decoration: none;
 	outline: none;
 	font-size: 1.2em;
@@ -361,7 +361,7 @@ p {
 }
 
 .tabs-style-topline nav li.tab-current {
-	border-top-color: $budget_module;
+	border-top-color: $color;
 	border-bottom: none;
 }
 
@@ -376,13 +376,13 @@ p {
 
 .tabs-style-topline nav a:hover,
 .tabs-style-topline nav a:focus {
-	color: $budget_module;
+	color: $color;
 }
 
 .tabs-style-topline nav li.tab-current a {
 	background: none;
-	box-shadow: inset 0 3px 0 $budget_module;
-	color: $budget_module;
+	box-shadow: inset 0 3px 0 $color;
+	color: $color;
 }
 
 .tabs-style-topline .icon::before {

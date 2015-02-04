@@ -16,8 +16,7 @@
 					<div class="row">
 						<nav class="col-md-12">
 							<ul id="tab">
-								
-								
+								<!--Template menu.html.twig -->
 							</ul>
 						</nav>
 					</div>
@@ -25,6 +24,7 @@
 					<div class="content-wrap" id="type_item">						
 						 <!--Template type_item.html.twig -->
 					</div><!-- /content -->
+					{{ render(controller('PlanItBudgetBundle:TypeItem:form', { 'module_id' : module_id } ))}}
 
 				</div><!-- /tabs -->
 			</section>
