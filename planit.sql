@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 04 Février 2015 à 15:09
+-- Généré le :  Mer 04 Février 2015 à 20:28
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -67,7 +67,7 @@ CREATE TABLE `guest` (
   `payed` int(11) NOT NULL,
   `sent` tinyint(1) NOT NULL,
   `paymentmean_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `guest`
@@ -80,7 +80,8 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `firstname`, `lastname`
 (5, 2, 4, 'Test', 'test', 'test@g.com', 2, 0, 0, NULL),
 (6, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
 (7, 1, 6, 'test', 'test', 'test@g.com', 0, 2, 0, 1),
-(9, 6, 2, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0, NULL);
+(9, 6, 2, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0, NULL),
+(10, 4, 7, 'test', 'test', 'test@g.com', 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE `item` (
   `quantity` double NOT NULL,
   `consummate` double NOT NULL,
   `bought` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `item`
@@ -247,7 +248,8 @@ CREATE TABLE `type_item` (
 
 INSERT INTO `type_item` (`id`, `module_id`, `name`, `type`) VALUES
 (1, 12, 'Boissons', 0),
-(2, 12, 'Nourriture', 0);
+(2, 12, 'Nourriture', 0),
+(3, 12, 'Mamie', 1);
 
 -- --------------------------------------------------------
 
@@ -350,12 +352,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT pour la table `guest`
 --
 ALTER TABLE `guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
