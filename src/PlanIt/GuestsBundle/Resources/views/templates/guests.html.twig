@@ -25,13 +25,15 @@
                 <p class="name col-md-1">Nom</p>
                 <p class="email col-md-3">Email</p>
                 <p class="confirmed col-md-1">Confirmé</p>
+                {% if payable %}
                 <p class="payed col-md-1">Payé</p>
                 <p class="payment col-md-2">Mode de paiement</p>
+                {% endif %}
                 {% if moduleGuestType == false %}
                     <p class="send col-md-1">Envoyer</p>
-                    <p class="delete col-md-1">Supprimer</p>
+                    <p class="delete col-md-1 pull-right">Supprimer</p>
                 {% elseif moduleGuestType == true %}
-                    <p class="delete col-md-2">Supprimer</p>
+                    <p class="delete col-md-2 pull-right">Supprimer</p>
                 {% endif %}
             </div>
             {# Données #}
@@ -49,6 +51,7 @@
                         <div class="lastname col-md-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
                         <div class="email col-md-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
                         <div class="confirmed col-md-1"><div onclick="updateGuest({{guest.id}}, 'confirmed')" id="confirmed-{{guest.id}}" data-type="{{guest.confirmed}}" class="light state-{{guest.confirmed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div></div>
+                        {% if payable %}
                         <div class="payed col-md-1">
                                 <div onclick="updateGuest({{guest.id}}, 'payed')" id="payed-{{guest.id}}" data-type="{{guest.payed}}" class="light state-{{guest.payed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div>
                         </div>
@@ -58,6 +61,7 @@
                                     <span> Aucun moyen de paiement </span>
                                 {%else %}
                                 <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
+                                    <option></option>
                                     {% for payment in payment_means %}
                                         <option value="{{payment.id}}" {% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}>{{payment.label}}</option>
                                     {% endfor %}
@@ -65,11 +69,12 @@
                                 {% endif %}
                             </form>
                         </div>
+                        {% endif %}
                         {% if moduleGuestType == false %}
                             <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
                             <div class="delete col-md-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
                         {% elseif moduleGuestType == true %}
-                            <div class="delete col-md-2"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
+                            <div class="delete col-md-2 pull-right"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.id}}"></div></div>
                         {% endif %}
                     </div>
             {% endif %}

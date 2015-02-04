@@ -42,7 +42,8 @@ function getModule(id){
 	                                payment_means:module.payment_means,
 	                                guests : module.guests,
 	                                typeGuests : module.type_guest,
-	                                moduleGuestType : module.guestmodule_type
+	                                moduleGuestType : module.guestmodule_type,
+	                                payable:module.payable
 	                            });
 	       		$('#guests_list').html(guests);
 	       /**/
@@ -65,7 +66,8 @@ function deleteGuest(id){
 	                                payment_means:module.payment_means,
 	                                guests : module.guests,
 	                                typeGuests : module.type_guest,
-	                                moduleGuestType : module.guestmodule_type
+	                                moduleGuestType : module.guestmodule_type,
+	                                payable:module.payable
 	                            });
 	       		$('#guests_list').html(guests);
 	   },
@@ -139,6 +141,15 @@ function updatePayable(module_id){
                                 link:data.link
                             });
        		$('#header_list').html(payable);
+       		var guests = Twig.render(guests_list,
+	                        {
+	                            payment_means: data.module.payment_means,
+	                            guests : data.module.guests,
+	                            typeGuests : data.module.type_guest,
+	                            moduleGuestType : data.module.guestmodule_type,
+	                            payable: data.module.payable
+	                        });
+	   		$('#guests_list').html(guests);
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -156,7 +167,8 @@ function sendMail(guest_id){
 	                            payment_means:module.payment_means,
 	                            guests : module.guests,
 	                            typeGuests : module.type_guest,
-	                            moduleGuestType : module.guestmodule_type
+	                            moduleGuestType : module.guestmodule_type,
+	                            payable:module.payable
 	                        });
 	   		$('#guests_list').html(guests);
 	   },
@@ -180,7 +192,8 @@ function multipleAction(){
 			                            payment_means:module.payment_means,
 			                            guests : module.guests,
 			                            typeGuests : module.type_guest,
-			                            moduleGuestType : module.guestmodule_type
+			                            moduleGuestType : module.guestmodule_type,
+			                            payable:module.payable
 			                        });
 			   		$('#guests_list').html(guests);
 			   },
@@ -201,7 +214,8 @@ function multipleAction(){
 			                                payment_means:module.payment_means,
 			                                guests : module.guests,
 			                                typeGuests : module.type_guest,
-			                                moduleGuestType : module.guestmodule_type
+			                                moduleGuestType : module.guestmodule_type,
+			                                payable:module.payable
 			                            });
 			       		$('#guests_list').html(guests);
 			   },

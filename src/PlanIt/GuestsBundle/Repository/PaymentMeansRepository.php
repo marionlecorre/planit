@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class PaymentMeansRepository extends EntityRepository
 {
+	// public function getPaymentsforModule($module_id)
+ //    {
+
+ //      return $this->createQueryBuilder('p')
+	// 	        ->where($er->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
+	// 	        ->setParameter('ids', $er->createQueryBuilder('pp')
+	// 	        ->select('pp.id')
+	// 	        ->leftjoin('pp.modules', 'm')
+	// 	        ->where('m.id = :module_id')
+	// 	        ->setParameter('module_id', $module->getId())
+	// 	        ->getQuery()
+	// 	        ->getResult()
+	// 	        , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
+ //    }
 }
