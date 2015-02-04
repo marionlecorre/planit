@@ -28,6 +28,7 @@ class PaymentMeansModuleType extends AbstractType
             $builder->add('PaymentMeans', 'entity', array(
                 'class' => 'PlanItGuestsBundle:PaymentMeans',
                 'property' => 'label',
+                'label' => "Moyens de paiement"
             ));
         }else{
             $builder->add('PaymentMeans', 'entity', array(

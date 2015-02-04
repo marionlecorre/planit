@@ -32,6 +32,10 @@ twig:
 
 
 services:
+    planit.twig.user_extension:
+        class: PlanIt\UserBundle\Twig\Extensions\UserExtension
+        tags:
+            - { name: twig.extension }
     twig.extension.text:
        class: Twig_Extensions_Extension_Text
        tags:

@@ -49,10 +49,10 @@ class BudgetModule extends Module
      */
     protected $type_item;
 
-    /**
-     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="module")
-     */
-    protected $items;
+    // *
+    //  * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="module")
+     
+    // protected $items;
 
 
     /**
@@ -258,36 +258,36 @@ class BudgetModule extends Module
         return $this->type_item;
     }
 
-    /**
-     * Add items
-     *
-     * @param \PlanIt\BudgetBundle\Entity\Item $items
-     * @return BudgetModule
-     */
-    public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
-    {
-        $this->items[] = $items;
+    // /**
+    //  * Add items
+    //  *
+    //  * @param \PlanIt\BudgetBundle\Entity\Item $items
+    //  * @return BudgetModule
+    //  */
+    // public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    // {
+    //     $this->items[] = $items;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Remove items
-     *
-     * @param \PlanIt\BudgetBundle\Entity\Item $items
-     */
-    public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
-    {
-        $this->items->removeElement($items);
-    }
+    // *
+    //  * Remove items
+    //  *
+    //  * @param \PlanIt\BudgetBundle\Entity\Item $items
+     
+    // public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
+    // {
+    //     $this->items->removeElement($items);
+    // }
 
-    /**
-     * Get items
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
+    // /**
+    //  * Get items
+    //  *
+    //  * @return \Doctrine\Common\Collections\Collection 
+    //  */
+    // public function getItems()
+    // {
+    //     return $this->items;
+    // }
 }

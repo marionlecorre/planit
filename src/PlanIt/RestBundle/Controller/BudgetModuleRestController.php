@@ -37,4 +37,34 @@ class BudgetModuleRestController extends Controller
             'module_id'   => $comment->getModule()->getId()
         ));*/
     }
+
+    public function getListInflowAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        if(!is_object($module)){
+          throw $this->createNotFoundException();
+        }
+        $list= array();
+        $items = $module->getTypeItem();
+        foreach ($items as $type){
+            if($type->getType()== 1) {
+                array_push($list,$type);
+            }
+        }
+        return $list;
+    }
+
+    public function getListExpenseAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        if(!is_object($module)){
+          throw $this->createNotFoundException();
+        }
+        $list= array();
+        $items = $module->getTypeItem();
+        foreach ($items as $type){
+            if($type->getType()== 0) {
+                array_push($list,$type);
+            }
+        }
+        return $list;
+    }
 }

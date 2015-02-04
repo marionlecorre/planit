@@ -53,11 +53,11 @@ class Item
     // 0 => non, 1 => oui
     protected $bought;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\BudgetModule", inversedBy="items")
-     * @ORM\JoinColumn(name="module_id", referencedColumnName="id")
-     */
-    protected $module;
+    // *
+    //  * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\BudgetModule", inversedBy="items")
+    //  * @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     
+    // protected $module;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\TypeItem", inversedBy="items")
@@ -167,28 +167,28 @@ class Item
         return $this->quantity;
     }
 
-    /**
-     * Set module
-     *
-     * @param \PlanIt\BudgetBundle\Entity\BudgetModule $module
-     * @return Item
-     */
-    public function setModule(\PlanIt\BudgetBundle\Entity\BudgetModule $module = null)
-    {
-        $this->module = $module;
+    // /**
+    //  * Set module
+    //  *
+    //  * @param \PlanIt\BudgetBundle\Entity\BudgetModule $module
+    //  * @return Item
+    //  */
+    // public function setModule(\PlanIt\BudgetBundle\Entity\BudgetModule $module = null)
+    // {
+    //     $this->module = $module;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get module
-     *
-     * @return \PlanIt\BudgetBundle\Entity\BudgetModule 
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
+    // /**
+    //  * Get module
+    //  *
+    //  * @return \PlanIt\BudgetBundle\Entity\BudgetModule 
+    //  */
+    // public function getModule()
+    // {
+    //     return $this->module;
+    // }
 
     /**
      * Set type_item
