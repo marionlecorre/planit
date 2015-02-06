@@ -23,5 +23,4 @@ class GuestRepository extends EntityRepository
                   ->getResult();
     }
     
-
 }

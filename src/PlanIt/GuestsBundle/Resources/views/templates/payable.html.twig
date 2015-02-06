@@ -4,7 +4,9 @@
     <div class="col-md-3"><button data-toggle="modal" data-target=".getInscrptionLink">Générer l'URL d'inscription</button></div>
 {% endif %}
 {% if payable %}
-    <div class="col-md-3"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
+    {% if paymentmeans is not empty %}
+        <div class="col-md-3"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
+    {% endif %}    
 {% endif %}
 <div class="col-md-2 pull-right" id="checkbox_payable">                  
     <form id="paying-checkbox" action="">

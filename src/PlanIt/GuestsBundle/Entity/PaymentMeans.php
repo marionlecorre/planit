@@ -8,9 +8,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
- * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\PaymentMeansRepository")
  * @ORM\Entity
  * @ORM\Table(name="PaymentMeans")
+ * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\PaymentMeansRepository")
  */
 class PaymentMeans
 {

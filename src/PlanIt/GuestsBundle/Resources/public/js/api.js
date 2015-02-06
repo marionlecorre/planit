@@ -9,14 +9,27 @@ function getModule(id){
 				   type : 'GET',
 				   dataType : 'json', // On désire recevoir du HTML
 				   success : function(link, statut){ // code_html contient le HTML renvoyé
-				       		var payable = Twig.render(guests_payable,
-				                            {
-				                                payable : module.payable,
-				                                module_id:module.id,
-				                                moduleGuestType:module.guestmodule_type,
-				                                link:link
-				                            });
-				       		$('#header_list').html(payable);
+				   		$.ajax({
+						   url : '/app_dev.php/api/guestsmodules/'+id+'/paymentmeans', //API
+						   type : 'GET',
+						   dataType : 'json', // On désire recevoir du HTML
+						   success : function(paymentmeans, statut){ // code_html contient le HTML renvoyé
+						   			console.log(paymentmeans);
+						       		var payable = Twig.render(guests_payable,
+						                            {
+						                                payable : module.payable,
+						                                module_id:module.id,
+						                                moduleGuestType:module.guestmodule_type,
+						                                link:link,
+						                                paymentmeans:paymentmeans
+						                            });
+						       		$('#header_list').html(payable);
+						       /**/
+						   },
+						   error : function(resultat, statut, erreur){
+						         alert(erreur);
+						       },
+						});
 				       /**/
 				   },
 				   error : function(resultat, statut, erreur){
@@ -138,7 +151,8 @@ function updatePayable(module_id){
                                 payable : data.module.payable,
                                 module_id: data.module.id,
                                 moduleGuestType: data.module.guestmodule_type,
-                                link:data.link
+                                link:data.link,
+                                paymentmeans:data.paymentmeans
                             });
        		$('#header_list').html(payable);
        		var guests = Twig.render(guests_list,
@@ -178,7 +192,8 @@ function sendMail(guest_id){
 	});
 }
 
-function multipleAction(){
+function multipleAction(type){
+	alert(type);
 	$("input:checkbox[name='checkbox-action']:checked").each(function()
 	{
 	    if($("#actions").val() == "send"){
@@ -225,5 +240,11 @@ function multipleAction(){
 			});
 	    }
 	});
+}
+
+function checkAll(type){
+	if(this.checked) {
+         // do something when checked
+     }
 }
 

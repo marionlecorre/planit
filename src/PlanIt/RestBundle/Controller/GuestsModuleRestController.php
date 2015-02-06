@@ -15,9 +15,9 @@ class GuestsModuleRestController extends Controller
         return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
     }
 
-    public function getGuestsmoduleIPaymentmeansAction($id){
-        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($id);
-        return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
+    public function getGuestsmodulePaymentmeansAction($id){
+        $payments = $this->getDoctrine()->getRepository('PlanItGuestsBundle:PaymentMeans')->findByGuestsModule($id);
+        return $payments;
     }
 
     public function postGuestsmoduleAction(Request $request, $event_id)
@@ -56,10 +56,12 @@ class GuestsModuleRestController extends Controller
         $em->persist($module);
         $em->flush();
 
-        $link = 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
+        $link           = $this->getGuestsmoduleInscritpionlinkAction($module_id);
+        $paymentmeans   = $this->getGuestsmodulePaymentmeansAction($module_id);
         return array(
             'module' => $module,
-            'link' => $link
-            );
+            'link' => $link,
+            'paymentmeans' => $paymentmeans,
+        );
     }
 }
