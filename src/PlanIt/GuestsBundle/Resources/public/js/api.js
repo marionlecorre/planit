@@ -222,7 +222,6 @@ function multipleAction(type){
 			   type : 'DELETE',
 			   dataType : 'json',
 			   success : function(module){ // code_html contient le HTML renvoyé
-			       //location.reload(true);
 			       var guests = Twig.render(guests_list,
 			                            {
 			                                payment_means:module.payment_means,

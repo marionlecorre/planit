@@ -3,22 +3,22 @@ function getEvent(id){
 	   url : '/app_dev.php/api/events/'+id, //API
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
-	   success : function(evnt, statut){ // code_html contient le HTML renvoyé
+	   success : function(data, statut){ // code_html contient le HTML renvoyé
 	   		var title_rend = Twig.render(title,
 	                            {
-	                                title : evnt.name,
+	                                title : data.event.name,
 	                            });
 	       $('#title').html(title_rend);	       
 	       var description_rend = Twig.render(desc,
 	                            {
-	                                description : evnt.description,
-	                                image : evnt.image,
+	                                description : data.event.description,
+	                                image : data.event.image,
 	                            });
 	       $('#description').html(description_rend);
 			
 
 	       	// DODOS
-			dodos = dateDiff(new Date(evnt.begin_date),new Date());
+			dodos = dateDiff(new Date(data.event.begin_date),new Date());
 			if(dodos > 0){
 				dodos = "C'est fini!";
 			}
@@ -26,26 +26,26 @@ function getEvent(id){
 				dodos = -1 * dodos;
 			}
 			// INVITÉS
-			for(var i=0;i<evnt.modules.length;i++){
-				if(evnt.modules[i].type=="guests"){
-					var list_guest= evnt.modules[i];
-					var counter=0;
-					for(var j=0;j<list_guest.guests.length;j++){
-						if(list_guest.guests[j].confirmed == 1){
-							counter++;
-						}
-					}
-				}
-			}
+			// for(var i=0;i<data.event.modules.length;i++){
+			// 	if(data.event.modules[i].type=="guests"){
+			// 		var list_guest= data.event.modules[i];
+			// 		var counter=0;
+			// 		for(var j=0;j<list_guest.guests.length;j++){
+			// 			if(list_guest.guests[j].confirmed == 1){
+			// 				counter++;
+			// 			}
+			// 		}
+			// 	}
+			// }
 	       var infos_rend = Twig.render(infos,
 	                            {
 	                                days : dodos,
-	                                guests : counter,
+	                                nb_guests : data.nbGuests,
 	                            });
 	       $('#infos').html(infos_rend);	       
 	       var modules_rend = Twig.render(modules,
 	                            {
-	                                evnt : evnt,
+	                                evnt : data.event,
 	                            });
 	       $('#modules').html(modules_rend);
 	       var modules_tab = [];
@@ -56,8 +56,8 @@ function getEvent(id){
 	       modules_tab["todo"] = "Todo liste";
 
 	       for(var type in modules_tab){
-		       	for(var i=0;i<evnt.modules.length;i++){
-		       		if(type == evnt.modules[i].type){
+		       	for(var i=0;i<data.event.modules.length;i++){
+		       		if(type == data.event.modules[i].type){
 		       			delete(modules_tab[type]);
 		       		}
 		       }
@@ -69,12 +69,11 @@ function getEvent(id){
 	       			name:modules_tab[type],
 	       		});
 	       }
-	       //alert(notUse_modules);
 	       
 	       var form_rend = Twig.render(form,
 	                            {
 	                                notUse_modules : notUse_modules,
-	                                event_id: evnt.id,
+	                                event_id: data.event.id,
 	                            });
 	       $('#form_container').html(form_rend);
 	   },

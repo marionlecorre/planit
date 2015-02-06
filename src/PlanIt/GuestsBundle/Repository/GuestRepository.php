@@ -12,15 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class GuestRepository extends EntityRepository
 {
-    public function getGuestsforModule($module_id)
-    {
-        $qb = $this->createQueryBuilder('g')
-                   ->select('g')
-                   ->where('g.event = :module_id')
-                   ->setParameter('module_id', $module_id);
+	public function countGuests($id){
+		$guests = $this->createQueryBuilder('g')
+                    ->join('g.module', 'm')
+                    ->join('m.event', 'e')
+                    ->where('e.id = :event_id')
+                    ->andWhere('g.confirmed = 1')
+                    ->setParameter('event_id', $id)
+                    ->getQuery()
+                    ->getResult();
 
-        return $qb->getQuery()
-                  ->getResult();
-    }
-    
+        return count($guests);
+
+	}
 }
