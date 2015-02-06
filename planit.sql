@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 04 Février 2015 à 20:28
+-- Généré le :  Ven 06 Février 2015 à 14:16
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -143,25 +143,26 @@ CREATE TABLE `module` (
   `max_time_to_go` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
-  `guestmodule_type` tinyint(1) DEFAULT NULL
+  `guestmodule_type` tinyint(1) DEFAULT NULL,
+  `base` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
 --
 
-INSERT INTO `module` (`id`, `event_id`, `name`, `slug`, `int_type`, `type`, `listType`, `max_guests`, `payable`, `max_budget`, `max_capacity_p`, `max_price_p`, `max_time_to_go`, `max_capacity_t`, `max_price_t`, `guestmodule_type`) VALUES
-(2, 1, 'Invités', 'guests', 1, 'guests', NULL, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(3, 2, 'TODO', 'todo', 2, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 3, 'Invités', 'guests', 1, 'guests', 2, 300, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(5, 4, 'invités', 'guests', 1, 'guests', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(6, 2, 'Invitations', 'invitations', 1, 'guests', 1, 300, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(7, 5, 'Invitations', 'invitations', 1, 'guests', 1, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(8, 6, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 1000, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 6, 'Lieu', 'lieu', 3, 'place', NULL, NULL, NULL, NULL, 100, 600, '2', NULL, NULL, NULL),
-(10, 6, 'Transport', 'transport', 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 60, 500, NULL),
-(11, 6, 'TODO', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 5, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 2000, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `module` (`id`, `event_id`, `name`, `slug`, `int_type`, `type`, `listType`, `max_guests`, `payable`, `max_budget`, `max_capacity_p`, `max_price_p`, `max_time_to_go`, `max_capacity_t`, `max_price_t`, `guestmodule_type`, `base`) VALUES
+(2, 1, 'Invités', 'guests', 1, 'guests', NULL, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(3, 2, 'TODO', 'todo', 2, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 3, 'Invités', 'guests', 1, 'guests', 2, 300, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+(5, 4, 'invités', 'guests', 1, 'guests', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+(6, 2, 'Invitations', 'invitations', 1, 'guests', 1, 300, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+(7, 5, 'Invitations', 'invitations', 1, 'guests', 1, 200, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(8, 6, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 1000, NULL, NULL, NULL, NULL, NULL, NULL, 300),
+(9, 6, 'Lieu', 'lieu', 3, 'place', NULL, NULL, NULL, NULL, 100, 600, '2', NULL, NULL, NULL, NULL),
+(10, 6, 'Transport', 'transport', 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 60, 500, NULL, NULL),
+(11, 6, 'TODO', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 5, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, 2000, NULL, NULL, NULL, NULL, NULL, NULL, 300);
 
 -- --------------------------------------------------------
 
@@ -240,7 +241,7 @@ CREATE TABLE `type_item` (
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `type` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_item`
@@ -249,7 +250,8 @@ CREATE TABLE `type_item` (
 INSERT INTO `type_item` (`id`, `module_id`, `name`, `type`) VALUES
 (1, 12, 'Boissons', 0),
 (2, 12, 'Nourriture', 0),
-(3, 12, 'Mamie', 1);
+(3, 12, 'Mamie', 1),
+(4, 12, 'Dons', 1);
 
 -- --------------------------------------------------------
 
@@ -377,7 +379,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT pour la table `type_item`
 --
 ALTER TABLE `type_item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
