@@ -4,22 +4,22 @@
     <div class="row list" >
         <div class="head-list accordion-head">
             <form action="">
-                <select onchange="multipleAction({{type.id}})" name="actions" id="actions">
+                <select onchange="multipleAction({{type.id}})" name="actions" id="actions-{{type.id}}">
                         <option value="none">Action</option>
                         {% if moduleGuestType == false %}
                             <option value="send">Envoyer</option>
                         {% endif %}
                         <option value="delete">Supprimer</option>
                 </select>
-                </form>
+            </form>
             <div class="name">{{type.label}}</div>
             <div class="price">{{type.price}}€/pers</div>
         </div>
         {# Labels #}
         <div class="accordion-body">
             <div class="labels row">
-                <form action="" id="select-all" onclick="checkAll({{type.id}})" class="col-md-1">
-                    <input type="checkbox">
+                <form action="" id="select-all" class="col-md-1">
+                    <input onclick="checkAll({{type.id}})" id="checkall-{{type.id}}" type="checkbox">
                 </form>
                 <p class="name col-md-1">Prénom</p>
                 <p class="name col-md-1">Nom</p>
@@ -44,7 +44,7 @@
                 {% if guest.type_guest.id == type.id %}
                     <div class="row-list row">
                         <form action="" id="select-field" class="col-md-1">
-                            <input name="checkbox-action-{{type.id}}" id="{{guest.id}}" type="checkbox">
+                            <input class="checkbox-action-{{type.id}}" name="checkbox-action-{{type.id}}" id="{{guest.id}}" type="checkbox">
                         </form>
                         <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.type_guest.id}}">
                         <div class="firstname col-md-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>

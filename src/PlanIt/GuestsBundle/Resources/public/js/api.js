@@ -193,10 +193,9 @@ function sendMail(guest_id){
 }
 
 function multipleAction(type){
-	alert(type);
-	$("input:checkbox[name='checkbox-action']:checked").each(function()
+	$("input:checkbox[class='checkbox-action-"+type+"']:checked").each(function()
 	{
-	    if($("#actions").val() == "send"){
+	    if($("#actions-"+type).val() == "send"){
 	    	var id = $(this).attr('id');
 	    	$.ajax({
 			   url : '/app_dev.php/api/guests/'+id+'/mails', //API
@@ -216,7 +215,7 @@ function multipleAction(type){
 			         console.log(resultat);
 			       },
 			});
-	    }else if($("#actions").val() == "delete"){
+	    }else if($("#actions-"+type).val() == "delete"){
 	    	var id = $(this).attr('id');
 	    	$.ajax({
 			   url : '/app_dev.php/api/guests/'+id, //API
@@ -243,8 +242,10 @@ function multipleAction(type){
 }
 
 function checkAll(type){
-	if(this.checked) {
-         // do something when checked
+	if($("#checkall-"+type).is(':checked')) {
+         $('.checkbox-action-'+type).prop('checked', true);
+     }else{
+     	$('.checkbox-action-'+type).prop('checked', false);
      }
 }
 
