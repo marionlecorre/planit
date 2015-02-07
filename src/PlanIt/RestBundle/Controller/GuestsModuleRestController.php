@@ -10,13 +10,13 @@ use PlanIt\GuestsBundle\Form\GuestsModuleType;
 class GuestsModuleRestController extends Controller
 {
 
-	public function getGuestsmoduleInscritpionlinkAction($id){
-        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($id);
+	public function getGuestsmoduleInscritpionlinkAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
     }
 
-    public function getGuestsmodulePaymentmeansAction($id){
-        $payments = $this->getDoctrine()->getRepository('PlanItGuestsBundle:PaymentMeans')->findByGuestsModule($id);
+    public function getGuestsmodulePaymentmeansAction($module_id){
+        $payments = $this->getDoctrine()->getRepository('PlanItGuestsBundle:PaymentMeans')->findByGuestsModule($module_id);
         return $payments;
     }
 

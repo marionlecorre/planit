@@ -45,6 +45,8 @@ class PaymentMeansModuleType extends AbstractType
                     ->getResult()
                     , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
                 },
+                // 'expanded' => true,
+                // 'multiple' => true,
             ));
         }
     }

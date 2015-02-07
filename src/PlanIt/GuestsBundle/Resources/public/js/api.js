@@ -14,7 +14,6 @@ function getModule(id){
 						   type : 'GET',
 						   dataType : 'json', // On désire recevoir du HTML
 						   success : function(paymentmeans, statut){ // code_html contient le HTML renvoyé
-						   			console.log(paymentmeans);
 						       		var payable = Twig.render(guests_payable,
 						                            {
 						                                payable : module.payable,
@@ -30,17 +29,31 @@ function getModule(id){
 						         alert(erreur);
 						       },
 						});
+
+						$.ajax({
+						   url : '/app_dev.php/api/events/'+module.event.id+'/nbguests', //API
+						   type : 'GET',
+						   dataType : 'json', // On désire recevoir du HTML
+						   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
+						   			var title = Twig.render(guests_title,
+						                            {
+						                                name : module.name,
+						                                nb_guests:nbGuests,
+						                                nb_max:module.max_guests
+						                            });
+						       		$('#title').html(title);
+						       /**/
+						   },
+						   error : function(resultat, statut, erreur){
+						         alert(erreur);
+						       },
+						});
 				       /**/
 				   },
 				   error : function(resultat, statut, erreur){
 				         alert(erreur);
 				       },
 				});
-	   			var title = Twig.render(guests_title,
-	                            {
-	                                name : module.name,
-	                            });
-	       		$('#title').html(title);
 
 	       		var payable = Twig.render(guests_payable,
 	                            {

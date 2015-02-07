@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class GuestRepository extends EntityRepository
 {
-	public function countGuests($id){
+	public function countGuests($event_id){
 		$guests = $this->createQueryBuilder('g')
                     ->join('g.module', 'm')
                     ->join('m.event', 'e')
                     ->where('e.id = :event_id')
                     ->andWhere('g.confirmed = 1')
-                    ->setParameter('event_id', $id)
+                    ->setParameter('event_id', $event_id)
                     ->getQuery()
                     ->getResult();
 

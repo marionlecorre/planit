@@ -89,6 +89,9 @@ class GuestRestController extends Controller
         $form = $this->createForm(new GuestInscriptionType($module), $guest);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            if($this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($module->getEvent()->getId()) > $this->getDoctrine()->getRepository('PlanItGuestsBundle:GuestsModule')->find($module_id)->getMaxGuests()){
+                return 'Désolés l\'évenement est complet';
+            }
             $guest->setConfirmed(1);
             $guest->setPayed(0);
             $guest->setSent(1);

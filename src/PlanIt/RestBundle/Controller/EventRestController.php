@@ -9,14 +9,14 @@ use PlanIt\EventBundle\Form\EventType;
 
 class EventRestController extends Controller
 {
-    public function getEventAction($id){
-	    $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($id);
-        $nbGuests = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($id);
+
+    public function getEventAction($event_id){
+	    $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
+        $nbGuests = $this->getNbguestsAction($event_id);
 	    if(!is_object($event)){
 	      throw $this->createNotFoundException();
 	    }
-	    return 
-        array(
+	    return array(
                     'nbGuests' => $nbGuests,
                     'event' => $event
                 );
@@ -57,5 +57,9 @@ class EventRestController extends Controller
             'event_id'    => $guest->getModule()->getEvent()->getId(),
             'module_id'   => $comment->getModule()->getId()
         ));*/
+    }
+
+    public function getEventNbguestsAction($event_id){
+        return $nbGuests = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($event_id);
     }
 }

@@ -25,18 +25,6 @@ function getEvent(id){
 			else {
 				dodos = -1 * dodos;
 			}
-			// INVITÉS
-			// for(var i=0;i<data.event.modules.length;i++){
-			// 	if(data.event.modules[i].type=="guests"){
-			// 		var list_guest= data.event.modules[i];
-			// 		var counter=0;
-			// 		for(var j=0;j<list_guest.guests.length;j++){
-			// 			if(list_guest.guests[j].confirmed == 1){
-			// 				counter++;
-			// 			}
-			// 		}
-			// 	}
-			// }
 	       var infos_rend = Twig.render(infos,
 	                            {
 	                                days : dodos,
