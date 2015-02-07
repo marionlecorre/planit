@@ -14,7 +14,19 @@ use PlanIt\GuestsBundle\Entity\PaymentMeans;
 class PaymentMeansRepository extends EntityRepository
 {
 	public function findByGuestsModule($id){
-		return $this->createQueryBuilder('p')
+          $module_payments = $this->createQueryBuilder('pp')
+                  ->leftjoin('pp.modules', 'm')
+                  ->where('m.id = :module_id')
+                  ->setParameter('module_id', $id)
+                  ->getQuery()
+                  ->getResult();
+
+          if(empty($module_payments)){
+               return $this->createQueryBuilder('pp')
+                            ->getQuery()
+                            ->getResult();
+          }else{
+               return $this->createQueryBuilder('p')
                     ->where($this->createQueryBuilder('p')->expr()->notIn('p.id', ':ids'))
                     ->setParameter('ids', $this->createQueryBuilder('pp')
                     ->select('pp.id')
@@ -26,5 +38,6 @@ class PaymentMeansRepository extends EntityRepository
                     , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY)
                     ->getQuery()
                     ->getResult();
+          }
 	}
 }

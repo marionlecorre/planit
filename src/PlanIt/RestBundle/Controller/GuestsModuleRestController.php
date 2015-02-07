@@ -10,7 +10,7 @@ use PlanIt\GuestsBundle\Form\GuestsModuleType;
 class GuestsModuleRestController extends Controller
 {
 
-	public function getGuestsmoduleInscritpionlinkAction($module_id){
+	public function getGuestsmoduleInscriptionlinkAction($module_id){
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
     }
@@ -56,7 +56,7 @@ class GuestsModuleRestController extends Controller
         $em->persist($module);
         $em->flush();
 
-        $link           = $this->getGuestsmoduleInscritpionlinkAction($module_id);
+        $link           = $this->getGuestsmoduleInscriptionlinkAction($module_id);
         $paymentmeans   = $this->getGuestsmodulePaymentmeansAction($module_id);
         return array(
             'module' => $module,

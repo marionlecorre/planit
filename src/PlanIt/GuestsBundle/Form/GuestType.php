@@ -8,17 +8,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class GuestType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'Prénom *')))
             ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
-            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'Email *')))
-        ;
+            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'Email *')));
+
     }
     
     /**

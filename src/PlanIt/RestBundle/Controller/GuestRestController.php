@@ -64,6 +64,7 @@ class GuestRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
             $em->flush();
+            return $guest->getModule();
         }
     }
 

@@ -18,11 +18,17 @@ class GuestController extends Controller
         $guest = new Guest();
         $guest->setModule($module);
         $form   = $this->createForm(new GuestType(), $guest);
+        if($this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($module->getEvent()->getId()) >= $this->getDoctrine()->getRepository('PlanItGuestsBundle:GuestsModule')->find($module_id)->getMaxGuests()){
+                $is_max = true;
+        }else{
+                $is_max = false;
+        }
 
         return $this->render('PlanItGuestsBundle:Guest:form.html.twig', array(
             'guest' => $guest,
             'form'   => $form->createView(),
-            'module_id' => $module_id
+            'module_id' => $module_id,
+            'is_max' => $is_max
         ));
     }
 

@@ -11,11 +11,11 @@ class TypeGuestController extends Controller
     public function formAction($module_id)
     {
         $module = $this->getModule($module_id);
-
+        $module_type = $module->getGuestmoduleType();
 
         $typeguest = new TypeGuest();
         $typeguest->setModule($module);
-        $form   = $this->createForm(new TypeGuestType(), $typeguest);
+        $form   = $this->createForm(new TypeGuestType($module_type), $typeguest);
 
         return $this->render('PlanItGuestsBundle:TypeGuest:form.html.twig', array(
             'typeguest' => $typeguest->getId(),

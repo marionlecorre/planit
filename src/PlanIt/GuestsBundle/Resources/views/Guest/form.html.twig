@@ -1,3 +1,18 @@
+
+{%if is_max%}
+    <div class="modal fade addGuestModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un invité</h4>
+                </div>
+                <div class="modal-body">
+                    <span> Attention : Le nombre maximum d'inscrits est atteint </span>
+                </div>
+            </div>
+      </div>
+    </div>
+{%else%}
 	<div class="modal fade addGuestModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -16,4 +31,5 @@
             </div>
       </div>
     </div>
+{%endif%}
 

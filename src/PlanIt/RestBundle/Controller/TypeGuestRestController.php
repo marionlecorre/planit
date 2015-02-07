@@ -17,7 +17,7 @@ class TypeGuestRestController extends Controller
         $typeguest = new TypeGuest();
         $typeguest->setModule($module);
 
-        $form    = $this->createForm(new TypeGuestType(), $typeguest);
+        $form    = $this->createForm(new TypeGuestType($module->getGuestmoduleType()), $typeguest);
         $form->handleRequest($request);
         $data = $form->getData();
 

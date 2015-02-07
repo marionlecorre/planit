@@ -8,17 +8,24 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TypeGuestType extends AbstractType
 {
+    
+    protected $module_type;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $module_type = $this->module_type;
+
         $builder
-            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
-            ->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')))
-            ->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix *')))
-        ;
+            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')));
+        if($module_type == 0){
+            $builder->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')));
+
+        }
+            $builder->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix *')));
     }
     
     /**
@@ -37,5 +44,11 @@ class TypeGuestType extends AbstractType
     public function getName()
     {
         return 'planit_guestsbundle_typeguest';
+    }
+
+    public function __construct($module_type)
+    {
+        $this->module_type = $module_type;
+
     }
 }

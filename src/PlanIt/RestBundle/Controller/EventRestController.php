@@ -12,7 +12,7 @@ class EventRestController extends Controller
 
     public function getEventAction($event_id){
 	    $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
-        $nbGuests = $this->getNbguestsAction($event_id);
+        $nbGuests = $this->getEventNbguestsAction($event_id);
 	    if(!is_object($event)){
 	      throw $this->createNotFoundException();
 	    }
