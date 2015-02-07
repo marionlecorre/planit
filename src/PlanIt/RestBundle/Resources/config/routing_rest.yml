@@ -38,9 +38,9 @@ budget_module :
   resource:     "PlanItRestBundle:BudgetModuleRest"
   name_prefix:  api_
 
-typeitem_module : 
+typeexpense_module : 
   type: rest
-  resource:     "PlanItRestBundle:TypeItemRest"
+  resource:     "PlanItRestBundle:TypeExpenseRest"
   name_prefix:  api_
 
 place_module : 

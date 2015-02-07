@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="TypeGuest")
+ * @ORM\Table(name="type_guest")
  */
 class TypeGuest
 {

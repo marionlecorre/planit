@@ -6,6 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\BudgetBundle\Entity\BudgetModule;
 use PlanIt\BudgetBundle\Form\BudgetModuleType;
+use PlanIt\BudgetBundle\Form\InflowType;
+use PlanIt\BudgetBundle\Entity\Inflow;
+use PlanIt\BudgetBundle\Form\ExpenseType;
+use PlanIt\BudgetBundle\Entity\Expense;
 
 class BudgetModuleRestController extends Controller
 {
@@ -37,19 +41,96 @@ class BudgetModuleRestController extends Controller
         // ));
     }
 
+    public function postInflowAction(Request $request, $module_id)
+    {
+
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+
+        $inflow = new Inflow();
+        $inflow->setModule($module);
+
+        $form = $this->createForm(new InflowType(), $inflow);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($inflow);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $inflow->getModule()->getEvent()->getId(),
+                'module_id'   => $inflow->getModule()->getId()
+            )));
+        }
+        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+            'event_id'    => $inflow->getModule()->getEvent()->getId(),
+            'module_id'   => $inflow->getModule()->getId()
+        )));
+    }
+
+    public function postExpenseAction(Request $request, $type_expense)
+    {
+
+        $type_expense = $this->getDoctrine()->getRepository('PlanItBudgetBundle:TypeExpense')->find($type_expense);
+
+        $expense = new Expense();
+        $expense->setTypeExpense($type_expense);
+
+        $form = $this->createForm(new ExpenseType(), $expense);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $expense->setConsummate(0);
+            $expense->setBought(0);
+
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($expense);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $expense->getTypeExpense()->getModule()->getEvent()->getId(),
+                'module_id'   => $expense->getTypeExpense()->getModule()->getId()
+            )));
+        }
+        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+            'event_id'    => $expense->getTypeExpense()->getModule()->getEvent()->getId(),
+            'module_id'   => $expense->getTypeExpense()->getModule()->getId()
+        )));
+    }
+
+    public function deleteExpenseAction($expense_id)
+    {
+        $expense = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Expense')->find($expense_id);
+        $type_id = $expense->getTypeExpense()->getId();
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($expense);
+        $em->flush();
+        return array(
+            'module' => $expense->getTypeExpense()->getModule(),
+            'type_id' => $type_id
+            );
+
+    }
+
+    public function deleteInflowAction($inflow_id)
+    {
+        $inflow = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Inflow')->find($inflow_id);
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($inflow);
+        $em->flush();
+        return $inflow->getModule();
+
+    }
+
     public function getListInflowAction($module_id){
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         if(!is_object($module)){
           throw $this->createNotFoundException();
         }
-        $list= array();
-        $items = $module->getTypeItem();
-        foreach ($items as $type){
-            if($type->getType()== 1) {
-                array_push($list,$type);
-            }
-        }
-        return $list;
+        $inflows = $module->getInflows();
+        return $inflows;
     }
 
     public function getListExpenseAction($module_id){
@@ -57,13 +138,7 @@ class BudgetModuleRestController extends Controller
         if(!is_object($module)){
           throw $this->createNotFoundException();
         }
-        $list= array();
-        $items = $module->getTypeItem();
-        foreach ($items as $type){
-            if($type->getType()== 0) {
-                array_push($list,$type);
-            }
-        }
-        return $list;
+        $expenses = $module->getTypesExpense();
+        return $expenses;
     }
 }

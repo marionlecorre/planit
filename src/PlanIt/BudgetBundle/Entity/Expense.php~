@@ -3,18 +3,15 @@
 namespace PlanIt\BudgetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use PlanIt\ModuleBundle\Entity\Module;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @ORM\Entity(repositoryClass="PlanIt\BudgetBundle\Repository\ItemRepository")
  * @ORM\Entity
- * @ORM\Table(name="item")
+ * @ORM\Table(name="expense")
+ * @ORM\Entity(repositoryClass="PlanIt\BudgetBundle\Repository\ExpenseRepository")
  */
-class Item 
+class Expense
 {
-    /**
+/**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,6 +22,11 @@ class Item
      * @ORM\Column(type="string", length=30)
      */
     protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    protected $unit;
 
     /**
      * @ORM\Column(type="float")
@@ -60,10 +62,10 @@ class Item
     // protected $module;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\TypeItem", inversedBy="items")
-     * @ORM\JoinColumn(name="type_item_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\TypeExpense", inversedBy="expenses")
+     * @ORM\JoinColumn(name="type_expense_id", referencedColumnName="id")
      */
-    protected $type_item;
+    protected $type_expense;
 
     /**
      * Get id
@@ -79,7 +81,7 @@ class Item
      * Set name
      *
      * @param string $name
-     * @return Item
+     * @return Expense
      */
     public function setName($name)
     {
@@ -102,7 +104,7 @@ class Item
      * Set price
      *
      * @param float $price
-     * @return Item
+     * @return Expense
      */
     public function setPrice($price)
     {
@@ -125,7 +127,7 @@ class Item
      * Set stock
      *
      * @param float $stock
-     * @return Item
+     * @return Expense
      */
     public function setStock($stock)
     {
@@ -148,7 +150,7 @@ class Item
      * Set quantity
      *
      * @param float $quantity
-     * @return Item
+     * @return Expense
      */
     public function setQuantity($quantity)
     {
@@ -191,33 +193,10 @@ class Item
     // }
 
     /**
-     * Set type_item
-     *
-     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
-     * @return Item
-     */
-    public function setTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem = null)
-    {
-        $this->type_item = $typeItem;
-
-        return $this;
-    }
-
-    /**
-     * Get type_item
-     *
-     * @return \PlanIt\BudgetBundle\Entity\TypeItem 
-     */
-    public function getTypeItem()
-    {
-        return $this->type_item;
-    }
-
-    /**
      * Set consummate
      *
      * @param float $consummate
-     * @return Item
+     * @return Expense
      */
     public function setConsummate($consummate)
     {
@@ -240,7 +219,7 @@ class Item
      * Set bought
      *
      * @param boolean $bought
-     * @return Item
+     * @return Expense
      */
     public function setBought($bought)
     {
@@ -257,5 +236,51 @@ class Item
     public function getBought()
     {
         return $this->bought;
+    }
+
+    /**
+     * Set type_expense
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typeExpense
+     * @return Expense
+     */
+    public function setTypeExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typeExpense = null)
+    {
+        $this->type_expense = $typeExpense;
+
+        return $this;
+    }
+
+    /**
+     * Get type_expense
+     *
+     * @return \PlanIt\BudgetBundle\Entity\TypeExpense 
+     */
+    public function getTypeExpense()
+    {
+        return $this->type_expense;
+    }
+
+    /**
+     * Set unit
+     *
+     * @param string $unit
+     * @return Expense
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+
+    /**
+     * Get unit
+     *
+     * @return string 
+     */
+    public function getUnit()
+    {
+        return $this->unit;
     }
 }

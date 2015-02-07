@@ -1,0 +1,7 @@
+{% twig_js name="tab" %}
+
+<li><a class="tab" href="#section-topline-general"><span>Récapitulatif</span></a></li>
+{% for type_expense in module.types_expense %}
+	<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a></li>
+{% endfor %}
+<li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>Apports</span></a></li>

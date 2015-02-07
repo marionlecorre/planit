@@ -8,7 +8,7 @@ function getListExpense(id){
         var data = {xA : []};
         var totalprice =1;
         var empty;
-        // récupération des items
+        // récupération des expenses
         if (list.length == 0) {
           var obj =  {name: "Aucun apport",y: totalprice,sliced: false, selected: false};
           data.xA.push(obj);
@@ -17,8 +17,8 @@ function getListExpense(id){
         else {
           $.each(list, function(key, val) {
             // récupération du prix total d'une catégorie
-            if (val['items'].length != 0){
-              $.each(val['items'],function(key,val){
+            if (val['expenses'].length != 0){
+              $.each(val['expenses'],function(key,val){
                 totalprice += (val['price']*(val['quantity']-val['stock']));
               });
             }

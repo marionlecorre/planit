@@ -119,6 +119,13 @@ table{
 			background-color:$neutral;
 		} 
 	}
+
+	.delete-expense{
+		cursor:pointer;
+	}
+	.delete-inflow{
+		cursor:pointer;
+	}
 }
 
 
@@ -136,7 +143,7 @@ span#legend {
 	margin-bottom: 22px;
 }
 
-.add-item {
+.add-expense {
 	clear: both;
 	button {
 		background-color: $color;

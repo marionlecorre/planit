@@ -3,29 +3,27 @@ function getListInflow(id){
        url : '/app_dev.php/api/lists/'+id+'/inflow', //API
        type : 'GET',
        dataType : 'json', // On désire recevoir du HTML
-       success : function(list, statut){ // code_html contient le HTML renvoyé
+       success : function(inflows, statut){ // code_html contient le HTML renvoyé
         var data = {xA : []};
         var totalprice =1;
         var empty;
-        // récupération des items
-        if (list.length == 0) {
+        // récupération des expenses
+        if (inflows.length == 0) {
           var obj =  {name: "Aucun apport",y: totalprice,sliced: false, selected: false};
           data.xA.push(obj);
           empty = true;
         }
         else {
-          $.each(list, function(key, val) {
-            // récupération du prix total d'une catégorie
-            if (val['items'].length != 0){
-              $.each(val['items'],function(key,val){
-                totalprice += (val['price']);
+            if (inflows.length != 0){
+              $.each(inflows, function(key, val) {
+                // récupération du prix total d'une catégorie                
+                totalprice += (val['amount'])
+                // création de l'objet avec nom et prix
+                var obj =  {name: val['name'],y: totalprice,sliced: false, selected: false};
+                data.xA.push(obj);
+                empty= false;
               });
-            }
-            // création de l'objet avec nom et prix
-            var obj =  {name: val['name'],y: totalprice,sliced: false, selected: false};
-            data.xA.push(obj);
-            empty= false;
-          });
+          }
         }
         chartApport(data['xA'],empty);
         

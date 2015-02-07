@@ -3,22 +3,22 @@
 namespace PlanIt\BudgetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use PlanIt\BudgetBundle\Entity\TypeItem;
-use PlanIt\BudgetBundle\Form\TypeItemType;
+use PlanIt\BudgetBundle\Entity\Inflow;
+use PlanIt\BudgetBundle\Form\InflowType;
 
-class TypeItemController extends Controller
+class InflowController extends Controller
 {
     public function formAction($module_id)
     {
         $module = $this->getModule($module_id);
 
 
-        $type_item = new TypeItem();
-        $type_item->setModule($module);
-        $form   = $this->createForm(new TypeItemType(), $type_item);
+        $inflow = new Inflow();
+        $inflow->setModule($module);
+        $form   = $this->createForm(new InflowType(), $inflow);
 
-        return $this->render('PlanItBudgetBundle:TypeItem:form.html.twig', array(
-            'type_item' => $type_item,
+        return $this->render('PlanItBudgetBundle:Inflow:form.html.twig', array(
+            'inflow' => $inflow,
             'form'   => $form->createView(),
             'module_id' => $module_id
         ));

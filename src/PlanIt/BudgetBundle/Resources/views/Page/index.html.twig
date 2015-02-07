@@ -16,15 +16,17 @@
 					<div class="row">
 						<nav class="col-md-12">
 							<ul id="tab">
-								<!--Template menu.html.twig -->
+								<!--Template tab.html.twig -->
 							</ul>
 						</nav>
 					</div>
 
-					<div class="content-wrap" id="type_item">						
-						 <!--Template type_item.html.twig -->
+					<div class="content-wrap" id="tab_content">						
+						 <!--Template tab_content.html.twig -->
 					</div><!-- /content -->
-					{{ render(controller('PlanItBudgetBundle:TypeItem:form', { 'module_id' : module_id } ))}}
+					{{ render(controller('PlanItBudgetBundle:TypeExpense:form', { 'module_id' : module_id } ))}}
+					{{ render(controller('PlanItBudgetBundle:Inflow:form', { 'module_id' : module_id } ))}}
+					{{ render(controller('PlanItBudgetBundle:Expense:form', { 'module_id' : module_id } ))}}
 
 				</div><!-- /tabs -->
 			</section>

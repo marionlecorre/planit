@@ -10,8 +10,8 @@
 
  {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-  {% javascripts '@PlanItBudgetBundle/Resources/views/templates/type_item.html.twig'
-  '@PlanItBudgetBundle/Resources/views/templates/menu.html.twig' filter="twig_js, ?yui_js" %}
+  {% javascripts '@PlanItBudgetBundle/Resources/views/templates/tab_content.html.twig'
+  '@PlanItBudgetBundle/Resources/views/templates/tab.html.twig' filter="twig_js, ?yui_js" %}
     <script language="javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% javascripts 

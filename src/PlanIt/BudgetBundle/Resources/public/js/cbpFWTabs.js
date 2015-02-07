@@ -35,8 +35,8 @@
 	CBPFWTabs.prototype._init = function() {
 		// tabs elems
 		this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li' ) );
-		// content items
-		this.items = [].slice.call( this.el.querySelectorAll( '.content-wrap > section' ) );
+		// content expenses
+		this.expenses = [].slice.call( this.el.querySelectorAll( '.content-wrap > section' ) );
 		// current index
 		this.current = -1;
 		// show current content item
@@ -57,12 +57,15 @@
 
 	CBPFWTabs.prototype._show = function( idx ) {
 		if( this.current >= 0 ) {
-			this.tabs[ this.current ].className = this.items[ this.current ].className = '';
+			for( var tab in this.tabs ) { 
+				this.tabs[ tab ].className = this.expenses[ tab ].className = '';
+
+			}
 		}
 		// change current
-		this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.items.length ? this.options.start : 0;
+		this.current = idx != undefined ? idx : this.options.start >= 0 && this.options.start < this.expenses.length ? this.options.start : 0;
 		this.tabs[ this.current ].className = 'tab-current';
-		this.items[ this.current ].className = 'content-current';
+		this.expenses[ this.current ].className = 'content-current';
 	};
 
 	// add to global namespace

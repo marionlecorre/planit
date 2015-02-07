@@ -49,14 +49,19 @@ class BudgetModule extends Module
     protected $event;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\TypeItem", mappedBy="module")
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\TypeExpense", mappedBy="module")
      */
-    protected $type_item;
+    protected $types_expense;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Inflow", mappedBy="module")
+     */
+    protected $inflows;
 
     // *
-    //  * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Item", mappedBy="module")
+    //  * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Expense", mappedBy="module")
      
-    // protected $items;
+    // protected $expenses;
 
 
     /**
@@ -226,40 +231,7 @@ class BudgetModule extends Module
      */
     public function __construct()
     {
-        $this->type_item = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add type_item
-     *
-     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
-     * @return BudgetModule
-     */
-    public function addTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
-    {
-        $this->type_item[] = $typeItem;
-
-        return $this;
-    }
-
-    /**
-     * Remove type_item
-     *
-     * @param \PlanIt\BudgetBundle\Entity\TypeItem $typeItem
-     */
-    public function removeTypeItem(\PlanIt\BudgetBundle\Entity\TypeItem $typeItem)
-    {
-        $this->type_item->removeElement($typeItem);
-    }
-
-    /**
-     * Get type_item
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTypeItem()
-    {
-        return $this->type_item;
+        $this->types_expense = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     // /**
@@ -316,5 +288,71 @@ class BudgetModule extends Module
     public function getBase()
     {
         return $this->base;
+    }
+
+    /**
+     * Add types_expense
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense
+     * @return BudgetModule
+     */
+    public function addTypesExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense)
+    {
+        $this->types_expense[] = $typesExpense;
+
+        return $this;
+    }
+
+    /**
+     * Remove types_expense
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense
+     */
+    public function removeTypesExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense)
+    {
+        $this->types_expense->removeElement($typesExpense);
+    }
+
+    /**
+     * Get types_expense
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTypesExpense()
+    {
+        return $this->types_expense;
+    }
+
+    /**
+     * Add inflows
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Inflow $inflows
+     * @return BudgetModule
+     */
+    public function addInflow(\PlanIt\BudgetBundle\Entity\Inflow $inflows)
+    {
+        $this->inflows[] = $inflows;
+
+        return $this;
+    }
+
+    /**
+     * Remove inflows
+     *
+     * @param \PlanIt\BudgetBundle\Entity\Inflow $inflows
+     */
+    public function removeInflow(\PlanIt\BudgetBundle\Entity\Inflow $inflows)
+    {
+        $this->inflows->removeElement($inflows);
+    }
+
+    /**
+     * Get inflows
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInflows()
+    {
+        return $this->inflows;
     }
 }
