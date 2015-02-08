@@ -103,8 +103,8 @@ function deleteExpense(expense_id){
 
 			$(".section-topline").parent().removeClass('content-current');
 			$("#section-topline-"+data.type_id).attr('class', 'content-current');
-			getListExpense(module.id);
-			getListInflow(module.id);
+			getListExpense(data.module.id);
+			getListInflow(data.module.id);
        		
 	   },
 	   error : function(resultat, statut, erreur){

@@ -3,7 +3,7 @@
 <li><a class="tab" id="tab-general" href="#section-topline-general"><span>Récapitulatif</span></a></li>
 {% for type_expense in module.types_expense %}
 	<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span>
-		<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}">x</span></a> 
+		<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}" data-name="{{type_expense.name}}">x</span></a> 
 	</li>
 {% endfor %}
 <li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>Apports</span></a></li>
@@ -12,7 +12,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?</h4>
+            <h4 class="modal-title" id="myModalLabel_deleteTypeExpense">Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?</h4>
             </div>
             <div class="modal-body row">
                 <button id="delete_confirm_typeexpense" class="btn btn-default col-md-6"> Oui </button>

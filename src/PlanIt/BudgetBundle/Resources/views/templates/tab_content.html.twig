@@ -72,7 +72,7 @@
 							<td data-title="Acheté">
 								<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought %} checked {%endif%}/>
 							</td>
-							<td class="delete-expense" onclick="deleteExpense({{expense.id}})" data-title="Supprimer">X</td>
+							<td class="delete-expense" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}" data-title="Supprimer">X</td>
 						</tr>
 					{% endfor %}						
 				</tbody>
@@ -85,37 +85,65 @@
 
 {% endfor %}
 <section id="section-topline-apports">
-		<div class="responsive-table-line">
-			<table class="table table-bordered table-condensed table-body-center" >
-				<thead>
-					<tr>
-						<th>Intitulé *</th>
-						<th>Montant *</th>											
-						<th>Supprimer</th>
-					</tr>
-				</thead>
-				
-				
-				<tbody>
-					{% for inflow in module.inflows %}
-						<tr>
-							<td data-title="Intitulé">
-								<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
-							</td>
-							<td data-title="Montant">
-								<input type="text" id="amount-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.amount}}">
-							</td>
-							<td class="delete-inflow" onclick="deleteInflow({{inflow.id}})" data-title="Supprimer">X</td>
-						</tr>
-					{% endfor %}						
-				</tbody>
-			</table>
-			<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
-			<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addExpenseModal">Ajouter un article</button></div>
+	<div class="responsive-table-line">
+		<table class="table table-bordered table-condensed table-body-center" >
+			<thead>
+				<tr>
+					<th>Intitulé *</th>
+					<th>Montant *</th>											
+					<th>Supprimer</th>
+				</tr>
+			</thead>
 			
-		</div>
-	</section>
+			
+			<tbody>
+				{% for inflow in module.inflows %}
+					<tr>
+						<td data-title="Intitulé">
+							<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
+						</td>
+						<td data-title="Montant">
+							<input type="text" id="amount-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.amount}}">
+						</td>
+						<td class="delete-inflow" data-toggle="modal" data-target=".deleteInflowModal" data-id="{{inflow.id}}" data-name="{{inflow.name}}" data-title="Supprimer">X</td>
+					</tr>
+				{% endfor %}						
+			</tbody>
+		</table>
+		<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
+		<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addInflowModal">Ajouter un apport</button></div>
+		
+	</div>
+</section>
+<div class="modal fade deleteExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel_deleteExpense"></h4>
+            </div>
+            <div class="modal-body row">
+                <button id="delete_confirm_expense" class="btn btn-default col-md-6"> Oui </button>
+                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
 
+            </div>
+        </div>
+  </div>
+</div>
+
+<div class="modal fade deleteInflowModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel_deleteInflow"></h4>
+            </div>
+            <div class="modal-body row">
+                <button id="delete_confirm_inflow" class="btn btn-default col-md-6"> Oui </button>
+                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+            </div>
+        </div>
+  </div>
+</div>
 
 <script>
 		(function() {
