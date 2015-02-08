@@ -9,6 +9,7 @@ use PlanIt\BudgetBundle\Form\BudgetModuleType;
 use PlanIt\BudgetBundle\Form\InflowType;
 use PlanIt\BudgetBundle\Entity\Inflow;
 use PlanIt\BudgetBundle\Form\ExpenseType;
+use PlanIt\BudgetBundle\Form\UpdateExpenseType;
 use PlanIt\BudgetBundle\Entity\Expense;
 
 class BudgetModuleRestController extends Controller
@@ -41,33 +42,6 @@ class BudgetModuleRestController extends Controller
         // ));
     }
 
-    public function postInflowAction(Request $request, $module_id)
-    {
-
-        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
-
-        $inflow = new Inflow();
-        $inflow->setModule($module);
-
-        $form = $this->createForm(new InflowType(), $inflow);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($inflow);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
-                'event_id'    => $inflow->getModule()->getEvent()->getId(),
-                'module_id'   => $inflow->getModule()->getId()
-            )));
-        }
-        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
-            'event_id'    => $inflow->getModule()->getEvent()->getId(),
-            'module_id'   => $inflow->getModule()->getId()
-        )));
-    }
-
     public function postExpenseAction(Request $request, $type_expense)
     {
 
@@ -98,6 +72,24 @@ class BudgetModuleRestController extends Controller
         )));
     }
 
+    public function putExpenseAction(Request $request, $expense_id)
+    {
+        $expense = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Expense')->find($expense_id);
+        $type_id = $expense->getTypeExpense()->getId();
+        $form = $this->createForm(new UpdateExpenseType(), $expense, array('method' => 'PUT'));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $expense->setBought($request->request->get('bought'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($expense);
+            $em->flush();
+            return array(
+                        'module' => $expense->getTypeExpense()->getModule(),
+                        'type_id' => $type_id
+                    );
+        }
+    }
+
     public function deleteExpenseAction($expense_id)
     {
         $expense = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Expense')->find($expense_id);
@@ -107,10 +99,37 @@ class BudgetModuleRestController extends Controller
         $em->remove($expense);
         $em->flush();
         return array(
-            'module' => $expense->getTypeExpense()->getModule(),
-            'type_id' => $type_id
-            );
+                    'module' => $expense->getTypeExpense()->getModule(),
+                    'type_id' => $type_id
+                );
 
+    }
+
+    public function postInflowAction(Request $request, $module_id)
+    {
+
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+
+        $inflow = new Inflow();
+        $inflow->setModule($module);
+
+        $form = $this->createForm(new InflowType(), $inflow);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($inflow);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $inflow->getModule()->getEvent()->getId(),
+                'module_id'   => $inflow->getModule()->getId()
+            )));
+        }
+        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+            'event_id'    => $inflow->getModule()->getEvent()->getId(),
+            'module_id'   => $inflow->getModule()->getId()
+        )));
     }
 
     public function deleteInflowAction($inflow_id)
