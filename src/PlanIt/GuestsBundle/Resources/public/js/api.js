@@ -240,7 +240,7 @@ function sendMail(guest_id){
 	});
 }
 
-function multipleAction(type){
+function multipleAction(type, action){
 	$("input:checkbox[class='checkbox-action-"+type+"']:checked").each(function()
 	{
 	    if($("#actions-"+type).val() == "send"){
