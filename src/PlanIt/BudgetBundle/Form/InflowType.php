@@ -26,7 +26,8 @@ class InflowType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\BudgetBundle\Entity\Inflow'
+            'data_class' => 'PlanIt\BudgetBundle\Entity\Inflow',
+            'csrf_protection' => false,
         ));
     }
 

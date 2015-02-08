@@ -132,6 +132,19 @@ class BudgetModuleRestController extends Controller
         )));
     }
 
+    public function putInflowAction(Request $request, $inflow_id)
+    {
+        $inflow = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Inflow')->find($inflow_id);
+        $form = $this->createForm(new InflowType(), $inflow, array('method' => 'PUT'));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inflow);
+            $em->flush();
+            return $inflow->getModule();
+        }
+    }
+
     public function deleteInflowAction($inflow_id)
     {
         $inflow = $this->getDoctrine()->getRepository('PlanItBudgetBundle:Inflow')->find($inflow_id);

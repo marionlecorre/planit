@@ -100,10 +100,10 @@
 					{% for inflow in module.inflows %}
 						<tr>
 							<td data-title="Intitulé">
-								<input type="text" id="name-inflow-{{inflow.id}}" value="{{inflow.name}}">
+								<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
 							</td>
 							<td data-title="Montant">
-								{{inflow.amount}}
+								<input type="text" id="amount-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.amount}}">
 							</td>
 							<td class="delete-inflow" onclick="deleteInflow({{inflow.id}})" data-title="Supprimer">X</td>
 						</tr>

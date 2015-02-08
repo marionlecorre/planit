@@ -242,3 +242,68 @@ function updateExpense(expense_id){
 	       },
 	});
 }
+
+function updateInflow(inflow_id){
+	var dataSend = {"planit_budgetbundle_inflow":{
+		"name" : $("#name-inflow-"+inflow_id).val(),
+		"amount" : $("#amount-inflow-"+inflow_id).val(),
+	}}
+	$.ajax({
+	   url : '/app_dev.php/api/inflows/'+inflow_id, //API
+	   type : 'PUT',
+	   dataType : 'json',
+	   data : dataSend,
+	   success : function(module){ // code_html contient le HTML renvoyé
+	   		var menu = Twig.render(tab,
+                            {
+                                module : module,
+                            });
+
+	       	$('#tab').html(menu);
+
+	       var list = module.types_expense;
+	       	var balance;
+	       	if(module.base){
+	       		balance = module.base;
+	       	}
+	       	else {
+	       		balance=0;
+	       	}
+	       	
+	       	$.each(list, function(key, val) {
+	            // récupération du prix total d'une catégorie
+	            if (val['expenses'].length != 0){
+	            	if(val['type']==1){
+		              	$.each(val['expenses'],function(key,val){
+							balance += (val['price']);
+	              		});
+	              	}
+	              	else if (val['type']==0) {
+	              		$.each(val['expenses'],function(key,val){
+		              		balance -= val['price']*(val['quantity']-val['stock']);
+		              	});
+	              	}
+	            }
+	        });
+   			var content = Twig.render(tab_content,
+                            {
+                                module : module,
+                                max : module.max_budget,
+                                balance : balance
+                            });
+
+       		$('#tab_content').html(content);
+
+       		$(".tab").parent().removeClass('tab-current');
+       		$("#tab-apports").attr('class', 'tab-current');
+
+			$(".section-topline").parent().removeClass('content-current');
+			$("#section-topline-apports").attr('class', 'content-current');
+			getListExpense(module.id);
+			getListInflow(module.id);
+	   },
+	   error : function(resultat, statut, erreur){
+	         console.log(resultat);
+	       },
+	});
+}
