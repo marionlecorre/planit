@@ -11,47 +11,15 @@
 	</div>
 
 	<div class="row">
-        <div class="col-md-3 bt_todo"><button>Ajouter une tâche</button></div>
+        <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addItemModal">Ajouter une tâche</button></div>
+        <div class="col-md-3 bt_todo"><a href="/app_dev.php/todo-pdf/{{module_id}}">Imprimer la liste des tâches</a></div>
         <!--<div class="col-md-3 bt_todo"><button>Valider</button></div>-->
     </div>
+     {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module_id } ))}}
 
-		<ul class="sortable">
-		    <li>
-		    	<div class="row">
-					<div class="col-md-12 todo" id="todo1">
-		    			Acheter la bague <input type="checkbox" name="todo1" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
-		    		</div>
-		    	</div>			
-		    </li>
-		    <li>
-		    	<div class="row">
-					<div class="col-md-12 todo">
-		    			Inviter des gens <input type="checkbox"  name="todo2" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
-		    		</div>
-		    	</div>
-		    </li>
-		    <li>
-		    	<div class="row">
-					<div class="col-md-12 todo">
-		    			Aller chez le coiffeur <input type="checkbox"  name="todo3" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
-		    		</div>
-		    	</div>
-		    </li>
-		    <li>
-		    	<div class="row">
-					<div class="col-md-12 todo checked">
-		    			Avoir quelqu'un avec qui se marier <input type="checkbox" checked="checked" name="todo4" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');"> 
-		    		</div>
-		    	</div>
 
-		    </li>
-		    <li>
-		    	<div class="row">
-					<div class="col-md-12 todo checked">
-		    			Vouloir se marier <input type="checkbox" checked="checked" name="todo5" onClick="if(this.checked)this.parentNode.className += ' checked'; else this.parentNode.classList.remove('checked');">
-					</div>
-				</div>
-		    </li>
+		<ul class="sortable" id="todo-list">
+		    <!-- Template list.html.twig-->
 		</ul>
 </div>
 
@@ -59,7 +27,7 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> //getEvent({{event_id}}); </script>
+    <script> getModule({{module_id}}); </script>
    	<script>
 	    $('.sortable').sortable({
 	    	items: ':not(.disabled)'

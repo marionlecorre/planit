@@ -39,6 +39,11 @@ class TodoModule extends Module
      */
     protected $event;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\TodoBundle\Entity\Item", mappedBy="module")
+     */
+    protected $items;
+
 
     /**
      * Get id
@@ -170,4 +175,44 @@ class TodoModule extends Module
         return $text;
     }
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add items
+     *
+     * @param \PlanIt\TodoBundle\Entity\Item $items
+     * @return TodoModule
+     */
+    public function addItem(\PlanIt\TodoBundle\Entity\Item $items)
+    {
+        $this->items[] = $items;
+
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \PlanIt\TodoBundle\Entity\Item $items
+     */
+    public function removeItem(\PlanIt\TodoBundle\Entity\Item $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

@@ -1,3 +1,6 @@
-plan_it_todo_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: PlanItTodoBundle:Default:index }
+PlanItTodoBundle_pdf:
+    path:     /todo-pdf/{module_id}
+    defaults: { _controller: PlanItTodoBundle:Page:pdf }
+    requirements:
+        _method:  GET
+        module_id: \d+

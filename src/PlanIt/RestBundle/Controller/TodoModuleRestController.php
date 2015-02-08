@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\TodoBundle\Entity\TodoModule;
 use PlanIt\TodoBundle\Form\TodoModuleType;
+use PlanIt\TodoBundle\Entity\Item;
+use PlanIt\TodoBundle\Form\ItemType;
 
 class TodoModuleRestController extends Controller
 {
@@ -36,5 +38,40 @@ class TodoModuleRestController extends Controller
             'event_id'    => $guest->getModule()->getEvent()->getId(),
             'module_id'   => $comment->getModule()->getId()
         ));*/
+    }
+
+    public function postItemAction(Request $request, $module_id)
+    {
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+
+        $item = new Item();
+        $item->setModule($module);
+        $form    = $this->createForm(new ItemType(), $item);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $item->setChecked(0);
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($item);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $item->getModule()->getEvent()->getId(),
+                'module_id'   => $item->getModule()->getId()
+            )));
+        }
+    }
+
+    public function putItemCheckedAction(Request $request, $item_id)
+    {
+        $item = $this->getDoctrine()->getRepository('PlanItTodoBundle:Item')->find($item_id);
+
+        $item->setChecked($request->request->get('checked'));
+        $em = $this->getDoctrine()
+                   ->getEntityManager();
+        $em->persist($item);
+        $em->flush();
+        
+        return $item->getModule();
     }
 }

@@ -1,4 +1,4 @@
-PlanItBudgetBundle_ipdf:
+PlanItBudgetBundle_pdf:
     path:     /pdf/{module_id}
     defaults: { _controller: PlanItBudgetBundle:Page:pdf }
     requirements:

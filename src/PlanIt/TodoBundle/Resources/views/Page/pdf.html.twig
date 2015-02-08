@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+		{% for item in items %}
+			{% if not item.checked %}
+				<li>
+					<div class="row">
+						<div class="col-md-12 todo">
+							{{item.content}}
+						</div>
+					</div>			
+				</li>
+			{% endif %}
+		{% endfor %}
+	</body>
+</html>
