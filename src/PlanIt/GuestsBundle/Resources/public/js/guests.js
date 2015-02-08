@@ -9,16 +9,10 @@ function guests(){
 	
 
 	$('.deleteGuestModal').on("show.bs.modal",function(e){
-		
-		var multiple = $(e.relatedTarget).data('multiple');
-		if(multiple == "1"){
-			
-		}else{
 			var id = $(e.relatedTarget).data('id');
 			var name = $(e.relatedTarget).data('name');
 			$("#delete_confirm_guest").attr("onclick","deleteGuest("+id+")");
 			$("#myModalLabel_deleteGuest").html("Etes-vous sur de vouloir supprimer l'invité \""+name+"\" ?");
-		}
 		
 	});
 

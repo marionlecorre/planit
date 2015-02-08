@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TwigJsBundle\JMSTwigJsBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new PlanIt\RestBundle\PlanItRestBundle(),
             new PlanIt\EventBundle\PlanItEventBundle(),
             new PlanIt\GuestsBundle\PlanItGuestsBundle(),

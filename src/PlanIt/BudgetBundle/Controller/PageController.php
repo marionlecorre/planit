@@ -3,6 +3,7 @@
 namespace PlanIt\BudgetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
@@ -16,4 +17,20 @@ class PageController extends Controller
             'user_id' => $event->getUser()->getId()
         ));
     }
+
+    public function pdfAction($module_id){
+    	$module = $this->getDoctrine()->getEntityManager()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+    	$html = $this->renderView('PlanItBudgetBundle:Page:pdf.html.twig', array(
+					    	'module_id'  => $module_id
+						));
+
+		return new Response(
+					    $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+					    200,
+					    array(
+					        'Content-Type'          => 'application/pdf',
+					        'Content-Disposition'   => 'attachment; filename="liste.pdf"'
+					    )
+					);
+	}
 }

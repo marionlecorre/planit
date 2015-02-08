@@ -1,3 +1,6 @@
-plan_it_budget_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: PlanItBudgetBundle:Default:index }
+PlanItBudgetBundle_ipdf:
+    path:     /pdf/{module_id}
+    defaults: { _controller: PlanItBudgetBundle:Page:pdf }
+    requirements:
+        _method:  GET
+        module_id: \d+
