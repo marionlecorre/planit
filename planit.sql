@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 08 Février 2015 à 00:10
+-- Généré le :  Lun 09 Février 2015 à 00:29
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -66,14 +66,14 @@ CREATE TABLE `expense` (
   `consummate` double NOT NULL,
   `bought` tinyint(1) NOT NULL,
   `unit` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `expense`
 --
 
 INSERT INTO `expense` (`id`, `type_expense_id`, `name`, `price`, `stock`, `quantity`, `consummate`, `bought`, `unit`) VALUES
-(1, 1, 'Coca', 0.8, 4, 20, 0, 0, 'Bouteilles');
+(1, 1, 'Vodka', 10, 5, 20, 4, 0, 'Bouteilles');
 
 -- --------------------------------------------------------
 
@@ -92,21 +92,20 @@ CREATE TABLE `guest` (
   `confirmed` int(11) NOT NULL,
   `payed` int(11) NOT NULL,
   `sent` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `guest`
 --
 
 INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `paymentmean_id`, `firstname`, `lastname`, `email`, `confirmed`, `payed`, `sent`) VALUES
-(1, 1, 4, 2, 'Alizée', 'Camaras', 'babouche@kira.com', 2, 0, 0),
-(2, 1, 4, NULL, 'Marion', 'Lecorredula', 'lamoche@jackson.com', 2, 0, 0),
-(3, 1, 4, NULL, 'Marina', 'Avataneo', 'warina@grisou.com', 1, 0, 0),
-(5, 2, 4, NULL, 'Test', 'test', 'test@g.com', 2, 0, 0),
 (6, 1, 6, 1, 'test', 'test', 'test@g.com', 0, 2, 0),
 (7, 1, 6, 1, 'test', 'test', 'test@g.com', 0, 2, 0),
 (9, 6, 2, NULL, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0),
-(10, 4, 7, NULL, 'test', 'test', 'test@g.com', 0, 0, 0);
+(10, 4, 7, NULL, 'test', 'test', 'test@g.com', 0, 0, 0),
+(11, 1, 4, NULL, 'Ali', 'Babouche', 'alibabouche@gmail.com', 0, 0, 0),
+(12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 0, 0, 1),
+(13, 1, 4, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -119,14 +118,38 @@ CREATE TABLE `inflow` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `amount` double NOT NULL,
   `module_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `inflow`
 --
 
 INSERT INTO `inflow` (`id`, `name`, `amount`, `module_id`) VALUES
-(1, 'Mamie', 200, 12);
+(1, 'Mamie', 1000, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `item`
+--
+
+CREATE TABLE `item` (
+`id` int(11) NOT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `content` tinytext COLLATE utf8_unicode_ci NOT NULL,
+  `checked` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `item`
+--
+
+INSERT INTO `item` (`id`, `module_id`, `content`, `checked`) VALUES
+(1, 13, 'Choisir Bar', 1),
+(2, 13, 'Acheter cadeau', 0),
+(3, 13, 'Appeler maman', 1),
+(4, 13, 'Récupérer sous', 0),
+(5, 13, 'Manger', 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +185,7 @@ CREATE TABLE `module` (
   `max_time_to_go` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -179,7 +202,9 @@ INSERT INTO `module` (`id`, `event_id`, `name`, `slug`, `int_type`, `type`, `lis
 (9, 6, 'Lieu', 'lieu', 3, 'place', NULL, NULL, NULL, NULL, NULL, NULL, 100, 600, '2', NULL, NULL),
 (10, 6, 'Transport', 'transport', 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 60, 500),
 (11, 6, 'TODO', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 5, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, NULL, 2000, 300, NULL, NULL, NULL, NULL, NULL);
+(12, 5, 'Budget', 'budget', 2, 'budget', NULL, NULL, NULL, NULL, 2000, 300, NULL, NULL, NULL, NULL, NULL),
+(13, 3, 'Todo', 'todo', 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 3, 'Lieu', 'lieu', 3, 'place', NULL, NULL, NULL, NULL, NULL, NULL, 300, 4000, '1h30', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -220,6 +245,37 @@ INSERT INTO `payment_means` (`id`, `label`) VALUES
 (2, 'Chèque'),
 (3, 'Espèce'),
 (4, 'Virement');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `place`
+--
+
+CREATE TABLE `place` (
+`id` int(11) NOT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `address` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `distance` double DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `capacity` double DEFAULT NULL,
+  `website` longtext COLLATE utf8_unicode_ci,
+  `remark` longtext COLLATE utf8_unicode_ci,
+  `state` int(11) DEFAULT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `place`
+--
+
+INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`) VALUES
+(1, 'Car ki roule', '90 rue de la poupée qui tousse 93450 L''oie qui marche', '013456726895', 60, 3500, 150, 'www.carkiroule.com', 'Ouais c''est cool !', 2, 14, 44.3362651, 1.2101346),
+(2, 'Car en bolage', '30 rue de Paris 45980 Chaton-en-Oise', '023478946738', 135, 2700, 100, 'www.carenbolage.fr', 'Mouais', 0, 14, 50.0419825, 1.430245),
+(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 2, 14, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,6 +376,12 @@ ALTER TABLE `inflow`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_CBBF3F71AFC2B591` (`module_id`);
 
 --
+-- Index pour la table `item`
+--
+ALTER TABLE `item`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_1F1B251EAFC2B591` (`module_id`);
+
+--
 -- Index pour la table `migration_versions`
 --
 ALTER TABLE `migration_versions`
@@ -342,6 +404,12 @@ ALTER TABLE `paymentmeans_module`
 --
 ALTER TABLE `payment_means`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `place`
+--
+ALTER TABLE `place`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_741D53CDAFC2B591` (`module_id`);
 
 --
 -- Index pour la table `type_expense`
@@ -374,27 +442,37 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT pour la table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `guest`
 --
 ALTER TABLE `guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `inflow`
 --
 ALTER TABLE `inflow`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `item`
+--
+ALTER TABLE `item`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `payment_means`
 --
 ALTER TABLE `payment_means`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `place`
+--
+ALTER TABLE `place`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `type_expense`
 --
@@ -441,6 +519,12 @@ ALTER TABLE `inflow`
 ADD CONSTRAINT `FK_CBBF3F71AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
+-- Contraintes pour la table `item`
+--
+ALTER TABLE `item`
+ADD CONSTRAINT `FK_1F1B251EAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+
+--
 -- Contraintes pour la table `module`
 --
 ALTER TABLE `module`
@@ -450,8 +534,14 @@ ADD CONSTRAINT `FK_C24262871F7E88B` FOREIGN KEY (`event_id`) REFERENCES `event` 
 -- Contraintes pour la table `paymentmeans_module`
 --
 ALTER TABLE `paymentmeans_module`
-ADD CONSTRAINT `FK_A4BA4E099F63E055` FOREIGN KEY (`paymentmeans_id`) REFERENCES `payment_means` (`id`) ON DELETE CASCADE,
-ADD CONSTRAINT `FK_A4BA4E093A6610AA` FOREIGN KEY (`guestsmodule_id`) REFERENCES `module` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `FK_A4BA4E093A6610AA` FOREIGN KEY (`guestsmodule_id`) REFERENCES `module` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `FK_A4BA4E099F63E055` FOREIGN KEY (`paymentmeans_id`) REFERENCES `payment_means` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `place`
+--
+ALTER TABLE `place`
+ADD CONSTRAINT `FK_741D53CDAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `type_expense`
