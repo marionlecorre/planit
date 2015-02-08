@@ -1,5 +1,9 @@
 @import 'general';
 
+header {
+	border-color: $color;
+}
+
 /*pie chart*/
 .pie_chart{
 	height: 300px; 

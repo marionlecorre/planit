@@ -21,9 +21,11 @@ header {
 
 	.list {
 		margin: 28px 0 39px;
+		@include border-radius(5px);
 		.head-list {
 			background-color: $head-list;
 			padding: 13px 27px 13px 10px;
+			@include border-radius(5px);
 			.name {
 				float:left;
 				margin-left: 20px;
@@ -67,7 +69,7 @@ header {
 			input[type="text"] {
 				border: none;
 				@include border-radius(3px); 
-				padding: 6px;
+				padding: 3px;
 				width: 100%;
 			}
 			input[type="checkbox"]{
@@ -127,11 +129,11 @@ header {
 
 	.accordion-head {
 		background: url('/images/accordion.png') no-repeat;
-		background-position: 97% -61px;
+		background-position: 97% -18px;
 		border: 0;
 		@include border-radius(0); 
 		&.open {
-			background-position: 97% 18px;
+			background-position: 97% 20px;
 		}	
 	}
 }

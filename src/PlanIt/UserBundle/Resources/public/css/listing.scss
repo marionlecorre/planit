@@ -11,6 +11,7 @@
 	.event-thumbnail {
 		border: solid 1px #dad7d7;
 		height: 300px;
+		margin-bottom: 20px;
 		&:hover {
 			border-color: darken(#dad7d7,15%);
 		}

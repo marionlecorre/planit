@@ -1,14 +1,8 @@
 {% extends 'PlanItPlaceBundle::layout.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% stylesheets 
-    '@PlanItPlaceBundle/Resources/public/css/*.scss' 
-    filter="compass" %}
-	      <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
-	{% endstylesheets %}
-{% endblock %}
 
 {% block content %}
+
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <div class="container">
 	<div class="row" id="title">
         <div class="col-md-12" > <h1>Lieu</h1> </div>
@@ -19,6 +13,40 @@
 	</div>
 	<section>
 
+	<div class="row">
+        <div class="col-md-3 bt_place"><button class="col-md-3">Ajouter un lieu</button></div>
+    </div>
+
+	<div class="row list" >
+        <div><input type="checkbox" class="check" id="check" onClick="if(this.checked)getElementById('head_list').className += ' checked'; else getElementById('head_list').classList.remove('checked');"></div>
+        <div id="head_list" class="head-list accordion-head">	
+        	<div class="name">MFR Vertu</div>
+            <div class="price">2000€</div>
+		</div>
+		<div class="accordion-body">
+            <div class="labels row">
+            	<div class="col-lg-3 col-md-12 col-sm-12 img_place"> </div>
+            	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
+	            	<p><span class="label_descr">Adresse</span> : 66 rue de Paris 77420 Champs Sur Marne</p>
+	            	<p><span class="label_descr">Distance</span> : 86km</p>
+	            	<p><span class="label_descr">Téléphone</span> : 05.63.58.15.26</p>
+	            	<p><span class="label_descr">Site</span> : lecarkiroule.fr </p>
+	            	<p><span class="label_descr">Caution</span> : 850€ </p>
+	            	<p><span class="label_descr">Contrat</span> :  
+						<div class="input-file-container">
+						  <input class="input-file" id="my-file" type="file">
+						  <label for="my-file" class="input-file-trigger" tabindex="0">Selectionner le contrat</label>
+						</div>
+						<p class="file-return"></p>
+	            	</p>
+            	</div>
+            	<div class="col-lg-5 col-md-6 col-sm-12" id="map_canvas"></div>
+
+            </div>
+        </div>
+	</div>
+
+	
 	</section>
 </div>
 
@@ -27,4 +55,6 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> //getEvent({{event_id}}); </script>
+    <script>accordeonPlace();</script>
+    <script>initializeMap();</script>
 {% endblock %}
