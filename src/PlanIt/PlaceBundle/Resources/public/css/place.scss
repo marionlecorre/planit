@@ -13,7 +13,6 @@ header {
 
 .img_place{
 	height: 200px;
-	background-image: url(/images/place/places_pictures/vertu.jpg);
 	margin-bottom: 20px;
 	background-size: cover;
     background-repeat: no-repeat;
@@ -98,8 +97,6 @@ header {
 
 
 
-/*INPUTE TYPE FILE*/
-/* styles de base si JS est activé */
 .js .input-file-container {
   position: relative;
   width: 180px;
@@ -125,7 +122,6 @@ header {
   cursor: pointer;
 }
  
-/* quelques styles d'interactions */
 .js .input-file:hover + .input-file-trigger,
 .js .input-file:focus + .input-file-trigger,
 .js .input-file-trigger:hover,
@@ -134,7 +130,6 @@ header {
   color: #fff;
 }
  
-/* styles du retour visuel */
 .file-return {
   margin: 0;
 }
@@ -146,8 +141,6 @@ header {
   font-weight: normal;
   font-size: 10px;
 }
-/* on complète l'information d'un contenu textuel
-   uniquement lorsque le paragraphe n'est pas vide */
 .js .file-return:not(:empty):before {
   content: "Fichier choisi: ";
   font-style: normal;

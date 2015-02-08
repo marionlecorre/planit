@@ -48,6 +48,11 @@ place_module :
   resource:     "PlanItRestBundle:PlaceModuleRest"
   name_prefix:  api_
 
+places: 
+  type: rest
+  resource:     "PlanItRestBundle:PlaceRest"
+  name_prefix:  api_
+
 transportation_module : 
   type: rest
   resource:     "PlanItRestBundle:TransportationModuleRest"

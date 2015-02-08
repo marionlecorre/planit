@@ -53,6 +53,11 @@ class PlaceModule extends Module
      */
     protected $event;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PlanIt\PlaceBundle\Entity\Place", mappedBy="module")
+     */
+    protected $places;
+
 
     /**
      * Set max_capacity_p
@@ -251,5 +256,45 @@ class PlaceModule extends Module
         }
 
         return $text;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->places = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add places
+     *
+     * @param \PlanIt\PlaceBundle\Entity\Place $places
+     * @return PlaceModule
+     */
+    public function addPlace(\PlanIt\PlaceBundle\Entity\Place $places)
+    {
+        $this->places[] = $places;
+
+        return $this;
+    }
+
+    /**
+     * Remove places
+     *
+     * @param \PlanIt\PlaceBundle\Entity\Place $places
+     */
+    public function removePlace(\PlanIt\PlaceBundle\Entity\Place $places)
+    {
+        $this->places->removeElement($places);
+    }
+
+    /**
+     * Get places
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlaces()
+    {
+        return $this->places;
     }
 }

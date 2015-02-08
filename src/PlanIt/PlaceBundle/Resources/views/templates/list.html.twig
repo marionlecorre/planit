@@ -1,0 +1,41 @@
+{% twig_js name="list" %}
+{% for place in module.places%}
+<div>
+	<input type="checkbox" class="check" id="check" onClick="" {% if place.state == 1 %} checked {% endif %}>
+</div>
+<div id="head_list" class="head-list accordion-head">	
+	<div class="name">{{place.name}}</div>
+    <div class="price">{{place.price}}€</div>
+</div>
+<div class="accordion-body">
+    <div class="labels row">
+    	<div class="col-lg-3 col-md-12 col-sm-12 img_place"> </div>
+    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
+        	<p><span class="label_descr">Adresse</span> : {{place.address}}</p>
+        	<p><span class="label_descr">Capacité</span> : {{place.capacity}}</p>
+        	<p><span class="label_descr">Distance</span> : {{place.distance}}km</p>
+        	<p><span class="label_descr">Téléphone</span> : {{place.tel}}</p>
+        	<p><span class="label_descr">Site</span> : {{place.website}} </p>
+        	<p><span class="label_descr">Remarque</span> : {{place.remark}} </p>
+        	<p><span class="label_descr">Remarque</span> : 
+        		<select>
+        			<option value="0">Refusé</option>
+        			<option value="2">Contacté</option>
+        			<option value="1">Accepté</option>
+        		</select>
+        	</p>
+        	<p><span class="label_descr">Contrat</span> :  
+				<div class="input-file-container">
+				  <input class="input-file" id="my-file" type="file">
+				  <label for="my-file" class="input-file-trigger" tabindex="0">Selectionner le contrat</label>
+				</div>
+				<p class="file-return"></p>
+        	</p>
+    	</div>
+    	<div class="col-lg-5 col-md-6 col-sm-12" id="map_canvas_{{place.id}}">
+    	</div>
+
+    </div>
+</div>
+<script>initializeMap({{place.id}}, {{place.latitude}}, {{place.longitude}})</script>
+{% endfor %}
