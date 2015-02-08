@@ -37,4 +37,22 @@ class TypeExpenseRestController extends Controller
         )));
     }
 
+    public function deleteTypeexpenseAction($type_id)
+    {
+        $type_expense = $this->getDoctrine()->getRepository('PlanItBudgetBundle:TypeExpense')->find($type_id);
+        $expenses = $type_expense->getExpenses();
+        foreach($expenses as $expense){
+            $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->remove($expense);
+        }
+        
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($type_expense);
+        $em->flush();
+        return $type_expense->getModule();
+
+    }
+
 }

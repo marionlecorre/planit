@@ -1,7 +1,24 @@
 {% twig_js name="tab" %}
 
-<li><a class="tab" href="#section-topline-general"><span>Récapitulatif</span></a></li>
+<li><a class="tab" id="tab-general" href="#section-topline-general"><span>Récapitulatif</span></a></li>
 {% for type_expense in module.types_expense %}
-	<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a></li>
+	<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span>
+		<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}">x</span></a> 
+	</li>
 {% endfor %}
 <li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>Apports</span></a></li>
+
+<div class="modal fade deleteTypeExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?</h4>
+            </div>
+            <div class="modal-body row">
+                <button id="delete_confirm_typeexpense" class="btn btn-default col-md-6"> Oui </button>
+                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+            </div>
+        </div>
+  </div>
+</div>

@@ -307,3 +307,64 @@ function updateInflow(inflow_id){
 	       },
 	});
 }
+
+function deleteTypeExpense(type_id){
+	$.ajax({
+	   url : '/app_dev.php/api/typeexpenses/'+type_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(module){ // code_html contient le HTML renvoyé
+	   		var menu = Twig.render(tab,
+                            {
+                                module : module,
+                            });
+
+	       	$('#tab').html(menu);
+
+	       var list = module.types_expense;
+	       	var balance;
+	       	if(module.base){
+	       		balance = module.base;
+	       	}
+	       	else {
+	       		balance=0;
+	       	}
+	       	
+	       	$.each(list, function(key, val) {
+	            // récupération du prix total d'une catégorie
+	            if (val['expenses'].length != 0){
+	            	if(val['type']==1){
+		              	$.each(val['expenses'],function(key,val){
+							balance += (val['price']);
+	              		});
+	              	}
+	              	else if (val['type']==0) {
+	              		$.each(val['expenses'],function(key,val){
+		              		balance -= val['price']*(val['quantity']-val['stock']);
+		              	});
+	              	}
+	            }
+	        });
+   			var content = Twig.render(tab_content,
+                            {
+                                module : module,
+                                max : module.max_budget,
+                                balance : balance
+                            });
+
+       		$('#tab_content').html(content);
+
+       		$(".tab").parent().removeClass('tab-current');
+       		$("#tab-general").parent().attr('class', 'tab-current');
+
+			$(".section-topline").parent().removeClass('content-current');
+			$("#section-topline-general").attr('class', 'content-current');
+			getListInflow(module.id);
+			getListExpense(module.id);
+       		
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
