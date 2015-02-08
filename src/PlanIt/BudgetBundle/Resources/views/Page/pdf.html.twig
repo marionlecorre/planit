@@ -1,2 +1,50 @@
-wesh bb
-{{module_id}}
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+		{% for type_expense in types_expense %}
+			{{type_expense.name}} :
+			<table class="table table-bordered table-condensed table-body-center" >
+				<thead>
+					<tr>
+						<th>Article</th>
+						<th>Quantité</th>
+						<th>En stock</th>
+						<th>A acheter</th>
+						<th>Prix unitaire</th>
+						<th>Prix total</th>
+					</tr>
+				</thead>
+				
+				
+				<tbody>
+					{% for expense in type_expense.expenses %}
+						<tr>
+							<td data-title="Article">
+								<span>{{expense.name}}</span>
+							</td>
+							<td data-title="Quantité">
+								<span>{{expense.quantity}}</span>
+							</td>
+							<td data-title="En stock">
+								<span>{{expense.stock}}</span>
+							</td>
+							<td data-title="A acheter">
+								<span>{{expense.quantity - expense.stock}}</span>
+							</td>
+							<td data-title="Prix unitaire">
+								<span>{{expense.price}}</span>
+							</td>
+							<td data-title="Prix total">
+								<span>{{expense.price * (expense.quantity - expense.stock)}}</span>
+							</td>
+					{% endfor %}						
+				</tbody>
+			</table>
+
+
+		{% endfor %}
+	</body>
+</html>

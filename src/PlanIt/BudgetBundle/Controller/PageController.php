@@ -21,7 +21,8 @@ class PageController extends Controller
     public function pdfAction($module_id){
     	$module = $this->getDoctrine()->getEntityManager()->getRepository('PlanItModuleBundle:Module')->find($module_id);
     	$html = $this->renderView('PlanItBudgetBundle:Page:pdf.html.twig', array(
-					    	'module_id'  => $module_id
+					    	'module'  => $module,
+					    	'types_expense' => $module->getTypesExpense()
 						));
 
 		return new Response(
