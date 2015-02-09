@@ -5,6 +5,7 @@ namespace PlanIt\PlaceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\PlaceBundle\Entity\Place;
 use PlanIt\PlaceBundle\Form\PlaceType;
+use PlanIt\PlaceBundle\Form\ContractType;
 
 class PlaceController extends Controller
 {
@@ -18,6 +19,22 @@ class PlaceController extends Controller
         $form   = $this->createForm(new PlaceType(), $place);
 
         return $this->render('PlanItPlaceBundle:Place:form.html.twig', array(
+            'place' => $place,
+            'form'   => $form->createView(),
+            'module_id' => $module_id,
+        ));
+    }
+
+    public function contractAction($module_id)
+    {
+        $module = $this->getModule($module_id);
+
+
+        $place = new Place();
+        $place->setModule($module);
+        $form   = $this->createForm(new ContractType(), $place);
+
+        return $this->render('PlanItPlaceBundle:Place:contract-form.html.twig', array(
             'place' => $place,
             'form'   => $form->createView(),
             'module_id' => $module_id,

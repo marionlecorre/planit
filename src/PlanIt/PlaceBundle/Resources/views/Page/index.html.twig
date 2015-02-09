@@ -21,6 +21,7 @@
 		<!-- Template list.html.twig-->
 	</div>
      {{ render(controller('PlanItPlaceBundle:Place:form', { 'module_id' : module_id } ))}}
+     {{ render(controller('PlanItPlaceBundle:Place:contract', { 'module_id' : module_id } ))}}
 
 	
 	</section>
@@ -30,7 +31,7 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> getModule({{module_id}}); </script>
+    <script>getModule({{module_id}}); </script>
     <script>accordeonPlace();</script>
     <script>initializeMap();</script>
 {% endblock %}

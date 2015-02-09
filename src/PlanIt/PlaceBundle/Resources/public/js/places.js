@@ -10,7 +10,12 @@ function accordeonPlace(){
 		}
 	});
 }
-
+function places(){
+	$('.updateContractModal').on("show.bs.modal",function(e){
+		var id = $(e.relatedTarget).data('id');
+		$("#form-post-contract").attr("action","/app_dev.php/api/places/"+id+"/contracts");
+	});
+}
 //input file
 // ajout de la classe JS à HTML
 document.querySelector("html").classList.add('js');

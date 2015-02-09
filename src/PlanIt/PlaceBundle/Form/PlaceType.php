@@ -26,7 +26,14 @@ class PlaceType extends AbstractType
             ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Site web')))
             ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Latitude')))
             ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Longitude')))
-            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Remarque')));
+            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Remarque')))
+            ->add('state','choice', array(
+                                        'choices'   => array(
+                                            '' => '',
+                                            0   => 'Refusé',
+                                            2 => 'Contacté',
+                                            1   => 'Accepté',
+                                        ), 'label'  => false, 'attr' => array('placeholder' => 'Etat')));
 
     }
     

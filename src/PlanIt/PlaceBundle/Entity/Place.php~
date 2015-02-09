@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * @ORM\Entity
  * @ORM\Table(name="place")
+ * @ORM\Entity(repositoryClass="PlanIt\PlaceBundle\Repository\PlaceRepository")
  */
 class Place
 {
@@ -68,6 +69,11 @@ class Place
      * @ORM\Column(type="text")
      */
     protected $remark;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $contract;
 
     /**
      * @ORM\Column(type="integer", length=1)
@@ -342,5 +348,51 @@ class Place
     public function getModule()
     {
         return $this->module;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param float $latitude
+     * @return Place
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return float 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param float $longitude
+     * @return Place
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return float 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }

@@ -1,11 +1,12 @@
 {% twig_js name="list" %}
 {% for place in module.places%}
 <div>
-	<input type="checkbox" class="check" id="check" onClick="" {% if place.state == 1 %} checked {% endif %}>
+	<input type="checkbox" class="check" id="check" onClick="chosePlace({{place.id}})" {% if place.state == 1 %} checked {% endif %}>
 </div>
-<div id="head_list" class="head-list accordion-head">	
+<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% endif %}">	
 	<div class="name">{{place.name}}</div>
     <div class="price">{{place.price}}€</div>
+    <button onclick="deletePlace({{place.id}})">X</button>
 </div>
 <div class="accordion-body">
     <div class="labels row">
@@ -19,17 +20,25 @@
         	<p><span class="label_descr">Remarque</span> : {{place.remark}} </p>
         	<p><span class="label_descr">Remarque</span> : 
         		<select>
-        			<option value="0">Refusé</option>
-        			<option value="2">Contacté</option>
-        			<option value="1">Accepté</option>
+        			<option value="0" {% if place.state == 0 %} selected {% endif %}>Refusé</option>
+        			<option value="2" {% if place.state == 2 %} selected {% endif %}>Contacté</option>
+        			<option value="1" {% if place.state == 1 %} selected {% endif %}>Accepté</option>
         		</select>
         	</p>
-        	<p><span class="label_descr">Contrat</span> :  
-				<div class="input-file-container">
-				  <input class="input-file" id="my-file" type="file">
-				  <label for="my-file" class="input-file-trigger" tabindex="0">Selectionner le contrat</label>
-				</div>
-				<p class="file-return"></p>
+        	<p><span class="label_descr">Contrat</span> : {{place.contract}}
+                <div class="bt_place">
+                    <button data-toggle="modal" data-target=".updateContractModal" data-id="{{place.id}}">Modifier le contrat</button> 
+                </div>
+                <!-- <form action="/app_dev.php/api/places/{{place.id}}/contracts" method="post">
+                    <input type="file">
+                    <input type="submit">
+    				<div class="input-file-container">
+        				  <input class="input-file" id="my-file" type="file">
+        				  <label for="my-file" class="input-file-trigger" tabindex="0">Selectionner le contrat</label>
+                          <input type="submit">
+    				</div>
+    				<p class="file-return"></p>
+                </form> -->
         	</p>
     	</div>
     	<div class="col-lg-5 col-md-6 col-sm-12" id="map_canvas_{{place.id}}">
@@ -37,5 +46,7 @@
 
     </div>
 </div>
-<script>initializeMap({{place.id}}, {{place.latitude}}, {{place.longitude}})</script>
+<script>//initializeMap({{place.id}}, {{place.latitude}}, {{place.longitude}})</script>
 {% endfor %}
+
+<script>places();</script>

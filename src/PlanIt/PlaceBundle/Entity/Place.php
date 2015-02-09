@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * @ORM\Entity
  * @ORM\Table(name="place")
+ * @ORM\Entity(repositoryClass="PlanIt\PlaceBundle\Repository\PlaceRepository")
  */
 class Place
 {
@@ -68,6 +69,11 @@ class Place
      * @ORM\Column(type="text")
      */
     protected $remark;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $contract;
 
     /**
      * @ORM\Column(type="integer", length=1)
@@ -388,5 +394,41 @@ class Place
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * Set contract
+     *
+     * @param string $contract
+     * @return Place
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Get contract
+     *
+     * @return string 
+     */
+    public function getContract()
+    {
+        return $this->contract;
+    }
+
+    public function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'files/place/contracts';
     }
 }
