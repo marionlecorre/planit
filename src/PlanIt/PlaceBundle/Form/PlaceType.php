@@ -43,7 +43,8 @@ class PlaceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\PlaceBundle\Entity\Place'
+            'data_class' => 'PlanIt\PlaceBundle\Entity\Place',
+            'csrf_protection' => false,
         ));
     }
 

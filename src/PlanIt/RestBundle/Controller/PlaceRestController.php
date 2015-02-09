@@ -67,6 +67,19 @@ class PlaceRestController extends Controller
         return $place->getModule();
     }
 
+    public function putPlaceAction(Request $request, $place_id)
+    {
+        $place = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->find($place_id);
+        $form = $this->createForm(new PlaceType(), $place, array('method' => 'PUT'));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($place);
+            $em->flush();
+            return $place->getModule();
+        }
+    }
+
     public function postPlaceContractAction(Request $request, $place_id)
     {
         $place = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->find($place_id);
