@@ -842,12 +842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "12c0a86b714ee0b2d649e943471146f089951926"
+                "reference": "1bc1416168c4058ff14ccaeff844e6a4915c694c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/12c0a86b714ee0b2d649e943471146f089951926",
-                "reference": "12c0a86b714ee0b2d649e943471146f089951926",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/1bc1416168c4058ff14ccaeff844e6a4915c694c",
+                "reference": "1bc1416168c4058ff14ccaeff844e6a4915c694c",
                 "shasum": ""
             },
             "require": {
@@ -911,7 +911,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-02-08 13:51:51"
+            "time": "2015-02-09 12:14:51"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2489,6 +2489,7 @@
         "knplabs/knp-snappy-bundle": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },
