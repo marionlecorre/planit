@@ -37,6 +37,7 @@ function getModule(id){
 						   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
 						   			var title = Twig.render(guests_title,
 						                            {
+						                                module_id:module.id,
 						                                name : module.name,
 						                                nb_guests:nbGuests,
 						                                nb_max:module.max_guests
@@ -102,6 +103,7 @@ function deleteGuest(id){
 			   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
 			   			var title = Twig.render(guests_title,
 			                            {
+			                                module_id:module.id,
 			                                name : module.name,
 			                                nb_guests:nbGuests,
 			                                nb_max:module.max_guests
@@ -158,6 +160,7 @@ function updateGuest(id, attr){
 			   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
 			   			var title = Twig.render(guests_title,
 			                            {
+			                                module_id:module.id,
 			                                name : module.name,
 			                                nb_guests:nbGuests,
 			                                nb_max:module.max_guests

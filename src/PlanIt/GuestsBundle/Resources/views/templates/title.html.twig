@@ -1,3 +1,6 @@
 {% twig_js name="guests_title" %}
 <div class="col-md-10" > <h1>{{name|upper}}</h1> </div>
 <div class="col-md-2" > Inscrits : {{nb_guests}}/{{nb_max}} </div>
+<div class="col-md-2 pull-right">
+<button data-toggle="modal" data-target=".updateModuleModal" data-type="">Modifier le module</button>
+</div>

@@ -59,6 +59,86 @@ class EventRestController extends Controller
         ));*/
     }
 
+    public function deleteModuleAction($module_id)
+    {
+        
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        $event = $module->getEvent();
+        $nbGuests = $this->getEventNbguestsAction($event->getId());
+
+        $em = $this->getDoctrine()
+                       ->getEntityManager();
+        switch($module->getIntType()){
+            case 1: //guests
+                $types_guests = $module->getTypeGuest();
+                foreach ($types_guests as $type) {
+                    $guests = $type->getGuests();
+                    foreach ($guests as $guest) {
+                        $em->remove($guest);
+                        $em->flush();
+                    }
+                    $em->remove($type);
+                    $em->flush();
+                }
+                $payments = $module->getPaymentMeans();
+                foreach ($payments as $payment) {
+                    $em->remove($payment);
+                    $em->flush();
+                }
+                //return 'ok'
+            break;
+
+            case 2: //budget
+                $types_expense = $module->getTypesExpense();
+                foreach ($types_expense as $type) {
+                    $expenses = $type->getExpenses();
+                    foreach ($expenses as $expense) {
+                        $em->remove($expense);
+                        $em->flush();
+                    }
+                    $em->remove($type);
+                    $em->flush();
+                }
+                $inflows = $module->getInflows();
+                foreach ($inflows as $inflow) {
+                    $em->remove($inflow);
+                    $em->flush();
+                }
+
+            break;
+
+
+            case 3: //place
+                $places = $module->getPlaces();
+                foreach ($places as $place) {
+                    $em->remove($place);
+                    $em->flush();
+                }
+            break;
+
+            case 4:
+
+            break;
+
+            case 5: //todo
+                $items = $module->getItems();
+                foreach ($items as $item) {
+                    $em->remove($item);
+                    $em->flush();
+                }
+            break;
+
+
+        }
+        $em->remove($module);
+        $em->flush();
+        return array(
+                    'nbGuests' => $nbGuests,
+                    'event' => $event
+                );
+
+    }
+
     public function getEventNbguestsAction($event_id){
         return $nbGuests = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($event_id);
     }

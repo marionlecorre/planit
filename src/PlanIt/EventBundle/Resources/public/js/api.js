@@ -71,6 +71,25 @@ function getEvent(id){
 	});
 }
 
+function deleteModule(module_id){
+	$.ajax({
+	   url : '/app_dev.php/api/modules/'+module_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   	console.log(data);
+       	var modules_rend = Twig.render(modules,
+	                            {
+	                                evnt : data.event,
+	                            });
+	       $('#modules').html(modules_rend);	
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+
 function dateDiff(date1, date2){
     var diff = {}                           // Initialisation du retour
     var tmp = date2 - date1;

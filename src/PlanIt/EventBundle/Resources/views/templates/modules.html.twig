@@ -1,5 +1,6 @@
 {% twig_js name="modules" %}
 {% for module in evnt.modules %}
+	<button onclick="deleteModule({{module.id}})"> X </button>
 	<a href="/app_dev.php/event/{{evnt.id}}/module/{{module.id}}">
 		<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
 			<div id="module_{{module.type}}" class="module_button">
