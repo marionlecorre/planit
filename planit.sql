@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Lun 09 Février 2015 à 00:29
+-- Généré le :  Mar 10 Février 2015 à 13:47
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -118,14 +118,15 @@ CREATE TABLE `inflow` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `amount` double NOT NULL,
   `module_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `inflow`
 --
 
 INSERT INTO `inflow` (`id`, `name`, `amount`, `module_id`) VALUES
-(1, 'Mamie', 1000, 12);
+(1, 'Mamie', 1000, 12),
+(2, 'Maman robe', 500, 12);
 
 -- --------------------------------------------------------
 
@@ -256,26 +257,28 @@ CREATE TABLE `place` (
 `id` int(11) NOT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `distance` double DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `capacity` double DEFAULT NULL,
-  `website` longtext COLLATE utf8_unicode_ci,
-  `remark` longtext COLLATE utf8_unicode_ci,
-  `state` int(11) DEFAULT NULL,
+  `tel` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `distance` double NOT NULL,
+  `price` double NOT NULL,
+  `capacity` double NOT NULL,
+  `website` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `remark` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `state` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
-  `latitude` double DEFAULT NULL,
-  `longitude` double DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
+  `contract` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `place`
 --
 
-INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`) VALUES
-(1, 'Car ki roule', '90 rue de la poupée qui tousse 93450 L''oie qui marche', '013456726895', 60, 3500, 150, 'www.carkiroule.com', 'Ouais c''est cool !', 2, 14, 44.3362651, 1.2101346),
-(2, 'Car en bolage', '30 rue de Paris 45980 Chaton-en-Oise', '023478946738', 135, 2700, 100, 'www.carenbolage.fr', 'Mouais', 0, 14, 50.0419825, 1.430245),
-(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 2, 14, NULL, NULL);
+INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`) VALUES
+(2, 'Car en bolag', '55 rue du cul', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 1, 14, 0, 0, '2-11124.jpeg'),
+(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 0, 14, 0, 0, '3-59506.jpeg'),
+(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg'),
+(5, 'Chez pépé', '67 rue du cul 89000 montcuq', '012345678909', 45, 2000, 100, '', 'LOL', 2, 14, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -294,8 +297,7 @@ CREATE TABLE `type_expense` (
 --
 
 INSERT INTO `type_expense` (`id`, `module_id`, `name`) VALUES
-(1, 12, 'Boissons'),
-(2, 12, 'Bouffe');
+(1, 12, 'Boissons');
 
 -- --------------------------------------------------------
 
@@ -452,7 +454,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT pour la table `inflow`
 --
 ALTER TABLE `inflow`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `item`
 --
@@ -472,7 +474,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `place`
 --
 ALTER TABLE `place`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `type_expense`
 --
