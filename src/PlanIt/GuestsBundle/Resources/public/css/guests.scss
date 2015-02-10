@@ -25,6 +25,7 @@ header {
 		.head-list {
 			background-color: $head-list;
 			padding: 13px 27px 13px 10px;
+			cursor: pointer;
 			@include border-radius(5px);
 			.name {
 				float:left;
@@ -47,10 +48,35 @@ header {
 				float: right;
 				margin-right: 49px;
 			}
+			.modify_type, .delete_type {
+				background: url('/images/picto-modif.png') no-repeat;
+				width: 24px;
+				height: 24px;
+				float: right;
+				margin: 2px 52px 0 0;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			.delete_type{
+				background-position-x : -20px;
+				&:hover {
+					background-position-x : -69px;
+				}
+			}
+
+			.modify_type{
+				margin-right: 0px;
+				&:hover {
+					background-position-x : -49px;
+				}
+			}
+
 		}
 		.labels.row {
 			margin: 0;
-			padding: 15px 0 10px 0;
+			padding: 10px 0 5px 0;
 			color: #828282;
 			form input[type="checkbox"]{
 				display: block;
@@ -62,10 +88,11 @@ header {
 			}
 		}
 	 	.row-list.row {
-			margin:0 0 7px 0;
+			margin:0 0 10px 0;
 			background-color: $row-list;
 			padding: 7px 0;
-			@include border-radius(3px); 
+			height: 40px;
+			@include border-radius(5px); 
 			input[type="text"] {
 				border: none;
 				@include border-radius(3px); 
@@ -74,14 +101,14 @@ header {
 			}
 			input[type="checkbox"]{
 				display: block;
-				margin: 10px auto;
+				margin: 7px auto;
 				width: 14px;
 			}
 			.confirmed .light, .payed .light {
 				background-color: #000;
 				height: 11px;
 				width: 11px;
-				margin: 12px auto;
+				margin: 9px auto;
 				@include border-radius(11px); 
 
 				&.state-1 {
@@ -101,11 +128,12 @@ header {
 				background: url('/images/guests/icon_guests.png') no-repeat;
 				width: 24px;
 				height: 24px;
-				margin: 7px auto 0 auto;
+				margin: 5px auto 0 auto;
 				&:hover {
 					cursor: pointer;
 				}
 			}
+
 			.sent-true .picto {
 				background-position-x : -54px;
 			}
