@@ -9,11 +9,12 @@
 		text-decoration: none;
 	}
 	.event-thumbnail {
-		border: solid 1px #dad7d7;
+		background-color: $add_event;
 		height: 300px;
 		margin-bottom: 20px;
+		@include box-shadow(0,2px,4px,0px,#a2a2a2);
 		&:hover {
-			border-color: darken(#dad7d7,15%);
+			background-color: darken($add_event, 5%);
 		}
 
 		.head {
@@ -23,8 +24,8 @@
 			h2,.date {
 				color: $text_listing;
 				margin : 0;
-				font: 16px 'PT Sans';
-				font-weight: 500;
+				font-size: 16px;
+				font-weight: 600;
 			}
 			h2{
 				float: left;
@@ -50,7 +51,6 @@
 			.description {
 				text-align: justify;
 				color: $text_listing;
-				font: 12px 'PT Sans';
 				margin-top:5px;
 			}
 		}

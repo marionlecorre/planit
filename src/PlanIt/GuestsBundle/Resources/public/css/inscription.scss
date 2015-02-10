@@ -1,0 +1,10 @@
+@import 'general';
+
+#inscription{
+	input[type="text"] {
+				border: none;
+				@include border-radius(3px); 
+				padding: 3px;
+				width: 100%;
+			}
+}
