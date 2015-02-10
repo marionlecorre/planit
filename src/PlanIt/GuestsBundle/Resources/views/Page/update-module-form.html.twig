@@ -5,7 +5,7 @@
                 <h4 class="modal-title" id="myModalLabel">Ajouter un invité</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="form-post-guest" action="" method="post" {{ form_enctype(form) }} class="blogger">
+                    <form id="form-post-guest" action="/app_dev.php/api/guestsmodules/{{module.id}}/updates" method="post" {{ form_enctype(form) }} class="blogger">
                         {{ form_widget(form) }}
 
 				    <p>
