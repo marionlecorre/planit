@@ -1,8 +1,24 @@
-<form id="form-post-guest" action="/app_dev.php/api/guests/{{guest.id}}/answers" method="post" {{ form_enctype(form) }} class="blogger">
-    {{ form_widget(form) }}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  type="text/css" href="/css/inscription.css">
+    <title>Réponse</title>
+    <meta name="description" content="">
+  </head>
+<body>
+		<header><h1>Réponse à l'invitation</h1></header>
 
-    <p>
-        <input type="submit" value="Valider">
-    </p>
-</form>
+	<div id="content">
+		<form id="form-post-guest" action="/app_dev.php/api/guests/{{guest.id}}/answers" method="post" {{ form_enctype(form) }} class="blogger">
+	    {{ form_widget(form) }}
+		    <p>
+		        <input type="submit" value="Valider">
+		    </p>
+		</form>
+	</div>
+
+</body>
+</html>
+
 

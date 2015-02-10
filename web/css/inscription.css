@@ -1,0 +1,102 @@
+/*@font-face {  font-family: "GothamHTF-Medium";  src: url('/fonts/GothamHTF-Medium.otf') format("opentype"); }*/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,100);
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+body{
+	font-family: 'Roboto';
+	text-align: center;
+	background-color: #f1f1f1;
+	height: 100%;
+	margin:0;
+	
+}
+
+#content{
+	width: 20%;
+	margin: auto;
+	position: absolute;
+  	left: 50%;
+  	top:250px;
+  	width: 320px;
+  	margin-left: -160px;
+  	text-align: left;
+}
+
+input[type="text"] {
+	@include border-radius(3px); 
+	padding: 8px;
+	width: 95%;
+	margin-bottom: 20px;
+	border:0;
+}
+
+input[type="submit"] {
+	@include border-radius(3px); 
+	padding: 8px 0;
+	width: 100%;
+	margin: 20px 0;
+	border:0;
+	background-color: #252525;
+	color:#fff;
+}
+
+
+input[type="submit"]:hover{
+	background-color: #61c0a5;
+}
+
+#form-post-guest{
+	position: relative;
+     margin: auto;
+     top: 40%;
+     right: 0;
+     bottom: 0;
+     left: 0;
+}
+
+select{
+	@include border-radius(3px); 
+	padding: 8px;
+	width: 100%;
+	margin: 10px 20px 0 0;
+	border:0;
+	color: #a4a4a4;
+}
+
+label{
+	position: relative;
+	color:#252525;
+	font-size: 14px;
+	padding-bottom:50px;
+}
+
+header{
+	background-color: #252525;
+	color:#fff;
+	padding: 20px;
+	margin-bottom: 50px;
+}
+
+/*#logo {
+	color: #FFF;
+	font-family: 'GothamHTF-Medium';
+	font-size: 23px;	
+	height: 60px;
+	line-height: 64px;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;*/
+	/*@include box-shadow(0px,4px,2px,-2px,#1c1c1c);*/
+/*}
+
+.blue {
+		color: #61c0a5;
+		font-family: 'Roboto';
+		font-weight: 100;
+}*/

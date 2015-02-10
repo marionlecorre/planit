@@ -1,8 +1,26 @@
-<form id="form-post-guest" action="/app_dev.php/api/guests/{{module_id}}/inscriptions" method="post" {{ form_enctype(form) }} class="blogger">
-    {{ form_widget(form) }}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  type="text/css" href="/css/inscription.css">
+    <title>Inscription</title>
+    <meta name="description" content="">
+  </head>
+<body>
+		<header>
+			<!--<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>-->
+			<h1>Inscription</h1>
+		</header>
 
-    <p>
-        <input type="submit" value="Valider">
-    </p>
-</form>
+	<div id="content">
+		<form id="form-post-guest" action="/app_dev.php/api/guests/{{module_id}}/inscriptions" method="post" {{ form_enctype(form) }} class="blogger">
+	    {{ form_widget(form) }}
+		    <p>
+		        <input type="submit" value="Valider">
+		    </p>
+		</form>
+	</div>
+
+</body>
+</html>
 
