@@ -18,14 +18,17 @@ class TypeGuestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $module_type = $this->module_type;
+        $payable = $this->payable;
 
         $builder
-            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')));
+            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie *')));
         if($module_type == 0){
             $builder->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')));
 
         }
+        if($payable == 1){
             $builder->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix *')));
+        }
     }
     
     /**
@@ -46,9 +49,10 @@ class TypeGuestType extends AbstractType
         return 'planit_guestsbundle_typeguest';
     }
 
-    public function __construct($module_type)
+    public function __construct($module_type,$payable)
     {
         $this->module_type = $module_type;
+        $this->payable = $payable;
 
     }
 }

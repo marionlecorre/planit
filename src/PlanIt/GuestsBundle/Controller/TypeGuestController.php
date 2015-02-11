@@ -12,10 +12,11 @@ class TypeGuestController extends Controller
     {
         $module = $this->getModule($module_id);
         $module_type = $module->getGuestmoduleType();
+        $paying = $module->getPayable();
 
         $typeguest = new TypeGuest();
         $typeguest->setModule($module);
-        $form   = $this->createForm(new TypeGuestType($module_type), $typeguest);
+        $form   = $this->createForm(new TypeGuestType($module_type,$paying), $typeguest);
 
         return $this->render('PlanItGuestsBundle:TypeGuest:form.html.twig', array(
             'typeguest' => $typeguest->getId(),

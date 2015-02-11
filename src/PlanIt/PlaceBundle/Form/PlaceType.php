@@ -17,7 +17,7 @@ class PlaceType extends AbstractType
     {
         
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom du lieu *')))
             ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'Adresse *')))
             ->add('tel','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Téléphone')))
             ->add('distance','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Distance')))
