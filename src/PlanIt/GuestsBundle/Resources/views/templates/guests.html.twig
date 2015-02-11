@@ -7,39 +7,50 @@
         {# Tête de liste #}
         <div class="row list" >
             <div class="head-list accordion-head">
-                <form action="">
-                    <select onchange="showModalMultiple({{type.id}})" data-multiple="1" data-action="$('#actions-{{type-id}}').val()" data-type="{{type.id}}" name="actions" id="actions-{{type.id}}">
-                            <option value="none">Action</option>
-                            {% if moduleGuestType == false %}
-                                <option value="send">Envoyer</option>
-                            {% endif %}
-                            <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type.id}}" value="delete">Supprimer</option>
-                    </select>
-                </form>
-                <div class="name">{{type.label}}</div>
-                <div class="delete_type"></div>
-                <div class="modify_type"></div>
-                <div class="price">{{type.price}}€/pers</div>
+                <div class="left col-md-5 col-sm-6 col-xs-6" >
+                    <form action="" class="hidden-phone">
+                        <select onchange="showModalMultiple({{type.id}})" data-multiple="1" data-action="$('#actions-{{type-id}}').val()" data-type="{{type.id}}" name="actions" id="actions-{{type.id}}">
+                                <option value="none">Action</option>
+                                {% if moduleGuestType == false %}
+                                    <option value="send">Envoyer</option>
+                                {% endif %}
+                                <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type.id}}" value="delete">Supprimer</option>
+                        </select>
+                    </form>
+                    <div class="name">{{type.label}}</div>
+                </div>
+                
+                <div class="price col-md-1 col-sm-2 col-md-offset-2 col-sm-offset-0">{{type.price}}€/pers</div>
+                <div class="right pull-right col-md-2 col-sm-3" >
+                    <div class="modify_type"></div>
+                    <div class="delete_type"></div>
+                    
+                </div>
             </div>
             {# Labels #}
             <div class="accordion-body">
-                <div class="labels row">
-                    <form action="" id="select-all" class="col-md-1">
+                <div class="labels row hidden-phone">
+                    <form action="" id="select-all" class="col-md-1 col-sm-1">
                         <input onclick="checkAll({{type.id}})" id="checkall-{{type.id}}" type="checkbox">
                     </form>
-                    <p class="name col-md-1">Prénom</p>
-                    <p class="name col-md-2">Nom</p>
-                    <p class="email col-md-2">Email</p>
-                    <p class="confirmed col-md-1">Confirmé</p>
+                    <p class="name col-md-1 col-sm-1 ">Prénom</p>
+                    <p class="name col-md-2 col-sm-2 ">Nom</p>
+                    <p class="email col-md-2 col-sm-2">Email</p>
+                    <p class="confirmed col-md-1 col-sm-1  visible-desktop">Confirmé</p>
+                    <p class="confirmed col-md-1 col-sm-1  hidden-desktop">Confirm.</p>
                     {% if payable %}
-                    <p class="payed col-md-1">Payé</p>
-                    <p class="payment col-md-2">Mode de paiement</p>
+                    <p class="payed col-md-1 col-sm-1 ">Payé</p>
+                    <p class="payment col-md-2 col-sm-2 visible-desktop">Mode de paiement</p>
+                    <p class="payment col-md-2 col-sm-2 hidden-desktop">Paiement</p>
                     {% endif %}
                     {% if moduleGuestType == false %}
-                        <p class="send col-md-1">Envoyer</p>
-                        <p class="delete col-md-1 pull-right">Supprimer</p>
+                        <p class="send col-md-1 col-sm-1 visible-desktop">Envoyer</p>
+                        <p class="send col-md-1 col-sm-1 hidden-desktop">Env.</p>
+                        <p class="delete col-md-1 col-sm-1 pull-right visible-desktop">Supprimer</p>
+                        <p class="delete col-md-1 col-sm-1 pull-right hidden-desktop">Supp.</p>
                     {% elseif moduleGuestType == true %}
-                        <p class="delete col-md-2 pull-right">Supprimer</p>
+                        <p class="delete col-md-2 col-sm-2 pull-right visible-desktop">Supprimer</p>
+                        <p class="delete col-md-2 col-sm-2 pull-right hidden-desktop">Supp.</p>
                     {% endif %}
                 </div>
                 {# Données #}
@@ -50,19 +61,19 @@
                 {% for guest in guests %}
                     {% if guest.type_guest.id == type.id %}
                         <div class="row-list row">
-                            <form action="" id="select-field" class="col-md-1">
+                            <form action="" id="select-field" class="col-md-1 col-sm-1 col-xs-1 hidden-phone">
                                 <input class="checkbox-action-{{type.id}}" name="checkbox-action-{{type.id}}" id="{{guest.id}}" type="checkbox">
                             </form>
                             <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.type_guest.id}}">
-                            <div class="firstname col-md-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>
-                            <div class="lastname col-md-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
-                            <div class="email col-md-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
-                            <div class="confirmed col-md-1"><div onclick="updateGuest({{guest.id}}, 'confirmed')" id="confirmed-{{guest.id}}" data-type="{{guest.confirmed}}" class="light state-{{guest.confirmed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div></div>
+                            <div class="firstname col-md-1 col-sm-1 col-xs-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>
+                            <div class="lastname col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
+                            <div class="email col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
+                            <div class="confirmed col-md-1 col-sm-1 col-xs-1"><div onclick="updateGuest({{guest.id}}, 'confirmed')" id="confirmed-{{guest.id}}" data-type="{{guest.confirmed}}" class="light state-{{guest.confirmed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div></div>
                             {% if payable %}
-                            <div class="payed col-md-1">
+                            <div class="payed col-md-1 col-sm-1 col-xs-1">
                                     <div onclick="updateGuest({{guest.id}}, 'payed')" id="payed-{{guest.id}}" data-type="{{guest.payed}}" class="light state-{{guest.payed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div>
                             </div>
-                            <div class="payment col-md-2">
+                            <div class="payment col-md-2 col-sm-2 col-xs-2">
                                 <form action="" id="payment">
                                     {% if payment_means is empty %}
                                         <span> Aucun moyen de paiement </span>
@@ -78,10 +89,10 @@
                             </div>
                             {% endif %}
                             {% if moduleGuestType == false %}
-                                <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
-                                <div class="delete col-md-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
+                                <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1 col-sm-1 col-xs-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
+                                <div class="delete col-md-1 col-sm-1 col-xs-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
                             {% elseif moduleGuestType == true %}
-                                <div class="delete col-md-2 pull-right"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
+                                <div class="delete col-md-2 col-sm-2 col-xs-2 pull-right"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
                             {% endif %}
                         </div>
                 {% endif %}

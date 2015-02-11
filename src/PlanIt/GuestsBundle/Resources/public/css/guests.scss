@@ -10,6 +10,7 @@ header {
 		background-color: $color;
 		padding: 4px 17px;
 		width: 100%;
+		margin-top: 6px;
 	}
 	#paying-checkbox {
 		margin-top: 6px;
@@ -32,6 +33,11 @@ header {
 				margin-left: 20px;
 				font-size: 17px;
 				line-height: 17px;
+				@media (max-width: 737px) {
+					margin-left: 16px;
+					font-size: 14px;
+				}
+
 			}
 			form {
 				float: left;
@@ -45,15 +51,17 @@ header {
 				}
 			}
 			.price {
-				float: right;
-				margin-right: 49px;
+				float: left;
+				@media (min-width: 931px) {
+					margin-right: 49px;
+				}
 			}
 			.modify_type, .delete_type {
 				background: url('/images/picto-modif.png') no-repeat;
 				width: 24px;
 				height: 24px;
-				float: right;
-				margin: 2px 52px 0 0;
+				margin: 2px 23px 0 0;
+				float: left;
 				&:hover {
 					cursor: pointer;
 				}
@@ -78,6 +86,9 @@ header {
 			margin: 0;
 			padding: 10px 0 5px 0;
 			color: #828282;
+			.col-sm-1 {
+				padding:0;
+			}
 			form input[type="checkbox"]{
 				display: block;
 				margin: 3px auto;
@@ -93,6 +104,10 @@ header {
 			padding: 7px 0;
 			height: 40px;
 			@include border-radius(5px); 
+			.col-xs-1, .left.col-xs-6 {
+				padding:0;
+			}
+
 			input[type="text"] {
 				border: none;
 				@include border-radius(3px); 
@@ -140,9 +155,6 @@ header {
 			.delete .picto {
 				background-position-x : -106px;
 			}
-			form#payment {
-				width: 61%;
-			}
 		}
 		.add-guest {
 			margin: 7px -15px 0 0;
@@ -163,5 +175,23 @@ header {
 		&.open {
 			background-position: 97% 20px;
 		}	
+	}
+}
+
+
+// MEDIA QUERIES
+@media (max-width: 992px) {
+	.labels.row {
+		p,form {
+			font-size: 12px;
+		}		
+	}
+}
+@media (max-width: 768px) {
+	.accordion-body{
+		margin-top:12px;
+	}
+	.firstname {
+		padding-left: 7px !important;
 	}
 }
