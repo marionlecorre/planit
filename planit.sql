@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 10 Février 2015 à 13:47
+-- Généré le :  Jeu 12 Février 2015 à 00:56
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -104,8 +104,8 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `paymentmean_id`, `firs
 (9, 6, 2, NULL, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0),
 (10, 4, 7, NULL, 'test', 'test', 'test@g.com', 0, 0, 0),
 (11, 1, 4, NULL, 'Ali', 'Babouche', 'alibabouche@gmail.com', 0, 0, 0),
-(12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 0, 0, 1),
-(13, 1, 4, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 1, 1, 1);
+(12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 0, 0, 0),
+(13, 1, 4, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -290,7 +290,7 @@ CREATE TABLE `type_expense` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_expense`
@@ -479,7 +479,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 -- AUTO_INCREMENT pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `type_guest`
 --
