@@ -29,6 +29,7 @@ function getEvent(id){
 	                            {
 	                                days : dodos,
 	                                nb_guests : data.nbGuests,
+	                                balance : data.balance
 	                            });
 	       $('#infos').html(infos_rend);	       
 	       var modules_rend = Twig.render(modules,

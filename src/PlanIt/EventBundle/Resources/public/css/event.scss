@@ -48,9 +48,22 @@
 
 }
 
+
 .info_color{
-	background-color: $negative;
-	color:#ffffff;
+	background: $neutral url("/images/event/info_dte_budget.png") no-repeat;
+	background-position: 100% -112px;
+	color: #5c5a5a;
+	margin-top: 80px;
+	&.positif {
+		background-color: $positive;
+		background-position: 100% -223px;
+		color:#ffffff;
+	}
+	&.negatif {
+		background-color: $negative;
+		background-position: 100% 0px;
+		color:#ffffff;
+	}
 }
 
 #mes_modules{

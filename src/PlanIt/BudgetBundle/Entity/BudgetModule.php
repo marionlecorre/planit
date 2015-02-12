@@ -355,4 +355,20 @@ class BudgetModule extends Module
     {
         return $this->inflows;
     }
+
+    public function getBalance()
+    {
+        $balance = $this->getBase();
+        foreach ($this->getInflows() as $inflow) {
+            $balance += $inflow->getAmount();
+        }
+        foreach ($this->getTypesExpense() as $typeExpense){
+            foreach ($typeExpense->getExpenses() as $expense){
+                $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());
+                $balance -= $expenses;
+            }
+        }
+
+        return $balance;
+    }
 }

@@ -16,9 +16,16 @@ class EventRestController extends Controller
 	    if(!is_object($event)){
 	      throw $this->createNotFoundException();
 	    }
+        $balance = "Empty";
+        foreach ($event->getModules() as $value) {
+            if ($value->getIntType() == 2){
+                $balance = $value->getBalance();
+            }            
+        }
 	    return array(
                     'nbGuests' => $nbGuests,
-                    'event' => $event
+                    'event' => $event,
+                    'balance' => $balance
                 );
 	}
 

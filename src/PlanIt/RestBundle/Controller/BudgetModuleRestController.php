@@ -179,16 +179,7 @@ class BudgetModuleRestController extends Controller
         if(!is_object($module)){
           throw $this->createNotFoundException();
         }
-        $balance = $module->getBase();
-        foreach ($module->getInflows() as $inflow) {
-            $balance += $inflow->getAmount();
-        }
-        foreach ($module->getTypesExpense() as $typeExpense){
-            foreach ($typeExpense->getExpenses() as $expense){
-                $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());
-                $balance -= $expenses;
-            }
-        }
+        $balance = $module->getBalance();
         return array(
                 'module' => $module,
                 'balance' => $balance,
