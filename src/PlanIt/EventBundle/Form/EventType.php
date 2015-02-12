@@ -33,7 +33,7 @@ class EventType extends AbstractType
                                 'label'  => false, 
                                 'attr' => array('placeholder' => 'Date de fin *')
                                 ))
-            ->add('image', 'file',array('label'  => 'Choisissez une image'))
+            ->add('image', 'file',array('label'  => 'Choisissez une image', 'label_attr' => array('class'=>'file')))
         ;
     }
     

@@ -23,3 +23,11 @@ $("form input.date").datepicker({
     dateFormat: 'dd/mm/yy', 
     firstDay:1
 }).attr("readonly","readonly");
+
+$('input[type="file"]').on("change",function(){
+	$(this).closest('.browse-wrap');
+	var path = this.value.replace("C:\\fakepath\\", "");
+	var shortpath = jQuery.trim(path).substring(0, 20)
+                          .trim(this) + "...";
+	$(this).prev().text(shortpath);
+});
