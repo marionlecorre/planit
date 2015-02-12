@@ -5,17 +5,18 @@ function getListInflow(id){
        dataType : 'json', // On désire recevoir du HTML
        success : function(inflows, statut){ // code_html contient le HTML renvoyé
         var data = {xA : []};
-        var totalprice =1;
         var empty;
         // récupération des expenses
+
         if (inflows.length == 0) {
-          var obj =  {name: "Aucun apport",y: totalprice,sliced: false, selected: false};
+          var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
           data.xA.push(obj);
           empty = true;
         }
         else {
             if (inflows.length != 0){
               $.each(inflows, function(key, val) {
+                var totalprice =1;
                 // récupération du prix total d'une catégorie                
                 totalprice += (val['amount'])
                 // création de l'objet avec nom et prix

@@ -173,4 +173,26 @@ class BudgetModuleRestController extends Controller
         $expenses = $module->getTypesExpense();
         return $expenses;
     }
+
+    public function getInfosAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        if(!is_object($module)){
+          throw $this->createNotFoundException();
+        }
+        $balance = $module->getBase();
+        foreach ($module->getInflows() as $inflow) {
+            $balance += $inflow->getAmount();
+        }
+        foreach ($module->getTypesExpense() as $typeExpense){
+            foreach ($typeExpense->getExpenses() as $expense){
+                $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());
+                $balance -= $expenses;
+            }
+        }
+        return array(
+                'module' => $module,
+                'balance' => $balance,
+                'budget' => $module->getMaxBudget()
+            );
+}
 }

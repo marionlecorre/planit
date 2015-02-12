@@ -11,6 +11,7 @@ class ModuleRestController extends Controller
 	    if(!is_object($module)){
 	      throw $this->createNotFoundException();
 	    }
+	    
 	    return $module;
 	}
 }

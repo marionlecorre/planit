@@ -1,0 +1,10 @@
+{% twig_js name="infos" %}
+
+<div class="info_dte info_color" id="balance">
+	<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> BÉNÉFICES PRÉVUS </br> <span >{{balance}}€</span> </p>
+</div>							
+<div class="info_dte">
+	<img src="/images/budget/info_dte_limite.png" /> 
+	<p> BUDGET LIMITE</br> <span>{{max}} €</span> </p>
+</div>
+<script>budget();</script>

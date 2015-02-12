@@ -6,17 +6,19 @@ function getListExpense(id){
        dataType : 'json', // On désire recevoir du HTML
        success : function(list, statut){ // code_html contient le HTML renvoyé
         var data = {xA : []};
-        var totalprice =1;
+        
         var empty;
+
         // récupération des expenses
         if (list.length == 0) {
-          var obj =  {name: "Aucun apport",y: totalprice,sliced: false, selected: false};
+          var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
           data.xA.push(obj);
           empty = true;
         }
         else {
           $.each(list, function(key, val) {
             // récupération du prix total d'une catégorie
+            var totalprice =1;
             if (val['expenses'].length != 0){
               $.each(val['expenses'],function(key,val){
                 totalprice += (val['price']*(val['quantity']-val['stock']));

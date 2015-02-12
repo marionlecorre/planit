@@ -13,14 +13,8 @@
 			<div class="bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
 		</div>
 
-		<div class="col-md-4"> 
-			<div class="info_dte info_color" id="balance">
-				<p> BALANCE </br> <span >{{balance}}€</span> </p>
-			</div>							
-			<div class="info_dte">
-				<img src="/images/budget/info_dte_limite.png" /> 
-				<p> BUDGET LIMITE</br> <span>{{max}} €</span> </p>
-			</div>
+		<div class="col-md-4" id="infos"> 
+			<!-- template infos.html.twig -->
 		</div>
 	</div>
 </section>
@@ -153,6 +147,6 @@
 		})();
 
 </script>
+	<script>getInfos({{module.id}});</script>
     <script>getListInflow({{module.id}});</script>
     <script>getListExpense({{module.id}});</script>
-    <script>budget();</script>
