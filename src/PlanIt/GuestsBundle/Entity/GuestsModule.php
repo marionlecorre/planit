@@ -1,12 +1,9 @@
 <?php
-
 namespace PlanIt\GuestsBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestsModuleRepository")
  * @ORM\Entity
@@ -14,71 +11,57 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class GuestsModule extends Module
 {
-
     /**
      * @ORM\Column(type="integer", length=1)
      */
     protected $listType;
-
-
     /**
      * @ORM\Column(type="integer")
      */
     protected $max_guests;
-
     /**
      * @ORM\Column(type="boolean")
      */
     protected $payable;
-
     /**
      * @ORM\Column(type="boolean")
      */
     // invitation =>0, inscription=>1
     protected $guestmodule_type;
-
     /**
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
     protected $int_type;
-
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="module")
      */
     protected $guests;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", mappedBy="module")
      */
     protected $type_guest;
-
     /**
      * @ORM\ManyToMany(targetEntity="PaymentMeans", inversedBy="users")
      * @ORM\JoinTable(name="paymentmeans_module")
      **/
     protected $payment_means;
  
-
     /**
      * Set list_type
      *
@@ -88,10 +71,8 @@ class GuestsModule extends Module
     public function setListType($listType)
     {
         $this->listType = $listType;
-
         return $this;
     }
-
     /**
      * Get list_type
      *
@@ -101,7 +82,6 @@ class GuestsModule extends Module
     {
         return $this->listType;
     }
-
     /**
      * Set max_guests
      *
@@ -111,10 +91,8 @@ class GuestsModule extends Module
     public function setMaxGuests($maxGuests)
     {
         $this->max_guests = $maxGuests;
-
         return $this;
     }
-
     /**
      * Get max_guests
      *
@@ -124,7 +102,6 @@ class GuestsModule extends Module
     {
         return $this->max_guests;
     }
-
     /**
      * Set payable
      *
@@ -134,10 +111,8 @@ class GuestsModule extends Module
     public function setPayable($payable)
     {
         $this->payable = $payable;
-
         return $this;
     }
-
     /**
      * Get payable
      *
@@ -147,7 +122,6 @@ class GuestsModule extends Module
     {
         return $this->payable;
     }
-
     /**
      * Get id
      *
@@ -157,7 +131,6 @@ class GuestsModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -167,10 +140,8 @@ class GuestsModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -180,7 +151,6 @@ class GuestsModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -190,10 +160,8 @@ class GuestsModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -203,7 +171,6 @@ class GuestsModule extends Module
     {
         return $this->slug;
     }
-
     /**
      * Set int_type
      *
@@ -213,10 +180,8 @@ class GuestsModule extends Module
     public function setIntType($intType)
     {
         $this->int_type = $intType;
-
         return $this;
     }
-
     /**
      * Get int_type
      *
@@ -226,7 +191,6 @@ class GuestsModule extends Module
     {
         return $this->int_type;
     }
-
     /**
      * Set event
      *
@@ -236,10 +200,8 @@ class GuestsModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -258,7 +220,6 @@ class GuestsModule extends Module
         $this->type_guest = new \Doctrine\Common\Collections\ArrayCollection();
         $this->payment_means = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add guests
      *
@@ -268,10 +229,8 @@ class GuestsModule extends Module
     public function addGuest(\PlanIt\GuestsBundle\Entity\Guest $guests)
     {
         $this->guests[] = $guests;
-
         return $this;
     }
-
     /**
      * Remove guests
      *
@@ -281,7 +240,6 @@ class GuestsModule extends Module
     {
         $this->guests->removeElement($guests);
     }
-
     /**
      * Get guests
      *
@@ -291,7 +249,6 @@ class GuestsModule extends Module
     {
         return $this->guests;
     }
-
     /**
      * Add type_guest
      *
@@ -301,10 +258,8 @@ class GuestsModule extends Module
     public function addTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest)
     {
         $this->type_guest[] = $typeGuest;
-
         return $this;
     }
-
     /**
      * Remove type_guest
      *
@@ -314,7 +269,6 @@ class GuestsModule extends Module
     {
         $this->type_guest->removeElement($typeGuest);
     }
-
     /**
      * Get type_guest
      *
@@ -324,43 +278,33 @@ class GuestsModule extends Module
     {
         return $this->type_guest;
     }
-
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('max_guests', new NotBlank(array(
             'message' => 'Merci de renseigner le nombre maximal d\'invités'
         )));
-
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
-
     /**
      * Add payment_means
      *
@@ -370,10 +314,8 @@ class GuestsModule extends Module
     public function addPaymentMean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans)
     {
         $this->payment_means[] = $paymentMeans;
-
         return $this;
     }
-
     /**
      * Remove payment_means
      *
@@ -383,7 +325,6 @@ class GuestsModule extends Module
     {
         $this->payment_means->removeElement($paymentMeans);
     }
-
     /**
      * Get payment_means
      *
@@ -393,7 +334,6 @@ class GuestsModule extends Module
     {
         return $this->payment_means;
     }
-
     /**
      * Set guestmodule_type
      *
@@ -403,10 +343,8 @@ class GuestsModule extends Module
     public function setGuestmoduleType($guestmoduleType)
     {
         $this->guestmodule_type = $guestmoduleType;
-
         return $this;
     }
-
     /**
      * Get guestmodule_type
      *

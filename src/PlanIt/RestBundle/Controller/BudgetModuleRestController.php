@@ -24,9 +24,9 @@ class BudgetModuleRestController extends Controller
         $form    = $this->createForm(new BudgetModuleType(), $budget_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $budget_module->setSlug($data->getName());
             $budget_module->setIntType(2);
+            $budget_module->setName('Gestion du budget');
+            $budget_module->setSlug($budget_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($budget_module);

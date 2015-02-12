@@ -1,10 +1,7 @@
 <?php
-
 namespace PlanIt\PlaceBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\PlaceBundle\Repository\PlaceModuleRepository")
  * @ORM\Entity
@@ -12,17 +9,14 @@ use PlanIt\ModuleBundle\Entity\Module;
  */
 class PlaceModule extends Module
 {
-
     /**
      * @ORM\Column(type="integer")
      */
     protected $max_capacity_p;
-
     /**
      * @ORM\Column(type="integer")
      */
     protected $max_price_p;
-
     /**
      * @ORM\Column(type="string")
      */
@@ -32,33 +26,26 @@ class PlaceModule extends Module
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
     protected $int_type;
-
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\PlaceBundle\Entity\Place", mappedBy="module")
      */
     protected $places;
-
-
     /**
      * Set max_capacity_p
      *
@@ -68,10 +55,8 @@ class PlaceModule extends Module
     public function setMaxCapacityP($maxCapacityP)
     {
         $this->max_capacity_p = $maxCapacityP;
-
         return $this;
     }
-
     /**
      * Get max_capacity_p
      *
@@ -81,7 +66,6 @@ class PlaceModule extends Module
     {
         return $this->max_capacity_p;
     }
-
     /**
      * Set max_price_p
      *
@@ -91,10 +75,8 @@ class PlaceModule extends Module
     public function setMaxPriceP($maxPriceP)
     {
         $this->max_price_p = $maxPriceP;
-
         return $this;
     }
-
     /**
      * Get max_price_p
      *
@@ -104,7 +86,6 @@ class PlaceModule extends Module
     {
         return $this->max_price_p;
     }
-
     /**
      * Set max_time_to_go
      *
@@ -114,10 +95,8 @@ class PlaceModule extends Module
     public function setMaxTimeToGo($maxTimeToGo)
     {
         $this->max_time_to_go = $maxTimeToGo;
-
         return $this;
     }
-
     /**
      * Get max_time_to_go
      *
@@ -127,7 +106,6 @@ class PlaceModule extends Module
     {
         return $this->max_time_to_go;
     }
-
     /**
      * Get id
      *
@@ -137,7 +115,6 @@ class PlaceModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -147,10 +124,8 @@ class PlaceModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -160,7 +135,6 @@ class PlaceModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -170,10 +144,8 @@ class PlaceModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -183,7 +155,6 @@ class PlaceModule extends Module
     {
         return $this->slug;
     }
-
     /**
      * Set int_type
      *
@@ -193,10 +164,8 @@ class PlaceModule extends Module
     public function setIntType($intType)
     {
         $this->int_type = $intType;
-
         return $this;
     }
-
     /**
      * Get int_type
      *
@@ -206,7 +175,6 @@ class PlaceModule extends Module
     {
         return $this->int_type;
     }
-
     /**
      * Set event
      *
@@ -216,10 +184,8 @@ class PlaceModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -229,32 +195,25 @@ class PlaceModule extends Module
     {
         return $this->event;
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
     /**
@@ -264,7 +223,6 @@ class PlaceModule extends Module
     {
         $this->places = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add places
      *
@@ -274,10 +232,8 @@ class PlaceModule extends Module
     public function addPlace(\PlanIt\PlaceBundle\Entity\Place $places)
     {
         $this->places[] = $places;
-
         return $this;
     }
-
     /**
      * Remove places
      *
@@ -287,7 +243,6 @@ class PlaceModule extends Module
     {
         $this->places->removeElement($places);
     }
-
     /**
      * Get places
      *

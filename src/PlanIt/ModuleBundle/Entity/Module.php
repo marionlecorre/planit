@@ -1,12 +1,9 @@
 <?php
-
 namespace PlanIt\ModuleBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\ModuleBundle\Repository\ModuleRepository")
  * @ORM\Entity
@@ -23,29 +20,23 @@ class Module
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @ORM\Column(type="string", length=30)
      */
     protected $name;
-
     /**
      * @ORM\Column(type="string", length=30)
      */
     protected $slug;
-
     /**
      * @ORM\Column(type="integer", length=1)
      */
     protected $int_type; //Pouvoir récupérer le type (Invitation, budget, etc.) sous forme de int
-
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\EventBundle\Entity\Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $event;
-
-
     /**
      * Get id
      *
@@ -55,7 +46,6 @@ class Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -65,10 +55,8 @@ class Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -78,7 +66,6 @@ class Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -90,7 +77,6 @@ class Module
         $this->slug = $this->slugify($slug);
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -100,7 +86,6 @@ class Module
     {
         return $this->slug;
     }
-
     /**
      * Set int_type
      *
@@ -110,10 +95,8 @@ class Module
     public function setIntType($intType)
     {
         $this->int_type = $intType;
-
         return $this;
     }
-
     /**
      * Get int_type
      *
@@ -123,7 +106,6 @@ class Module
     {
         return $this->int_type;
     }
-
     /**
      * Set event
      *
@@ -133,10 +115,8 @@ class Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -146,32 +126,25 @@ class Module
     {
         return $this->event;
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
 }

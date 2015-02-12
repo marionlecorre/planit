@@ -29,9 +29,9 @@ class GuestsModuleRestController extends Controller
         $form    = $this->createForm(new GuestsModuleType(), $guests_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $guests_module->setSlug($data->getName());
             $guests_module->setIntType(1);
+            $guests_module->setName('Gestion des invités');
+            $guests_module->setSlug($guests_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($guests_module);

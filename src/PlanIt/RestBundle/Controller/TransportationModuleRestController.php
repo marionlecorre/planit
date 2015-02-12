@@ -19,9 +19,9 @@ class TransportationModuleRestController extends Controller
         $form    = $this->createForm(new TransportationModuleType(), $transportation_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $transportation_module->setSlug($data->getName());
             $transportation_module->setIntType(4);
+            $transportation_module->setName('Gestion du transport');
+            $transportation_module->setSlug($transportation_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($transportation_module);

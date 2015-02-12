@@ -1,12 +1,9 @@
 <?php
-
 namespace PlanIt\TransportationBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\TransportationBundle\Repository\TransportationModuleRepository")
  * @ORM\Entity
@@ -14,12 +11,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class TransportationModule extends Module
 {
-
     /**
      * @ORM\Column(type="integer")
      */
     protected $max_capacity_t;
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -28,28 +23,22 @@ class TransportationModule extends Module
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
     protected $int_type;
-
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
-
     /**
      * Set max_capacity_t
      *
@@ -59,10 +48,8 @@ class TransportationModule extends Module
     public function setMaxCapacityT($maxCapacityT)
     {
         $this->max_capacity_t = $maxCapacityT;
-
         return $this;
     }
-
     /**
      * Get max_capacity_t
      *
@@ -72,7 +59,6 @@ class TransportationModule extends Module
     {
         return $this->max_capacity_t;
     }
-
     /**
      * Set max_price_t
      *
@@ -82,10 +68,8 @@ class TransportationModule extends Module
     public function setMaxPriceT($maxPriceT)
     {
         $this->max_price_t = $maxPriceT;
-
         return $this;
     }
-
     /**
      * Get max_price_t
      *
@@ -95,7 +79,6 @@ class TransportationModule extends Module
     {
         return $this->max_price_t;
     }
-
     /**
      * Get id
      *
@@ -105,7 +88,6 @@ class TransportationModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -115,10 +97,8 @@ class TransportationModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -128,7 +108,6 @@ class TransportationModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -138,10 +117,8 @@ class TransportationModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -151,7 +128,6 @@ class TransportationModule extends Module
     {
         return $this->slug;
     }
-
     /**
      * Set int_type
      *
@@ -161,10 +137,8 @@ class TransportationModule extends Module
     public function setIntType($intType)
     {
         $this->int_type = $intType;
-
         return $this;
     }
-
     /**
      * Get int_type
      *
@@ -174,8 +148,6 @@ class TransportationModule extends Module
     {
         return $this->int_type;
     }
-
-
     /**
      * Set event
      *
@@ -185,10 +157,8 @@ class TransportationModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -198,44 +168,34 @@ class TransportationModule extends Module
     {
         return $this->event;
     }
-
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('max_capacity_t', new NotBlank(array(
             'message' => 'Merci de renseigner la capacité maximale souhaitée'
         )));
-
         $metadata->addPropertyConstraint('max_capacity_t', new NotBlank(array(
             'message' => 'Merci de renseigner le prix maximal'
         )));
-
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
 }

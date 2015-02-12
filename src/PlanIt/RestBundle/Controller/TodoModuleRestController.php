@@ -21,9 +21,9 @@ class TodoModuleRestController extends Controller
         $form    = $this->createForm(new TodoModuleType(), $todo_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $todo_module->setSlug($data->getName());
             $todo_module->setIntType(5);
+            $todo_module->setName('Listes de tâches');
+            $todo_module->setSlug($todo_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($todo_module);

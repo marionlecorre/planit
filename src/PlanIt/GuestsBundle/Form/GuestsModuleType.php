@@ -17,9 +17,9 @@ class GuestsModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('guestmodule_type', 'choice', array('label'  => false,'choices'  => array('0' => 'Invitation', '1' => 'Inscription')))
+            ->add('guestmodule_type', 'choice', array('label'  => false,'choices'  => array('0' => 'Sur invitation', '1' => 'Sur inscription')))
             ->add('max_guests' , 'text', array('label'  => false, 'attr' => array('placeholder' => 'Nombre d\'invité maximum')))
-            ->add('payable', 'checkbox', array('label'  => 'Événement payant?'))
+            ->add('payable', 'checkbox', array('required' => false, 'label'  => 'Événement payant?'))
         ;
     }
     

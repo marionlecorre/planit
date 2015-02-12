@@ -43,16 +43,6 @@ class GuestsModule extends Module
     protected $id;
 
     /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $slug;
-
-    /**
      * @var integer
      */
     protected $int_type;
@@ -156,52 +146,6 @@ class GuestsModule extends Module
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return GuestsModule
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return GuestsModule
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $this->slugify($slug);
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**

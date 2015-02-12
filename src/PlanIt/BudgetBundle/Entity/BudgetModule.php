@@ -1,12 +1,9 @@
 <?php
-
 namespace PlanIt\BudgetBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\BudgetBundle\Repository\BudgetModuleRepository")
  * @ORM\Entity
@@ -14,7 +11,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class BudgetModule extends Module
 {
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -27,43 +23,34 @@ class BudgetModule extends Module
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
     protected $int_type;
-
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\TypeExpense", mappedBy="module")
      */
     protected $types_expense;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Inflow", mappedBy="module")
      */
     protected $inflows;
-
     // *
     //  * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Expense", mappedBy="module")
      
     // protected $expenses;
-
-
     /**
      * Set max_budget
      *
@@ -73,10 +60,8 @@ class BudgetModule extends Module
     public function setMaxBudget($maxBudget)
     {
         $this->max_budget = $maxBudget;
-
         return $this;
     }
-
     /**
      * Get max_budget
      *
@@ -86,7 +71,6 @@ class BudgetModule extends Module
     {
         return $this->max_budget;
     }
-
     /**
      * Get id
      *
@@ -96,7 +80,6 @@ class BudgetModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -106,10 +89,8 @@ class BudgetModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -119,7 +100,6 @@ class BudgetModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -129,10 +109,8 @@ class BudgetModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -142,7 +120,6 @@ class BudgetModule extends Module
     {
         return $this->slug;
     }
-
     /**
      * Set int_type
      *
@@ -152,10 +129,8 @@ class BudgetModule extends Module
     public function setIntType($intType)
     {
         $this->int_type = $intType;
-
         return $this;
     }
-
     /**
      * Get int_type
      *
@@ -165,7 +140,6 @@ class BudgetModule extends Module
     {
         return $this->int_type;
     }
-
     /**
      * Set event
      *
@@ -175,10 +149,8 @@ class BudgetModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -188,44 +160,33 @@ class BudgetModule extends Module
     {
         return $this->event;
     }
-
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('max_budget', new NotBlank(array(
             'message' => 'Merci de renseigner un bdget maximum'
         )));
-
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
-
-
     /**
      * Constructor
      */
@@ -233,7 +194,6 @@ class BudgetModule extends Module
     {
         $this->types_expense = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     // /**
     //  * Add items
     //  *
@@ -243,10 +203,8 @@ class BudgetModule extends Module
     // public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
     // {
     //     $this->items[] = $items;
-
     //     return $this;
     // }
-
     // *
     //  * Remove items
     //  *
@@ -256,7 +214,6 @@ class BudgetModule extends Module
     // {
     //     $this->items->removeElement($items);
     // }
-
     // /**
     //  * Get items
     //  *
@@ -266,7 +223,6 @@ class BudgetModule extends Module
     // {
     //     return $this->items;
     // }
-
     /**
      * Set base
      *
@@ -276,10 +232,8 @@ class BudgetModule extends Module
     public function setBase($base)
     {
         $this->base = $base;
-
         return $this;
     }
-
     /**
      * Get base
      *
@@ -289,7 +243,6 @@ class BudgetModule extends Module
     {
         return $this->base;
     }
-
     /**
      * Add types_expense
      *
@@ -299,10 +252,8 @@ class BudgetModule extends Module
     public function addTypesExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense)
     {
         $this->types_expense[] = $typesExpense;
-
         return $this;
     }
-
     /**
      * Remove types_expense
      *
@@ -312,7 +263,6 @@ class BudgetModule extends Module
     {
         $this->types_expense->removeElement($typesExpense);
     }
-
     /**
      * Get types_expense
      *
@@ -322,7 +272,6 @@ class BudgetModule extends Module
     {
         return $this->types_expense;
     }
-
     /**
      * Add inflows
      *
@@ -332,10 +281,8 @@ class BudgetModule extends Module
     public function addInflow(\PlanIt\BudgetBundle\Entity\Inflow $inflows)
     {
         $this->inflows[] = $inflows;
-
         return $this;
     }
-
     /**
      * Remove inflows
      *
@@ -345,7 +292,6 @@ class BudgetModule extends Module
     {
         $this->inflows->removeElement($inflows);
     }
-
     /**
      * Get inflows
      *
@@ -355,7 +301,6 @@ class BudgetModule extends Module
     {
         return $this->inflows;
     }
-
     public function getBalance()
     {
         $balance = $this->getBase();
@@ -368,7 +313,6 @@ class BudgetModule extends Module
                 $balance -= $expenses;
             }
         }
-
         return $balance;
     }
 }

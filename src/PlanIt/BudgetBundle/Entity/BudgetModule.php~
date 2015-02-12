@@ -29,16 +29,6 @@ class BudgetModule extends Module
     protected $id;
 
     /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $slug;
-
-    /**
      * @var integer
      */
     protected $int_type;
@@ -95,52 +85,6 @@ class BudgetModule extends Module
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return BudgetModule
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return BudgetModule
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $this->slugify($slug);
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -354,5 +298,21 @@ class BudgetModule extends Module
     public function getInflows()
     {
         return $this->inflows;
+    }
+
+    public function getBalance()
+    {
+        $balance = $this->getBase();
+        foreach ($this->getInflows() as $inflow) {
+            $balance += $inflow->getAmount();
+        }
+        foreach ($this->getTypesExpense() as $typeExpense){
+            foreach ($typeExpense->getExpenses() as $expense){
+                $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());
+                $balance -= $expenses;
+            }
+        }
+
+        return $balance;
     }
 }

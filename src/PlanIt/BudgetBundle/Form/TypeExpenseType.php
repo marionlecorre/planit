@@ -15,7 +15,7 @@ class TypeExpenseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie *')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie * (Ex: Boissons, Matériel, etc.)')))
         ;
     }
     
