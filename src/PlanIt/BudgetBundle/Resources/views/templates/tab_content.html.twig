@@ -46,7 +46,7 @@
 								<input type="text" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
 							</td>
 							<td data-title="Quantité">
-								<input type="text" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}">
+								<input type="text" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
 							</td>
 							<td data-title="En stock">
 								<input type="text" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
@@ -58,7 +58,7 @@
 								<input type="text" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
 							</td>
 							<td data-title="Prix total">
-								{{expense.price * (expense.quantity - expense.stock)}}
+								{{expense.price * (expense.quantity - expense.stock)}} €
 							</td>
 							<td data-title="Consommé">
 								<input type="text" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">

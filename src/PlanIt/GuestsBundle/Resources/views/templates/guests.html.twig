@@ -29,6 +29,9 @@
             </div>
             {# Labels #}
             <div class="accordion-body">
+                {% if type.guests|length == 0 %}
+                    <p class="empty">Il n'y a aucun invité </p>
+                {% else %}
                 <div class="labels row hidden-phone">
                     <form action="" id="select-all" class="col-md-1 col-sm-1">
                         <input onclick="checkAll({{type.id}})" id="checkall-{{type.id}}" type="checkbox">
@@ -53,11 +56,8 @@
                         <p class="delete col-md-2 col-sm-2 pull-right hidden-desktop">Supp.</p>
                     {% endif %}
                 </div>
-                {# Données #}
-                
-                {% if type.guests|length == 0 %}
-                    <p class="empty">Il n'y a aucun invité </p>
                 {% endif %}
+                {# Données #}
                 {% for guest in guests %}
                     {% if guest.type_guest.id == type.id %}
                         <div class="row-list row">
