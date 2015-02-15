@@ -29,7 +29,8 @@ class PlaceModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\PlaceBundle\Entity\PlaceModule'
+            'data_class' => 'PlanIt\PlaceBundle\Entity\PlaceModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -38,6 +39,6 @@ class PlaceModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_placebundle_placemodule';
+        return 'placemodule_form';
     }
 }

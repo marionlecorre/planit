@@ -29,7 +29,8 @@ class GuestsModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\GuestsModule'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\GuestsModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -38,6 +39,6 @@ class GuestsModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_guestsbundle_guestsmodule';
+        return 'guestsmodule_form';
     }
 }

@@ -134,7 +134,7 @@ function updateGuest(id, attr){
 	}
 
 	var sent = $("#sent-"+id).attr('data-type');
-	var dataSend = {"guest_update":{
+	var dataSend = {"guestupdate_form":{
 		"type_guest" : $("#type_guest-"+id).val(),
 		"firstname" : $("#firstname-"+id).val(),
 		"lastname" : $("#lastname-"+id).val(),

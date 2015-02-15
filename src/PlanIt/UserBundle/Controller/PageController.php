@@ -13,4 +13,11 @@ class PageController extends Controller
         ));
     }
 
+	public function translationAction($name)
+	{
+	    return $this->render('PlanItUserBundle:Page:translation.html.twig', array(
+	      'name' => $name
+	    ));
+	}
+
 }

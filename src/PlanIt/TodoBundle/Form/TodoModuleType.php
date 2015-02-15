@@ -24,7 +24,8 @@ class TodoModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\TodoBundle\Entity\TodoModule'
+            'data_class' => 'PlanIt\TodoBundle\Entity\TodoModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -33,6 +34,6 @@ class TodoModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_todobundle_todomodule';
+        return 'todomodule_form';
     }
 }

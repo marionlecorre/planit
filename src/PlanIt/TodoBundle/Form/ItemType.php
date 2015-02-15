@@ -27,7 +27,8 @@ class ItemType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\TodoBundle\Entity\Item'
+            'data_class' => 'PlanIt\TodoBundle\Entity\Item',
+            'csrf_protection' => false,
         ));
     }
 
@@ -36,6 +37,6 @@ class ItemType extends AbstractType
      */
     public function getName()
     {
-        return 'todo_item';
+        return 'item_form';
     }
 }

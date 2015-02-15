@@ -28,7 +28,8 @@ class BudgetModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\BudgetBundle\Entity\BudgetModule'
+            'data_class' => 'PlanIt\BudgetBundle\Entity\BudgetModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -37,6 +38,6 @@ class BudgetModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_budgetbundle_budgetmodule';
+        return 'budgetmodule_form';
     }
 }

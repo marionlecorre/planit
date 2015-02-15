@@ -58,7 +58,7 @@ function chosePlace(place_id){
 }
 
 function updatePlace(id){
-	var dataSend = {"place":{
+	var dataSend = {"place_form":{
 		"name" : $("#name-place-"+id).val(),
 		"address" : $("#address-place-"+id).val(),
 		"price" : $("#price-place-"+id).val(),

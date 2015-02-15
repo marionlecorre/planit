@@ -45,6 +45,6 @@ class UpdateGuestType extends AbstractType
      */
     public function getName()
     {
-        return 'guest_update';
+        return 'guestupdate_form';
     }
 }

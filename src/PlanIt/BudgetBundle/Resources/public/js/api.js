@@ -149,7 +149,7 @@ function deleteInflow(inflow_id){
 }
 
 function updateExpense(expense_id){
-	var dataSend = {"expense_update":{
+	var dataSend = {"expenseupdate_form":{
 		"name" : $("#name-expense-"+expense_id).val(),
 		"quantity" : $("#quantity-expense-"+expense_id).val(),
 		"stock" : $("#stock-expense-"+expense_id).val(),
@@ -218,7 +218,7 @@ function updateExpense(expense_id){
 }
 
 function updateInflow(inflow_id){
-	var dataSend = {"planit_budgetbundle_inflow":{
+	var dataSend = {"inflow_form":{
 		"name" : $("#name-inflow-"+inflow_id).val(),
 		"amount" : $("#amount-inflow-"+inflow_id).val(),
 	}}

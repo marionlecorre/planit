@@ -37,7 +37,8 @@ class TypeGuestType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\TypeGuest'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\TypeGuest',
+            'csrf_protection' => false,
         ));
     }
 
@@ -46,7 +47,7 @@ class TypeGuestType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_guestsbundle_typeguest';
+        return 'typeguest_form';
     }
 
     public function __construct($module_type,$payable)

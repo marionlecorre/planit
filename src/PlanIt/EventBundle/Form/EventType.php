@@ -26,7 +26,7 @@ class EventType extends AbstractType
                                 'attr' => array('placeholder' => 'Date de début *')
                                 ))
             ->add('end_date','date', array(
-                                'required' => false
+                                'required' => false,
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
                                 'format' => 'dd/MM/yyyy',
@@ -44,7 +44,8 @@ class EventType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\EventBundle\Entity\Event'
+            'data_class' => 'PlanIt\EventBundle\Entity\Event',
+            'csrf_protection' => false,
         ));
     }
 
@@ -53,6 +54,6 @@ class EventType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_eventbundle_event';
+        return 'event_form';
     }
 }
