@@ -60,6 +60,7 @@ class GuestRestController extends Controller
         $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
         $form = $this->createForm(new UpdateGuestType(), $guest, array('method' => 'PUT'));
         $form->handleRequest($request);
+        return $request->getContent();
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);

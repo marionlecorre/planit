@@ -90,7 +90,7 @@
                             {% endif %}
                             {% if moduleGuestType == false %}
                                 <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1 col-sm-1 col-xs-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
-                                <div class="delete col-md-1 col-sm-1 col-xs-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
+                                <div class="delete col-md-1 col-sm-1 col-xs-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.sent}}" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
                             {% elseif moduleGuestType == true %}
                                 <div class="delete col-md-2 col-sm-2 col-xs-2 pull-right"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
                             {% endif %}

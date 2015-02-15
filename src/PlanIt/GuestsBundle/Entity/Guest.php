@@ -51,9 +51,9 @@ class Guest
     protected $payed;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer", length=1)
      */
-    //0 => no, 1 => yes, 2 => waiting
+    //0 => no, 1 => yes
     protected $sent;
 
 

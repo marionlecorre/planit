@@ -79,7 +79,6 @@ class BudgetModuleRestController extends Controller
         $form = $this->createForm(new UpdateExpenseType(), $expense, array('method' => 'PUT'));
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $expense->setBought($request->request->get('bought'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($expense);
             $em->flush();

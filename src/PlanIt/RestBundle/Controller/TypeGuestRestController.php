@@ -20,7 +20,6 @@ class TypeGuestRestController extends Controller
         $form    = $this->createForm(new TypeGuestType($module->getGuestmoduleType(), $module->getPayable()), $typeguest);
         $form->handleRequest($request);
         $data = $form->getData();
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()
                        ->getEntityManager();

@@ -23,7 +23,7 @@ class TypeGuestType extends AbstractType
         $builder
             ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie *')));
         if($module_type == 0){
-            $builder->add('message','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')));
+            $builder->add('message','textarea', array('label'  => false, 'attr' => array('placeholder' => 'Contenu du mail d\'invitation *')));
 
         }
         if($payable == 1){
