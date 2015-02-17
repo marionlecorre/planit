@@ -6,11 +6,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\GuestsBundle\Entity\GuestsModule;
 use PlanIt\GuestsBundle\Form\GuestsModuleType;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GuestsModuleRestController extends Controller
 {
 
-	public function getGuestsmoduleInscriptionlinkAction($module_id){
+	protected $container;
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+    
+    public function getGuestsmoduleInscriptionlinkAction($module_id){
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         return 'http://planit.dev:8888/app_dev.php/inscription/'.base64_encode($module->getId());
     }

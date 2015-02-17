@@ -1,39 +1,57 @@
 plan_it_transportation:
     resource: "@PlanItTransportationBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr 
 
 plan_it_place:
     resource: "@PlanItPlaceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr 
 
 plan_it_budget:
     resource: "@PlanItBudgetBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr 
 
 plan_it_todo:
     resource: "@PlanItTodoBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 plan_it_module:
     resource: "@PlanItModuleBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 plan_it_guests:
     resource: "@PlanItGuestsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 plan_it_event:
     resource: "@PlanItEventBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 plan_it_rest:
     resource: "@PlanItRestBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 
 plan_it_user:
     resource: "@PlanItUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr
 
 #REST 
 rest : 

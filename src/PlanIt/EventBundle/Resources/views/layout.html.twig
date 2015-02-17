@@ -11,13 +11,6 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItEventBundle/Resources/views/templates/title.html.twig'
-                    '@PlanItEventBundle/Resources/views/templates/form.html.twig'
-                    '@PlanItEventBundle/Resources/views/templates/modules.html.twig'
-                    '@PlanItEventBundle/Resources/views/templates/description.html.twig'
-                    '@PlanItEventBundle/Resources/views/templates/infos.html.twig' filter="twig_js, ?yui_js" %}
-          <script language="javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     
     {% javascripts '@PlanItEventBundle/Resources/public/js/*.js'
                     '%kernel.root_dir%/Resources/js/*.js'  %}

@@ -27,7 +27,7 @@ class GuestRestController extends Controller
             $guest->setConfirmed(0);
             $guest->setPayed(0);
             $guest->setSent(0);
-            $guest->setTypeGuest($typeguest);
+            $guest->setType($typeguest);
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($guest);
@@ -60,7 +60,6 @@ class GuestRestController extends Controller
         $guest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->find($guest_id);
         $form = $this->createForm(new UpdateGuestType(), $guest, array('method' => 'PUT'));
         $form->handleRequest($request);
-        return $request->getContent();
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
@@ -114,8 +113,8 @@ class GuestRestController extends Controller
             ->setSubject('Invitation à l\'évènement : '.$event->getName())
             ->setFrom($event->getUser()->getMail())
             ->setTo($guest->getEmail())
-            ->setBody($guest->getTypeGuest()->getMessage().'<br/> 
-                Le prix de l\'évènement est de '.$guest->getTypeGuest()->getPrice().'€ par personne <br/> 
+            ->setBody($guest->getType()->getMessage().'<br/> 
+                Le prix de l\'évènement est de '.$guest->getType()->getPrice().'€ par personne <br/> 
                 Merci de confirmer votre présence grâce au lien suivant : <br/>
                 http://planit.dev:8888/app_dev.php/answer/'.base64_encode($guest->getId()).'<br>'
                 .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');

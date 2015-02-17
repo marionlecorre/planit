@@ -17,9 +17,9 @@ class GuestType extends AbstractType
     {
         
         $builder
-            ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'Prénom *')))
-            ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
-            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'Email *')));
+            ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.firstname')))
+            ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.lastname')))
+            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.mail')));
 
     }
     

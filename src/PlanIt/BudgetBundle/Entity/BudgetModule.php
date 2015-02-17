@@ -34,7 +34,7 @@ class BudgetModule extends Module
     /**
      * @var integer
      */
-    protected $int_type;
+    protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
@@ -42,7 +42,7 @@ class BudgetModule extends Module
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\TypeExpense", mappedBy="module")
      */
-    protected $types_expense;
+    protected $typesexpense;
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\BudgetBundle\Entity\Inflow", mappedBy="module")
      */
@@ -121,26 +121,6 @@ class BudgetModule extends Module
         return $this->slug;
     }
     /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return BudgetModule
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-        return $this;
-    }
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
-    }
-    /**
      * Set event
      *
      * @param \PlanIt\EventBundle\Entity\Event $event
@@ -192,37 +172,8 @@ class BudgetModule extends Module
      */
     public function __construct()
     {
-        $this->types_expense = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->typesexpense = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    // /**
-    //  * Add items
-    //  *
-    //  * @param \PlanIt\BudgetBundle\Entity\Item $items
-    //  * @return BudgetModule
-    //  */
-    // public function addItem(\PlanIt\BudgetBundle\Entity\Item $items)
-    // {
-    //     $this->items[] = $items;
-    //     return $this;
-    // }
-    // *
-    //  * Remove items
-    //  *
-    //  * @param \PlanIt\BudgetBundle\Entity\Item $items
-     
-    // public function removeItem(\PlanIt\BudgetBundle\Entity\Item $items)
-    // {
-    //     $this->items->removeElement($items);
-    // }
-    // /**
-    //  * Get items
-    //  *
-    //  * @return \Doctrine\Common\Collections\Collection 
-    //  */
-    // public function getItems()
-    // {
-    //     return $this->items;
-    // }
     /**
      * Set base
      *
@@ -242,35 +193,6 @@ class BudgetModule extends Module
     public function getBase()
     {
         return $this->base;
-    }
-    /**
-     * Add types_expense
-     *
-     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense
-     * @return BudgetModule
-     */
-    public function addTypesExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense)
-    {
-        $this->types_expense[] = $typesExpense;
-        return $this;
-    }
-    /**
-     * Remove types_expense
-     *
-     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense
-     */
-    public function removeTypesExpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesExpense)
-    {
-        $this->types_expense->removeElement($typesExpense);
-    }
-    /**
-     * Get types_expense
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTypesExpense()
-    {
-        return $this->types_expense;
     }
     /**
      * Add inflows
@@ -314,5 +236,62 @@ class BudgetModule extends Module
             }
         }
         return $balance;
+    }
+
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return BudgetModule
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
+    }
+
+    /**
+     * Add typesexpense
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesexpense
+     * @return BudgetModule
+     */
+    public function addTypesexpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesexpense)
+    {
+        $this->typesexpense[] = $typesexpense;
+
+        return $this;
+    }
+
+    /**
+     * Remove typesexpense
+     *
+     * @param \PlanIt\BudgetBundle\Entity\TypeExpense $typesexpense
+     */
+    public function removeTypesexpense(\PlanIt\BudgetBundle\Entity\TypeExpense $typesexpense)
+    {
+        $this->typesexpense->removeElement($typesexpense);
+    }
+
+    /**
+     * Get typesexpense
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTypesexpense()
+    {
+        return $this->typesexpense;
     }
 }

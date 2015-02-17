@@ -1,120 +1,10 @@
-function getModule(id){
-	$.ajax({
-	   url : '/app_dev.php/api/modules/'+id, //API
-	   type : 'GET',
-	   dataType : 'json', // On désire recevoir du HTML
-	   success : function(module, statut){ // code_html contient le HTML renvoyé
-	   			$.ajax({
-				   url : '/app_dev.php/api/guestsmodules/'+id+'/inscriptionlink', //API
-				   type : 'GET',
-				   dataType : 'json', // On désire recevoir du HTML
-				   success : function(link, statut){ // code_html contient le HTML renvoyé
-				   		$.ajax({
-						   url : '/app_dev.php/api/guestsmodules/'+id+'/paymentmeans', //API
-						   type : 'GET',
-						   dataType : 'json', // On désire recevoir du HTML
-						   success : function(paymentmeans, statut){ // code_html contient le HTML renvoyé
-						       		var payable = Twig.render(guests_payable,
-						                            {
-						                                payable : module.payable,
-						                                module_id:module.id,
-						                                moduleGuestType:module.guestmodule_type,
-						                                link:link,
-						                                paymentmeans:paymentmeans
-						                            });
-						       		$('#header_list').html(payable);
-						       /**/
-						   },
-						   error : function(resultat, statut, erreur){
-						         alert(erreur);
-						       },
-						});
-
-						$.ajax({
-						   url : '/app_dev.php/api/events/'+module.event.id+'/nbguests', //API
-						   type : 'GET',
-						   dataType : 'json', // On désire recevoir du HTML
-						   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
-						   			var title = Twig.render(guests_title,
-						                            {
-						                                module_id:module.id,
-						                                name : module.name,
-						                                nb_guests:nbGuests,
-						                                nb_max:module.max_guests
-						                            });
-						       		$('#title').html(title);
-						       /**/
-						   },
-						   error : function(resultat, statut, erreur){
-						         alert(erreur);
-						       },
-						});
-				       /**/
-				   },
-				   error : function(resultat, statut, erreur){
-				         alert(erreur);
-				       },
-				});
-
-	       		var payable = Twig.render(guests_payable,
-	                            {
-	                                payable : module.payable,
-	                                module_id:module.id,
-	                                moduleGuestType:module.guestmodule_type
-	                            });
-	       		$('#header_list').html(payable);
-
-	   			var guests = Twig.render(guests_list,
-	                            {
-	                                payment_means:module.payment_means,
-	                                guests : module.guests,
-	                                typeGuests : module.type_guest,
-	                                moduleGuestType : module.guestmodule_type,
-	                                payable:module.payable
-	                            });
-	       		$('#guests_list').html(guests);
-	       /**/
-	   },
-	   error : function(resultat, statut, erreur){
-	         alert(erreur);
-	       },
-	});
-}
-
 function deleteGuest(id){
 	$.ajax({
 	   url : '/app_dev.php/api/guests/'+id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(module){ // code_html contient le HTML renvoyé
-	       var guests = Twig.render(guests_list,
-                            {
-                                payment_means:module.payment_means,
-                                guests : module.guests,
-                                typeGuests : module.type_guest,
-                                moduleGuestType : module.guestmodule_type,
-                                payable:module.payable
-                            });
-	       	$('#guests_list').html(guests);
-	       	$.ajax({
-			   url : '/app_dev.php/api/events/'+module.event.id+'/nbguests', //API
-			   type : 'GET',
-			   dataType : 'json', // On désire recevoir du HTML
-			   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
-			   			var title = Twig.render(guests_title,
-			                            {
-			                                module_id:module.id,
-			                                name : module.name,
-			                                nb_guests:nbGuests,
-			                                nb_max:module.max_guests
-			                            });
-			       		$('#title').html(title);
-			       /**/
-			   },
-			   error : function(resultat, statut, erreur){
-			         alert(erreur);
-			       },
-			});
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
@@ -135,7 +25,7 @@ function updateGuest(id, attr){
 
 	var sent = $("#sent-"+id).attr('data-type');
 	var dataSend = {"guestupdate_form":{
-		"type_guest" : $("#type_guest-"+id).val(),
+		"type" : $("#type_guest-"+id).val(),
 		"firstname" : $("#firstname-"+id).val(),
 		"lastname" : $("#lastname-"+id).val(),
 		"email" : $("#email-"+id).val(),
@@ -153,29 +43,12 @@ function updateGuest(id, attr){
 	   	if(attr == "confirmed"){
 			$("#confirmed-"+id).attr('class', "light state-"+confirmed);
 			$("#confirmed-"+id).attr('data-type', confirmed);
-			$.ajax({
-			   url : '/app_dev.php/api/events/'+module.event.id+'/nbguests', //API
-			   type : 'GET',
-			   dataType : 'json', // On désire recevoir du HTML
-			   success : function(nbGuests, statut){ // code_html contient le HTML renvoyé
-			   			var title = Twig.render(guests_title,
-			                            {
-			                                module_id:module.id,
-			                                name : module.name,
-			                                nb_guests:nbGuests,
-			                                nb_max:module.max_guests
-			                            });
-			       		$('#title').html(title);
-			       /**/
-			   },
-			   error : function(resultat, statut, erreur){
-			         alert(erreur);
-			       },
-			});
 
 		}else if(attr == "payed"){
 			$("#payed-"+id).attr('class', "light state-"+payed);
 			$("#payed-"+id).attr('data-type', payed);
+		}else{
+			location.reload();
 		}
 	   },
 	   error : function(resultat, statut, erreur){
@@ -197,24 +70,7 @@ function updatePayable(module_id){
 	   dataType : 'json',
 	   data : {payable : payable},
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   		var payable = Twig.render(guests_payable,
-                            {
-                                payable : data.module.payable,
-                                module_id: data.module.id,
-                                moduleGuestType: data.module.guestmodule_type,
-                                link:data.link,
-                                paymentmeans:data.paymentmeans
-                            });
-       		$('#header_list').html(payable);
-       		var guests = Twig.render(guests_list,
-	                        {
-	                            payment_means: data.module.payment_means,
-	                            guests : data.module.guests,
-	                            typeGuests : data.module.type_guest,
-	                            moduleGuestType : data.module.guestmodule_type,
-	                            payable: data.module.payable
-	                        });
-	   		$('#guests_list').html(guests);
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -224,18 +80,11 @@ function updatePayable(module_id){
 
 function sendMail(guest_id){
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+guest_id+'/mails', //API
+	   url : 'http://planit.marion-lecorre.com/api/guests/'+guest_id+'/mails', //API
 	   type : 'POST',
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   		var guests = Twig.render(guests_list,
-	                        {
-	                            payment_means:module.payment_means,
-	                            guests : module.guests,
-	                            typeGuests : module.type_guest,
-	                            moduleGuestType : module.guestmodule_type,
-	                            payable:module.payable
-	                        });
-	   		$('#guests_list').html(guests);
+	   		//location.reload();
+	   		console.log(module);
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

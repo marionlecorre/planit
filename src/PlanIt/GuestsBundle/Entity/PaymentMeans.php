@@ -34,7 +34,7 @@ class PaymentMeans
     protected $guests;
 
     /**
-     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="payment_means")
+     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="paymentmeans")
      **/
     protected $modules;
 

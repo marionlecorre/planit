@@ -31,7 +31,7 @@ class Module
     /**
      * @ORM\Column(type="integer", length=1)
      */
-    protected $int_type; //Pouvoir récupérer le type (Invitation, budget, etc.) sous forme de int
+    protected $inttype; //Pouvoir récupérer le type (Invitation, budget, etc.) sous forme de int
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\EventBundle\Entity\Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
@@ -87,26 +87,6 @@ class Module
         return $this->slug;
     }
     /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return Module
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-        return $this;
-    }
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
-    }
-    /**
      * Set event
      *
      * @param \PlanIt\EventBundle\Entity\Event $event
@@ -146,5 +126,28 @@ class Module
             return 'n-a';
         }
         return $text;
+    }
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return Module
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
     }
 }

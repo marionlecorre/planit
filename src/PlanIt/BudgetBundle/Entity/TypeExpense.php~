@@ -24,7 +24,7 @@ class TypeExpense
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\BudgetModule", inversedBy="type_expense")
+     * @ORM\ManyToOne(targetEntity="PlanIt\BudgetBundle\Entity\BudgetModule", inversedBy="typesexpense")
      * @ORM\JoinColumn(name="module_id", referencedColumnName="id")
      */
     protected $module;

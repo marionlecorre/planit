@@ -10,9 +10,6 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItPlaceBundle/Resources/views/templates/*.html.twig' filter="twig_js, ?yui_js" %}
-      <script language="javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     {% javascripts '@PlanItPlaceBundle/Resources/public/js/*.js'
                     '%kernel.root_dir%/Resources/js/*.js'  %}
           <script language="javascript" src="{{ asset_url }}"></script>

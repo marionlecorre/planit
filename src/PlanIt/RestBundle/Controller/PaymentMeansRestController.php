@@ -13,7 +13,7 @@ class PaymentMeansRestController extends Controller
 	public function postPaymentmeansAction(Request $request, $module_id)
     {
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
-        $paymentmean = $this->getDoctrine()->getRepository('PlanItGuestsBundle:PaymentMeans')->find($request->request->get('planit_guestsbundle_paymentmeans')['PaymentMeans']);
+        $paymentmean = $this->getDoctrine()->getRepository('PlanItGuestsBundle:PaymentMeans')->find($request->request->get('paymentmeans_form')['PaymentMeans']);
         $module->addPaymentMean($paymentmean);
 
         $em = $this->getDoctrine()

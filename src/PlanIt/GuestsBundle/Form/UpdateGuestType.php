@@ -15,7 +15,7 @@ class UpdateGuestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type_guest')
+            ->add('type')
             ->add('firstname')
             ->add('lastname')
             ->add('email')

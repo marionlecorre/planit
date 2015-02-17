@@ -11,11 +11,19 @@ use PlanIt\BudgetBundle\Entity\Inflow;
 use PlanIt\BudgetBundle\Form\ExpenseType;
 use PlanIt\BudgetBundle\Form\UpdateExpenseType;
 use PlanIt\BudgetBundle\Entity\Expense;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class BudgetModuleRestController extends Controller
 {
 
-	public function postBudgetmoduleAction(Request $request, $event_id)
+	protected $container;
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    public function postBudgetmoduleAction(Request $request, $event_id)
     {
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
 
@@ -36,10 +44,6 @@ class BudgetModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
-        // return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-        //     'event_id'    => $guest->getModule()->getEvent()->getId(),
-        //     'module_id'   => $comment->getModule()->getId()
-        // ));
     }
 
     public function postExpenseAction(Request $request, $type_expense)
@@ -184,5 +188,5 @@ class BudgetModuleRestController extends Controller
                 'balance' => $balance,
                 'budget' => $module->getMaxBudget()
             );
-}
+    }
 }

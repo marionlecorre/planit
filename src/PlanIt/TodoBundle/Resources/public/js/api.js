@@ -4,13 +4,7 @@ function getModule(id){
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
-	   		console.log(module.items);
-	   			var items = Twig.render(list,
-	                            {
-	                                module : module,
-	                            });
-
-		       	$('#todo-list').html(items);
+	   		location.reload();
 	       		
 	       /**/
 	   },
@@ -33,13 +27,7 @@ function changeChecked(item_id){
 	   dataType : 'json', // On désire recevoir du HTML
 	   data : {checked : checked},
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
-	   			var items = Twig.render(list,
-	                            {
-	                                module : module,
-	                            });
-
-		       	$('#todo-list').html(items);
-	       		
+	       	location.reload();
 	       /**/
 	   },
 	   error : function(resultat, statut, erreur){

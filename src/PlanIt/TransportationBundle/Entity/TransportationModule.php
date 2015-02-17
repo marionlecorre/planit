@@ -34,7 +34,7 @@ class TransportationModule extends Module
     /**
      * @var integer
      */
-    protected $int_type;
+    protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
@@ -128,26 +128,7 @@ class TransportationModule extends Module
     {
         return $this->slug;
     }
-    /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return TransportationModule
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-        return $this;
-    }
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
-    }
+
     /**
      * Set event
      *
@@ -197,5 +178,29 @@ class TransportationModule extends Module
             return 'n-a';
         }
         return $text;
+    }
+
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return TransportationModule
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
     }
 }

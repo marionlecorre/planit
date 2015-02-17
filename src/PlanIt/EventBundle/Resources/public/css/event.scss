@@ -91,31 +91,31 @@
 		cursor: pointer;
 	}
 
-	#module_guests{
+	#module_1{
 		background-color:$invit_module;
 		&:hover {
 			background-color: darken($invit_module, 5%);
 		}
 	}
-	#module_budget {
+	#module_2 {
 		background-color:$budget_module;
 		&:hover {
 			background-color: darken($budget_module, 5%);
 		}
 	}
-	#module_place {
+	#module_3 {
 		background-color:$place_module;
 		&:hover {
 			background-color: darken($place_module, 5%);
 		}
 	}
-	#module_transportation {
+	#module_4 {
 		background-color:$transport_module;
 		&:hover {
 			background-color: darken($transport_module, 5%);
 		}
 	}
-	#module_todo {
+	#module_5 {
 		background-color:$todo_module;
 		&:hover {
 			background-color: darken($todo_module, 5%);

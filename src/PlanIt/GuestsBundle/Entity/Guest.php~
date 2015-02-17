@@ -61,7 +61,7 @@ class Guest
      * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", inversedBy="guests")
      * @ORM\JoinColumn(name="type_guest_id", referencedColumnName="id")
      */
-    protected $type_guest;
+    protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", inversedBy="guests")
@@ -293,34 +293,6 @@ class Guest
     }
 
     /**
-     * Set type_guest
-     *
-     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
-     * @return Guest
-     */
-
-    public function setTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest = null)
-    {
-        $this->type_guest = $typeGuest;
-
-        return $this;
-    }
-
-    /**
-     * Get type_guest
-     *
-     * @return \PlanIt\GuestsBundle\Entity\TypeGuest 
-     */
-    public function getTypeGuest()
-    {
-        return $this->type_guest;
-    }
-
-    protected function test(){
-        echo 'test';
-    }
-
-    /**
      * Set paymentmean
      *
      * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmean
@@ -341,5 +313,28 @@ class Guest
     public function getPaymentmean()
     {
         return $this->paymentmean;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $type
+     * @return Guest
+     */
+    public function setType(\PlanIt\GuestsBundle\Entity\TypeGuest $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \PlanIt\GuestsBundle\Entity\TypeGuest 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

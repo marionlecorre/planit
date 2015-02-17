@@ -12,14 +12,36 @@
 
 	<div class="row">
         <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addItemModal">Ajouter une tâche</button></div>
-        <div class="col-md-3 bt_todo"><a href="/app_dev.php/todo-pdf/{{module_id}}">Imprimer la liste des tâches</a></div>
+        <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}">Imprimer la liste des tâches</a></div>
         <!--<div class="col-md-3 bt_todo"><button>Valider</button></div>-->
     </div>
-     {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module_id } ))}}
+     {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
 
 		<ul class="sortable" id="todo-list">
-		    <!-- Template list.html.twig-->
+		    {% for item in module.items %}
+				{% if not item.checked %}
+					<li>
+						<div class="row">
+							<div class="col-md-12 todo">
+								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})"> 
+							</div>
+						</div>			
+					</li>
+				{% endif %}
+			{% endfor %}
+
+			{% for item in module.items %}
+				{% if item.checked %} 
+					<li>
+						<div class="row">
+							<div class="col-md-12 todo checked">
+								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
+							</div>
+						</div>			
+					</li>
+				{% endif %}
+			{% endfor %}
 		</ul>
 </div>
 
@@ -27,7 +49,6 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> getModule({{module_id}}); </script>
    	<script>
 	    $('.sortable').sortable({
 	    	items: ':not(.disabled)'

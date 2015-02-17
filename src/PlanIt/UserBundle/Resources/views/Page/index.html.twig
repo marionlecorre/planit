@@ -11,32 +11,50 @@
 {% block content %}
 	<div class="container">
 		<div class="row" id="title">
-			<div class="col-md-12" > <h1>EVENEMENTS</h1> </div>
+			<div class="col-md-12" > <h1>{{'EVENEMENTS'|trans}}</h1> </div>
 		</div>
 
 		<div class="row" id="separator">
 			<div class="col-md-12"> </div>
 		</div>
 		<div id="events" class="row listing-events">
-		<!-- Events template -->
+		{% for event in user.events %}
+			<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+				<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
+					<div class="event-thumbnail">
+						<div class="head">
+							<h2>{{event.name}}</h2>
+							{# <span class="date"> {{ event.begin_date}}</span> #}
+							<span class="date"> {{'J-5'| trans}} </span>
+						</div>
+						<div class="content">
+							<div class="image-cropper">
+				    		<img src="/images/event/events_pictures/{{event.image}}" /> 
+				    		</div>
+				    		<p class="description">{{ event.description }}</p>
+						</div>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+		<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+			<div class="add event-thumbnail" data-toggle="modal" data-target="#basicModal">
+				<p> + </p>
+			</div>
+		</div>
 		</div>
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		        <div class="modal-dialog">
 		            <div class="modal-content">
 		                <div class="modal-header">
 		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		                <h4 class="modal-title" id="myModalLabel">Ajouter un événement</h4>
+		                <h4 class="modal-title" id="myModalLabel">{{'Ajouter un événement'|trans}}</h4>
 		                </div>
 		                <div class="modal-body">
-							{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user_id } ))}}
+							{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user.id } ))}}
 						</div>
 		            </div>
 		      </div>
 		    </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> getEvents({{user_id}}); </script>
 {% endblock %}

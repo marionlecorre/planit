@@ -26,7 +26,7 @@ class TodoModule extends Module
     /**
      * @var integer
      */
-    protected $int_type;
+    protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
@@ -83,26 +83,6 @@ class TodoModule extends Module
     public function getSlug()
     {
         return $this->slug;
-    }
-    /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return TodoModule
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-        return $this;
-    }
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
     }
     /**
      * Set event
@@ -181,5 +161,29 @@ class TodoModule extends Module
     public function getItems()
     {
         return $this->items;
+    }
+
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return TodoModule
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
     }
 }
