@@ -12,15 +12,16 @@ header {
 }
 
 .bt_budget button{
-	margin:10% 0 10% 0;
-	padding:7px 30px 7px 30px;
-	width: 75%;	
-	background-color:$color;
+	background-color: $color;
+	padding: 4px 17px;
+	width: 100%;
+	margin-top: 6px;
 }
 
-#bouton_depense{
-	background-color: $negative;
+.buttons{
+	margin-bottom:40px;
 }
+
 
 .info_dte{	
 	background-color: $neutral;
@@ -244,10 +245,10 @@ a:hover, a:focus {
 	margin:0;
 }
 
-p {
+/*p {
 	text-align: center;
 	padding: 1em;
-}
+}*/
 
 
 /* 2eme css  tab.css*/
@@ -350,10 +351,10 @@ p {
 
 }
 
-.content-wrap section p {
+/*.content-wrap section p {
 	margin: 0;
 	line-height: 1;
-}
+}*/
 
 /* Fallback */
 .no-js .content-wrap section {
@@ -395,7 +396,8 @@ p {
 }
 
 .tabs-style-topline nav li:not(:last-child) {
-	border-right: none;
+	border: none;
+	margin-right:1px;
 }
 
 .tabs-style-topline nav li.tab-current {
@@ -404,10 +406,10 @@ p {
 }
 
 .tabs-style-topline nav a {
-	padding: 0.65em 0 0.5em;
-	background: rgba(40,44,42,0.05);
+	height: 41px;
+	@include border-radius(5px);
+	background-color: #d8d7d7;
 	color: #74777b;
-	line-height: 1;
 	-webkit-transition: color 0.2s;
 	transition: color 0.2s;
 }
