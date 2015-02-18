@@ -19,9 +19,9 @@ class PlaceModuleRestController extends Controller
         $form    = $this->createForm(new PlaceModuleType(), $place_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $place_module->setSlug($data->getName());
             $place_module->setIntType(3);
+            $place_module->setName('Gestion du lieu');
+            $place_module->setSlug($place_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($place_module);

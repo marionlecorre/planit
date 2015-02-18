@@ -1,0 +1,16 @@
+services:
+    user_api_controller:
+        class: PlanIt\RestBundle\Controller\UserRestController
+        arguments: [@service_container]
+    event_api_controller:
+        class: PlanIt\RestBundle\Controller\EventRestController
+        arguments: [@service_container]
+    module_api_controller:
+        class: PlanIt\RestBundle\Controller\ModuleRestController
+        arguments: [@service_container]
+    guests_api_controller:
+        class: PlanIt\RestBundle\Controller\GuestsModuleRestController
+        arguments: [@service_container]
+    budget_api_controller:
+        class: PlanIt\RestBundle\Controller\BudgetModuleRestController
+        arguments: [@service_container]

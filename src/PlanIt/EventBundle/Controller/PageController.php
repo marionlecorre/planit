@@ -20,11 +20,15 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $event = $em->getRepository('PlanItEventBundle:Event')->find($id);
+        $data = $this->get("event_api_controller")->getEventAction($id);
+        $notUsesModules = $this->get("event_api_controller")->getEventNotusemodulesAction($id);
 
         return $this->render('PlanItEventBundle:Page:event.html.twig', array(
-            'event_id' => $id,
-            'user_id' => $event->getUser()->getId()
+            'event' => $data['event'],
+            'nbGuests' => $data['nbGuests'],
+            'balance' => $data['balance'],
+            'user' => $data['event']->getUser(),
+            'notUsesModules' => $notUsesModules
         ));
     }
 
@@ -33,20 +37,25 @@ class PageController extends Controller
         $type = $this->get('request')->query->get('type');
         $event_id = $this->get('request')->query->get('event_id');
 	    switch( $type ) {
-	        case 'guests':
+	        case 1:
 	            $form = $this->createForm(new GuestsModuleType, new GuestsModule);
+	            $type = 'guests';
 	            break;
-	        case 'todo':
-	            $form = $this->createForm(new TodoModuleType, new TodoModule);
-	            break;
-	        case 'place':
-	            $form = $this->createForm(new PlaceModuleType, new PlaceModule);
-	            break;
-	        case 'budget':
+	        case 2:
 	            $form = $this->createForm(new BudgetModuleType, new BudgetModule);
+	            $type = 'budget';
 	            break;
-	        case 'transportation':
+	        case 3:
+	            $form = $this->createForm(new PlaceModuleType, new PlaceModule);
+	            $type = 'place';
+	            break;
+	        case 4:
 	            $form = $this->createForm(new TransportationModuleType, new TransportationModule);
+	            $type = 'transportation';
+	            break;
+	        case 5:
+	            $form = $this->createForm(new TodoModuleType, new TodoModule);
+	            $type = 'todo';
 	            break;
 	    }
 

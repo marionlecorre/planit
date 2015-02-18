@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="TypeGuest")
+ * @ORM\Table(name="type_guest")
  */
 class TypeGuest
 {
@@ -43,7 +43,7 @@ class TypeGuest
     protected $module;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="type_guest")
+     * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="type")
      */
     protected $guests;
 

@@ -93,4 +93,27 @@ class Item
     {
         return $this->module;
     }
+
+    /**
+     * Set checked
+     *
+     * @param integer $checked
+     * @return Item
+     */
+    public function setChecked($checked)
+    {
+        $this->checked = $checked;
+
+        return $this;
+    }
+
+    /**
+     * Get checked
+     *
+     * @return integer 
+     */
+    public function getChecked()
+    {
+        return $this->checked;
+    }
 }

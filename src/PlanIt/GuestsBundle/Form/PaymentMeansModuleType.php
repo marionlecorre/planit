@@ -57,7 +57,8 @@ class PaymentMeansModuleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\GuestsModule'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\GuestsModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -66,7 +67,7 @@ class PaymentMeansModuleType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_guestsbundle_paymentmeans';
+        return 'paymentmeans_form';
     }
 
     public function __construct(\PlanIt\ModuleBundle\Entity\Module $module, array $payments)

@@ -80,6 +80,9 @@ button {
     color: #FFF;
     @include border-radius(3px); 
     font-size: 13px;
+    &:focus {
+      outline : none;
+    }
   }
 
 .head-list {
@@ -99,6 +102,16 @@ button {
       @include border-radius-multi(4px,4px,0,0); 
       text-align: center;
       border-bottom: solid 2px;
+    }
+    #close-modal {
+      background : url("/images/utils.png") no-repeat;
+      background-position: 46% -236px;
+      float: right;
+      height: 19px;
+      width : 19px;
+      &:focus {
+        outline: none;
+      }
     }
     .modal-body {
       div {
@@ -126,14 +139,16 @@ button {
         font-size: 13px;
         width: 200px;
       }
-
+      label.file {
+        cursor: pointer;
+        width: 100%;
+      }
       input[type="file"] {
         position: absolute;
         display: inline-block;
         left: 0;
         top: 0;
         opacity: 0.01;
-        cursor: pointer;
       }
     }
   }

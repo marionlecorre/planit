@@ -36,6 +36,6 @@ class InflowType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_budgetbundle_inflow';
+        return 'inflow_form';
     }
 }

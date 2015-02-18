@@ -11,7 +11,7 @@ class TypeGuestController extends Controller
     public function formAction($module_id)
     {
         $module = $this->getModule($module_id);
-        $module_type = $module->getGuestmoduleType();
+        $module_type = $module->getModuleType();
         $paying = $module->getPayable();
 
         $typeguest = new TypeGuest();

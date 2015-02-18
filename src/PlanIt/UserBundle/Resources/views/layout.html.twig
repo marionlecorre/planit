@@ -2,12 +2,8 @@
 
  {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItUserBundle/Resources/views/templates/events.html.twig' filter="twig_js, ?yui_js" %}
-          <script language="javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'
                     '@PlanItUserBundle/Resources/public/js/listing-scripts.js'
-                    '%kernel.root_dir%/Resources/js/*.js'
     %}
 	   <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}

@@ -18,7 +18,7 @@ class BudgetModuleType extends ModuleType
         parent::buildForm($builder, $options);
         $builder
             ->add('max_budget', 'text', array('label'  => false,'required' => false, 'attr' => array('placeholder' => 'Budget maximum (€)'), 'empty_data' => 0 ))
-            ->add('base', 'text', array('label'  => false,'required' => false, 'attr' => array('placeholder' => 'Apport de base (€)'), 'empty_data' => 0))
+            ->add('base', 'text', array('label'  => false,'required' => false, 'attr' => array('placeholder' => 'Apport personnel (€)'), 'empty_data' => 0))
         ;
     }
     
@@ -28,7 +28,8 @@ class BudgetModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\BudgetBundle\Entity\BudgetModule'
+            'data_class' => 'PlanIt\BudgetBundle\Entity\BudgetModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -37,6 +38,6 @@ class BudgetModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_budgetbundle_budgetmodule';
+        return 'budgetmodule_form';
     }
 }

@@ -16,9 +16,9 @@ class ExpenseType extends AbstractType
     {
         $builder
             ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Article *')))
-            ->add('unit','text', array('label'  => false, 'attr' => array('placeholder' => 'Unité (ex: Litres, bouteilles, etc.) *')))
             ->add('quantity','text', array('label'  => false, 'attr' => array('placeholder' => 'Quantité *')))
-            ->add('stock','text', array('label'  => false, 'attr' => array('placeholder' => 'En stock *')))
+            ->add('unit','text', array('label'  => false, 'attr' => array('placeholder' => 'Unité (ex: Litres, bouteilles, etc.) *')))
+            ->add('stock','text', array('label'  => false, 'attr' => array('placeholder' => 'Déjà en stock *')))
             ->add('price','text', array('label'  => false, 'attr' => array('placeholder' => 'Prix Unitaire *')))
 
         ;
@@ -30,7 +30,8 @@ class ExpenseType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\BudgetBundle\Entity\Expense'
+            'data_class' => 'PlanIt\BudgetBundle\Entity\Expense',
+            'csrf_protection' => false,
         ));
     }
 
@@ -39,6 +40,6 @@ class ExpenseType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_budgetbundle_expense';
+        return 'expense_form';
     }
 }

@@ -23,17 +23,182 @@
 					<div class="row">
 						<nav class="col-md-12">
 							<ul id="tab">
-								<!--Template tab.html.twig -->
+								<li><a class="tab" id="tab-general" href="#section-topline-general"><span>Récapitulatif</span></a></li>
+								{% for type_expense in module.typesexpense %}
+									<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span>
+										<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}" data-name="{{type_expense.name}}">x</span></a> 
+									</li>
+								{% endfor %}
+								<li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>Apports</span></a></li>
+
+								<div class="modal fade deleteTypeExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+								    <div class="modal-dialog">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								            <h4 class="modal-title" id="myModalLabel_deleteTypeExpense">Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?</h4>
+								            </div>
+								            <div class="modal-body row">
+								                <button id="delete_confirm_typeexpense" class="btn btn-default col-md-6"> Oui </button>
+								                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+								            </div>
+								        </div>
+								  </div>
+								</div>
 							</ul>
 						</nav>
 					</div>
 
 					<div class="content-wrap" id="tab_content">						
-						 <!--Template tab_content.html.twig -->
+						{# GENERAL #}
+						<section id="section-topline-general">
+							<div class="section-topline">
+								<div class="col-md-4"> 
+									<div class="pie_chart" id="pie_chart_depenses"></div>
+									<div class="bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
+								</div>
+
+								<div class="col-md-4"> 
+									<div class="pie_chart" id="pie_chart_apports"></div>
+									<div class="bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
+								</div>
+
+								<div class="col-md-4" id="infos"> 
+									<div class="info_dte info_color" id="balance">
+										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> BÉNÉFICES PRÉVUS </br> <span >{{infos.balance}}€</span> </p>
+									</div>							
+									<div class="info_dte">
+										<img src="/images/budget/info_dte_limite.png" /> 
+										<p> BUDGET LIMITE</br> <span>{{infos.budget}} €</span> </p>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						{# TYPE ITEMS #}
+						{% for type_expense in module.typesexpense %}
+							<section  id="section-topline-{{type_expense.id}}">
+								<div class="responsive-table-line section-topline">
+									<table class="table table-bordered table-condensed table-body-center" >
+										<thead>
+											<tr>
+												<th>Article *</th>
+												<th>Quantité *</th>
+												<th>En stock *</th>
+												<th>A acheter</th>
+												<th>Prix unitaire *</th>
+												<th>Prix total</th>
+												<th>Consommé *</th>
+												<th>Acheté *</th>								
+												<th>Supprimer</th>
+											</tr>
+										</thead>
+										
+										
+										<tbody>
+											{% for expense in type_expense.expenses %}
+												<tr>
+													<td data-title="Article">
+														<input type="text" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
+													</td>
+													<td data-title="Quantité">
+														<input type="text" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
+													</td>
+													<td data-title="En stock">
+														<input type="text" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
+													</td>
+													<td data-title="A acheter">
+														{{expense.quantity - expense.stock}}
+													</td>
+													<td data-title="Prix unitaire">
+														<input type="text" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
+													</td>
+													<td data-title="Prix total">
+														{{expense.price * (expense.quantity - expense.stock)}} €
+													</td>
+													<td data-title="Consommé">
+														<input type="text" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
+													</td>
+													<td data-title="Acheté">
+														<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought %} checked {%endif%}/>
+													</td>
+													<td class="delete-expense" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}" data-title="Supprimer">X</td>
+												</tr>
+											{% endfor %}						
+										</tbody>
+									</table>
+									<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
+									<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">Ajouter un article</button></div>
+									
+								</div>
+							</section>
+
+						{% endfor %}
+						<section id="section-topline-apports">
+							<div class="responsive-table-line">
+								<table class="table table-bordered table-condensed table-body-center" >
+									<thead>
+										<tr>
+											<th>Intitulé *</th>
+											<th>Montant *</th>											
+											<th>Supprimer</th>
+										</tr>
+									</thead>
+									
+									
+									<tbody>
+										{% for inflow in module.inflows %}
+											<tr>
+												<td data-title="Intitulé">
+													<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
+												</td>
+												<td data-title="Montant">
+													<input type="text" id="amount-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.amount}}">
+												</td>
+												<td class="delete-inflow" data-toggle="modal" data-target=".deleteInflowModal" data-id="{{inflow.id}}" data-name="{{inflow.name}}" data-title="Supprimer">X</td>
+											</tr>
+										{% endfor %}						
+									</tbody>
+								</table>
+								<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
+								<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addInflowModal">Ajouter un apport</button></div>
+								
+							</div>
+						</section>
+						<div class="modal fade deleteExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						            <h4 class="modal-title" id="myModalLabel_deleteExpense"></h4>
+						            </div>
+						            <div class="modal-body row">
+						                <button id="delete_confirm_expense" class="btn btn-default col-md-6"> Oui </button>
+						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+						            </div>
+						        </div>
+						  </div>
+						</div>
+
+						<div class="modal fade deleteInflowModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						            <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						            <h4 class="modal-title" id="myModalLabel_deleteInflow"></h4>
+						            </div>
+						            <div class="modal-body row">
+						                <button id="delete_confirm_inflow" class="btn btn-default col-md-6"> Oui </button>
+						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+						            </div>
+						        </div>
+						  </div>
+						</div>
 					</div><!-- /content -->
-					{{ render(controller('PlanItBudgetBundle:TypeExpense:form', { 'module_id' : module_id } ))}}
-					{{ render(controller('PlanItBudgetBundle:Inflow:form', { 'module_id' : module_id } ))}}
-					{{ render(controller('PlanItBudgetBundle:Expense:form', { 'module_id' : module_id } ))}}
+					{{ render(controller('PlanItBudgetBundle:TypeExpense:form', { 'module_id' : module.id } ))}}
+					{{ render(controller('PlanItBudgetBundle:Inflow:form', { 'module_id' : module.id } ))}}
+					{{ render(controller('PlanItBudgetBundle:Expense:form', { 'module_id' : module.id } ))}}
 
 				</div><!-- /tabs -->
 			</section>
@@ -48,12 +213,16 @@
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     <script> //getEvent({{event_id}}); </script>
-    <script> getModule({{module_id}}); </script>
-   	<script>
+
+ <script>
 		(function() {
 			[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
 				new CBPFWTabs( el );
 			});
 		})();
-	</script>
+
+</script>
+<script>budget();</script>
+<script>getListInflow({{module.id}});</script>
+<script>getListExpense({{module.id}});</script>
 {% endblock %}

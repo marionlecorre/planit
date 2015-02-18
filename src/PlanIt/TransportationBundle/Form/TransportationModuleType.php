@@ -28,7 +28,8 @@ class TransportationModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\TransportationBundle\Entity\TransportationModule'
+            'data_class' => 'PlanIt\TransportationBundle\Entity\TransportationModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -37,6 +38,6 @@ class TransportationModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_transportationbundle_transportationmodule';
+        return 'transportationmodule_form';
     }
 }

@@ -1,12 +1,9 @@
 <?php
-
 namespace PlanIt\GuestsBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestsModuleRepository")
  * @ORM\Entity
@@ -14,117 +11,53 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class GuestsModule extends Module
 {
-
-    /**
-     * @ORM\Column(type="integer", length=1)
-     */
-    protected $listType;
-
-
     /**
      * @ORM\Column(type="integer")
      */
-    protected $max_guests;
-
+    protected $maxguests;
     /**
      * @ORM\Column(type="boolean")
      */
     protected $payable;
-
     /**
      * @ORM\Column(type="boolean")
      */
     // invitation =>0, inscription=>1
-    protected $guestmodule_type;
-
+    protected $moduletype;
     /**
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
-    protected $int_type;
-
+    protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="module")
      */
     protected $guests;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", mappedBy="module")
      */
-    protected $type_guest;
-
+    protected $typesguests;
     /**
      * @ORM\ManyToMany(targetEntity="PaymentMeans", inversedBy="users")
      * @ORM\JoinTable(name="paymentmeans_module")
      **/
-    protected $payment_means;
+    protected $paymentmeans;
  
-
-    /**
-     * Set list_type
-     *
-     * @param integer $listType
-     * @return GuestsModule
-     */
-    public function setListType($listType)
-    {
-        $this->listType = $listType;
-
-        return $this;
-    }
-
-    /**
-     * Get list_type
-     *
-     * @return integer 
-     */
-    public function getListType()
-    {
-        return $this->listType;
-    }
-
-    /**
-     * Set max_guests
-     *
-     * @param integer $maxGuests
-     * @return GuestsModule
-     */
-    public function setMaxGuests($maxGuests)
-    {
-        $this->max_guests = $maxGuests;
-
-        return $this;
-    }
-
-    /**
-     * Get max_guests
-     *
-     * @return integer 
-     */
-    public function getMaxGuests()
-    {
-        return $this->max_guests;
-    }
-
     /**
      * Set payable
      *
@@ -134,10 +67,8 @@ class GuestsModule extends Module
     public function setPayable($payable)
     {
         $this->payable = $payable;
-
         return $this;
     }
-
     /**
      * Get payable
      *
@@ -147,7 +78,6 @@ class GuestsModule extends Module
     {
         return $this->payable;
     }
-
     /**
      * Get id
      *
@@ -157,7 +87,6 @@ class GuestsModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -167,10 +96,8 @@ class GuestsModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -180,7 +107,6 @@ class GuestsModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -190,10 +116,8 @@ class GuestsModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -203,30 +127,6 @@ class GuestsModule extends Module
     {
         return $this->slug;
     }
-
-    /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return GuestsModule
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-
-        return $this;
-    }
-
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
-    }
-
     /**
      * Set event
      *
@@ -236,10 +136,8 @@ class GuestsModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -258,7 +156,6 @@ class GuestsModule extends Module
         $this->type_guest = new \Doctrine\Common\Collections\ArrayCollection();
         $this->payment_means = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add guests
      *
@@ -268,10 +165,8 @@ class GuestsModule extends Module
     public function addGuest(\PlanIt\GuestsBundle\Entity\Guest $guests)
     {
         $this->guests[] = $guests;
-
         return $this;
     }
-
     /**
      * Remove guests
      *
@@ -281,7 +176,6 @@ class GuestsModule extends Module
     {
         $this->guests->removeElement($guests);
     }
-
     /**
      * Get guests
      *
@@ -291,129 +185,167 @@ class GuestsModule extends Module
     {
         return $this->guests;
     }
-
-    /**
-     * Add type_guest
-     *
-     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
-     * @return GuestsModule
-     */
-    public function addTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest)
-    {
-        $this->type_guest[] = $typeGuest;
-
-        return $this;
-    }
-
-    /**
-     * Remove type_guest
-     *
-     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest
-     */
-    public function removeTypeGuest(\PlanIt\GuestsBundle\Entity\TypeGuest $typeGuest)
-    {
-        $this->type_guest->removeElement($typeGuest);
-    }
-
-    /**
-     * Get type_guest
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTypeGuest()
-    {
-        return $this->type_guest;
-    }
-
+    
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('max_guests', new NotBlank(array(
+        $metadata->addPropertyConstraint('maxguests', new NotBlank(array(
             'message' => 'Merci de renseigner le nombre maximal d\'invités'
         )));
-
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
 
     /**
-     * Add payment_means
+     * Add typesguests
      *
-     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typesguests
      * @return GuestsModule
      */
-    public function addPaymentMean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans)
+    public function addTypesguest(\PlanIt\GuestsBundle\Entity\TypeGuest $typesguests)
     {
-        $this->payment_means[] = $paymentMeans;
+        $this->typesguests[] = $typesguests;
 
         return $this;
     }
 
     /**
-     * Remove payment_means
+     * Remove typesguests
      *
-     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans
+     * @param \PlanIt\GuestsBundle\Entity\TypeGuest $typesguests
      */
-    public function removePaymentMean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentMeans)
+    public function removeTypesguest(\PlanIt\GuestsBundle\Entity\TypeGuest $typesguests)
     {
-        $this->payment_means->removeElement($paymentMeans);
+        $this->typesguests->removeElement($typesguests);
     }
 
     /**
-     * Get payment_means
+     * Get typesguests
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPaymentMeans()
+    public function getTypesguests()
     {
-        return $this->payment_means;
+        return $this->typesguests;
     }
 
     /**
-     * Set guestmodule_type
+     * Add paymentmeans
      *
-     * @param boolean $guestmoduleType
+     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmeans
      * @return GuestsModule
      */
-    public function setGuestmoduleType($guestmoduleType)
+    public function addPaymentmean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmeans)
     {
-        $this->guestmodule_type = $guestmoduleType;
+        $this->paymentmeans[] = $paymentmeans;
 
         return $this;
     }
 
     /**
-     * Get guestmodule_type
+     * Remove paymentmeans
+     *
+     * @param \PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmeans
+     */
+    public function removePaymentmean(\PlanIt\GuestsBundle\Entity\PaymentMeans $paymentmeans)
+    {
+        $this->paymentmeans->removeElement($paymentmeans);
+    }
+
+    /**
+     * Get paymentmeans
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPaymentmeans()
+    {
+        return $this->paymentmeans;
+    }
+
+    /**
+     * Set maxguests
+     *
+     * @param integer $maxguests
+     * @return GuestsModule
+     */
+    public function setMaxguests($maxguests)
+    {
+        $this->maxguests = $maxguests;
+
+        return $this;
+    }
+
+    /**
+     * Get maxguests
+     *
+     * @return integer 
+     */
+    public function getMaxguests()
+    {
+        return $this->maxguests;
+    }
+
+    /**
+     * Set moduletype
+     *
+     * @param boolean $moduletype
+     * @return GuestsModule
+     */
+    public function setModuletype($moduletype)
+    {
+        $this->moduletype = $moduletype;
+
+        return $this;
+    }
+
+    /**
+     * Get moduletype
      *
      * @return boolean 
      */
-    public function getGuestmoduleType()
+    public function getModuletype()
     {
-        return $this->guestmodule_type;
+        return $this->moduletype;
+    }
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return GuestsModule
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
     }
 }

@@ -17,7 +17,7 @@ class PlaceModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('max_capacity_p', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Capacité maximum')))
+            ->add('max_capacity_p', 'text', array('required' => false, 'label'  => false, 'attr' => array('placeholder' => 'Capacité maximum')))
             ->add('max_price_p', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix maximum')))
             ->add('max_time_to_go', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Temps de trajet maximum')))
         ;
@@ -29,7 +29,8 @@ class PlaceModuleType extends ModuleType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\PlaceBundle\Entity\PlaceModule'
+            'data_class' => 'PlanIt\PlaceBundle\Entity\PlaceModule',
+            'csrf_protection' => false,
         ));
     }
 
@@ -38,6 +39,6 @@ class PlaceModuleType extends ModuleType
      */
     public function getName()
     {
-        return 'planit_placebundle_placemodule';
+        return 'placemodule_form';
     }
 }

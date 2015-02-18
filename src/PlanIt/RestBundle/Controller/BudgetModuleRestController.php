@@ -11,11 +11,19 @@ use PlanIt\BudgetBundle\Entity\Inflow;
 use PlanIt\BudgetBundle\Form\ExpenseType;
 use PlanIt\BudgetBundle\Form\UpdateExpenseType;
 use PlanIt\BudgetBundle\Entity\Expense;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class BudgetModuleRestController extends Controller
 {
 
-	public function postBudgetmoduleAction(Request $request, $event_id)
+	protected $container;
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    public function postBudgetmoduleAction(Request $request, $event_id)
     {
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
 
@@ -24,9 +32,9 @@ class BudgetModuleRestController extends Controller
         $form    = $this->createForm(new BudgetModuleType(), $budget_module);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $budget_module->setSlug($data->getName());
             $budget_module->setIntType(2);
+            $budget_module->setName('Gestion du budget');
+            $budget_module->setSlug($budget_module->getName());
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($budget_module);
@@ -36,10 +44,6 @@ class BudgetModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
-        // return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-        //     'event_id'    => $guest->getModule()->getEvent()->getId(),
-        //     'module_id'   => $comment->getModule()->getId()
-        // ));
     }
 
     public function postExpenseAction(Request $request, $type_expense)
@@ -79,7 +83,6 @@ class BudgetModuleRestController extends Controller
         $form = $this->createForm(new UpdateExpenseType(), $expense, array('method' => 'PUT'));
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $expense->setBought($request->request->get('bought'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($expense);
             $em->flush();
@@ -172,5 +175,18 @@ class BudgetModuleRestController extends Controller
         }
         $expenses = $module->getTypesExpense();
         return $expenses;
+    }
+
+    public function getInfosAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        if(!is_object($module)){
+          throw $this->createNotFoundException();
+        }
+        $balance = $module->getBalance();
+        return array(
+                'module' => $module,
+                'balance' => $balance,
+                'budget' => $module->getMaxBudget()
+            );
     }
 }

@@ -53,6 +53,6 @@ class PlaceType extends AbstractType
      */
     public function getName()
     {
-        return 'place';
+        return 'place_form';
     }
 }

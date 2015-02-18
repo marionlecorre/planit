@@ -13,7 +13,11 @@
 	<section id="module_content">
 	   <div class="container guest-module">
             <div class="row" id="title">
-                <!--Template title.html.twig -->
+                <div class="col-md-10" > <h1>{{module.name|upper}}</h1> </div>
+                <div class="col-md-2" > Inscrits : {{nb_guests}}/{{module.maxguests}} </div>
+                <div class="col-md-2 pull-right">
+                    <button data-toggle="modal" data-target=".updateModuleModal" data-type="">Modifier le module</button>
+                </div>
             </div>
 
             <div class="row" id="separator">
@@ -21,18 +25,165 @@
             </div>
 
 
-            {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module_id } ))}}
+            {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module.id } ))}}
             <div id="header_list" class="row">
-                
+                <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addTypeGuestModal">Ajouter une catégorie d'invité</button></div>
+                {% if module.moduletype == 1 %}
+                    <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".getInscrptionLink">Générer l'URL d'inscription</button></div>
+                {% endif %}
+                {% if module.payable %}
+                    {% if paymentmeans is not empty %}
+                        <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
+                    {% endif %}    
+                {% endif %}
+                <div class="col-md-2 pull-right " id="checkbox_payable">                  
+                    <form id="paying-checkbox" action="">
+                        <input id="payable-{{module.id}}" onclick="updatePayable({{module.id}})" type="checkbox" {% if module.payable %} checked {%endif%}>Evenement payant
+                    </form>
+                </div>
+
+                <div class="modal fade getInscrptionLink" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title" id="myModalLabel">Lien du formulaire d'inscritption</h4>
+                            </div>
+                            <div class="modal-body">
+                                <span> {{link}} </span>
+                            </div>
+                        </div>
+                  </div>
+                </div>
             </div>
-                 {{ render(controller('PlanItGuestsBundle:Guest:form', { 'module_id' : module_id } ))}}
-                 {{ render(controller('PlanItGuestsBundle:PaymentMeans:form', { 'module_id' : module_id } ))}}
-                 {{ render(controller('PlanItGuestsBundle:Page:updatemodule', { 'module_id' : module_id } ))}}
+                 {{ render(controller('PlanItGuestsBundle:Guest:form', { 'module_id' : module.id } ))}}
+                 {{ render(controller('PlanItGuestsBundle:PaymentMeans:form', { 'module_id' : module.id } ))}}
+                 {{ render(controller('PlanItGuestsBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
 
 
             <div id="guests_list">
 
-                <!--Template guests.html.twig -->
+                {% if module.typesguests is empty %}
+                    <p class="empty">Il n'y a aucune catégorie d'invité</p>
+                {% else %}
+                    {% for type_guest in module.typesguests %}
+                        {# Tête de liste #}
+                        <div class="row list" >
+                            <div class="head-list accordion-head">
+                                <div class="left col-md-5 col-sm-6 col-xs-6" >
+                                    <form action="" class="hidden-phone">
+                                        <select onchange="showModalMultiple({{type_guest.id}})" data-multiple="1" data-action="$('#actions-{{type_guest.id}}').val()" data-type="{{type_guest.id}}" name="actions" id="actions-{{type_guest.id}}">
+                                                <option value="none">Action</option>
+                                                {% if module.moduletype == false %}
+                                                    <option value="send">Envoyer</option>
+                                                {% endif %}
+                                                <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type_guest.id}}" value="delete">Supprimer</option>
+                                        </select>
+                                    </form>
+                                    <div class="name">{{type_guest.label}}</div>
+                                </div>
+                                
+                                <div class="price col-md-1 col-sm-2 col-md-offset-2 col-sm-offset-0">{{type_guest.price}}€/pers</div>
+                                <div class="right pull-right col-md-2 col-sm-3" >
+                                    <div class="modify_type"></div>
+                                    <div class="delete_type"></div>
+                                    
+                                </div>
+                            </div>
+                            {# Labels #}
+                            <div class="accordion-body">
+                                {% if type_guest.guests|length == 0 %}
+                                    <p class="empty">Il n'y a aucun invité </p>
+                                {% else %}
+                                <div class="labels row hidden-phone">
+                                    <form action="" id="select-all" class="col-md-1 col-sm-1">
+                                        <input onclick="checkAll({{type_guest.id}})" id="checkall-{{type_guest.id}}" type="checkbox">
+                                    </form>
+                                    <p class="name col-md-1 col-sm-1 ">Prénom</p>
+                                    <p class="name col-md-2 col-sm-2 ">Nom</p>
+                                    <p class="email col-md-2 col-sm-2">Email</p>
+                                    <p class="confirmed col-md-1 col-sm-1  visible-desktop">Confirmé</p>
+                                    <p class="confirmed col-md-1 col-sm-1  hidden-desktop">Confirm.</p>
+                                    {% if module.payable %}
+                                    <p class="payed col-md-1 col-sm-1 ">Payé</p>
+                                    <p class="payment col-md-2 col-sm-2 visible-desktop">Mode de paiement</p>
+                                    <p class="payment col-md-2 col-sm-2 hidden-desktop">Paiement</p>
+                                    {% endif %}
+                                    {% if module.moduletype == false %}
+                                        <p class="send col-md-1 col-sm-1 visible-desktop">Envoyer</p>
+                                        <p class="send col-md-1 col-sm-1 hidden-desktop">Env.</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right visible-desktop">Supprimer</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right hidden-desktop">Supp.</p>
+                                    {% elseif module.moduletype == true %}
+                                        <p class="delete col-md-2 col-sm-2 pull-right visible-desktop">Supprimer</p>
+                                        <p class="delete col-md-2 col-sm-2 pull-right hidden-desktop">Supp.</p>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                                {# Données #}
+                                {% for guest in module.guests %}
+                                    {% if guest.type.id == type_guest.id %}
+                                        <div class="row-list row">
+                                            <form action="" id="select-field" class="col-md-1 col-sm-1 col-xs-1 hidden-phone">
+                                                <input class="checkbox-action-{{type_guest.id}}" name="checkbox-action-{{type_guest.id}}" id="{{guest.id}}" type="checkbox">
+                                            </form>
+                                            <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.type.id}}">
+                                            <div class="firstname col-md-1 col-sm-1 col-xs-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>
+                                            <div class="lastname col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
+                                            <div class="email col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
+                                            <div class="confirmed col-md-1 col-sm-1 col-xs-1"><div onclick="updateGuest({{guest.id}}, 'confirmed')" id="confirmed-{{guest.id}}" data-type="{{guest.confirmed}}" class="light state-{{guest.confirmed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div></div>
+                                            {% if module.payable %}
+                                            <div class="payed col-md-1 col-sm-1 col-xs-1">
+                                                    <div onclick="updateGuest({{guest.id}}, 'payed')" id="payed-{{guest.id}}" data-type="{{guest.payed}}" class="light state-{{guest.payed}}" data-placement="top" data-original-title="Cliquez pour modifier"></div>
+                                            </div>
+                                            <div class="payment col-md-2 col-sm-2 col-xs-2">
+                                                <form action="" id="payment">
+                                                    {% if module.paymentmeans is empty %}
+                                                        <span> Aucun moyen de paiement </span>
+                                                    {%else %}
+                                                    <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
+                                                        <option></option>
+                                                        {% for payment in module.paymentmeans %}
+                                                            <option value="{{payment.id}}" {% if guest.paymentmean %}{% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}{% endif %}>{{payment.label}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    {% endif %}
+                                                </form>
+                                            </div>
+                                            {% endif %}
+                                            {% if module.moduletype == false %}
+                                                <div {% if not guest.sent %} onclick="sendMail({{guest.id}})" {% endif %} id="sent-{{guest.id}}" data-type="{{guest.sent}}" class="send sent-{{guest.sent}} col-md-1 col-sm-1 col-xs-1" data-placement="top" data-original-title="Vous avez déjà envoyé cette invitation"><div class="picto"></div></div>
+                                                <div class="delete col-md-1 col-sm-1 col-xs-1"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-type="{{guest.sent}}" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
+                                            {% elseif module.moduletype == true %}
+                                                <div class="delete col-md-2 col-sm-2 col-xs-2 pull-right"><div class="picto" data-toggle="modal" data-target=".deleteGuestModal" data-id="{{guest.id}}" data-name="{{guest.firstname}} {{guest.lastname}}"></div></div>
+                                            {% endif %}
+                                        </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        {% if module.moduletype == false %}
+                            <div class="col-md-2 pull-right add-guest"><button data-toggle="modal" data-target=".addGuestModal" data-type="{{type_guest.id}}">Ajouter un invité</button></div>
+                        {% endif %}
+                        
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="modal fade deleteGuestModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel_deleteGuest"></h4>
+                            </div>
+                            <div class="modal-body row">
+                                <button id="delete_confirm_guest" class="btn btn-default col-md-6"> Oui </button>
+                                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+
+                            </div>
+                        </div>
+                  </div>
+                </div>
                 
             </div>
         </div>
@@ -41,7 +192,7 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> getModule({{module_id}}); </script>
+    <script>guests();</script>
 {#     {% javascripts '@PlanItGuestsBundle/Resources/public/js/*.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %} #}

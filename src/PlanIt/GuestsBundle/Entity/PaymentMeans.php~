@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="PaymentMeans")
+ * @ORM\Table(name="payment_means")
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\PaymentMeansRepository")
  */
 class PaymentMeans
@@ -34,7 +34,7 @@ class PaymentMeans
     protected $guests;
 
     /**
-     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="payment_means")
+     * @ORM\ManyToMany(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", mappedBy="paymentmeans")
      **/
     protected $modules;
 

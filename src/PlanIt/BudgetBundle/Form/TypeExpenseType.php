@@ -15,7 +15,7 @@ class TypeExpenseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie *')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom de la catégorie * (Ex: Boissons, Matériel, etc.)')))
         ;
     }
     
@@ -25,7 +25,8 @@ class TypeExpenseType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\BudgetBundle\Entity\TypeExpense'
+            'data_class' => 'PlanIt\BudgetBundle\Entity\TypeExpense',
+            'csrf_protection' => false,
         ));
     }
 
@@ -34,6 +35,6 @@ class TypeExpenseType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_budgetbundle_typeexpense';
+        return 'typeexpense_form';
     }
 }

@@ -14,8 +14,7 @@ class ModuleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')));
+        
     }
     
     /**
@@ -24,7 +23,8 @@ class ModuleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\ModuleBundle\Entity\Module'
+            'data_class' => 'PlanIt\ModuleBundle\Entity\Module',
+            'csrf_protection' => false,
         ));
     }
 
@@ -33,6 +33,6 @@ class ModuleType extends AbstractType
      */
     public function getName()
     {
-        return 'planit_modulebundle_module';
+        return 'module_form';
     }
 }

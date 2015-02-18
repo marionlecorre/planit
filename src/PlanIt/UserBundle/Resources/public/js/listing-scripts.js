@@ -3,6 +3,6 @@ $(function(){
     	dateFormat: "dd/mm/yy"
 	})
 	$( '#planit_eventbundle_event_end_date' ).datepicker({
-    	format: 'dd/mm/yy'
+    	dateFormat: 'dd/mm/yy'
 	})
 });

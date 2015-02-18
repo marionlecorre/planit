@@ -5,22 +5,89 @@ namespace PlanIt\RestBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use PlanIt\EventBundle\Entity\Event;
+use PlanIt\GuestsBundle\Entity\GuestsModule;
+use PlanIt\BudgetBundle\Entity\BudgetModule;
+use PlanIt\PlaceBundle\Entity\PlaceModule;
+use PlanIt\TransportationBundle\Entity\TransportationModule;
+use PlanIt\TodoBundle\Entity\TodoModule;
 use PlanIt\EventBundle\Form\EventType;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class EventRestController extends Controller
 {
 
+    protected $container;
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    public function getEventNotusemodulesAction($event_id){
+        $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
+        $modules_tab = array(
+            1 => "Gestion des invités",
+            2 => "Gestion du budget",
+            3 => "Gestion du lieu",
+            4 => "Gestion du transport",
+            5 => "Liste de tâches"
+        );
+
+           foreach($modules_tab as $type => $name){
+                foreach($event->getModules() as $module){
+                    if($type == $module->getIntType()){
+                        unset($modules_tab[$type]);
+                    }
+               }
+           }
+           $notUseModules = [];
+           foreach($modules_tab as $type=>$name){
+                if($type == 1){
+                    $module = new GuestsModule();
+                    $module->setIntType(1);
+                    $module->setName('Gestion des invités');
+                }elseif($type == 2){
+                    $module = new BudgetModule();
+                    $module->setIntType(2);
+                    $module->setName('Gestion du budget');
+                }elseif($type == 3){
+                    $module = new PlaceModule();
+                    $module->setIntType(3);
+                    $module->setName('Gestion du lieu');
+                }elseif($type == 4){
+                    $module = new TransportationModule();
+                    $module->setIntType(4);
+                    $module->setName('Gestion du transport');
+                }elseif($type == 5){
+                    $module = new TodoModule();
+                    $module->setIntType(5);
+                    $module->setName('Listes de tâches');
+                }
+                $notUseModules[] = $module;
+           }
+           return $notUseModules;
+    }
     public function getEventAction($event_id){
 	    $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
         $nbGuests = $this->getEventNbguestsAction($event_id);
 	    if(!is_object($event)){
 	      throw $this->createNotFoundException();
 	    }
+        $balance = "Empty";
+        foreach ($event->getModules() as $value) {
+            if ($value->getIntType() == 2){
+                $balance = $value->getBalance();
+            }            
+        }
+
 	    return array(
                     'nbGuests' => $nbGuests,
-                    'event' => $event
+                    'event' => $event,
+                    'balance' => $balance,
                 );
 	}
+
+
 
 	public function postEventAction(Request $request, $user_id)
     {

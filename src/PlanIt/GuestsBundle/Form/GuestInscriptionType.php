@@ -39,7 +39,9 @@ class GuestInscriptionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest',
+            'csrf_protection' => false,
+
         ));
     }
 
@@ -48,7 +50,7 @@ class GuestInscriptionType extends AbstractType
      */
     public function getName()
     {
-        return 'inscription';
+        return 'inscription_form';
     }
 
     public function __construct(\PlanIt\ModuleBundle\Entity\Module $module)

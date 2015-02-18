@@ -10,8 +10,7 @@ class PageController extends Controller
     public function indexAction($id)
     {
     	$em = $this->getDoctrine()->getEntityManager();
-    	$event = $em->getRepository('PlanItEventBundle:Event')->find($id);
-
+    	$module = $this->get("budget_api_controller")->getUserAction($id);
         return $this->render('PlanItBudgetBundle:Page:index.html.twig', array(
             'event_id' => $id,
             'user_id' => $event->getUser()->getId()

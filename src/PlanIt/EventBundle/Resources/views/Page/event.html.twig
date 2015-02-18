@@ -2,7 +2,7 @@
 {% block content %}
 	<div id="content_general_event" class="container">
 		<div class="row" id="title">
-			<!--Template title -->
+			<div class="col-md-12" > <h1>{{ event.name }} </h1></div>
 		</div>
 
 		<div class="row" id="separator">
@@ -11,13 +11,29 @@
 
 		<div class="row">
 			<div class="col-md-4 descr_event" id="description">
-					<!-- Template description -->
+					<img src="/images/event/events_pictures/{{event.image}}"/> 
+					<p>{{event.description}} </p>
 			</div>
 			<div class="col-md-4"> 
 				<div id="pie_chart"></div>
 			</div>
 			<div class="col-md-4" id="infos"> 
-				<!--Template infos -->
+				<div class="info_dte">
+					<img src="/images/event/info_dte_zzz.png" /> 
+					<p> NOMBRE DE DODOS </br> <span> {{ event.beginDate | offsetDate() }}</span> </p>
+				</div>
+				<div class="info_dte">
+					<img src="/images/event/info_dte_invite.png" /> 
+					<p> NOMBRE D'INSCRITS </br> <span>{{nbGuests}}</span> </p>
+				</div>
+				<div class="info_dte info_color" id="balance">
+					{% if balance == "Empty" %}
+						<p class="benef" data-placement="top" data-original-title="Ajoutez un module BUDGET"> BÉNÉFICES PRÉVUS </br> <span> Non calculé</span> </p>
+					{% else %}
+						<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> BÉNÉFICES PRÉVUS </br> <span>{{ balance }} €</span> </p>
+					{% endif %}
+						
+				</div>
 			</div>
 		</div>
 
@@ -27,7 +43,17 @@
 
 		<div class="row">
 			<div id="modules">
-				<!--Template modules -->
+				{% for module in event.modules %}
+					<button onclick="deleteModule({{module.id}})"> X </button>
+					<a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
+							<div id="module_{{module.inttype}}" class="module_button">
+								<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
+								<p>{{module.name}}</p>    	
+							</div>	
+						</div>
+					</a>
+				{% endfor %}
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
 				<div id="ajout_module" data-toggle="modal" data-target="#basicModal"> 
@@ -38,10 +64,20 @@
 		        <div class="modal-dialog">
 		            <div class="modal-content">
 		                <div class="modal-header">
+		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 		                <h4 class="modal-title" id="myModalLabel">Ajouter un module</h4>
 		                </div>
 		                <div class="modal-body">
 						<div id="form_container">
+							<div id="select-type">
+								<select>
+									<option value=""> Choisir un module </option>
+									{% for module in notUsesModules %}
+										<option value="{{module.inttype}}"> {{module.name}} </option>
+									{% endfor %}
+								</select>
+							</div>
+							<div id="form-container"></div>
 						</div>
 						</div>
 		            </div>
@@ -49,13 +85,29 @@
 		    </div>
 		</div>
     </div>
+    
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    <script> getEvent({{event_id}}); </script>
     {% javascripts '@PlanItEventBundle/Resources/public/js/api.js'
     '@PlanItEventBundle/Resources/public/js/chart.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
+	<script>
+		$('.benef').tooltip();
+		 if( parseInt($("#balance p span").text()) > 0 ){
+			$("#balance").addClass("positif");
+		}
+		else if ( parseInt($("#balance p span").text()) < 0 ){
+			$("#balance").addClass("negatif");
+		}
+	</script>
+	<script>
+	    $('#select-type select').change(function(event) {
+	        $.get('/app_dev.php/{{ app.request.locale }}/event/form', {type: $(this).val(), event_id :{{event.id}}}, function(data) {
+	            $('#form-container').html(data);
+	        });
+	    });
+	</script>
 {% endblock %}

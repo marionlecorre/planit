@@ -48,9 +48,22 @@
 
 }
 
+
 .info_color{
-	background-color: $negative;
-	color:#ffffff;
+	background: $neutral url("/images/event/info_dte_budget.png") no-repeat;
+	background-position: 100% -112px;
+	color: #5c5a5a;
+	margin-top: 80px;
+	&.positif {
+		background-color: $positive;
+		background-position: 100% -223px;
+		color:#ffffff;
+	}
+	&.negatif {
+		background-color: $negative;
+		background-position: 100% 0px;
+		color:#ffffff;
+	}
 }
 
 #mes_modules{
@@ -78,31 +91,31 @@
 		cursor: pointer;
 	}
 
-	#module_guests{
+	#module_1{
 		background-color:$invit_module;
 		&:hover {
 			background-color: darken($invit_module, 5%);
 		}
 	}
-	#module_budget {
+	#module_2 {
 		background-color:$budget_module;
 		&:hover {
 			background-color: darken($budget_module, 5%);
 		}
 	}
-	#module_place {
+	#module_3 {
 		background-color:$place_module;
 		&:hover {
 			background-color: darken($place_module, 5%);
 		}
 	}
-	#module_transportation {
+	#module_4 {
 		background-color:$transport_module;
 		&:hover {
 			background-color: darken($transport_module, 5%);
 		}
 	}
-	#module_todo {
+	#module_5 {
 		background-color:$todo_module;
 		&:hover {
 			background-color: darken($todo_module, 5%);

@@ -25,7 +25,8 @@ class ContractType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\PlaceBundle\Entity\Place'
+            'data_class' => 'PlanIt\PlaceBundle\Entity\Place',
+            'csrf_protection' => false,
         ));
     }
 
@@ -34,6 +35,6 @@ class ContractType extends AbstractType
      */
     public function getName()
     {
-        return 'place_contract';
+        return 'placecontract_form';
     }
 }

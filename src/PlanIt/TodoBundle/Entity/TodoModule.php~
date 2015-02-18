@@ -1,10 +1,7 @@
 <?php
-
 namespace PlanIt\TodoBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
-
 /**
  * @ORM\Entity(repositoryClass="PlanIt\TodoBundle\Repository\TodoModuleRepository")
  * @ORM\Entity
@@ -18,33 +15,26 @@ class TodoModule extends Module
      * @var integer
      */
     protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
     /**
      * @var string
      */
     protected $slug;
-
     /**
      * @var integer
      */
-    protected $int_type;
-
+    protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
      */
     protected $event;
-
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\TodoBundle\Entity\Item", mappedBy="module")
      */
     protected $items;
-
-
     /**
      * Get id
      *
@@ -54,7 +44,6 @@ class TodoModule extends Module
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -64,10 +53,8 @@ class TodoModule extends Module
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -77,7 +64,6 @@ class TodoModule extends Module
     {
         return $this->name;
     }
-
     /**
      * Set slug
      *
@@ -87,10 +73,8 @@ class TodoModule extends Module
     public function setSlug($slug)
     {
         $this->slug = $this->slugify($slug);
-
         return $this;
     }
-
     /**
      * Get slug
      *
@@ -100,30 +84,6 @@ class TodoModule extends Module
     {
         return $this->slug;
     }
-
-    /**
-     * Set int_type
-     *
-     * @param integer $intType
-     * @return TodoModule
-     */
-    public function setIntType($intType)
-    {
-        $this->int_type = $intType;
-
-        return $this;
-    }
-
-    /**
-     * Get int_type
-     *
-     * @return integer 
-     */
-    public function getIntType()
-    {
-        return $this->int_type;
-    }
-
     /**
      * Set event
      *
@@ -133,10 +93,8 @@ class TodoModule extends Module
     public function setEvent(\PlanIt\EventBundle\Entity\Event $event = null)
     {
         $this->event = $event;
-
         return $this;
     }
-
     /**
      * Get event
      *
@@ -146,32 +104,25 @@ class TodoModule extends Module
     {
         return $this->event;
     }
-
     public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
-
         // trim
         $text = trim($text, '-');
-
         // transliterate
         if (function_exists('iconv'))
         {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
-
         // lowercase
         $text = strtolower($text);
-
         // remove unwanted characters
         $text = preg_replace('#[^-\w]+#', '', $text);
-
         if (empty($text))
         {
             return 'n-a';
         }
-
         return $text;
     }
     
@@ -182,7 +133,6 @@ class TodoModule extends Module
     {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add items
      *
@@ -192,10 +142,8 @@ class TodoModule extends Module
     public function addItem(\PlanIt\TodoBundle\Entity\Item $items)
     {
         $this->items[] = $items;
-
         return $this;
     }
-
     /**
      * Remove items
      *
@@ -205,7 +153,6 @@ class TodoModule extends Module
     {
         $this->items->removeElement($items);
     }
-
     /**
      * Get items
      *
@@ -214,5 +161,29 @@ class TodoModule extends Module
     public function getItems()
     {
         return $this->items;
+    }
+
+
+    /**
+     * Set inttype
+     *
+     * @param integer $inttype
+     * @return TodoModule
+     */
+    public function setInttype($inttype)
+    {
+        $this->inttype = $inttype;
+
+        return $this;
+    }
+
+    /**
+     * Get inttype
+     *
+     * @return integer 
+     */
+    public function getInttype()
+    {
+        return $this->inttype;
     }
 }

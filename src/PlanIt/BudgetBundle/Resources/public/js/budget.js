@@ -31,4 +31,6 @@ function budget(){
 	else if ( parseInt($("#balance span").text()) < 0 ){
 		$("#balance").addClass("negatif");
 	}
+
+	$('.benef').tooltip();
 }

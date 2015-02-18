@@ -27,7 +27,8 @@ class GuestAnswerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest'
+            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest',
+            'csrf_protection' => false,
         ));
     }
 
@@ -36,6 +37,6 @@ class GuestAnswerType extends AbstractType
      */
     public function getName()
     {
-        return 'guest_answer';
+        return 'guestanswer_form';
     }
 }
