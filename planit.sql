@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 17 Février 2015 à 22:17
+-- Généré le :  Mer 18 Février 2015 à 10:56
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -32,7 +32,7 @@ CREATE TABLE `event` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `begin_date` datetime NOT NULL,
+  `beginDate` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -41,7 +41,7 @@ CREATE TABLE `event` (
 -- Contenu de la table `event`
 --
 
-INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `begin_date`, `end_date`, `image`) VALUES
+INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `beginDate`, `end_date`, `image`) VALUES
 (1, 1, 'Nouvel An', 'nouvelan', 'On va boire du champagne faire la fête et tout et tout', '2014-12-31 00:00:00', '2015-01-01 00:00:00', 'nouvel-an.jpg'),
 (2, 2, 'Noël', 'noel', 'Petit papa noel quand tu descendras du ciel... tu m''amèneras un macbook Pro stp', '2014-12-24 00:00:00', '2014-12-25 00:00:00', 'noel.jpg'),
 (3, 3, 'Anniversaire Florent', 'annivflorent', 'Hapyy birthday to youuu Diabeto <3 get on the flow', '2014-11-19 00:00:00', '2014-11-20 00:00:00', 'photo_evenement.jpg'),
@@ -68,7 +68,7 @@ CREATE TABLE `expense` (
   `consummate` double NOT NULL,
   `bought` tinyint(1) NOT NULL,
   `unit` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `expense`
@@ -125,7 +125,7 @@ CREATE TABLE `inflow` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `amount` double NOT NULL,
   `module_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `inflow`
@@ -270,19 +270,19 @@ INSERT INTO `payment_means` (`id`, `label`) VALUES
 CREATE TABLE `place` (
 `id` int(11) NOT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `address` longtext COLLATE utf8_unicode_ci,
-  `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `distance` double DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `capacity` double DEFAULT NULL,
-  `website` longtext COLLATE utf8_unicode_ci,
-  `remark` longtext COLLATE utf8_unicode_ci,
-  `state` int(11) DEFAULT NULL,
+  `address` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `tel` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `distance` double NOT NULL,
+  `price` double NOT NULL,
+  `capacity` double NOT NULL,
+  `website` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `remark` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `state` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
-  `latitude` double DEFAULT NULL,
-  `longitude` double DEFAULT NULL,
-  `contract` longtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
+  `contract` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `place`
@@ -304,7 +304,7 @@ CREATE TABLE `type_expense` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_expense`
@@ -462,7 +462,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT pour la table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `guest`
 --
@@ -472,7 +472,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 -- AUTO_INCREMENT pour la table `inflow`
 --
 ALTER TABLE `inflow`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `item`
 --
@@ -492,12 +492,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `place`
 --
 ALTER TABLE `place`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `type_guest`
 --
