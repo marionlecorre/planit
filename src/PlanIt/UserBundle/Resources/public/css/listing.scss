@@ -59,6 +59,7 @@
 
 .event-thumbnail.add {
 	background: $add_event;
+	@include box-shadow(0,2px,4px,0px,#a2a2a2);
 	&:hover {
 			background-color: darken($add_event, 5%);
 		}

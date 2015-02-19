@@ -13,6 +13,7 @@ use PlanIt\TodoBundle\Entity\TodoModule;
 use PlanIt\EventBundle\Form\EventType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+
 class EventRestController extends Controller
 {
 
@@ -78,12 +79,15 @@ class EventRestController extends Controller
                 $balance = $value->getBalance();
             }            
         }
+
 	    return array(
                     'nbGuests' => $nbGuests,
                     'event' => $event,
-                    'balance' => $balance
+                    'balance' => $balance,
                 );
 	}
+
+
 
 	public function postEventAction(Request $request, $user_id)
     {

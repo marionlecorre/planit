@@ -8,16 +8,22 @@ class UserExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('price', array($this, 'priceFilter')),
+            new \Twig_SimpleFilter('offsetDate', array($this, 'offsetDateFilter')),
         );
     }
 
-    public function priceFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+    public function offsetDateFilter($date)
     {
-        $price = number_format($number, $decimals, $decPoint, $thousandsSep);
-        $price = '$' . $price;
-
-        return $price;
+        $now = new \DateTime();
+        $diff = $date->diff($now);
+        //$diff->format("%r%a")
+        if ((int)$diff->format("%r%a") < 0){
+            return "J ".$diff->format("%r%a");
+        }
+        else {
+            return "J +".$diff->format("%r%a");
+        }
+        
     }
 
     public function getName()

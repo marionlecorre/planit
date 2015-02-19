@@ -4,31 +4,38 @@ header {
 	border-color: $color;
 }
 
+.buttons{
+	margin-bottom: 10px;
+}
+
 .todo{
-	background-color: $neutral;
+	background-color: $color;
+	color: #ffffff;
 	padding:10px 30px 10px 30px;
-	margin: -10px 15px 10px 15px;
+	margin: 10px 15px 0px 15px;
 	@include border-radius(5px);
 	input{
-		float:right;
+		float:left;
 		background-color: #ffffff;
+		margin-right: 20px;
 	}
 }
 
+/*
 .todo input[type="checkbox"]{
     background: white;
-}
+}*/
 
 .checked{
-	background-color: $color;
-	color: #ffffff;
+	background-color: $neutral;
+	color:#333;
 }
 
 .bt_todo button{
 	background-color: $color;
 	padding: 4px 18px;
 	width: 100%;
-	margin-bottom: 40px;
+	margin-bottom: 5px;
 }
 
 

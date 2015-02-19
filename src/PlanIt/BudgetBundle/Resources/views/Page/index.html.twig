@@ -9,10 +9,20 @@
 	<div class="row" id="separator">
 		<div class="col-md-12"> </div>
 	</div>
-	<section>
-		<div class="container_onglet" >			
+
+	<div class="row buttons">
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense">Ajouter une dépense</button></div>
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout">Ajouter un apport</button></div>
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><a href="/app_dev.php/pdf/{{module_id}}"><button>Imprimer la liste des courses</button></a></div>
+	</div>
+	
+	<section>			
+		<div class="container_onglet">			
 			<section>
+<<<<<<< HEAD
 				<a href="{{ path('PlanItBudgetBundle_pdf', { 'module_id': module.id }) }}">{{'print'|trans}}</a>
+=======
+>>>>>>> FETCH_HEAD
 				<div class="tabs tabs-style-topline">
 					<div class="row">
 						<nav class="col-md-12">

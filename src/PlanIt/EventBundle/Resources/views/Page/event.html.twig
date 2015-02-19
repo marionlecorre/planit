@@ -10,17 +10,21 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-3 descr_event" id="description">
+			<div class="col-md-4 descr_event" id="description">
 					<img src="/images/event/events_pictures/{{event.image}}"/> 
-					<p>{{event.description}} </p>			
+					<p>{{event.description}} </p>
 			</div>
-			<div class="col-md-5"> 
+			<div class="col-md-4"> 
 				<div id="pie_chart"></div>
 			</div>
 			<div class="col-md-4" id="infos"> 
 				<div class="info_dte">
 					<img src="/images/event/info_dte_zzz.png" /> 
+<<<<<<< HEAD
 					<p> {{'nb_dodos'|trans}}</br> <span>days</span> </p>
+=======
+					<p> NOMBRE DE DODOS </br> <span> {{ event.beginDate | offsetDate() }}</span> </p>
+>>>>>>> FETCH_HEAD
 				</div>
 				<div class="info_dte">
 					<img src="/images/event/info_dte_invite.png" /> 

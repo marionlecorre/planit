@@ -1,0 +1,42 @@
+{% twig_js name="list" %}
+{% for place in module.places%}
+<div>
+	<input type="radio" class="check" id="check" onClick="chosePlace({{place.id}})" {% if place.state == 1 %} checked {% endif %}>
+</div>
+<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% endif %}">	
+	<div class="name"><input type="text" id="name-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.name}}"></div>
+    <div class="price"><input type="text" id="price-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.price}}">€</div>
+    <button onclick="deletePlace({{place.id}})">X</button>
+</div>
+<div class="accordion-body">
+    <div class="labels row">
+    	<div class="col-lg-3 col-md-12 col-sm-12 img_place"> </div>
+    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
+        	<p><span class="label_descr">Adresse</span> : <input type="text" id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.address}}"></p>
+        	<p><span class="label_descr">Capacité</span> : <input type="text" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
+        	<p><span class="label_descr">Distance</span> : <input type="text" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
+        	<p><span class="label_descr">Téléphone</span> : <input type="text" id="tel-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.tel}}"></p>
+        	<p><span class="label_descr">Site</span> : <input type="text" id="website-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.website}}"> </p>
+        	<p><span class="label_descr">Remarque</span> : <input type="text" id="remark-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.remark}}"> </p>
+        	<p><span class="label_descr">Etat</span> : 
+        		<select id="state-place-{{place.id}}" onchange="updatePlace({{place.id}})">
+        			<option value="0" {% if place.state == 0 %} selected {% endif %}>Refusé</option>
+        			<option value="2" {% if place.state == 2 %} selected {% endif %}>Contacté</option>
+        			<option value="1" {% if place.state == 1 %} selected {% endif %}>Accepté</option>
+        		</select>
+        	</p>
+        	<p><span class="label_descr">Contrat</span> : {{place.contract}}
+                <div class="bt_place">
+                    <button data-toggle="modal" data-target=".updateContractModal" data-id="{{place.id}}">Modifier le contrat</button> 
+                </div>
+        	</p>
+    	</div>
+    	<div class="col-lg-5 col-md-6 col-sm-12" id="map_canvas_{{place.id}}">
+    	</div>
+
+    </div>
+</div>
+<script>//initializeMap({{place.id}}, {{place.latitude}}, {{place.longitude}})</script>
+{% endfor %}
+
+<script>places();</script>

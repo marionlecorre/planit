@@ -46,7 +46,7 @@ class Event
      *
      * @var \DateTime
      */
-    protected $begin_date;
+    protected $beginDate;
 
     /**
      * @ORM\Column(type="datetime")
@@ -155,7 +155,7 @@ class Event
      */
     public function setBeginDate($beginDate)
     {
-        $this->begin_date = $beginDate;
+        $this->beginDate = $beginDate;
 
         return $this;
     }
@@ -167,7 +167,7 @@ class Event
      */
     public function getBeginDate()
     {
-        return $this->begin_date;
+        return $this->beginDate;
     }
 
     /**

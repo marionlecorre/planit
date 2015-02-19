@@ -10,9 +10,10 @@
 		<div class="col-md-12"> </div>
 	</div>
 
-	<div class="row">
+	<div class="row buttons">
         <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addItemModal">Ajouter une tâche</button></div>
         <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}">Imprimer la liste des tâches</a></div>
+
         <!--<div class="col-md-3 bt_todo"><button>Valider</button></div>-->
     </div>
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
