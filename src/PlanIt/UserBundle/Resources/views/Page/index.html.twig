@@ -11,7 +11,7 @@
 {% block content %}
 	<div class="container">
 		<div class="row" id="title">
-			<div class="col-md-12" > <h1>{{'EVENEMENTS'|trans}}</h1> </div>
+			<div class="col-md-12" > <h1>{{'title'|trans}}</h1> </div>
 		</div>
 
 		<div class="row" id="separator">
@@ -48,7 +48,7 @@
 		            <div class="modal-content">
 		                <div class="modal-header">
 		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		                <h4 class="modal-title" id="myModalLabel">{{'Ajouter un événement'|trans}}</h4>
+		                <h4 class="modal-title" id="myModalLabel">{{'add_event'|trans}}</h4>
 		                </div>
 		                <div class="modal-body">
 							{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user.id } ))}}

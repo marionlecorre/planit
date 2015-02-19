@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
 	<div class="row" id="title">
-        <div class="col-md-12" > <h1>Budget</h1> </div>
+        <div class="col-md-12" > <h1>{{'budget'|trans}}</h1> </div>
     </div>
 
 	<div class="row" id="separator">
@@ -14,8 +14,6 @@
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><a href="{{ path('PlanItBudgetBundle_pdf', { 'module_id': module.id }) }}"><button>Imprimer la liste de courses</button></a></div>
-
-
 	</div>
 	
 	<section>			
@@ -25,23 +23,23 @@
 					<div class="row">
 						<nav class="col-md-12">
 							<ul id="tab">
-								<li><a class="tab" id="tab-general" href="#section-topline-general"><span>Récapitulatif</span></a></li>
+								<li><a class="tab" id="tab-general" href="#section-topline-general"><span>{{'recap'|trans}}</span></a></li>
 								{% for type_expense in module.typesexpense %}
 									<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span>
 										<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}" data-name="{{type_expense.name}}">x</span></a> 
 									</li>
 								{% endfor %}
-								<li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>Apports</span></a></li>
+								<li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>{{'inflows'|trans}}</span></a></li>
 
 								<div class="modal fade deleteTypeExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 								    <div class="modal-dialog">
 								        <div class="modal-content">
 								            <div class="modal-header">
-								            <h4 class="modal-title" id="myModalLabel_deleteTypeExpense">Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?</h4>
+								            <h4 class="modal-title" id="myModalLabel_deleteTypeExpense">{{'delete_typeexpense_message'|trans}}</h4>
 								            </div>
 								            <div class="modal-body row">
-								                <button id="delete_confirm_typeexpense" class="btn btn-default col-md-6"> Oui </button>
-								                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+								                <button id="delete_confirm_typeexpense" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+								                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
 
 								            </div>
 								        </div>
@@ -56,20 +54,25 @@
 						<section id="section-topline-general">
 							<div class="section-topline">
 								<div class="col-md-4"> 
-									<div class="pie_chart" id="pie_chart_depenses"></div>									
+
+									<div class="pie_chart" id="pie_chart_depenses"></div>
+									<div class="bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
+
 								</div>
 
 								<div class="col-md-4"> 
 									<div class="pie_chart" id="pie_chart_apports"></div>
+									<div class="bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
+
 								</div>
 
 								<div class="col-md-4" id="infos"> 
 									<div class="info_dte info_color" id="balance">
-										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> BÉNÉFICES PRÉVUS </br> <span >{{infos.balance}}€</span> </p>
+										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> {{'benefices'|trans}} </br> <span >{{infos.balance}}€</span> </p>
 									</div>							
 									<div class="info_dte">
 										<img src="/images/budget/info_dte_limite.png" /> 
-										<p> BUDGET LIMITE</br> <span>{{infos.budget}} €</span> </p>
+										<p> {{'max_budget'|trans}}</br> <span>{{infos.budget}} €</span> </p>
 									</div>
 								</div>
 							</div>
@@ -82,15 +85,15 @@
 									<table class="table table-bordered table-condensed table-body-center" >
 										<thead>
 											<tr>
-												<th>Article *</th>
-												<th>Quantité *</th>
-												<th>En stock *</th>
-												<th>A acheter</th>
-												<th>Prix unitaire *</th>
-												<th>Prix total</th>
-												<th>Consommé *</th>
-												<th>Acheté *</th>								
-												<th>Supprimer</th>
+												<th>{{'item'|trans}} *</th>
+												<th>{{'quantity'|trans}} *</th>
+												<th>{{'stock'|trans}} *</th>
+												<th>{{'to_buy'|trans}}</th>
+												<th>{{'unit_price'|trans}} *</th>
+												<th>{{'total'|trans}}</th>
+												<th>{{'consumed'|trans}} *</th>
+												<th>{{'bought'|trans}} *</th>								
+												<th>{{'delete'|trans}}</th>
 											</tr>
 										</thead>
 										
@@ -127,8 +130,8 @@
 											{% endfor %}						
 										</tbody>
 									</table>
-									<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
-									<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">Ajouter un article</button></div>
+									<span id="legend">* {{'changeable_data'|trans}}</span>
+									<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_item'|trans}}</button></div>
 									
 								</div>
 							</section>
@@ -139,9 +142,9 @@
 								<table class="table table-bordered table-condensed table-body-center" >
 									<thead>
 										<tr>
-											<th>Intitulé *</th>
-											<th>Montant *</th>											
-											<th>Supprimer</th>
+											<th>{{'label'|trans}}</th>
+											<th>{{'amount'|trans}}</th>											
+											<th>{{'delete'|trans}}</th>
 										</tr>
 									</thead>
 									
@@ -160,8 +163,10 @@
 										{% endfor %}						
 									</tbody>
 								</table>
-								<span id="legend"> * Données modifiables. Cliquez pour modifier.</span>
-								 <!-- <div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addInflowModal">Ajouter un apport</button></div>  -->
+
+								<span id="legend">* {{'changeable_data'|trans}}</span>
+								<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addInflowModal">{{'add_inflow'|trans}}</button></div>
+
 								
 							</div>
 						</section>
@@ -172,8 +177,8 @@
 						            <h4 class="modal-title" id="myModalLabel_deleteExpense"></h4>
 						            </div>
 						            <div class="modal-body row">
-						                <button id="delete_confirm_expense" class="btn btn-default col-md-6"> Oui </button>
-						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+						                <button id="delete_confirm_expense" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
 
 						            </div>
 						        </div>
@@ -188,8 +193,8 @@
 						            <h4 class="modal-title" id="myModalLabel_deleteInflow"></h4>
 						            </div>
 						            <div class="modal-body row">
-						                <button id="delete_confirm_inflow" class="btn btn-default col-md-6"> Oui </button>
-						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+						                <button id="delete_confirm_inflow" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+						                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
 
 						            </div>
 						        </div>

@@ -46,9 +46,3 @@ form:
         category: Nom de la catégorie *
         mail: Contenu de l'email d'invitation *
         price: Prix *
-
-'Gestion des invités': Guests management
-'Gestion du budget': Budget management
-'Listes de tâches': Todo list
-'Gestion du lieu': Place management
-'Gestion du transport': Transportation management

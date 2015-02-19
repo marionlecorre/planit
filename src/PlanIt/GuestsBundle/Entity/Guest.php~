@@ -61,7 +61,7 @@ class Guest
      * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\TypeGuest", inversedBy="guests")
      * @ORM\JoinColumn(name="type_guest_id", referencedColumnName="id")
      */
-    protected $type;
+    protected $typeguest;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\GuestsBundle\Entity\GuestsModule", inversedBy="guests")

@@ -1,0 +1,6 @@
+add_task: Ajouter une tâche
+print: Imprimer la liste des tâches
+add: Ajouter
+form:
+    item:
+        label: Tâche *

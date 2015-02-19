@@ -17,7 +17,7 @@ class GuestAnswerType extends AbstractType
         $builder->add('confirmed', 'choice', array(
             'choices'   => array('1' => 'Oui', '0' => 'Non'),
             'required'  => false,
-            'label' => 'Souhaitez vous participer à l\'évenement ?'
+            'label' => 'form.answer.confirmed'
         ));
     }
     

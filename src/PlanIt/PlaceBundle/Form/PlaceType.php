@@ -17,23 +17,23 @@ class PlaceType extends AbstractType
     {
         
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom du lieu *')))
-            ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'Adresse *')))
-            ->add('tel','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Téléphone')))
-            ->add('distance','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Distance')))
-            ->add('price','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Prix')))
-            ->add('capacity','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Capacité')))
-            ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Site web')))
-            ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Latitude')))
-            ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Longitude')))
-            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'Remarque')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.name')))
+            ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.address')))
+            ->add('tel','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'tel')))
+            ->add('distance','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'distance')))
+            ->add('price','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.price')))
+            ->add('capacity','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'capacity')))
+            ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'website')))
+            ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.latitude')))
+            ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.longitude')))
+            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'remark')))
             ->add('state','choice', array(
                                         'choices'   => array(
                                             '' => '',
-                                            0   => 'Refusé',
-                                            2 => 'Contacté',
-                                            1   => 'Accepté',
-                                        ), 'label'  => false, 'attr' => array('placeholder' => 'Etat')));
+                                            0   => 'refused',
+                                            2 => 'contacted',
+                                            1   => 'accepted',
+                                        ), 'label'  => false, 'attr' => array('placeholder' => 'state')));
 
     }
     

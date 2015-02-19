@@ -80,11 +80,10 @@ function updatePayable(module_id){
 
 function sendMail(guest_id){
 	$.ajax({
-	   url : 'http://planit.marion-lecorre.com/api/guests/'+guest_id+'/mails', //API
+	   url : '/app_dev.php/api/guests/'+guest_id+'/mails', //API
 	   type : 'POST',
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   		//location.reload();
-	   		console.log(module);
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

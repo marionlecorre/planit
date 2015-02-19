@@ -13,10 +13,10 @@
 	<section id="module_content">
 	   <div class="container guest-module">
             <div class="row" id="title">
-                <div class="col-md-10" > <h1>{{module.name|upper}}</h1> </div>
-                <div class="col-md-2" > Inscrits : {{nb_guests}}/{{module.maxguests}} </div>
+                <div class="col-md-10" > <h1>{{module.name|trans|upper}}</h1> </div>
+                <div class="col-md-2" > {{'guests'|trans}} : {{nb_guests}}/{{module.maxguests}} </div>
                 <div class="col-md-2 pull-right">
-                    <button data-toggle="modal" data-target=".updateModuleModal" data-type="">Modifier le module</button>
+                    <button data-toggle="modal" data-target=".updateModuleModal" data-type="">{{'update_module'|trans}}</button>
                 </div>
             </div>
 
@@ -27,18 +27,18 @@
 
             {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module.id } ))}}
             <div id="header_list" class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addTypeGuestModal">Ajouter une catégorie d'invité</button></div>
+                <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addTypeGuestModal">{{'add_typeguest'|trans}}</button></div>
                 {% if module.moduletype == 1 %}
-                    <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".getInscrptionLink">Générer l'URL d'inscription</button></div>
+                    <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".getInscrptionLink">{{'url' |trans}}</button></div>
                 {% endif %}
                 {% if module.payable %}
                     {% if paymentmeans is not empty %}
-                        <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addPaymentMeansModal">Ajouter un mode de paiement</button></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addPaymentMeansModal">{{'add_payment' |trans}}</button></div>
                     {% endif %}    
                 {% endif %}
                 <div class="col-md-2 pull-right " id="checkbox_payable">                  
                     <form id="paying-checkbox" action="">
-                        <input id="payable-{{module.id}}" onclick="updatePayable({{module.id}})" type="checkbox" {% if module.payable %} checked {%endif%}>Evenement payant
+                        <input id="payable-{{module.id}}" onclick="updatePayable({{module.id}})" type="checkbox" {% if module.payable %} checked {%endif%}>{{'payable'|trans}}
                     </form>
                 </div>
 
@@ -47,10 +47,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                             <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title" id="myModalLabel">Lien du formulaire d'inscritption</h4>
+                            <h4 class="modal-title" id="myModalLabel">{{'link'|trans}}</h4>
                             </div>
                             <div class="modal-body">
-                                <span> {{link}} </span>
+                                <span> http://planit.dev:8888/app_dev.php/{{ app.request.locale }}{{link}} </span>
                             </div>
                         </div>
                   </div>
@@ -64,7 +64,7 @@
             <div id="guests_list">
 
                 {% if module.typesguests is empty %}
-                    <p class="empty">Il n'y a aucune catégorie d'invité</p>
+                    <p class="empty">{{'no_typeguest'|trans}}</p>
                 {% else %}
                     {% for type_guest in module.typesguests %}
                         {# Tête de liste #}
@@ -73,11 +73,11 @@
                                 <div class="left col-md-5 col-sm-6 col-xs-6" >
                                     <form action="" class="hidden-phone">
                                         <select onchange="showModalMultiple({{type_guest.id}})" data-multiple="1" data-action="$('#actions-{{type_guest.id}}').val()" data-type="{{type_guest.id}}" name="actions" id="actions-{{type_guest.id}}">
-                                                <option value="none">Action</option>
+                                                <option value="none">{{'action'|trans}}</option>
                                                 {% if module.moduletype == false %}
-                                                    <option value="send">Envoyer</option>
+                                                    <option value="send">{{'send'|trans}}</option>
                                                 {% endif %}
-                                                <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type_guest.id}}" value="delete">Supprimer</option>
+                                                <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type_guest.id}}" value="delete">{{'delete'|trans}}</option>
                                         </select>
                                     </form>
                                     <div class="name">{{type_guest.label}}</div>
@@ -93,41 +93,41 @@
                             {# Labels #}
                             <div class="accordion-body">
                                 {% if type_guest.guests|length == 0 %}
-                                    <p class="empty">Il n'y a aucun invité </p>
+                                    <p class="empty">{{'no_guest'|trans}} </p>
                                 {% else %}
                                 <div class="labels row hidden-phone">
                                     <form action="" id="select-all" class="col-md-1 col-sm-1">
                                         <input onclick="checkAll({{type_guest.id}})" id="checkall-{{type_guest.id}}" type="checkbox">
                                     </form>
-                                    <p class="name col-md-1 col-sm-1 ">Prénom</p>
-                                    <p class="name col-md-2 col-sm-2 ">Nom</p>
-                                    <p class="email col-md-2 col-sm-2">Email</p>
-                                    <p class="confirmed col-md-1 col-sm-1  visible-desktop">Confirmé</p>
+                                    <p class="name col-md-1 col-sm-1 ">{{'firstname'|trans}}</p>
+                                    <p class="name col-md-2 col-sm-2 ">{{'lastname'|trans}}</p>
+                                    <p class="email col-md-2 col-sm-2">{{'mail'|trans}}</p>
+                                    <p class="confirmed col-md-1 col-sm-1  visible-desktop">{{'confirmed'|trans}}</p>
                                     <p class="confirmed col-md-1 col-sm-1  hidden-desktop">Confirm.</p>
                                     {% if module.payable %}
-                                    <p class="payed col-md-1 col-sm-1 ">Payé</p>
-                                    <p class="payment col-md-2 col-sm-2 visible-desktop">Mode de paiement</p>
-                                    <p class="payment col-md-2 col-sm-2 hidden-desktop">Paiement</p>
+                                    <p class="payed col-md-1 col-sm-1 ">{{'payed'|trans}}</p>
+                                    <p class="payment col-md-2 col-sm-2 visible-desktop">{{'payment_mean'|trans}}</p>
+                                    <p class="payment col-md-2 col-sm-2 hidden-desktop">{{'payment_mean_mobile'|trans}}</p>
                                     {% endif %}
                                     {% if module.moduletype == false %}
-                                        <p class="send col-md-1 col-sm-1 visible-desktop">Envoyer</p>
-                                        <p class="send col-md-1 col-sm-1 hidden-desktop">Env.</p>
-                                        <p class="delete col-md-1 col-sm-1 pull-right visible-desktop">Supprimer</p>
-                                        <p class="delete col-md-1 col-sm-1 pull-right hidden-desktop">Supp.</p>
+                                        <p class="send col-md-1 col-sm-1 visible-desktop">{{'send'|trans}}</p>
+                                        <p class="send col-md-1 col-sm-1 hidden-desktop">{{'send_mobile'|trans}}</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right visible-desktop">{{'delete'|trans}}</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right hidden-desktop">{{'delete_mobile'|trans}}</p>
                                     {% elseif module.moduletype == true %}
-                                        <p class="delete col-md-2 col-sm-2 pull-right visible-desktop">Supprimer</p>
-                                        <p class="delete col-md-2 col-sm-2 pull-right hidden-desktop">Supp.</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right visible-desktop">{{'delete'|trans}}</p>
+                                        <p class="delete col-md-1 col-sm-1 pull-right hidden-desktop">{{'delete_mobile'|trans}}</p>
                                     {% endif %}
                                 </div>
                                 {% endif %}
                                 {# Données #}
                                 {% for guest in module.guests %}
-                                    {% if guest.type.id == type_guest.id %}
+                                    {% if guest.typeguest.id == type_guest.id %}
                                         <div class="row-list row">
                                             <form action="" id="select-field" class="col-md-1 col-sm-1 col-xs-1 hidden-phone">
                                                 <input class="checkbox-action-{{type_guest.id}}" name="checkbox-action-{{type_guest.id}}" id="{{guest.id}}" type="checkbox">
                                             </form>
-                                            <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.type.id}}">
+                                            <input type="hidden" id="type_guest-{{guest.id}}" value="{{guest.typeguest.id}}">
                                             <div class="firstname col-md-1 col-sm-1 col-xs-1"><input onblur="updateGuest({{guest.id}}, 'firstname')" type="text" id="firstname-{{guest.id}}" value="{{guest.firstname}}"></div>
                                             <div class="lastname col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'lastname')" type="text" id="lastname-{{guest.id}}" value="{{guest.lastname}}"></div>
                                             <div class="email col-md-2 col-sm-2 col-xs-2"><input onblur="updateGuest({{guest.id}}, 'email')" type="text" id="email-{{guest.id}}" value="{{guest.email}}"></div>
@@ -139,7 +139,7 @@
                                             <div class="payment col-md-2 col-sm-2 col-xs-2">
                                                 <form action="" id="payment">
                                                     {% if module.paymentmeans is empty %}
-                                                        <span> Aucun moyen de paiement </span>
+                                                        <span> {{'no_payment'|trans}} </span>
                                                     {%else %}
                                                     <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
                                                         <option></option>
@@ -163,7 +163,7 @@
                         </div>
 
                         {% if module.moduletype == false %}
-                            <div class="col-md-2 pull-right add-guest"><button data-toggle="modal" data-target=".addGuestModal" data-type="{{type_guest.id}}">Ajouter un invité</button></div>
+                            <div class="col-md-2 pull-right add-guest"><button data-toggle="modal" data-target=".addGuestModal" data-type="{{type_guest.id}}">{{'add_guest'|trans}}</button></div>
                         {% endif %}
                         
                         </div>
@@ -177,8 +177,8 @@
                             <h4 class="modal-title" id="myModalLabel_deleteGuest"></h4>
                             </div>
                             <div class="modal-body row">
-                                <button id="delete_confirm_guest" class="btn btn-default col-md-6"> Oui </button>
-                                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> Non </button>
+                                <button id="delete_confirm_guest" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+                                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
 
                             </div>
                         </div>

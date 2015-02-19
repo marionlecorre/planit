@@ -3,14 +3,14 @@
         <div class="modal-content">
             <div class="modal-header">
             <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h4 class="modal-title" id="myModalLabel">Ajouter une catégorie</h4>
+            <h4 class="modal-title" id="myModalLabel">{{'add_inflow'|trans}}</h4>
             </div>
             <div class="modal-body">
                 <form id="form-post-typeexpense" action="/app_dev.php/api/inflows/{{module_id}}" method="post" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
 
 			    <p>
-			        <input type="submit" value="Ajouter">
+			        <input type="submit" value="{{'add'|trans}}">
 			    </p>
                 </form>
             </div>

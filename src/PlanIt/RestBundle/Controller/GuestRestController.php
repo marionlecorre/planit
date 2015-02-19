@@ -116,7 +116,7 @@ class GuestRestController extends Controller
             ->setBody($guest->getType()->getMessage().'<br/> 
                 Le prix de l\'évènement est de '.$guest->getType()->getPrice().'€ par personne <br/> 
                 Merci de confirmer votre présence grâce au lien suivant : <br/>
-                http://planit.dev:8888/app_dev.php/answer/'.base64_encode($guest->getId()).'<br>'
+                http://planit.dev:8888/app_dev.php/'.$request->getLocale().'/answer/'.base64_encode($guest->getId()).'<br>'
                 .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');
         $this->get('mailer')->send($message);
         $guest->setSent(1);

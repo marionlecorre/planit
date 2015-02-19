@@ -43,7 +43,7 @@ class TypeGuest
     protected $module;
 
     /**
-     * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="typeguest")
      */
     protected $guests;
 

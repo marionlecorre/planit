@@ -15,7 +15,7 @@ class ContractType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contract', 'file', array('label'  => 'Sélectionner un fichier *'))
+            ->add('contract', 'file', array('label'  => 'form.contract.file'))
         ;
     }
     
