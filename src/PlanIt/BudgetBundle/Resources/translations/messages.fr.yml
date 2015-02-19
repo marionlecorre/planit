@@ -14,19 +14,19 @@ max_budget: BUDGET LIMITE
 item: Article
 quantity: Quantité
 stock: En stock
-to_buy: A acheter
+to_buy: À acheter
 unit_price: Prix unitaire
 total: Prix total
 consumed: Consommé
 bought: Bought
 delete: Supprimer
-changeable_data: Données modifiables. Cliquez pour modifier.
+changeable_data: Ces données sont modifiables vous pouvez cliquer dessus pour les modifier.
 add_item: Ajouter un article
 label: Intitulé *
 amount: Montant *
 form:
     module:
-        max_budget: Budget maximul (€)
+        max_budget: Budget maximum (€)
         inflow: Apport personnel (€)
     expense:
         item: Article *

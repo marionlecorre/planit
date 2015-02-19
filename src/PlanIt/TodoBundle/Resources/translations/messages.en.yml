@@ -1,9 +1,9 @@
-add_item: Ajouter une tâche
-print: Imprimer la liste des tâches
-add: Ajouter
+add_item: Add a task
+print: Print the task list
+add: Add
 form:
     item:
-        label: Tâche *
+        label: Task *
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management
 'Listes de tâches': Todo list

@@ -1,44 +1,44 @@
 budget: Budget
-print: Imprimer la liste de courses
-recap: Récapitulatif
-inflows: Apports
-delete_typeexpense_message: Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?
-yes: Oui
-no: Non
-add: Ajouter
-add_expense: Ajouter une dépense
-add_inflow: Ajouter un apport
-add_typeexpense: Ajouter une catégorie de dépenses
-benefices: BENEFICES PREVUS
-max_budget: BUDGET LIMITE
-item: Article
-quantity: Quantité
-stock: En stock
-to_buy: A acheter
-unit_price: Prix unitaire
-total: Prix total
-consumed: Consommé
+print: Print the shopping list
+recap: Summary
+inflows: Inflows
+delete_typeexpense_message: Do you want to delete this type of expense as well as the associated expenses?
+yes: Yes
+no: No
+add: Add
+add_expense: Add an expense
+add_inflow: Add an inflow
+add_typeexpense: Add an expenditure category
+benefices: BENEFITS PLANNED
+max_budget: LIMIT BUDGET
+item: Item
+quantity: Quantity
+stock: In stock 
+to_buy: To buy
+unit_price: Unit price
+total: Total price
+consumed: Consumed
 bought: Bought
-delete: Supprimer
-changeable_data: Données modifiables. Cliquez pour modifier.
-add_item: Ajouter un article
-label: Intitulé *
-amount: Montant *
+delete: Delete
+changeable_data: These data are modifiable you can click above to modify them.
+add_item: Add an article
+label: Entitled *
+amount: Amount *
 form:
     module:
-        max_budget: Budget maximul (€)
-        inflow: Apport personnel (€)
+        max_budget: Maximum budget (€)
+        inflow: Personal inflow (€)
     expense:
-        item: Article *
-        quantity: Quantité *
-        unit: Unité (ex: Litres, Bouteilles, etc.) *
-        stock: Déjà en stock *
-        unit_price: Prix unitaire
+        item: Item *
+        quantity: Quantity *
+        unit: Unit (ex: Liters, Bottles, etc.) *
+        stock: Already in stock *
+        unit_price: Unit price
     inflow:
-        label: Intitulé *
-        amount: Montant *
+        label: Entitled *
+        amount: Amount *
     type_expense:
-        name: Nom de la catégorie * (Ex: Boissons, Matériel, etc.)
+        name: Name of the category * (Ex: Drinks, Material, etc.)
 
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management

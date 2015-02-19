@@ -1,11 +1,27 @@
-add_item: Ajouter une tâche
-print: Imprimer la liste des tâches
-add: Ajouter
+add_place: Add a place
+address: Adress
+capacity: Capacity
+distance: Distance
+tel: Phone number
+website: Website
+remark: Remark
+state: State
+refused: Refused
+contacted: Contacted
+accepted: Accepted
+contract: Contrat
+update_contract: Modify the contract
+update: Modify
 form:
-    item:
-        label: Tâche *
-'Gestion des invités': Guests management
-'Gestion du budget': Budget management
-'Listes de tâches': Todo list
-'Gestion du lieu': Place management
-'Gestion du transport': Transportation management
+    contract:
+        file: Select a file *
+    module:
+        max_capacity: Maximum capacity
+        price: Maximum price
+        time: Maximum travel time	
+    place:
+        name: Name of the place *
+        address: Adress *
+        price: Price
+        latitude: Latitude
+        longitude: Longitude

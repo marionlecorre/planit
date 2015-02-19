@@ -11,9 +11,13 @@
 	</div>
 
 	<div class="row buttons">
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
+		<!-- <div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><a href="{{ path('PlanItBudgetBundle_pdf', { 'module_id': module.id }) }}"><button>Imprimer la liste de courses</button></a></div>
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><a href="{{ path('PlanItBudgetBundle_pdf', { 'module_id': module.id }) }}"><button>Imprimer la liste de courses</button></a></div> -->
+
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
+		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
+
 	</div>
 	
 	<section>			
@@ -54,21 +58,16 @@
 						<section id="section-topline-general">
 							<div class="section-topline">
 								<div class="col-md-4"> 
-
 									<div class="pie_chart" id="pie_chart_depenses"></div>
-									<div class="bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
-
 								</div>
 
 								<div class="col-md-4"> 
-									<div class="pie_chart" id="pie_chart_apports"></div>
-									<div class="bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
-
+									<div class="pie_chart" id="pie_chart_apports"></div>		
 								</div>
 
 								<div class="col-md-4" id="infos"> 
 									<div class="info_dte info_color" id="balance">
-										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> {{'benefices'|trans}} </br> <span >{{infos.balance}}€</span> </p>
+										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> {{'benefices'|trans}} </br> <span >{{infos.balance}} €</span> </p>
 									</div>							
 									<div class="info_dte">
 										<img src="/images/budget/info_dte_limite.png" /> 

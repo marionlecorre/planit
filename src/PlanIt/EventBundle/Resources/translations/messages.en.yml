@@ -1,6 +1,6 @@
-nb_dodos: NOMBRE DE DODOS
-nb_guests: NOMBRE D'INSCRITS
-earnings: BENEFICES PREVUS
+nb_dodos: NUMBER OF SLEEPS
+nb_guests: NUMBER OF GUESTS
+earnings: BENEFITS PLANNED
 not_calculated: Not calculated
 my_modules: My modules
 add_module: Add a module

@@ -1,51 +1,51 @@
-update_module: Modifier le module
-guests: Inscrits
-add_typeguest: Ajouter une catégorie d'invités
-url: Générer l'URL d'inscription
-add_payment: Ajouter un moyen de paiement
-payable: Evénement payant
-link: Lien du formulaire d'inscription
-no_typeguest: Il n'y a aucune catégorie d'invité
+update_module: Modify the module
+guests: Guests
+add_typeguest: Add a category of guests
+url: Generate the URL of registration
+add_payment: Add a means of payment
+payable: Paid event
+link: Link of the registration form
+no_typeguest: There is no category of guest
 action: Action
-no_guest: Il n'y a aucun invité
-firstname: Prénom
-lastname: Nom
+no_guest: There is no guest
+firstname: Firstname
+lastname: Lastname
 mail: Email
-confirmed: Confirmé
-payed: Payé
-payment_mean: Moyen de paiement
-payment_mean_mobile: Paiement
-send: Envoyer
-send_mobile: Env.
-delete: Supprimer
-delete_mobile: Suppr.
-no_payment: Aucun moyen de paiement
-add_guest: Ajouter un invité
-yes: Oui
-no: Non
-add: Ajouter
-max_guests: Attention : le nombre maximum d'invités est atteint
-answer: Réponse
-answer_invitation: Réponse à l'invitation
-validate: Valider
+confirmed: Confirmed
+payed: Payed
+payment_mean: Means of payment
+payment_mean_mobile: Payment
+send: Send
+send_mobile: Send.
+delete: Delete
+delete_mobile: Delete.
+no_payment: No means of payment
+add_guest: Add a guest
+yes: Yes
+no: No
+add: Add
+max_guests: Attention: the maximum number of guests is reached
+answer: Answer
+answer_invitation: Answer to the invitation
+validate: Validate
 inscription: Inscription
 form:
     guest:
-        firstname: Prénom *
-        lastname: Nom *
+        firstname: Firstname *
+        lastname: Lastname *
         mail: Email *
-        category: Catégorie
+        category: Catégory
     answer:
-        confirmed: Souhaitez vous participer à l'évenement ?
+        confirmed: Would you participate in the event ?
     module:
-        invitation: Sur invitation
-        inscription: Sur inscription
-        nb_guests: Nombre maximum d'invités
-        payable: Evénement payant
+        invitation: By invitation
+        inscription: On inscription
+        nb_guests: Maximum number of guests
+        payable: Paid event
     typeguest:
-        category: Nom de la catégorie *
-        mail: Contenu de l'email d'invitation *
-        price: Prix *
+        category: Category Name *
+        mail: Content of the invitation email *
+        price: Price *
 
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management
