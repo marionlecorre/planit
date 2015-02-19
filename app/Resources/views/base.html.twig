@@ -40,24 +40,24 @@
                     <div class="user">
                         <img  src="/images/{{ user.image }}"/>
                         <span class="name">{{user.name}} {{ user.surname }}</span> 
-                        <span class="counter-event">{{ user.events|length }} événements cours</span>
+                        <span class="counter-event">{{'nb_events'|trans({'%nb%': user.events|length}) }}</span>
                     </div>
                     {% block navigation %}
                         <ul id="menu">
-                            <li class="events"><a href="{{ path('PlanItUserBundle_homepage', { 'id': user.id }) }}">Evénements</a></li>
+                            <li class="events"><a href="{{ path('PlanItUserBundle_homepage', { 'id': user.id }) }}">{{'events'|trans}}</a></li>
                             <ul class="events" id="accordion">
                                 {% for event in user.events %}
                                     <li class="active event">{{event.name}}</li>
                                     <ul class="modules">
-                                        <li><a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}">Général</a></li>
+                                        <li><a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}">{{'general'|trans}}</a></li>
                                         {% for module in event.modules %}
-                                            <li><a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">{{module.name}}</a></li>
+                                            <li><a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">{{module.name|trans}}</a></li>
                                         {% endfor %}
                                     </ul>
                                 {% endfor %}
                             </ul>
-                            <li class="account"><a href="#"> Mon compte </a></li>
-                            <li class="last help"><a href="#"> Aide </a></li>
+                            <li class="account"><a href="#">{{'account'|trans}} </a></li>
+                            <li class="last help"><a href="#"> {{'help'|trans}} </a></li>
                         </ul>
                     {% endblock %}
                 </div>

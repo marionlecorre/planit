@@ -20,17 +20,17 @@
 			<div class="col-md-4" id="infos"> 
 				<div class="info_dte">
 					<img src="/images/event/info_dte_zzz.png" /> 
-					<p> NOMBRE DE DODOS </br> <span>days</span> </p>
+					<p> {{'nb_dodos'|trans}}</br> <span>days</span> </p>
 				</div>
 				<div class="info_dte">
 					<img src="/images/event/info_dte_invite.png" /> 
-					<p> NOMBRE D'INSCRITS </br> <span>{{nbGuests}}</span> </p>
+					<p> {{'nb_guests'|trans}} </br> <span>{{nbGuests}}</span> </p>
 				</div>
 				<div class="info_dte info_color" id="balance">
 					{% if balance == "Empty" %}
-						<p class="benef" data-placement="top" data-original-title="Ajoutez un module BUDGET"> BÉNÉFICES PRÉVUS </br> <span> Non calculé</span> </p>
+						<p class="benef" data-placement="top" data-original-title="Ajoutez un module BUDGET"> {{'earnings'|trans}} </br> <span> {{'not_calculated'|trans}}</span> </p>
 					{% else %}
-						<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> BÉNÉFICES PRÉVUS </br> <span>{{ balance }} €</span> </p>
+						<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> {{'earnings'|trans}} </br> <span>{{ balance }} €</span> </p>
 					{% endif %}
 						
 				</div>
@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="row" id="mes_modules">
-			<div class="col-md-12">Mes modules</div>
+			<div class="col-md-12">{{'my_modules'|trans}}</div>
 		</div>
 
 		<div class="row">
@@ -49,7 +49,7 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
 							<div id="module_{{module.inttype}}" class="module_button">
 								<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
-								<p>{{module.name}}</p>    	
+								<p>{{module.name|trans}}</p>    	
 							</div>	
 						</div>
 					</a>
@@ -65,15 +65,15 @@
 		            <div class="modal-content">
 		                <div class="modal-header">
 		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		                <h4 class="modal-title" id="myModalLabel">Ajouter un module</h4>
+		                <h4 class="modal-title" id="myModalLabel">{{'add_module'|trans}}</h4>
 		                </div>
 		                <div class="modal-body">
 						<div id="form_container">
 							<div id="select-type">
 								<select>
-									<option value=""> Choisir un module </option>
+									<option value=""> {{'choose_module'|trans}} </option>
 									{% for module in notUsesModules %}
-										<option value="{{module.inttype}}"> {{module.name}} </option>
+										<option value="{{module.inttype}}"> {{module.name|trans}} </option>
 									{% endfor %}
 								</select>
 							</div>

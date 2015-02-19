@@ -28,7 +28,7 @@ class PaymentMeansModuleType extends AbstractType
             $builder->add('PaymentMeans', 'entity', array(
                 'class' => 'PlanItGuestsBundle:PaymentMeans',
                 'property' => 'label',
-                'label' => "Moyens de paiement"
+                'label' => false
             ));
         }else{
             $builder->add('PaymentMeans', 'entity', array(
@@ -45,8 +45,7 @@ class PaymentMeansModuleType extends AbstractType
                     ->getResult()
                     , \Doctrine\DBAL\Connection::PARAM_INT_ARRAY);
                 },
-                // 'expanded' => true,
-                // 'multiple' => true,
+                'label' => false
             ));
         }
     }

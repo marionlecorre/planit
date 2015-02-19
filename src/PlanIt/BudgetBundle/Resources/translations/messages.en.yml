@@ -1,0 +1,26 @@
+budget: Budget
+print: Imprimer la liste de courses
+recap: Récapitulatif
+inflows: Apports
+delete_typeexpense_message: Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?
+yes: Oui
+no: Non
+add: Ajouter
+add_expense: Ajouter une dépense
+add_inflow: Ajouter un apport
+add_typeexpense: Ajouter une catégorie de dépenses
+benefices: BENEFICES PREVUS
+max_budget: BUDGET LIMITE
+item: Article
+quantity: Quantité
+stock: En stock
+to_buy: A acheter
+unit_price: Prix unitaire
+total: Prix total
+consumed: Consommé
+bought: Bought
+delete: Supprimer
+changeable_data: Données modifiables. Cliquez pour modifier.
+add_item: Ajouter un article
+label: Intitulé *
+amount: Montant *

@@ -39,6 +39,6 @@ class GuestType extends AbstractType
      */
     public function getName()
     {
-        return 'geust_form';
+        return 'guest_form';
     }
 }

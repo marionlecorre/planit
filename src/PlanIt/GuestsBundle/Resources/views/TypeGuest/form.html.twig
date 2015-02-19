@@ -3,14 +3,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                 <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title" id="myModalLabel">Ajouter une catégorie d'invité</h4>
+                <h4 class="modal-title" id="myModalLabel">{{'add_typeguest' |trans}}</h4>
                 </div>
                 <div class="modal-body">
                     <form action="/app_dev.php/api/typeguests/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
                     {{ form_widget(form) }}
 
 				    <p>
-				        <input type="submit" value="Ajouter">
+				        <input type="submit" value="{{'add' |trans}}">
 				    </p>
                     </form>
 

@@ -1,0 +1,22 @@
+nb_dodos: NOMBRE DE DODOS
+nb_guests: NOMBRE D'INSCRITS
+earnings: BENEFICES PREVUS
+not_calculated: Not calculated
+my_modules: My modules
+add_module: Add a module
+choose_module: Choose a module
+add: Add
+'Gestion des invités': Guests management
+'Gestion du budget': Budget management
+'Listes de tâches': Todo list
+'Gestion du lieu': Place management
+'Gestion du transport': Transportation management
+'Dépenses': Expenses
+'Apports': Inflows
+form:
+    event:
+        name: Event name *
+        desc: Description
+        begin_date: Begin date *
+        end_date: End date
+        image: Choose an image

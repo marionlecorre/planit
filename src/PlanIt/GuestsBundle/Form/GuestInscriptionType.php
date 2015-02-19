@@ -19,9 +19,9 @@ class GuestInscriptionType extends AbstractType
     {
         $module = $this->module;
         $builder
-            ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'Prénom *')))
-            ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'Nom *')))
-            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'Email *')))
+            ->add('firstname','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.firstname')))
+            ->add('lastname','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.lastname')))
+            ->add('email','text', array('label'  => false, 'attr' => array('placeholder' => 'form.guest.mail')))
             ->add('TypeGuest', 'entity', array(
                 'class' => 'PlanItGuestsBundle:TypeGuest',
                 'query_builder' => function(EntityRepository $er) use ($module) {
@@ -29,6 +29,7 @@ class GuestInscriptionType extends AbstractType
                     ->where('t.module = :module_id')
                     ->setParameter('module_id', $module->getId());
                 },
+                'label'  => 'form.guest.category',
             ));
         ;
     }
