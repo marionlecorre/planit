@@ -34,6 +34,7 @@ header {
 		background-position: 97% -18px;
 		border: 0;
 		cursor: pointer;
+		margin-top: 30px;
 		@include border-radius(0); 
 		&.open {
 			background-position: 97% 20px;
@@ -45,7 +46,7 @@ header {
 		@include border-radius(5px);
 		.check {
 				float: right;
-				margin: 15px 80px 0 0;
+				margin: 47px 80px 0 0;
 			}
 		.head-list {
 			background-color: $head-list;
