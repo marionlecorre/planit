@@ -34,8 +34,18 @@ form:
         firstname: Prénom *
         lastname: Nom *
         mail: Email *
+        category: Catégorie
     answer:
         confirmed: Souhaitez vous participer à l'évenement ?
+    module:
+        invitation: Sur invitation
+        inscription: Sur inscription
+        nb_guests: Nombre maximum d'invités
+        payable: Evénement payant
+    typeguest:
+        category: Nom de la catégorie *
+        mail: Contenu de l'email d'invitation *
+        price: Prix *
 
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management

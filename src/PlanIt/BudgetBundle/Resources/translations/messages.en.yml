@@ -24,3 +24,19 @@ changeable_data: Données modifiables. Cliquez pour modifier.
 add_item: Ajouter un article
 label: Intitulé *
 amount: Montant *
+form:
+    module:
+        max_budget: Budget maximul (€)
+        inflow: Apport personnel (€)
+    expense:
+        item: Article *
+        quantity: Quantité *
+        unit: Unité (ex: Litres, Bouteilles, etc.) *
+        stock: Déjà en stock *
+        unit_price: Prix unitaire
+    inflow:
+        label: Intitulé *
+        amount: Montant *
+    type_expense:
+        name: Nom de la catégorie * (Ex: Boissons, Matériel, etc.)
+
