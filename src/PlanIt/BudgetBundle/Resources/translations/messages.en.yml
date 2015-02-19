@@ -40,3 +40,9 @@ form:
     type_expense:
         name: Nom de la catégorie * (Ex: Boissons, Matériel, etc.)
 
+'Gestion des invités': Guests management
+'Gestion du budget': Budget management
+'Listes de tâches': Todo list
+'Gestion du lieu': Place management
+'Gestion du transport': Transportation management
+

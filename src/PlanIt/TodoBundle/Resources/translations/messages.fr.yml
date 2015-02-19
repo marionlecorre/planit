@@ -1,15 +1,6 @@
-nb_dodos: NOMBRE DE DODOS
-nb_guests: NOMBRE D'INSCRITS
-earnings: BENEFICES PREVUS
-not_calculated: Non calculé
-my_modules: Mes modules
-add_module: Ajouter un module
-choose_module: Choisir le module à ajouter
+add_task: Ajouter une tâche
+print: Imprimer la liste des tâches
 add: Ajouter
 form:
-    event:
-        name: Nom de l'événement *
-        desc: Description
-        begin_date: Date de début *
-        end_date: Date de fin
-        image: Choisissez une image
+    item:
+        label: Tâche *

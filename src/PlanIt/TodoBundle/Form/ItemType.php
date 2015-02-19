@@ -17,7 +17,7 @@ class ItemType extends AbstractType
     {
         
         $builder
-            ->add('content','text', array('label'  => false, 'attr' => array('placeholder' => 'Contenu *')));
+            ->add('content','text', array('label'  => false, 'attr' => array('placeholder' => 'form.item.label')));
 
     }
     

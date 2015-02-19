@@ -1,0 +1,27 @@
+add_place: Ajouter un lieu
+address: Adresse
+capacity: Capacité
+distance: Distance
+tel: Téléphone
+website: Site web
+remark: Remarque
+state: Etat
+refused: Refusé
+contacted: Contacté
+accepted: Accepté
+contract: Contrat
+update_contract: Modifier le contrat
+update: Modifier
+form:
+    contract:
+        file: Sélectionner un fichier *
+    module:
+        max_capacity: Capacité maximum
+        price: Prix maximum
+        time: Temps de trajet maximum
+    place:
+        name: Nom du lieu *
+        address: Adresse *
+        price: Prix
+        latitude: Latitude
+        longitude: Longitude
