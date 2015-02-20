@@ -4,6 +4,30 @@
 	cursor: pointer;
 }
 
+.modify_event, .delete_event {
+	background: url('/images/picto-modif.png') no-repeat;
+	width: 20px;
+	height: 24px;
+	float: right;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.delete_event{
+	background-position-x : -20px;
+	&:hover {
+		background-position-x : -122px;
+	}
+}
+.modify_event{
+	margin-left: 15px;
+	&:hover {
+		background-position-x : -102px;
+	}
+}
+
+
 .event_button {
 	&:hover {
 		text-decoration: none;
@@ -32,9 +56,9 @@
 			}
 			.date {
 				float: right;
+				margin-top: -2px;
 			}
 		}
-		
 
 		.content {
 			padding: 15px;
@@ -57,8 +81,6 @@
 		}
 	}
 }
-
-
 
 .event-thumbnail.add {
 	background: $add_event;

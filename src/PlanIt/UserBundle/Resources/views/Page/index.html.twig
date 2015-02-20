@@ -24,6 +24,8 @@
 					<div class="event-thumbnail">
 						<div class="head">
 							<h2>{{event.name |truncate(15)}}</h2>
+                            <div class="delete_event"></div>
+							<div class="modify_event"></div>
 							 <span class="date"> {{ event.beginDate | offsetDate() }}</span>
 							{#<span class="date"> {{'J-5'| trans}} </span>#}
 						</div>
