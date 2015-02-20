@@ -1,5 +1,6 @@
-/*@font-face {  font-family: "GothamHTF-Medium";  src: url('/fonts/GothamHTF-Medium.otf') format("opentype"); }*/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,100);
+@font-face {  font-family: "GothamHTF-Medium";  src: url('/fonts/GothamHTF-Medium.otf') format("opentype"); }
+
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -18,14 +19,27 @@ body{
 }
 
 #content{
-	width: 20%;
+	font-family: 'Roboto';
 	margin: auto;
+	color:#777676;
 	position: absolute;
   	left: 50%;
-  	top:250px;
+  	top:150px;
   	width: 320px;
   	margin-left: -160px;
-  	text-align: left;
+  	text-align: left;  
+}
+
+h1{
+	text-align: center;
+	margin-bottom: 20px;
+	font-weight: 400;
+}
+
+.separator{
+	border-bottom: 1px solid #dadada;
+ 	margin-bottom: 40px;
+ 	width:100%;
 }
 
 input[type="text"] {
@@ -42,13 +56,13 @@ input[type="submit"] {
 	width: 100%;
 	margin: 20px 0;
 	border:0;
-	background-color: #252525;
+	background-color: #61c0a5;
 	color:#fff;
 }
 
 
 input[type="submit"]:hover{
-	background-color: #61c0a5;
+	background-color: #55b298;
 }
 
 #form-post-guest{
@@ -79,24 +93,26 @@ label{
 header{
 	background-color: #252525;
 	color:#fff;
-	padding: 20px;
-	margin-bottom: 50px;
+	border-bottom: 3px solid #61c0a5;
+	padding: 5px;
+	/*margin-bottom: 20px;*/
+	height:50px;
 }
 
-/*#logo {
-	color: #FFF;
+#logo {
+	color: #fff;
 	font-family: 'GothamHTF-Medium';
 	font-size: 23px;	
-	height: 60px;
-	line-height: 64px;
-	text-align: center;
+	text-align: left;
 	cursor: pointer;
-	text-decoration: none;*/
+	text-decoration: none;
+	float: left;
+	padding:10px 20px;
 	/*@include box-shadow(0px,4px,2px,-2px,#1c1c1c);*/
-/*}
+}
 
 .blue {
 		color: #61c0a5;
 		font-family: 'Roboto';
 		font-weight: 100;
-}*/
+}

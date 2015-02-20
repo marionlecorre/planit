@@ -8,11 +8,12 @@
   </head>
 <body>
 		<header>
-			<!--<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>-->
-			<h1>{{'inscription'|trans}}</h1>
+			<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>
 		</header>
 
 	<div id="content">
+		<h1>{{'inscription'|trans}}</h1>
+		<div class="separator"></div>
 		<form id="form-post-guest" action="/app_dev.php/api/guests/{{module_id}}/inscriptions" method="post" {{ form_enctype(form) }} class="blogger">
 	    {{ form_widget(form) }}
 		    <p>
