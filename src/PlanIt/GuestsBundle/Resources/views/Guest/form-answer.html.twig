@@ -7,9 +7,13 @@
     <meta name="description" content="">
   </head>
 <body>
-		<header><h1>{{'answer_invitation'|trans}}</h1></header>
+		<header>
+			<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>
+		</header>
 
 	<div id="content">
+		<h1>{{'answer_invitation'|trans}}</h1>
+		<div class="separator"></div>
 		<form id="form-post-guest" action="/app_dev.php/api/guests/{{guest.id}}/answers" method="post" {{ form_enctype(form) }} class="blogger">
 	    {{ form_widget(form) }}
 		    <p>

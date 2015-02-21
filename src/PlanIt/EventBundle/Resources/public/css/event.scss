@@ -72,55 +72,95 @@
 	height: 30px;
 	margin-top: 50px;
 	line-height:30px;
-
 }
 
 
 .module {
-	color:#ffffff;
 	text-align: center;
 	height: 270px;
 	margin: 40px 0 20px 0;
 
-	img{			
+	.module_button {
+		height: 100%;
+		width:100%;
+		cursor: pointer;
+		border:1px solid #fff;
 	}
 
-	div {
+	a{
+		color:#fff;
+		display: block;
 		height: 100%;
+		width: 90%;		
 		padding: 70px 0 70px 0;
-		cursor: pointer;
+		position: absolute;
 	}
 
 	#module_1{
 		background-color:$invit_module;
 		&:hover {
 			background-color: darken($invit_module, 5%);
+			.delete_module {
+			 	display: block;
+			}
 		}
 	}
 	#module_2 {
 		background-color:$budget_module;
 		&:hover {
 			background-color: darken($budget_module, 5%);
+			.delete_module {
+			 	display: block;			 	
+				background-position-x : -66px;
+			}
 		}
 	}
 	#module_3 {
 		background-color:$place_module;
 		&:hover {
 			background-color: darken($place_module, 5%);
+			.delete_module {
+			 	display: block;			 	
+				background-position-x : -44px;
+			}
 		}
 	}
 	#module_4 {
 		background-color:$transport_module;
 		&:hover {
 			background-color: darken($transport_module, 5%);
+			.delete_module {
+			 	display: block;			 	
+				background-position-x : -86px;
+			}
 		}
 	}
 	#module_5 {
 		background-color:$todo_module;
 		&:hover {
 			background-color: darken($todo_module, 5%);
+			.delete_module {
+			 	display: block;			 	
+				background-position-x : -21px;
+			}
 		}
 	}
+
+	.delete_module {
+		background: url('/images/suppr-module.png') no-repeat;
+		width: 12px;
+		height: 12px;
+		position:absolute;
+		top:8px;
+	 	right:25px;
+	 	display: none;
+	 	z-index: 2;
+		background-position-x : 0px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
 	#ajout_module {
 		background-color:$add_module;
 		&:hover {
@@ -130,7 +170,7 @@
 		p{
 			color:#7a7a7a;
 			font-size: 50px;
-			vertical-align: center;
+			padding:70px 0;
 		}
 	}
 
@@ -139,7 +179,6 @@
 	}
 
 }
-
 
 
 @media (min-width: 992px) {

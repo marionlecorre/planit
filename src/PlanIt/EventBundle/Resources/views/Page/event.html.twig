@@ -44,19 +44,21 @@
 		<div class="row">
 			<div id="modules">
 				{% for module in event.modules %}
-					<button onclick="deleteModule({{module.id}})"> X </button>
-					<a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">
+					<!-- <button onclick="deleteModule({{module.id}})"> X </button> -->					
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
-							<div id="module_{{module.inttype}}" class="module_button">
-								<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
-								<p>{{module.name|trans}}</p>    	
+							<div id="module_{{module.inttype}}" class="module_button">								
+                                <div class="delete_module" onclick="deleteModule({{module.id}})"></div>   
+                                <a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">
+									<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
+									<p>{{module.name|trans}}</p> 
+								</a>   	
 							</div>	
 						</div>
-					</a>
+				
 				{% endfor %}
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
-				<div id="ajout_module" data-toggle="modal" data-target="#basicModal"> 
+				<div id="ajout_module" class="module_button" data-toggle="modal" data-target="#basicModal"> 
 		    		<p>+</p> 
 				</div>     		
 			</div>
