@@ -93,4 +93,24 @@ class TodoModuleRestController extends Controller
         
         return $item->getModule();
     }
+
+    public function deleteItemAction($item_id)
+    {
+        $item = $this->getDoctrine()->getRepository('PlanItTodoBundle:Item')->find($item_id);
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($item);
+        $em->flush();
+    }
+
+    public function putItemAction(Request $request, $item_id)
+    {
+        $item = $this->getDoctrine()->getRepository('PlanItTodoBundle:Item')->find($item_id);
+
+        $item->setContent($request->request->get('content'));
+        $em = $this->getDoctrine()
+                   ->getEntityManager();
+        $em->persist($item);
+        $em->flush();
+    }
 }

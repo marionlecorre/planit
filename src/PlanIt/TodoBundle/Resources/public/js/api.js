@@ -35,3 +35,35 @@ function changeChecked(item_id){
 	       },
 	});
 }
+
+function deleteItem(item_id){
+	$.ajax({
+	   url : '/app_dev.php/api/items/'+item_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	       	location.reload();
+	       /**/
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+
+function updateItem(item_id){
+
+	$.ajax({
+	   url : '/app_dev.php/api/items/'+item_id, //API
+	   type : 'PUT',
+	   dataType : 'json', // On désire recevoir du HTML
+	   data : {content : $("#item-"+item_id).val()},
+	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	       	location.reload();
+	       /**/
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}

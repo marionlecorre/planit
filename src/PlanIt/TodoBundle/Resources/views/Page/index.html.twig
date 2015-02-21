@@ -29,7 +29,11 @@
 							<li>
 								<div class="row">
 									<div class="col-md-12 todo">
-										{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})"> 
+										<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})">
+										 <input type="text" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+										<div class="pull-right" >
+		                                    <div class="delete_item" onclick="deleteItem({{item.id}})"></div>                                    
+		                                </div>
 									</div>
 								</div>			
 							</li>
