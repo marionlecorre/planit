@@ -27,12 +27,12 @@ class TypeGuest
     protected $label;
 
     /**
-     * @ORM\Column(type="text", length=100)
+     * @ORM\Column(type="text", length=300,nullable=true)
      */
     protected $message;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float",nullable=true)
      */
     protected $price;
 

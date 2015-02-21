@@ -9,7 +9,7 @@ state: State
 refused: Refused
 contacted: Contacted
 accepted: Accepted
-contract: Contrat
+contract: Contract
 update_contract: Modify the contract
 update: Modify
 form:

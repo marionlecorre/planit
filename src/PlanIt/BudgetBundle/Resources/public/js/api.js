@@ -29,13 +29,18 @@ function deleteInflow(inflow_id){
 }
 
 function updateExpense(expense_id){
+	if($("#bought-expense-"+expense_id).is(':checked') == true){
+		var bought = 1;
+	}else{
+		var bought = 0;
+	}
 	var dataSend = {"expenseupdate_form":{
 		"name" : $("#name-expense-"+expense_id).val(),
 		"quantity" : $("#quantity-expense-"+expense_id).val(),
 		"stock" : $("#stock-expense-"+expense_id).val(),
 		"price" : $("#price-expense-"+expense_id).val(),
 		"consummate" : $("#consummate-expense-"+expense_id).val(),
-		"bought" : $("#bought-expense-"+expense_id).is(':checked')
+		"bought" : bought
 	}}
 	$.ajax({
 	   url : '/app_dev.php/api/expenses/'+expense_id, //API

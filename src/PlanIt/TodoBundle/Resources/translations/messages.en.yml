@@ -1,9 +1,12 @@
-add_item: Add a task
+add_task: Add a task
+add_tasklist: Add a tasks list
 print: Print the task list
 add: Add
 form:
     item:
         label: Task *
+    list:
+        name: List name *
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management
 'Listes de tâches': Todo list

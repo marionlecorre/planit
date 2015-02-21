@@ -24,8 +24,7 @@
 					<div class="event-thumbnail">
 						<div class="head">
 							<h2>{{event.name |truncate(15)}}</h2>
-							 <span class="date"> {{ event.beginDate | offsetDate() }}</span>
-							{#<span class="date"> {{'J-5'| trans}} </span>#}
+							 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
 						</div>
 						<div class="content">
 							<div class="image-cropper">

@@ -132,12 +132,11 @@ class EventRestController extends Controller
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         $event = $module->getEvent();
         $nbGuests = $this->getEventNbguestsAction($event->getId());
-
         $em = $this->getDoctrine()
                        ->getEntityManager();
         switch($module->getIntType()){
             case 1: //guests
-                $types_guests = $module->getTypeGuest();
+                $types_guests = $module->getTypesGuests();
                 foreach ($types_guests as $type) {
                     $guests = $type->getGuests();
                     foreach ($guests as $guest) {

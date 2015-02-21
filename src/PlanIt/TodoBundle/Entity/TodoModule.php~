@@ -32,9 +32,9 @@ class TodoModule extends Module
      */
     protected $event;
     /**
-     * @ORM\OneToMany(targetEntity="PlanIt\TodoBundle\Entity\Item", mappedBy="module")
+     * @ORM\OneToMany(targetEntity="PlanIt\TodoBundle\Entity\TaskList", mappedBy="module")
      */
-    protected $items;
+    protected $lists;
     /**
      * Get id
      *
@@ -131,36 +131,7 @@ class TodoModule extends Module
      */
     public function __construct()
     {
-        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    /**
-     * Add items
-     *
-     * @param \PlanIt\TodoBundle\Entity\Item $items
-     * @return TodoModule
-     */
-    public function addItem(\PlanIt\TodoBundle\Entity\Item $items)
-    {
-        $this->items[] = $items;
-        return $this;
-    }
-    /**
-     * Remove items
-     *
-     * @param \PlanIt\TodoBundle\Entity\Item $items
-     */
-    public function removeItem(\PlanIt\TodoBundle\Entity\Item $items)
-    {
-        $this->items->removeElement($items);
-    }
-    /**
-     * Get items
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getItems()
-    {
-        return $this->items;
+        $this->lists = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -185,5 +156,38 @@ class TodoModule extends Module
     public function getInttype()
     {
         return $this->inttype;
+    }
+
+    /**
+     * Add lists
+     *
+     * @param \PlanIt\TodoBundle\Entity\TaskList $lists
+     * @return TodoModule
+     */
+    public function addList(\PlanIt\TodoBundle\Entity\TaskList $lists)
+    {
+        $this->lists[] = $lists;
+
+        return $this;
+    }
+
+    /**
+     * Remove lists
+     *
+     * @param \PlanIt\TodoBundle\Entity\TaskList $lists
+     */
+    public function removeList(\PlanIt\TodoBundle\Entity\TaskList $lists)
+    {
+        $this->lists->removeElement($lists);
+    }
+
+    /**
+     * Get lists
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLists()
+    {
+        return $this->lists;
     }
 }

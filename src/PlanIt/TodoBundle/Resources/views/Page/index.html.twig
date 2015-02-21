@@ -11,40 +11,46 @@
 	</div>
 
 	<div class="row buttons">
-        <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+        <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addListModal">{{'add_tasklist'|trans}}</button></div>
         <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}">{{'print'|trans}}</a></div>
 
 
         <!--<div class="col-md-3 bt_todo"><button>Valider</button></div>-->
     </div>
+     {{ render(controller('PlanItTodoBundle:Item:formlist', { 'module_id' : module.id } ))}}
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
+		    {% for list in module.lists %}
+		    <div>
+		    	<div><p> {{list.name}} </p></div>
+		    	<ul class="sortable" id="todo-list">
+				    {% for item in list.items %}
+						{% if not item.checked %}
+							<li>
+								<div class="row">
+									<div class="col-md-12 todo">
+										{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})"> 
+									</div>
+								</div>			
+							</li>
+						{% endif %}
+					{% endfor %}
 
-		<ul class="sortable" id="todo-list">
-		    {% for item in module.items %}
-				{% if not item.checked %}
-					<li>
-						<div class="row">
-							<div class="col-md-12 todo">
-								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})"> 
-							</div>
-						</div>			
-					</li>
-				{% endif %}
+					{% for item in list.items %}
+						{% if item.checked %} 
+							<li>
+								<div class="row">
+									<div class="col-md-12 todo checked">
+										{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
+									</div>
+								</div>			
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+				<div class="col-md-3 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+			</div>
 			{% endfor %}
-
-			{% for item in module.items %}
-				{% if item.checked %} 
-					<li>
-						<div class="row">
-							<div class="col-md-12 todo checked">
-								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
-							</div>
-						</div>			
-					</li>
-				{% endif %}
-			{% endfor %}
-		</ul>
 </div>
 
 {% endblock %}
@@ -56,4 +62,5 @@
 	    	items: ':not(.disabled)'
 		});
 	</script>
+	<script>todo();</script>
 {% endblock %}

@@ -63,8 +63,6 @@ class PlaceRestController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($choosen_place);
         $em->flush();
-
-        return $place->getModule();
     }
 
     public function putPlaceAction(Request $request, $place_id)
@@ -100,7 +98,10 @@ class PlaceRestController extends Controller
             $em->persist($place);
             $em->flush();
 
-            return $place->getModule();
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $place->getModule()->getEvent()->getId(),
+                'module_id'   => $place->getModule()->getId()
+            )));
         }
     }
 

@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\TodoBundle\Entity\TodoModule;
 use PlanIt\TodoBundle\Form\TodoModuleType;
 use PlanIt\TodoBundle\Entity\Item;
+use PlanIt\TodoBundle\Entity\TaskList;
 use PlanIt\TodoBundle\Form\ItemType;
+use PlanIt\TodoBundle\Form\TaskListType;
 
 class TodoModuleRestController extends Controller
 {
@@ -18,9 +20,9 @@ class TodoModuleRestController extends Controller
 
         $todo_module = new TodoModule();
         $todo_module->setEvent($event);
-        $form    = $this->createForm(new TodoModuleType(), $todo_module);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
+        // $form    = $this->createForm(new TodoModuleType(), $todo_module);
+        // $form->handleRequest($request);
+        //if ($form->isValid()) {
             $todo_module->setIntType(5);
             $todo_module->setName('Listes de tâches');
             $todo_module->setSlug($todo_module->getName());
@@ -32,20 +34,37 @@ class TodoModuleRestController extends Controller
             return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
                 'id'    => $event->getId()
             )));
-        }
+        //}
 
-        /*return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-            'event_id'    => $guest->getModule()->getEvent()->getId(),
-            'module_id'   => $comment->getModule()->getId()
-        ));*/
     }
 
-    public function postItemAction(Request $request, $module_id)
+    public function postTasklistAction(Request $request, $module_id)
     {
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
 
+        $list = new TaskList();
+        $list->setModule($module);
+        $form    = $this->createForm(new TaskListType(), $list);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($list);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $list->getModule()->getEvent()->getId(),
+                'module_id'   => $list->getModule()->getId()
+            )));
+        }
+    }
+
+    public function postItemAction(Request $request, $list_id)
+    {
+        $list = $this->getDoctrine()->getRepository('PlanItTodoBundle:TaskList')->find($list_id);
+
         $item = new Item();
-        $item->setModule($module);
+        $item->setList($list);
         $form    = $this->createForm(new ItemType(), $item);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -56,8 +75,8 @@ class TodoModuleRestController extends Controller
             $em->flush();
             
             return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
-                'event_id'    => $item->getModule()->getEvent()->getId(),
-                'module_id'   => $item->getModule()->getId()
+                'event_id'    => $list->getModule()->getEvent()->getId(),
+                'module_id'   => $list->getModule()->getId()
             )));
         }
     }

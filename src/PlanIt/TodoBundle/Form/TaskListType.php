@@ -1,29 +1,24 @@
 <?php
 
-namespace PlanIt\GuestsBundle\Form;
+namespace PlanIt\TodoBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UpdateGuestType extends AbstractType
+class TaskListType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
-            ->add('typeguest')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
-            ->add('payed')
-            ->add('confirmed')
-            ->add('sent')
-            ->add('paymentmean')
-        ;
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.list.name')));
+
     }
     
     /**
@@ -32,11 +27,8 @@ class UpdateGuestType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\GuestsBundle\Entity\Guest',
+            'data_class' => 'PlanIt\TodoBundle\Entity\TaskList',
             'csrf_protection' => false,
-            'csrf_field_name' => '_token',
-            // a unique key to help generate the secret token
-            'intention'       => 'guest_update',
         ));
     }
 
@@ -45,6 +37,6 @@ class UpdateGuestType extends AbstractType
      */
     public function getName()
     {
-        return 'guestupdate_form';
+        return 'tasklist_form';
     }
 }

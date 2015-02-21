@@ -50,7 +50,7 @@ class Expense
 
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer", length=1)
      */
     // 0 => non, 1 => oui
     protected $bought;

@@ -4,7 +4,7 @@ function deleteModule(module_id){
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   		location.reload();	
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);

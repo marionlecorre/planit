@@ -122,7 +122,7 @@
 														<input type="text" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
 													</td>
 													<td data-title="Acheté">
-														<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought %} checked {%endif%}/>
+														<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought == true %} checked {%endif%}/>
 													</td>
 													<td class="delete-expense" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}" data-title="Supprimer">X</td>
 												</tr>

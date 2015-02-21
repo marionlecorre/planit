@@ -3,13 +3,13 @@
 namespace PlanIt\TodoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use PlanIt\ModuleBundle\Entity\Module;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="item")
  * @ORM\Entity(repositoryClass="PlanIt\TodoBundle\Repository\ItemRepository")
- */
+*/
+
 class Item
 {    
     
@@ -26,10 +26,10 @@ class Item
     protected $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PlanIt\TodoBundle\Entity\TodoModule", inversedBy="items")
-     * @ORM\JoinColumn(name="module_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="PlanIt\TodoBundle\Entity\TaskList", inversedBy="items")
+     * @ORM\JoinColumn(name="list_id", referencedColumnName="id")
      */
-    protected $module;
+    protected $list;
 
     /**
      * @ORM\Column(type="integer", length=1)
@@ -72,29 +72,6 @@ class Item
     }
 
     /**
-     * Set module
-     *
-     * @param \PlanIt\TodoBundle\Entity\TodoModule $module
-     * @return Item
-     */
-    public function setModule(\PlanIt\TodoBundle\Entity\TodoModule $module = null)
-    {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    /**
-     * Get module
-     *
-     * @return \PlanIt\TodoBundle\Entity\TodoModule 
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
-
-    /**
      * Set checked
      *
      * @param integer $checked
@@ -115,5 +92,28 @@ class Item
     public function getChecked()
     {
         return $this->checked;
+    }
+
+    /**
+     * Set list
+     *
+     * @param \PlanIt\TodoBundle\Entity\TaskList $list
+     * @return Item
+     */
+    public function setList(\PlanIt\TodoBundle\Entity\TaskList $list = null)
+    {
+        $this->list = $list;
+
+        return $this;
+    }
+
+    /**
+     * Get list
+     *
+     * @return \PlanIt\TodoBundle\Entity\TaskList 
+     */
+    public function getList()
+    {
+        return $this->list;
     }
 }

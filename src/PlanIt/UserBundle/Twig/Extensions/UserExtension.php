@@ -18,10 +18,10 @@ class UserExtension extends \Twig_Extension
         $diff = $date->diff($now);
         //$diff->format("%r%a")
         if ((int)$diff->format("%r%a") < 0){
-            return "J ".$diff->format("%r%a");
+            return $diff->format("%r%a");
         }
         else {
-            return "J +".$diff->format("%r%a");
+            return "+".$diff->format("%r%a");
         }
         
     }

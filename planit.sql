@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 18 Février 2015 à 10:56
+-- Généré le :  Ven 20 Février 2015 à 10:33
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `event` (
   `beginDate` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `event`
@@ -49,8 +49,7 @@ INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `beginDate`
 (5, 3, 'Gala', 'Gala', 'Soirée de ouf sur une péniche', '2015-01-23 20:00:00', '2015-01-24 05:00:00', '3-5245.jpeg'),
 (6, 1, 'Allez je fais du sport', 'Allez je fais du sport', 'pour ne plus être grosse', '2015-01-22 00:06:32', '2015-01-23 00:06:32', '1-62570.jpeg'),
 (7, 1, 'Boire du café', 'Boire du café', 'Le café c''est la vie', '2015-02-12 00:00:00', '2015-02-13 00:00:00', '1-44121.jpeg'),
-(8, 3, 'Anniversaire de Pépé', 'Anniversaire de Pépé', 'Il est encore vivant', '2015-02-15 00:00:00', '2015-02-15 00:00:00', '3-25454.jpeg'),
-(9, 3, 'Test', 'Test', 'test', '2015-03-24 00:00:00', '2015-03-25 00:00:00', '3-79084.jpeg');
+(8, 3, 'Anniversaire de Pépé', 'Anniversaire de Pépé', 'Il est encore vivant', '2015-02-15 00:00:00', '2015-02-15 00:00:00', '3-25454.jpeg');
 
 -- --------------------------------------------------------
 
@@ -68,7 +67,7 @@ CREATE TABLE `expense` (
   `consummate` double NOT NULL,
   `bought` tinyint(1) NOT NULL,
   `unit` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `expense`
@@ -108,9 +107,6 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `paymentmean_id`, `firs
 (11, 1, 4, 3, 'Ali', 'Babouche', 'alibabouche@gmail.com', 0, 0, 0),
 (12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 0, 0, 0),
 (13, 1, 4, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 1, 1, 0),
-(15, 7, 17, NULL, 'Michel', 'Corre', 'lecorre.m.mb@free.com', 0, 0, 1),
-(16, 7, 17, NULL, 'Marion', 'Le Corre', 'lecorre.mar@gmail.com', 0, 0, 1),
-(21, 7, 17, NULL, 'test', 'test', 'test@gmail.com', 0, 0, 0),
 (23, 9, 22, 2, 'Misel', 'Le Correff', 'lecorre.mar@gmail.com', 1, 0, 0),
 (24, 9, 22, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 0, 0, 1);
 
@@ -146,7 +142,7 @@ CREATE TABLE `item` (
   `module_id` int(11) DEFAULT NULL,
   `content` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `checked` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `item`
@@ -158,10 +154,8 @@ INSERT INTO `item` (`id`, `module_id`, `content`, `checked`) VALUES
 (3, 13, 'Appeler maman', 0),
 (4, 13, 'Récupérer sous', 0),
 (5, 13, 'Manger', 1),
-(6, 16, 'Nettoyer Pépé', 1),
-(7, 16, 'Tuer Pépé', 0),
-(8, 16, 'Toucher l''héritage', 0),
-(9, 13, 'Se faire beau', 0);
+(9, 13, 'Se faire beau', 1),
+(10, 13, 'Se faire beau', 0);
 
 -- --------------------------------------------------------
 
@@ -196,7 +190,7 @@ CREATE TABLE `module` (
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
   `maxguests` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -215,9 +209,6 @@ INSERT INTO `module` (`id`, `name`, `slug`, `event_id`, `inttype`, `type`, `paya
 (12, 'Gestion du budget', 'gestion-du-budget', 5, 2, 'budget', NULL, NULL, 2000, 300, NULL, NULL, NULL, NULL, NULL, NULL),
 (13, 'Listes de tâches', 'listes-de-taches', 3, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (14, 'Gestion du lieu', 'gestion-du-lieu', 3, 3, 'place', NULL, NULL, NULL, NULL, 300, 4000, '1h30', NULL, NULL, NULL),
-(16, 'Listes de tâches', 'listes-de-taches', 8, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 'Gestion des invités', 'gestion-des-invites', 8, 1, 'guests', 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 30),
-(18, 'Gestion du lieu', 'gestion-du-lieu', 8, 3, 'place', NULL, NULL, NULL, NULL, 50, 200, '1h', NULL, NULL, NULL),
 (22, 'Gestion des invités', 'gestion-des-invites', 5, 1, 'guests', 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 140);
 
 -- --------------------------------------------------------
@@ -238,6 +229,7 @@ CREATE TABLE `paymentmeans_module` (
 INSERT INTO `paymentmeans_module` (`guestsmodule_id`, `paymentmeans_id`) VALUES
 (4, 2),
 (4, 3),
+(4, 4),
 (22, 2);
 
 -- --------------------------------------------------------
@@ -270,19 +262,19 @@ INSERT INTO `payment_means` (`id`, `label`) VALUES
 CREATE TABLE `place` (
 `id` int(11) NOT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `address` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `tel` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `distance` double NOT NULL,
-  `price` double NOT NULL,
-  `capacity` double NOT NULL,
-  `website` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `remark` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `state` int(11) NOT NULL,
+  `address` longtext COLLATE utf8_unicode_ci,
+  `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `distance` double DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `capacity` double DEFAULT NULL,
+  `website` longtext COLLATE utf8_unicode_ci,
+  `remark` longtext COLLATE utf8_unicode_ci,
+  `state` int(11) DEFAULT NULL,
   `module_id` int(11) DEFAULT NULL,
-  `latitude` double NOT NULL,
-  `longitude` double NOT NULL,
-  `contract` longtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `contract` longtext COLLATE utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `place`
@@ -291,8 +283,7 @@ CREATE TABLE `place` (
 INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`) VALUES
 (2, 'Car en bolag', '55 rue du culotte', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 1, 14, 0, 0, '2-11124.jpeg'),
 (3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 0, 14, 0, 0, '3-59506.jpeg'),
-(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg'),
-(5, 'Maison de retraite', '2 rue des Accacias', '', 0, 0, 0, '', '', 1, 18, 0, 0, '');
+(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg');
 
 -- --------------------------------------------------------
 
@@ -304,7 +295,7 @@ CREATE TABLE `type_expense` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_expense`
@@ -326,7 +317,7 @@ CREATE TABLE `type_guest` (
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `message` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `price` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_guest`
@@ -338,7 +329,6 @@ INSERT INTO `type_guest` (`id`, `module_id`, `label`, `message`, `price`) VALUES
 (3, 4, 'Famille', 'Coucou', 70),
 (5, 6, 'Famille', 'Coucou ma famille', 0),
 (6, 2, 'Amis de Toulouse', 'bonne année !!!!', 3),
-(7, 17, 'Famille', 'Wouhou', 1000),
 (8, 4, 'Non adhérent', '', 70),
 (9, 22, 'Non adhérent', 'T''es moche', 0),
 (10, 22, 'les moches', 'Yoo les moches', 60);
@@ -457,12 +447,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `guest`
 --
@@ -477,12 +467,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT pour la table `payment_means`
 --
@@ -492,17 +482,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `place`
 --
 ALTER TABLE `place`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `type_guest`
 --
 ALTER TABLE `type_guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `user`
 --

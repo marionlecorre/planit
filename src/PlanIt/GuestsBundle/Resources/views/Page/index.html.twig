@@ -144,7 +144,7 @@
                                                     <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
                                                         <option></option>
                                                         {% for payment in module.paymentmeans %}
-                                                            <option value="{{payment.id}}" {% if guest.paymentmean %}{% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}{% endif %}>{{payment.label}}</option>
+                                                            <option value="{{payment.id}}" {% if guest.paymentmean %}{% if guest.paymentmean.id == payment.id %} selected="selected" {% endif %}{% endif %}>{{payment.label|trans}}</option>
                                                         {% endfor %}
                                                     </select>
                                                     {% endif %}

@@ -27,7 +27,7 @@ class GuestRestController extends Controller
             $guest->setConfirmed(0);
             $guest->setPayed(0);
             $guest->setSent(0);
-            $guest->setType($typeguest);
+            $guest->setTypeguest($typeguest);
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($guest);
