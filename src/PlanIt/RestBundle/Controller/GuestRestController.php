@@ -51,8 +51,6 @@ class GuestRestController extends Controller
                        ->getEntityManager();
         $em->remove($guest);
         $em->flush();
-        return $guest->getModule();
-
     }
 
     public function putGuestAction(Request $request, $guest_id)
@@ -64,7 +62,6 @@ class GuestRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
             $em->flush();
-            return $guest->getModule();
         }
     }
 

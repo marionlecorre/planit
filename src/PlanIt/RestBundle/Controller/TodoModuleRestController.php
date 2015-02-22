@@ -20,9 +20,6 @@ class TodoModuleRestController extends Controller
 
         $todo_module = new TodoModule();
         $todo_module->setEvent($event);
-        // $form    = $this->createForm(new TodoModuleType(), $todo_module);
-        // $form->handleRequest($request);
-        //if ($form->isValid()) {
             $todo_module->setIntType(5);
             $todo_module->setName('Listes de tâches');
             $todo_module->setSlug($todo_module->getName());
@@ -34,7 +31,6 @@ class TodoModuleRestController extends Controller
             return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
                 'id'    => $event->getId()
             )));
-        //}
 
     }
 
@@ -90,8 +86,6 @@ class TodoModuleRestController extends Controller
                    ->getEntityManager();
         $em->persist($item);
         $em->flush();
-        
-        return $item->getModule();
     }
 
     public function deleteItemAction($item_id)

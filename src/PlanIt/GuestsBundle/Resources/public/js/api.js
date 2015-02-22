@@ -112,3 +112,45 @@ function checkAll(type){
      }
 }
 
+function deleteTypeguest(type_id){
+	$.ajax({
+	   url : '/app_dev.php/api/typeguests/'+type_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(module){ // code_html contient le HTML renvoyé
+	   		location.reload();
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+
+function updateTypeguest(typeguest_id){
+	var price = $("#typeprice-"+typeguest_id).attr('data-price');
+	if(price == undefined){
+		var dataSend = {
+			"type" : "payable",
+			"name" : $("#typename-"+typeguest_id).val(),
+		}
+	}else{
+		var dataSend = {
+			"type" : "notpayable",
+			"name" : $("#typename-"+typeguest_id).val(),
+			"price" : price
+		}
+	}
+	$.ajax({
+	   url : '/app_dev.php/api/typeguests/'+typeguest_id, //API
+	   type : 'PUT',
+	   dataType : 'json',
+	   data : dataSend,
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   		location.reload();
+	   },
+	   error : function(resultat, statut, erreur){
+	         console.log(resultat);
+	       },
+	});
+}
+

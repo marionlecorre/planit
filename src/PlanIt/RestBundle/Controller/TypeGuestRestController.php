@@ -36,4 +36,26 @@ class TypeGuestRestController extends Controller
             'module_id'   => $module->getId()
         )));
     }
+
+    public function putTypeguestAction(Request $request, $typeguest_id)
+    {
+        $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
+        $typeguest->setLabel($request->request->get('name'));
+        if($request->request->get('type') == 'payable'){
+            $typeguest->setPrice($request->request->get('price'));
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($typeguest);
+        $em->flush();
+    }
+
+    public function deleteTypeguestAction($typeguest_id)
+    {
+        $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($typeguest);
+        $em->flush();
+
+    }
 }

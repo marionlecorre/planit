@@ -28,6 +28,26 @@ header {
 			padding: 13px 27px 13px 10px;
 			cursor: pointer;
 			@include border-radius(5px);
+			.typename {
+				float:left;
+				margin-left: 20px;
+				input{
+					border:none;
+					background-color: $head-list;
+					font-size: 14px;
+					width: 100%;
+					&:focus {
+						background-color: #FFF !important;
+						color: #000000;
+						outline : none;
+					}
+					@media (max-width: 737px) {
+						margin-left: 16px;
+						font-size: 14px;
+					}
+				}
+
+			}
 			.name {
 				float:left;
 				margin-left: 20px;

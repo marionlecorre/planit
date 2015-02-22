@@ -22,7 +22,7 @@
 		<div>
 			<input type="radio" class="check" id="check" onClick="chosePlace({{place.id}})" {% if place.state == 1 %} checked {% endif %}>
 		</div>
-		<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% endif %}">	
+		<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% else %} nochecked {% endif %}">	
 			<div class="name"><input type="text" id="name-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.name}}"></div>
 		    <div class="price"><input type="text" id="price-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.price}}">€</div>
 		    <button onclick="deletePlace({{place.id}})">X</button>

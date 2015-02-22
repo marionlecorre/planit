@@ -67,7 +67,31 @@ header {
 	}
 	.checked {
 			background-color: $color !important;
-			//color:#fff;
+			color:#fff;
+				input{
+					float:left;
+					border:none;
+					background-color: $color;
+					margin-right: 20px;
+					&:focus {
+						background-color: #FFF !important;
+						color: #000000;
+						outline : none;
+					}
+				}
+			}
+	.nochecked {
+				input{
+					float:left;
+					border:none;
+					background-color: $head-list;
+					margin-right: 20px;
+					&:focus {
+						background-color: #FFF !important;
+						color: #000000;
+						outline : none;
+					}
+				}
 			}
 	.labels.row {
 			margin: 0;
@@ -79,7 +103,15 @@ header {
 			padding: 7px 0;
 			@include border-radius(3px); 
 		}
-
+		input{
+			border:none;
+			&:focus {
+				border: solid 1px $color;
+				background-color: #FFF !important;
+				color: #000000;
+				outline : none;
+			}
+		}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 0px) { 
