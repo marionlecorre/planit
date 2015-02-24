@@ -17,12 +17,29 @@ class EventController extends Controller
 
         $event = new Event();
         $event->setUser($user);
-        $form   = $this->createForm(new EventType(), $event);
+        $type = "add";
+        $form   = $this->createForm(new EventType($type), $event);
 
         return $this->render('PlanItEventBundle:Event:form.html.twig', array(
             'event' => $event,
             'form'   => $form->createView(),
             'user_id' => $user_id
+        ));
+    }
+
+    public function updateformAction($event_id)
+    {
+        $em = $this->getDoctrine()
+                    ->getEntityManager();
+
+        $event = $em->getRepository('PlanItEventBundle:Event')->find($event_id);
+        $type = "update";
+        $form   = $this->createForm(new EventType($type), $event);
+
+        return $this->render('PlanItEventBundle:Event:updateform.html.twig', array(
+            'event' => $event,
+            'form'   => $form->createView(),
+            'user_id' => $event->getUser()->getId()
         ));
     }
 

@@ -153,3 +153,21 @@ button {
     }
   }
 }
+
+.modal.validate {
+  button {
+    background: url("/images/utils.png") no-repeat;
+    width: 50%;
+    height: 87px;
+    display: inline-block;
+    background-size: 17%;
+    padding-top: 71px;
+    font-size: 13px;
+    border: none;
+    background-position: 50% -1px;
+    &#delete_cancel {
+      background-position: 50% -142px;
+      background-size: 20%;
+    }
+  }
+}

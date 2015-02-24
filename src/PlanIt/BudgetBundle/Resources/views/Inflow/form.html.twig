@@ -6,7 +6,7 @@
             <h4 class="modal-title" id="myModalLabel">{{'add_inflow'|trans}}</h4>
             </div>
             <div class="modal-body">
-                <form id="form-post-typeexpense" action="/app_dev.php/api/inflows/{{module_id}}" method="post" {{ form_enctype(form) }}>
+                <form id="form-post-typeexpense" action="/api/inflows/{{module_id}}" method="post" {{ form_enctype(form) }}>
                     {{ form_widget(form) }}
 
 			    <p>

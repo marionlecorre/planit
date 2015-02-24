@@ -3,6 +3,7 @@
 namespace PlanIt\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\UserBundle\Repository\UserRepository")
@@ -45,6 +46,7 @@ class User
 
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\EventBundle\Entity\Event", mappedBy="user")
+     * @Exclude
      */
     protected $events;
     /**

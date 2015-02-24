@@ -67,6 +67,7 @@ class EventRestController extends Controller
            }
            return $notUseModules;
     }
+    
     public function getEventAction($event_id){
 	    $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
         $nbGuests = $this->getEventNbguestsAction($event_id);
@@ -79,10 +80,27 @@ class EventRestController extends Controller
                 $balance = $value->getBalance();
             }            
         }
+        $modules = array();
+        foreach($event->getModules() as $module){
+            $modules[] = array(
+                'id' => $module->getId(),
+                'name' => $module->getName(),
+                'inttype' => $module->getInttype()
+            );
+        }
 
 	    return array(
                     'nbGuests' => $nbGuests,
-                    'event' => $event,
+                    'event' => array(
+                        'id' => $event->getId(),
+                        'name' => $event->getName(),
+                        'description' => $event->getDescription(),
+                        'beginDate' => $event->getBeginDate(),
+                        'endDate' => $event->getEndDate(),
+                        'image' => $event->getImage(),
+                        'modules' => $modules,
+                        'user' => $event->getUser()
+                    ),
                     'balance' => $balance,
                 );
 	}
@@ -203,6 +221,39 @@ class EventRestController extends Controller
                     'event' => $event
                 );
 
+    }
+
+    public function deleteEventAction($event_id)
+    {
+        $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($event);
+        $em->flush();
+    }
+
+    public function postEventUpdateAction(Request $request, $event_id)
+    {
+        
+        $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
+        $type = "update";
+        $form    = $this->createForm(new EventType($type), $event);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($event);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                'id'    => $event->getUser()->getId()
+            )));
+        }
+
+        return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                'id'    => $event->getUser()->getId()
+            )));
     }
 
     public function getEventNbguestsAction($event_id){

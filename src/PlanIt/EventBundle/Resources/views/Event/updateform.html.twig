@@ -1,0 +1,6 @@
+<form action="/app_dev.php/api/events/{{user_id}}/updates" method="post" {{ form_enctype(form) }} class="blogger">
+    {{ form_widget(form) }}
+    <p>
+        <input type="submit" value="{{'update'|trans}}">
+    </p>
+</form>

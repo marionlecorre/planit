@@ -20,14 +20,13 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $data = $this->get("event_api_controller")->getEventAction($id);
+        $infos = $this->get("event_api_controller")->getEventAction($id);
         $notUsesModules = $this->get("event_api_controller")->getEventNotusemodulesAction($id);
-
         return $this->render('PlanItEventBundle:Page:event.html.twig', array(
-            'event' => $data['event'],
-            'nbGuests' => $data['nbGuests'],
-            'balance' => $data['balance'],
-            'user' => $data['event']->getUser(),
+            'event' => $infos['event'],
+            'nbGuests' => $infos['nbGuests'],
+            'balance' => $infos['balance'],
+            'user' => $infos['event']['user'],
             'notUsesModules' => $notUsesModules
         ));
     }

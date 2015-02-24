@@ -5,6 +5,7 @@ namespace PlanIt\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
@@ -139,7 +140,7 @@ class Event
      *
      * @return string 
      */
-    public function getDescription($length = 3)
+    public function getDescription($length = null)
     {
         if (false === is_null($length) && $length > 0)
             return substr($this->description, 0, $length);

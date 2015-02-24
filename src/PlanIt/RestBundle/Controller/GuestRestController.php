@@ -110,8 +110,8 @@ class GuestRestController extends Controller
             ->setSubject('Invitation à l\'évènement : '.$event->getName())
             ->setFrom($event->getUser()->getMail())
             ->setTo($guest->getEmail())
-            ->setBody($guest->getType()->getMessage().'<br/> 
-                Le prix de l\'évènement est de '.$guest->getType()->getPrice().'€ par personne <br/> 
+            ->setBody($guest->getTypeguest()->getMessage().'<br/> 
+                Le prix de l\'évènement est de '.$guest->getTypeguest()->getPrice().'€ par personne <br/> 
                 Merci de confirmer votre présence grâce au lien suivant : <br/>
                 http://planit.dev:8888/app_dev.php/'.$request->getLocale().'/answer/'.base64_encode($guest->getId()).'<br>'
                 .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');

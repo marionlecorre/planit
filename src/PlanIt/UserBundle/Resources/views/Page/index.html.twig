@@ -20,24 +20,39 @@
 		<div id="events" class="row listing-events">
 		{% for event in user.events %}
 			<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-				<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
-					<div class="event-thumbnail">
-						<div class="head">
+				<div class="event-thumbnail">
+					<div class="head">
+						<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
 							<h2>{{event.name |truncate(15)}}</h2>
-							 
-                            <div class="delete_event"></div>
-							<div class="modify_event"></div>
-							 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
-						</div>
+						</a>
+						 
+                        <div class="delete_event" data-toggle="modal" data-target=".deleteEventModal" data-name="{{event.name}}" data-id="{{event.id}}"></div>
+						<div class="modify_event" data-toggle="modal" data-target="#updateEvent-{{event.id}}"></div>
+						 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
+					</div>
+					<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
 						<div class="content">
 							<div class="image-cropper">
 				    		<img src="/images/event/events_pictures/{{event.image}}" /> 
 				    		</div>
-				    		<p class="description">{{ event.description }}</p>
+				    		<p class="description">{{event.description |truncate(100)}}</p>
 						</div>
-					</div>
-				</a>
+					</a>
+				</div>
 			</div>
+			<div class="modal fade" id="updateEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		                <h4 class="modal-title" id="myModalLabel">{{'update_event'|trans}}</h4>
+		                </div>
+		                <div class="modal-body">
+		                	{{ render(controller('PlanItEventBundle:Event:updateform', { 'event_id' : event.id } ))}}
+						</div>
+		            </div>
+		        </div>
+		    </div>
 		{% endfor %}
 		<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
 			<div class="add event-thumbnail" data-toggle="modal" data-target="#basicModal">
@@ -46,17 +61,36 @@
 		</div>
 		</div>
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		        <div class="modal-dialog">
-		            <div class="modal-content">
-		                <div class="modal-header">
-		                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		                <h4 class="modal-title" id="myModalLabel">{{'add_event'|trans}}</h4>
-		                </div>
-		                <div class="modal-body">
-							{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user.id } ))}}
-						</div>
-		            </div>
-		      </div>
-		    </div>
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+	                <h4 class="modal-title" id="myModalLabel">{{'add_event'|trans}}</h4>
+	                </div>
+	                <div class="modal-body">
+						{{ render(controller('PlanItEventBundle:Event:form', { 'user_id' : user.id } ))}}
+					</div>
+	            </div>
+	      </div>
+	    </div>
+
+	    <div class="modal fade deleteEventModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel_deleteGuest"></h4>
+                            </div>
+                            <div class="modal-body row">
+                                <button id="delete_confirm_event" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+                                <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
+
+                            </div>
+                        </div>
+                  </div>
+                </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
+    <script>events();</script>
 {% endblock %}

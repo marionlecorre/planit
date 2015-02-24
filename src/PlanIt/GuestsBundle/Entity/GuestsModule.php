@@ -4,6 +4,8 @@ use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use JMS\Serializer\Annotation\Exclude;
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestsModuleRepository")
  * @ORM\Entity
@@ -42,10 +44,12 @@ class GuestsModule extends Module
     protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
+     * @Exclude
      */
     protected $event;
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="module")
+     * @Exclude
      */
     protected $guests;
     /**

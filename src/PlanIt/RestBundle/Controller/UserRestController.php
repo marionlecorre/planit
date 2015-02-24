@@ -24,6 +24,16 @@ class UserRestController extends Controller
 
 	public function getUserEventsAction($id){
 	    $events = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->findByUser($id);
-	    return $events;
+	    $tab_events = array();
+	    foreach ($events as $event) {
+	    	$tab_events[] = array(
+	    		'id' => $event->getId(),
+	    		'name' => $event->getName(),
+	    		'description' => $event->getDescription(),
+	    		'beginDate' => $event->getBeginDate(),
+	    		'endDate' => $event->getEndDate()
+	    	);
+	    }
+	    return $tab_events;
 	}
 }

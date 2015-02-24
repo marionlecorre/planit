@@ -8,15 +8,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EventType extends AbstractType
 {
+    protected $type;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $type = $this->type;
         $builder
             ->add('name', 'text', array('label'  => false, 'attr' => array('placeholder' => 'form.event.name')))
-            ->add('description','text',array('required' => false, 'label'  => false, 'attr' => array('placeholder' => 'form.event.desc')))
+            ->add('description','textarea',array('required' => false, 'label'  => false, 'attr' => array('placeholder' => 'form.event.desc')))
             ->add('begin_date','date', array(
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
@@ -33,9 +36,11 @@ class EventType extends AbstractType
                                 'attr' => array('class' => 'date'),
                                 'label'  => false, 
                                 'attr' => array('placeholder' => 'form.event.end_date')
-                                ))
-            ->add('image', 'file',array('label'  => 'form.event.image', 'label_attr' => array('class'=>'file')))
-        ;
+                                ));
+            if($type == "add"){
+                $builder->add('image', 'file',array('label'  => 'form.event.image', 'label_attr' => array('class'=>'file')));
+            }
+            
     }
     
     /**
@@ -55,5 +60,10 @@ class EventType extends AbstractType
     public function getName()
     {
         return 'event_form';
+    }
+
+    public function __construct($type)
+    {
+        $this->type = $type;
     }
 }

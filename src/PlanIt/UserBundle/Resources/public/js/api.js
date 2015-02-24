@@ -19,3 +19,17 @@ function postEvent(){
 	});
 }
 
+function deleteEvent(event_id){
+	$.ajax({
+	   url : '/app_dev.php/api/events/'+event_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(module){ // code_html contient le HTML renvoyé
+	   		location.reload();
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+

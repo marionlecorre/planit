@@ -2,6 +2,8 @@
 namespace PlanIt\TodoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
+use JMS\Serializer\Annotation\Exclude;
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\TodoBundle\Repository\TodoModuleRepository")
  * @ORM\Entity
@@ -29,6 +31,7 @@ class TodoModule extends Module
     protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
+     * @Exclude
      */
     protected $event;
     /**

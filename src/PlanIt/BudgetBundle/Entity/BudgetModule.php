@@ -4,6 +4,9 @@ use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use JMS\Serializer\Annotation\Exclude;
+
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\BudgetBundle\Repository\BudgetModuleRepository")
  * @ORM\Entity
@@ -37,6 +40,7 @@ class BudgetModule extends Module
     protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
+     * @Exclude
      */
     protected $event;
     /**
