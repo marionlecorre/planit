@@ -49,7 +49,7 @@ header {
 	margin-right: -45px;
 }
 
-.modify_item, .delete_item {
+.modify_item, .delete {
 	background: url('/images/picto-modif.png') no-repeat;
 	width: 24px;
 	height: 24px;
@@ -60,7 +60,7 @@ header {
 	}
 }
 
-.delete_item{
+.delete{
 	background-position-x : -20px;
 	&:hover {
 		background-position-x : -69px;

@@ -67,3 +67,35 @@ function updateItem(item_id){
 	       },
 	});
 }
+
+function updateList(list_id){
+
+	$.ajax({
+	   url : '/app_dev.php/api/tasklists/'+list_id, //API
+	   type : 'PUT',
+	   dataType : 'json', // On désire recevoir du HTML
+	   data : {name : $("#list-"+list_id).val()},
+	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	       	location.reload();
+	       /**/
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}
+
+function deleteList(list_id){
+	$.ajax({
+	   url : '/app_dev.php/api/tasklists/'+list_id, //API
+	   type : 'DELETE',
+	   dataType : 'json',
+	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	       	location.reload();
+	       /**/
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+}

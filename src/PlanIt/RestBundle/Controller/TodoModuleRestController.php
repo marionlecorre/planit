@@ -107,4 +107,30 @@ class TodoModuleRestController extends Controller
         $em->persist($item);
         $em->flush();
     }
+
+    public function putTasklistAction(Request $request, $list_id)
+    {
+        $list = $this->getDoctrine()->getRepository('PlanItTodoBundle:TaskList')->find($list_id);
+
+        $list->setName($request->request->get('name'));
+        $em = $this->getDoctrine()
+                   ->getEntityManager();
+        $em->persist($list);
+        $em->flush();
+    }
+
+    public function deleteTasklistAction($list_id)
+    {
+        $list = $this->getDoctrine()->getRepository('PlanItTodoBundle:TaskList')->find($list_id);
+        $items = $list->getItems();
+        foreach ($items as $item) {
+            $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->remove($item);
+        }
+        $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+        $em->remove($list);
+        $em->flush();
+    }
 }

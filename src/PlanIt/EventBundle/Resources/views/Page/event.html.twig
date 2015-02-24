@@ -43,8 +43,7 @@
 
 		<div class="row">
 			<div id="modules">
-				{% for module in event.modules %}
-					<!-- <button onclick="deleteModule({{module.id}})"> X </button> -->					
+				{% for module in event.modules %}				
 						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
 							<div id="module_{{module.inttype}}" class="module_button">								
                                 <div class="delete_module" onclick="deleteModule({{module.id}})"></div>   

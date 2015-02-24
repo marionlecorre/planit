@@ -20,41 +20,76 @@
      {{ render(controller('PlanItTodoBundle:Item:formlist', { 'module_id' : module.id } ))}}
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
-		    {% for list in module.lists %}
-		    <div>
-		    	<div><p> {{list.name}} </p></div>
-		    	<ul class="sortable" id="todo-list">
-				    {% for item in list.items %}
-						{% if not item.checked %}
-							<li>
-								<div class="row">
-									<div class="col-md-12 todo">
-										<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})">
-										 <input type="text" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
-										<div class="pull-right" >
-		                                    <div class="delete_item" onclick="deleteItem({{item.id}})"></div>                                    
-		                                </div>
-									</div>
-								</div>			
-							</li>
-						{% endif %}
-					{% endfor %}
-
-					{% for item in list.items %}
-						{% if item.checked %} 
-							<li>
-								<div class="row">
-									<div class="col-md-12 todo checked">
-										{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
-									</div>
-								</div>			
-							</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-				<div class="col-md-3 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
-			</div>
+    {% for list in module.lists %}
+    <div>
+    	<div>
+    		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
+	    	<div class="pull-right" >
+                <div class="delete" data-toggle="modal" data-target=".deleteListModal" data-content="{{list.name}}" data-id="{{list.id}}"></div>                                    
+            </div>
+        </div>
+    	<ul class="sortable" id="todo-list">
+		    {% for item in list.items %}
+				{% if not item.checked %}
+					<li>
+						<div class="row">
+							<div class="col-md-12 todo">
+								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})">
+								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+								<div class="pull-right" >
+                                    <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>                                    
+                                </div>
+							</div>
+						</div>			
+					</li>
+				{% endif %}
 			{% endfor %}
+
+			{% for item in list.items %}
+				{% if item.checked %} 
+					<li>
+						<div class="row">
+							<div class="col-md-12 todo checked">
+								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
+							</div>
+						</div>			
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+		<div class="col-md-3 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+	</div>
+	{% endfor %}
+
+	<div class="modal fade deleteItemModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel_deleteItem"></h4>
+                </div>
+                <div class="modal-body row">
+                    <button id="delete_confirm_item" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+                    <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
+
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="modal fade deleteListModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel_deleteList"></h4>
+                </div>
+                <div class="modal-body row">
+                    <button id="delete_confirm_list" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+                    <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
+
+                </div>
+            </div>
+      </div>
+    </div>
 </div>
 
 {% endblock %}
