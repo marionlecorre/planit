@@ -32,7 +32,7 @@ class GuestController extends Controller
         ));
     }
 
-    public function answerAction($guest_id_encode)
+    public function answerAction($guest_id_encode, $type_encode)
     {
         $em = $this->getDoctrine()
                     ->getEntityManager();
@@ -43,11 +43,12 @@ class GuestController extends Controller
 
         return $this->render('PlanItGuestsBundle:Guest:form-answer.html.twig', array(
             'guest' => $guest,
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
+            'type' => base64_decode($type_encode)
         ));
     }
 
-    public function inscriptionAction($module_id_encode)
+    public function inscriptionAction($module_id_encode, $type_encode)
     {
         $em = $this->getDoctrine()
                     ->getEntityManager();
@@ -62,7 +63,8 @@ class GuestController extends Controller
         return $this->render('PlanItGuestsBundle:Guest:form-inscription.html.twig', array(
             'guest' => $guest,
             'form'   => $form->createView(),
-            'module_id' => $module->getId()
+            'module_id' => $module->getId(),
+            'type' => base64_decode($type_encode)
         ));
     }
 

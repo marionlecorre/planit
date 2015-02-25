@@ -24,7 +24,7 @@ class GuestRestController extends Controller
         $form = $this->createForm(new GuestType(), $guest);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $guest->setConfirmed(0);
+            $guest->setConfirmed(2);
             $guest->setPayed(0);
             $guest->setSent(0);
             $guest->setTypeguest($typeguest);
@@ -74,6 +74,11 @@ class GuestRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
             $em->flush();
+
+            return $this->redirect($this->generateUrl('PlanItGuestBundle_answer', array(
+                'guest_id_encode'    => base64_encode($guest_id),
+                'type_encode' => base64_encode('ok')
+            )));
         }
     }
 
@@ -88,7 +93,10 @@ class GuestRestController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             if($this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($module->getEvent()->getId()) > $this->getDoctrine()->getRepository('PlanItGuestsBundle:GuestsModule')->find($module_id)->getMaxGuests()){
-                return 'Désolés l\'évenement est complet';
+                return $this->redirect($this->generateUrl('PlanItGuestBundle_inscritpion', array(
+                    'module_id_encode'    => base64_encode($module_id),
+                    'type_encode' => base64_encode('full')
+                )));
             }
             $guest->setConfirmed(1);
             $guest->setPayed(0);
@@ -98,7 +106,10 @@ class GuestRestController extends Controller
             $em->persist($guest);
             $em->flush();
 
-            return 'Merci';
+            return $this->redirect($this->generateUrl('PlanItGuestBundle_inscritpion', array(
+                'module_id_encode'    => base64_encode($module_id),
+                'type_encode' => base64_encode('ok')
+            )));
         }
     }
 
@@ -113,7 +124,7 @@ class GuestRestController extends Controller
             ->setBody($guest->getTypeguest()->getMessage().'<br/> 
                 Le prix de l\'évènement est de '.$guest->getTypeguest()->getPrice().'€ par personne <br/> 
                 Merci de confirmer votre présence grâce au lien suivant : <br/>
-                http://planit.dev:8888/app_dev.php/'.$request->getLocale().'/answer/'.base64_encode($guest->getId()).'<br>'
+                http://planit.dev:8888/app_dev.php/'.$request->getLocale().'/answer/'.base64_encode($guest->getId()).'/'.base64_encode('form').'<br>'
                 .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');
         $this->get('mailer')->send($message);
         $guest->setSent(1);

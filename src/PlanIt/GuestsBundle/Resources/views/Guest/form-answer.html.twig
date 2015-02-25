@@ -14,12 +14,16 @@
 	<div id="content">
 		<h1>{{'answer_invitation'|trans}}</h1>
 		<div class="separator"></div>
-		<form id="form-post-guest" action="/app_dev.php/api/guests/{{guest.id}}/answers" method="post" {{ form_enctype(form) }} class="blogger">
-	    {{ form_widget(form) }}
-		    <p>
-		        <input type="submit" value="{{'validate'|trans}}">
-		    </p>
-		</form>
+		{% if type == 'form' %}
+			<form id="form-post-guest" action="/app_dev.php/api/guests/{{guest.id}}/answers" method="post" {{ form_enctype(form) }} class="blogger">
+		    {{ form_widget(form) }}
+			    <p>
+			        <input type="submit" value="{{'validate'|trans}}">
+			    </p>
+			</form>
+		{% else %}
+			<p> Merci, votre réponse a bien été prise en compte </p>
+		{% endif %}
 	</div>
 
 </body>

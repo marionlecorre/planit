@@ -11,16 +11,22 @@
 			<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>
 		</header>
 
-	<div id="content">
-		<h1>{{'inscription'|trans}}</h1>
-		<div class="separator"></div>
-		<form id="form-post-guest" action="/app_dev.php/api/guests/{{module_id}}/inscriptions" method="post" {{ form_enctype(form) }} class="blogger">
-	    {{ form_widget(form) }}
-		    <p>
-		        <input type="submit" value="{{'validate'|trans}}">
-		    </p>
-		</form>
-	</div>
+		<div id="content">
+			<h1>{{'inscription'|trans}}</h1>
+			<div class="separator"></div>
+			{%if type == 'full'%}
+				<p> Désolés l'événement est complet </p>
+			{% elseif type == 'ok' %}
+				<p> Merci, votre inscription a bien été prise en compte </p>
+			{% else %}
+				<form id="form-post-guest" action="/app_dev.php/api/guests/{{module_id}}/inscriptions" method="post" {{ form_enctype(form) }} class="blogger">
+			    {{ form_widget(form) }}
+				    <p>
+				        <input type="submit" value="{{'validate'|trans}}">
+				    </p>
+				</form>
+			{% endif %}
+		</div>
 
 </body>
 </html>

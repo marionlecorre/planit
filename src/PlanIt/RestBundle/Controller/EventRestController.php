@@ -109,33 +109,34 @@ class EventRestController extends Controller
 
 	public function postEventAction(Request $request, $user_id)
     {
-        $user = $this->getDoctrine()->getRepository('PlanItUserBundle:User')->find($user_id);
-
+        $user = $this->getDoctrine()->getRepository('PlanItUserBundle:User')->find($user_id);  
         $event = new Event();
         $event->setUser($user);
-        $form    = $this->createForm(new EventType(), $event);
+        $form    = $this->createForm(new EventType("add"), $event);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $data = $form->getData();
-            $event->setSlug($data->getName());
+            if($form['begin_date']->getData() >= $form['end_date']->getData()){
+                $data = $form->getData();
+                $event->setSlug($data->getName());
 
-            $file = $form['image']->getData();
-            $extension = $file->guessExtension();
-			if (!$extension) {
-			    $extension = 'bin';
-			}
+                $file = $form['image']->getData();
+                $extension = $file->guessExtension();
+    			if (!$extension) {
+    			    $extension = 'bin';
+    			}
 
-			$rand = rand(1, 99999);
-			$file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-			$event->setImage($user_id.'-'.$rand.'.'.$extension);
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($event);
-            $em->flush();
+    			$rand = rand(1, 99999);
+    			$file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+    			$event->setImage($user_id.'-'.$rand.'.'.$extension);
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($event);
+                $em->flush();
 
-           return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
-                'id'    => $user->getId()
-            )));
+               return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                    'id'    => $event->getId()
+                )));
+            }
         }
 
         /*return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
@@ -246,13 +247,13 @@ class EventRestController extends Controller
             $em->persist($event);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
-                'id'    => $event->getUser()->getId()
+            return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                'id'    => $event->getId()
             )));
         }
 
-        return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
-                'id'    => $event->getUser()->getId()
+        return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                'id'    => $event->getId()
             )));
     }
 

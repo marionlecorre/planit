@@ -1,15 +1,11 @@
 <?php
-
 namespace PlanIt\EventBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 class EventType extends AbstractType
 {
     protected $type;
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -24,18 +20,16 @@ class EventType extends AbstractType
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
                                 'format' => 'dd/MM/yyyy',
-                                'attr' => array('class' => 'date'),
                                 'label'  => false, 
-                                'attr' => array('placeholder' => 'form.event.begin_date')
+                                'attr' => array('class' => 'date','placeholder' => 'form.event.begin_date')
                                 ))
             ->add('end_date','date', array(
                                 'required' => false,
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
                                 'format' => 'dd/MM/yyyy',
-                                'attr' => array('class' => 'date'),
                                 'label'  => false, 
-                                'attr' => array('placeholder' => 'form.event.end_date')
+                                'attr' => array('class' => 'date','placeholder' => 'form.event.end_date')
                                 ));
             if($type == "add"){
                 $builder->add('image', 'file',array('label'  => 'form.event.image', 'label_attr' => array('class'=>'file')));
@@ -53,7 +47,6 @@ class EventType extends AbstractType
             'csrf_protection' => false,
         ));
     }
-
     /**
      * @return string
      */

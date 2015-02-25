@@ -1,11 +1,11 @@
 PlanItGuestBundle_answer:
-    path:     /answer/{guest_id_encode}
+    path:     /answer/{guest_id_encode}/{type_encode}
     defaults: { _controller: PlanItGuestsBundle:Guest:answer }
     requirements:
         _method:  GET
 
 PlanItGuestBundle_inscritpion:
-    path:     /inscription/{module_id_encode}
+    path:     /inscription/{module_id_encode}/{type_encode}
     defaults: { _controller: PlanItGuestsBundle:Guest:inscription }
     requirements:
         _method:  GET

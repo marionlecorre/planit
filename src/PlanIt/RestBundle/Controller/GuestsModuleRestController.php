@@ -19,7 +19,7 @@ class GuestsModuleRestController extends Controller
     
     public function getGuestsmoduleInscriptionlinkAction($module_id){
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
-        return '/inscription/'.base64_encode($module->getId());
+        return '/inscription/'.base64_encode($module->getId()).'/'.base64_encode('formulaire');
     }
 
     public function getGuestsmodulePaymentmeansAction($module_id){

@@ -33,7 +33,7 @@ class EventController extends Controller
                     ->getEntityManager();
 
         $event = $em->getRepository('PlanItEventBundle:Event')->find($event_id);
-        $type = "update";
+        $type = "lol";
         $form   = $this->createForm(new EventType($type), $event);
 
         return $this->render('PlanItEventBundle:Event:updateform.html.twig', array(

@@ -84,7 +84,9 @@
                                 </div>
                                 
                                 {% if module.payable %}
-                                <div class="price col-md-1 col-sm-2 col-md-offset-2 col-sm-offset-0" id="typeprice-{{type_guest.id}}" data-price="{{type_guest.price}}">{{type_guest.price}}€/pers</div>
+                                <div class="price col-md-2 col-sm-2 col-md-offset-2 col-sm-offset-0 typeprice">
+                                    <input onblur="updateTypeguest({{type_guest.id}})" type="text" id="typeprice-{{type_guest.id}}" value="{{type_guest.price}}"/><span>€/pers</span>
+                                </div>
                                 {% endif %}
                                 <div class="right pull-right col-md-2 col-sm-3" >
                                     <!-- <div class="modify_type"></div> -->
