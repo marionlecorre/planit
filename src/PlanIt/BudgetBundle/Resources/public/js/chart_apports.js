@@ -12,14 +12,15 @@ function getListInflow(id){
                 var data = {xA : []};
                 var empty;
                 // récupération des expenses
-                if (inflows.length == 0 && guests_inflows == undefined) {
+                console.log(inflows.inflows);
+                if (inflows.inflows.length == 0 && guests_inflows == undefined) {
                   var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
                   data.xA.push(obj);
                   empty = true;
                 }
                 else {
-                    if (inflows.length != 0){
-                      $.each(inflows, function(key, val) {
+                    if (inflows.inflows.length != 0){
+                      $.each(inflows.inflows, function(key, val) {
                         var totalprice =1;
                         // récupération du prix total d'une catégorie                
                         totalprice += (val['amount'])
@@ -28,6 +29,12 @@ function getListInflow(id){
                         data.xA.push(obj);
                         empty= false;
                       });
+                    }
+
+                    if(inflows.base != 0){
+                        var obj =  {name: 'Apport personnel',y: inflows.base,sliced: false, selected: false};
+                        data.xA.push(obj);
+                        empty= false;
                     }
 
                     if(guests_inflows != undefined){

@@ -166,9 +166,21 @@
 												<td data-title="Montant">
 													<span> {{infos.guestsInflow}}</span>
 												</td>
-												<td class="delete-inflow">X</td>
+												<td class="delete-inflow"></td>
 											</tr>
-										{% endif %}				
+										{% endif %}
+
+										{% if module.base > 0 %}
+											<tr>
+												<td data-title="Intitulé">
+													<span> Apport personnel </span>
+												</td>
+												<td data-title="Montant">
+													<span> {{module.base}}</span>
+												</td>
+												<td class="delete-inflow"></td>
+											</tr>
+										{% endif %}					
 									</tbody>
 								</table>
 

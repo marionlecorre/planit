@@ -166,7 +166,10 @@ class BudgetModuleRestController extends Controller
           throw $this->createNotFoundException();
         }
         $inflows = $module->getInflows();
-        return $inflows;
+        return array(
+            'inflows' => $inflows,
+            'base' => $module->getBase()
+            );
     }
 
     public function getListExpenseAction($module_id){
@@ -220,7 +223,7 @@ class BudgetModuleRestController extends Controller
         return array(
             'module' => $module,
             'balance' => $balance,
-            'budget' => $module->getMaxBudget()
+            'budget' => $module->getMaxBudget(),
         );
     }
 }
