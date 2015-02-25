@@ -352,4 +352,19 @@ class GuestsModule extends Module
     {
         return $this->inttype;
     }
+
+    public function getTotalPrice(){
+        $total = 0;
+        $typeguests = $this->getTypesguests();
+        foreach ($typeguests as $type) {
+            $guests = $type->getGuests();
+            foreach ($guests as $guest) {
+                if($guest->getConfirmed() == 1){
+                    $total += $type->getPrice();
+                }
+            }
+        }
+
+        return $total;
+    }
 }

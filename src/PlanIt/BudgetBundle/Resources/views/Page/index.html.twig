@@ -11,9 +11,6 @@
 	</div>
 
 	<div class="row buttons">
-		<!-- <div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">Ajouter une dépense</button></div>
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">Ajouter un apport</button></div>
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><a href="{{ path('PlanItBudgetBundle_pdf', { 'module_id': module.id }) }}"><button>Imprimer la liste de courses</button></a></div> -->
 
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
@@ -159,7 +156,19 @@
 												</td>
 												<td class="delete-inflow" data-toggle="modal" data-target=".deleteInflowModal" data-id="{{inflow.id}}" data-name="{{inflow.name}}" data-title="Supprimer">X</td>
 											</tr>
-										{% endfor %}						
+										{% endfor %}
+
+										{% if infos.guestsInflow is defined %}
+											<tr>
+												<td data-title="Intitulé">
+													<span> Inscriptions </span>
+												</td>
+												<td data-title="Montant">
+													<span> {{infos.guestsInflow}}</span>
+												</td>
+												<td class="delete-inflow">X</td>
+											</tr>
+										{% endif %}				
 									</tbody>
 								</table>
 

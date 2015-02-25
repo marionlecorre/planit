@@ -4,29 +4,46 @@ function getListInflow(id){
        type : 'GET',
        dataType : 'json', // On désire recevoir du HTML
        success : function(inflows, statut){ // code_html contient le HTML renvoyé
-        var data = {xA : []};
-        var empty;
-        // récupération des expenses
+            $.ajax({
+               url : '/app_dev.php/api/guestsinflows/'+id, //API
+               type : 'GET',
+               dataType : 'json', // On désire recevoir du HTML
+               success : function(guests_inflows, statut){ // code_html contient le HTML renvoyé
+                var data = {xA : []};
+                var empty;
+                // récupération des expenses
+                if (inflows.length == 0 && guests_inflows == undefined) {
+                  var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
+                  data.xA.push(obj);
+                  empty = true;
+                }
+                else {
+                    if (inflows.length != 0){
+                      $.each(inflows, function(key, val) {
+                        var totalprice =1;
+                        // récupération du prix total d'une catégorie                
+                        totalprice += (val['amount'])
+                        // création de l'objet avec nom et prix
+                        var obj =  {name: val['name'],y: totalprice,sliced: false, selected: false};
+                        data.xA.push(obj);
+                        empty= false;
+                      });
+                    }
 
-        if (inflows.length == 0) {
-          var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
-          data.xA.push(obj);
-          empty = true;
-        }
-        else {
-            if (inflows.length != 0){
-              $.each(inflows, function(key, val) {
-                var totalprice =1;
-                // récupération du prix total d'une catégorie                
-                totalprice += (val['amount'])
-                // création de l'objet avec nom et prix
-                var obj =  {name: val['name'],y: totalprice,sliced: false, selected: false};
-                data.xA.push(obj);
-                empty= false;
-              });
-          }
-        }
-        chartApport(data['xA'],empty);
+                    if(guests_inflows != undefined){
+                        var obj =  {name: 'Inscriptions',y: guests_inflows,sliced: false, selected: false};
+                        data.xA.push(obj);
+                        empty= false;
+                    }
+                }
+                chartApport(data['xA'],empty);
+                
+                
+               },
+               error : function(resultat, statut, erreur){
+                    alert(erreur);
+                },
+            });
         
         
        },

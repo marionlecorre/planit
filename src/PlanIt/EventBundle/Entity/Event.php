@@ -299,4 +299,5 @@ class Event
         // le document/image dans la vue.
         return 'images/event/events_pictures';
     }
+
 }

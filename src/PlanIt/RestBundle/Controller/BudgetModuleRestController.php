@@ -178,16 +178,49 @@ class BudgetModuleRestController extends Controller
         return $expenses;
     }
 
+    public function getGuestsinflowAction($module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+
+        $modules = $module->getEvent()->getModules();
+        foreach ($modules as $event_module) {
+            if($event_module->getIntType() == 1){
+                $guest_module = $event_module;
+            }
+        }
+        if(isset($guest_module)){
+            if($guest_module->getPayable()){
+                $guests_inflow = $guest_module->getTotalPrice();
+                return $guests_inflow;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+
+    }
+
     public function getInfosAction($module_id){
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
         if(!is_object($module)){
           throw $this->createNotFoundException();
         }
+
         $balance = $module->getBalance();
-        return array(
+
+        $guests_inflow = $this->getGuestsinflowAction($module_id);
+        if(isset($guests_inflow)){
+            return array(
                 'module' => $module,
                 'balance' => $balance,
-                'budget' => $module->getMaxBudget()
+                'budget' => $module->getMaxBudget(),
+                'guestsInflow' => $guests_inflow
             );
+        }
+        return array(
+            'module' => $module,
+            'balance' => $balance,
+            'budget' => $module->getMaxBudget()
+        );
     }
 }
