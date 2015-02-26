@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\PlaceBundle\Entity\Place;
 use PlanIt\PlaceBundle\Form\PlaceType;
 use PlanIt\PlaceBundle\Form\ContractType;
+use PlanIt\PlaceBundle\Form\ImageType;
 
 class PlaceController extends Controller
 {
@@ -35,6 +36,22 @@ class PlaceController extends Controller
         $form   = $this->createForm(new ContractType(), $place);
 
         return $this->render('PlanItPlaceBundle:Place:contract-form.html.twig', array(
+            'place' => $place,
+            'form'   => $form->createView(),
+            'module_id' => $module_id,
+        ));
+    }
+
+    public function imageAction($module_id)
+    {
+        $module = $this->getModule($module_id);
+
+
+        $place = new Place();
+        $place->setModule($module);
+        $form   = $this->createForm(new ImageType(), $place);
+
+        return $this->render('PlanItPlaceBundle:Place:image-form.html.twig', array(
             'place' => $place,
             'form'   => $form->createView(),
             'module_id' => $module_id,

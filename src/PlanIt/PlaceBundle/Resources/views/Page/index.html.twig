@@ -38,7 +38,10 @@
 		    		{% else %}
 		    			<img src="/images/no-image.jpg" width="100%"/>
 		    		{% endif %}
-		    	</div>
+						<div class="bt_place">
+		                    <button data-toggle="modal" data-target=".updateImageModal" data-id="{{place.id}}">{{'update_image'|trans}}</button> 
+		                </div>
+		        </div>
 		    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
 		        	<p><span class="label_descr">{{'address'|trans}}</span> : <input type="text" id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.address}}"></p>
 		        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
@@ -68,6 +71,7 @@
 	</div>
      {{ render(controller('PlanItPlaceBundle:Place:form', { 'module_id' : module.id } ))}}
      {{ render(controller('PlanItPlaceBundle:Place:contract', { 'module_id' : module.id } ))}}
+     {{ render(controller('PlanItPlaceBundle:Place:image', { 'module_id' : module.id } ))}}
 
 	
 	</section>

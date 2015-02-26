@@ -8,6 +8,7 @@ use PlanIt\PlaceBundle\Entity\Place;
 use PlanIt\PlaceBundle\Form\PlaceType;
 use PlanIt\PlaceBundle\Form\PlaceModuleType;
 use PlanIt\PlaceBundle\Form\ContractType;
+use PlanIt\PlaceBundle\Form\ImageType;
 
 class PlaceRestController extends Controller
 {
@@ -116,6 +117,33 @@ class PlaceRestController extends Controller
             $rand = rand(1, 99999);
             $file->move($place->getUploadRootDir(), $place_id.'-'.$rand.'.'.$extension);
             $place->setContract($place_id.'-'.$rand.'.'.$extension);
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($place);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $place->getModule()->getEvent()->getId(),
+                'module_id'   => $place->getModule()->getId()
+            )));
+        }
+    }
+
+    public function postPlaceImageAction(Request $request, $place_id)
+    {
+        $place = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->find($place_id);
+        $place->setImage(null);
+        $form = $this->createForm(new ImageType(), $place);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $file = $form['image']->getData();
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+            $rand = rand(1, 99999);
+            $file->move($place->getImageUploadRootDir(), $place_id.'-'.$rand.'.'.$extension);
+            $place->setImage($place_id.'-'.$rand.'.'.$extension);
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($place);

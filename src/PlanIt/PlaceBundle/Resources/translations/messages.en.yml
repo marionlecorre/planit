@@ -12,6 +12,7 @@ contacted: Contacted
 accepted: Accepted
 contract: Contract
 update_contract: Modify the contract
+update_image: Modify the image
 update: Modify
 form:
     contract:

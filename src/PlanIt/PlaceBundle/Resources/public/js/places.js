@@ -15,6 +15,10 @@ function places(){
 		var id = $(e.relatedTarget).data('id');
 		$("#form-post-contract").attr("action","/app_dev.php/api/places/"+id+"/contracts");
 	});
+	$('.updateImageModal').on("show.bs.modal",function(e){
+		var id = $(e.relatedTarget).data('id');
+		$("#form-post-image").attr("action","/app_dev.php/api/places/"+id+"/images");
+	});
 }
 //input file
 // ajout de la classe JS à HTML
