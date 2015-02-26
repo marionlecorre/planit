@@ -1,3 +1,4 @@
+place: GESTION DU LIEU
 add_place: Ajouter un lieu
 address: Adresse
 capacity: Capacité
@@ -25,3 +26,4 @@ form:
         price: Prix
         latitude: Latitude
         longitude: Longitude
+        image: Image

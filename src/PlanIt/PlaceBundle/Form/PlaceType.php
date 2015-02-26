@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PlaceType extends AbstractType
 {
+    protected $type;
 
     /**
      * @param FormBuilderInterface $builder
@@ -16,6 +17,7 @@ class PlaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
+        $type = $this->type;
         $builder
             ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.name')))
             ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.address')))
@@ -26,8 +28,12 @@ class PlaceType extends AbstractType
             ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'website')))
             ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.latitude')))
             ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.longitude')))
-            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'remark')))
-            ->add('state','choice', array(
+            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'remark')));
+        if($type == "add"){
+            $builder->add('image', 'file',array('label'  => 'form.place.image', 'label_attr' => array('class'=>'file')))            
+                    ->add('contract', 'file',array('label'  => 'contract', 'label_attr' => array('class'=>'file')));  
+        } 
+        $builder->add('state','choice', array(
                                         'choices'   => array(
                                             '' => '',
                                             0   => 'refused',
@@ -54,5 +60,10 @@ class PlaceType extends AbstractType
     public function getName()
     {
         return 'place_form';
+    }
+
+    public function __construct($type)
+    {
+        $this->type = $type;
     }
 }

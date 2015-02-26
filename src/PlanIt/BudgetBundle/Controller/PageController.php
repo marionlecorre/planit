@@ -4,6 +4,8 @@ namespace PlanIt\BudgetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use PlanIt\BudgetBundle\Form\BudgetModuleType;
+
 
 class PageController extends Controller
 {
@@ -33,4 +35,19 @@ class PageController extends Controller
 					    )
 					);
 	}
+
+	public function updatemoduleAction($module_id)
+    {
+        $em = $this->getDoctrine()
+                    ->getEntityManager();
+
+        $module = $em->getRepository('PlanItBudgetBundle:BudgetModule')->find($module_id);
+
+        $form   = $this->createForm(new BudgetModuleType(), $module);
+
+        return $this->render('PlanItBudgetBundle:Page:update-module-form.html.twig', array(
+            'module' => $module,
+            'form'   => $form->createView()
+        ));
+    }
 }

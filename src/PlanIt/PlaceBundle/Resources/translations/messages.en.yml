@@ -1,3 +1,4 @@
+place: PLACE MANAGEMENT
 add_place: Add a place
 address: Adress
 capacity: Capacity
@@ -25,3 +26,4 @@ form:
         price: Price
         latitude: Latitude
         longitude: Longitude
+        image: Image

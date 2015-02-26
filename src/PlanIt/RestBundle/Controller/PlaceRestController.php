@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PlanIt\PlaceBundle\Entity\Place;
 use PlanIt\PlaceBundle\Form\PlaceType;
+use PlanIt\PlaceBundle\Form\PlaceModuleType;
 use PlanIt\PlaceBundle\Form\ContractType;
 
 class PlaceRestController extends Controller
@@ -18,9 +19,31 @@ class PlaceRestController extends Controller
         $place = new Place();
         $place->setModule($module);
 
-        $form = $this->createForm(new PlaceType(), $place);
+        $form = $this->createForm(new PlaceType("add"), $place);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($place);
+            $em->flush();
+
+            $file = $form['contract']->getData();
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+            $rand = rand(1, 99999);
+            $file->move($place->getUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+            $place->setContract($place->getId().'-'.$rand.'.'.$extension);
+
+            $file = $form['image']->getData();
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+            $rand = rand(1, 99999);
+            $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+            $place->setImage($place->getId().'-'.$rand.'.'.$extension);
             $em = $this->getDoctrine()
                        ->getEntityManager();
             $em->persist($place);
@@ -68,7 +91,7 @@ class PlaceRestController extends Controller
     public function putPlaceAction(Request $request, $place_id)
     {
         $place = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->find($place_id);
-        $form = $this->createForm(new PlaceType(), $place, array('method' => 'PUT'));
+        $form = $this->createForm(new PlaceType("update"), $place, array('method' => 'PUT'));
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -105,6 +128,30 @@ class PlaceRestController extends Controller
         }
     }
 
+    public function postPlacemoduleUpdateAction(Request $request, $module_id)
+    {
+        
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        $form    = $this->createForm(new PlaceModuleType(), $module);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($module);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $module->getEvent()->getId(),
+                'module_id'   => $module->getId()
+            )));
+        }
+
+        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $module->getEvent()->getId(),
+                'module_id'   => $module->getId()
+            )));
+    }
 
 
 }

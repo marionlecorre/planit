@@ -16,7 +16,7 @@ class PlaceController extends Controller
 
         $place = new Place();
         $place->setModule($module);
-        $form   = $this->createForm(new PlaceType(), $place);
+        $form   = $this->createForm(new PlaceType("add"), $place);
 
         return $this->render('PlanItPlaceBundle:Place:form.html.twig', array(
             'place' => $place,

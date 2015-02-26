@@ -73,6 +73,11 @@ class Place
     /**
      * @ORM\Column(type="text",nullable=true)
      */
+    protected $image;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
     protected $contract;
 
     /**
@@ -430,5 +435,41 @@ class Place
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
         return 'files/place/contracts';
+    }
+
+    public function getImageUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getImageUploadDir();
+    }
+
+    protected function getImageUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'images/place/images';
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Place
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

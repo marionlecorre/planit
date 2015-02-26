@@ -2,6 +2,9 @@
 namespace PlanIt\PlaceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
+use JMS\Serializer\Annotation\Exclude;
+
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\PlaceBundle\Repository\PlaceModuleRepository")
  * @ORM\Entity
@@ -40,6 +43,7 @@ class PlaceModule extends Module
     protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
+     * @Exclude
      */
     protected $event;
     /**
