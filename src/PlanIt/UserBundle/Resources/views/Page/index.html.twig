@@ -18,25 +18,27 @@
 			<div class="col-md-12"> </div>
 		</div>
 		<div id="events" class="row listing-events">
-		{% for event in user.events %}
-			<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
-				<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
-					<div class="event-thumbnail">
-						<div class="head">
-							<h2>{{event.name |truncate(15)}}</h2>						 
-	                        <div class="delete_event" data-toggle="modal" data-target=".deleteEventModal" data-name="{{event.name}}" data-id="{{event.id}}"></div>
-							<!-- <div class="modify_event" data-toggle="modal" data-target="#updateEvent-{{event.id}}"></div> -->
-							 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
-						</div>
+		{% for event in events %}
+			<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+				<div class="event-thumbnail">
+					<div class="head">
+						<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
+							<h2>{{event.name |truncate(15)}}</h2>
+						</a>				 
+                        <div class="delete_event" data-toggle="modal" data-target=".deleteEventModal" data-name="{{event.name}}" data-id="{{event.id}}"></div>
+						<!-- <div class="modify_event" data-toggle="modal" data-target="#updateEvent-{{event.id}}"></div> -->
+						 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
+					</div>
+					<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
 						<div class="content">
 							<div class="image-cropper">
 				    		<img src="/images/event/events_pictures/{{event.image}}" /> 
 				    		</div>
 				    		<p class="description">{{event.description |truncate(100)}}</p>
 						</div>
-					</div>
+					</a>
 				</div>
-			</a>
+			</div>
 		{% endfor %}
 		<div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
 			<div class="add event-thumbnail" data-toggle="modal" data-target="#basicModal">

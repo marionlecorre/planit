@@ -238,6 +238,7 @@ class BudgetModuleRestController extends Controller
 
         $guests_inflow = $this->getGuestsinflowAction($module_id);
         if(isset($guests_inflow)){
+            $balance += $guests_inflow;
             return array(
                 'module' => $module,
                 'balance' => $balance,

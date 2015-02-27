@@ -78,6 +78,7 @@ class EventRestController extends Controller
         foreach ($event->getModules() as $value) {
             if ($value->getIntType() == 2){
                 $balance = $value->getBalance();
+                $balance += $this->get("budget_api_controller")->getGuestsinflowAction($value->getId());
             }            
         }
         $modules = array();
@@ -112,37 +113,65 @@ class EventRestController extends Controller
         $user = $this->getDoctrine()->getRepository('PlanItUserBundle:User')->find($user_id);  
         $event = new Event();
         $event->setUser($user);
-        $form    = $this->createForm(new EventType("add"), $event);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            if($form['begin_date']->getData() >= $form['end_date']->getData()){
-                $data = $form->getData();
-                $event->setSlug($data->getName());
-
-                $file = $form['image']->getData();
+        if($request->request->get('event_form') == null){
+            if($request->request->get('begin_date') <= $request->request->get('end_date')){
+                $event->setName($request->request->get('name'));
+                $event->setSlug($request->request->get('name'));
+                $event->setDescription($request->request->get('description'));
+                $event->setBeginDate(\DateTime::createFromFormat('j/m/Y', $request->request->get('begin_date')));
+                $event->setEndDate(\DateTime::createFromFormat('j/m/Y', $request->request->get('end_date')));
+                $file = $request->files->get('image');
                 $extension = $file->guessExtension();
-    			if (!$extension) {
-    			    $extension = 'bin';
-    			}
+                if (!$extension) {
+                    $extension = 'bin';
+                }
 
-    			$rand = rand(1, 99999);
-    			$file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-    			$event->setImage($user_id.'-'.$rand.'.'.$extension);
+                $rand = rand(1, 99999);
+                $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+                $event->setImage($user_id.'-'.$rand.'.'.$extension);
                 $em = $this->getDoctrine()
-                           ->getEntityManager();
-                $em->persist($event);
-                $em->flush();
+                               ->getEntityManager();
+                    $em->persist($event);
+                    $em->flush();
+                return 'ok';
+            }else{
+                return 'La date de fin est inférieure à la date de début';
+            }
+            
+        }else{
+            $form    = $this->createForm(new EventType("add"), $event);
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                if($form['begin_date']->getData() <= $form['end_date']->getData()){
+                    $data = $form->getData();
+                    $event->setSlug($data->getName());
 
-               return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
-                    'id'    => $event->getId()
-                )));
+                    $file = $form['image']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
+
+                    $rand = rand(1, 99999);
+                    $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+                    $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                    $em = $this->getDoctrine()
+                               ->getEntityManager();
+                    $em->persist($event);
+                    $em->flush();
+
+                   return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                        'id'    => $event->getId()
+                    )));
+                }
             }
         }
-
-        /*return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-            'event_id'    => $guest->getModule()->getEvent()->getId(),
-            'module_id'   => $comment->getModule()->getId()
-        ));*/
+        
+        return 'formulaire invalide';
+        // return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
+        //     'event_id'    => $guest->getModule()->getEvent()->getId(),
+        //     'module_id'   => $comment->getModule()->getId()
+        // ));
     }
 
     public function deleteModuleAction($module_id)

@@ -23,15 +23,28 @@ class UserRestController extends Controller
 	}
 
 	public function getUserEventsAction($id){
-	    $events = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->findByUser($id);
+	    $not_finished_events = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->findNotFinishedByUserid($id);
+	    $finished_events = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->findFinishedByUserid($id);
 	    $tab_events = array();
-	    foreach ($events as $event) {
+	    foreach ($not_finished_events as $event) {
 	    	$tab_events[] = array(
 	    		'id' => $event->getId(),
 	    		'name' => $event->getName(),
 	    		'description' => $event->getDescription(),
 	    		'beginDate' => $event->getBeginDate(),
-	    		'endDate' => $event->getEndDate()
+	    		'endDate' => $event->getEndDate(),
+	    		'image' => $event->getImage()
+	    	);
+	    }
+
+	    foreach ($finished_events as $event) {
+	    	$tab_events[] = array(
+	    		'id' => $event->getId(),
+	    		'name' => $event->getName(),
+	    		'description' => $event->getDescription(),
+	    		'beginDate' => $event->getBeginDate(),
+	    		'endDate' => $event->getEndDate(),
+	    		'image' => $event->getImage()
 	    	);
 	    }
 	    return $tab_events;

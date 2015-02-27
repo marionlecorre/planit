@@ -8,9 +8,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use JMS\Serializer\Annotation\Exclude;
 
 /**
- * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  */
 class Event
 {
