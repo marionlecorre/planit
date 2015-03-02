@@ -31,6 +31,13 @@ class TypeExpenseRestController extends Controller
                 'module_id'   => $type_expense->getModule()->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $inflow );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
+        
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $type_expense->getModule()->getEvent()->getId(),
             'module_id'   => $type_expense->getModule()->getId()
@@ -51,7 +58,10 @@ class TypeExpenseRestController extends Controller
                        ->getEntityManager();
         $em->remove($type_expense);
         $em->flush();
-        return $type_expense->getModule();
+        return array(
+                'balance' => $this->get("budget_api_controller")->getInfosAction($type_expense->getModule()->getId())['balance'],
+                'module_id' => $type_expense->getModule()->getId()
+            );
 
     }
 

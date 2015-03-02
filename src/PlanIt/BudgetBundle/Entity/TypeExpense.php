@@ -3,6 +3,8 @@
 namespace PlanIt\BudgetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -20,6 +22,7 @@ class TypeExpense
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Attention le nom de la dépense doit être renseignée")
      */
     protected $name;
 

@@ -110,7 +110,7 @@
 										
 										<tbody>
 											{% for expense in type_expense.expenses %}
-												<tr>
+												<tr id="expense-{{expense.id}}">
 													<td data-title="Article">
 														<input type="text" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
 													</td>
@@ -120,13 +120,13 @@
 													<td data-title="En stock">
 														<input type="text" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
 													</td>
-													<td data-title="A acheter">
+													<td id="tobuy-{{expense.id}}" data-title="A acheter">
 														{{expense.quantity - expense.stock}}
 													</td>
 													<td data-title="Prix unitaire">
 														<input type="text" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
 													</td>
-													<td data-title="Prix total">
+													<td id="total-price-{{expense.id}}" data-title="Prix total">
 														{{expense.price * (expense.quantity - expense.stock)}} €
 													</td>
 													<td data-title="Consommé">
@@ -161,7 +161,7 @@
 									
 									<tbody>
 										{% for inflow in module.inflows %}
-											<tr>
+											<tr id="inflow-{{inflow.id}}">
 												<td data-title="Intitulé">
 													<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
 												</td>

@@ -1,4 +1,3 @@
-
 function getListExpense(id){
     $.ajax({
        url : '/app_dev.php/api/lists/'+id+'/expense', //API

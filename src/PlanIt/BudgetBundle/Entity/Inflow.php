@@ -3,6 +3,7 @@
 namespace PlanIt\BudgetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,11 +21,13 @@ class Inflow
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Attention le nom de la dépense doit être renseignée")
      */
     protected $name;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du champs montant est incorrecte. Le montant doit être un nombre.")
      */
     protected $amount;
 

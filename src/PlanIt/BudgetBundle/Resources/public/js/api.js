@@ -4,7 +4,9 @@ function deleteExpense(expense_id){
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   		//location.reload();
+	   		$('#expense-'+expense_id).remove();
+	   		$('#balance p span').html(data.balance);
+	   		getListExpense(data.module_id);
 	   		$('.deleteExpenseModal').modal('hide');
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
@@ -21,8 +23,13 @@ function deleteInflow(inflow_id){
 	   url : '/app_dev.php/api/inflows/'+inflow_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module){ // code_html contient le HTML renvoyé
-	   	location.reload();
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   		$('#inflow-'+inflow_id).remove();
+	   		$('#balance p span').html(data.balance);
+	   		getListInflow(data.module_id);
+	   		$('.deleteInflowModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
        		
 	   },
 	   error : function(resultat, statut, erreur){
@@ -51,56 +58,17 @@ function updateExpense(expense_id){
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   	//location.reload();
-	   	$('#okModal').modal('show');
+	   	$('#balance p span').html(data.balance);
+	   	$("#expense-"+expense_id+" input[name=name-expense-"+expense_id+"]").val(data.expense.name);
+	   	$("#expense-"+expense_id+" input[name=quantity-expense-"+expense_id+"]").val(data.expense.quantity);
+	   	$("#expense-"+expense_id+" input[name=stock-expense-"+expense_id+"]").val(data.expense.stock);
+	   	$("#expense-"+expense_id+" input[name=price-expense-"+expense_id+"]").val(data.expense.price);
+	   	$("#expense-"+expense_id+" input[name=consummate-expense-"+expense_id+"]").val(data.expense.consummate);
+	   	$("#tobuy-"+expense_id).html(data.expense.quantity - data.expense.stock);
+	   	$("#total-price-"+expense_id).html(data.expense.price*(data.expense.quantity-data.expense.stock));
+	  	getListExpense(data.module_id);
+	  	$('#okModal').modal('show');
 	   	setTimeout( "$('#okModal').modal('hide');",1200 );
-	  //  		var menu = Twig.render(tab,
-   //                          {
-   //                              module : data.module,
-   //                          });
-
-	  //      	$('#tab').html(menu);
-
-	  //      var list = data.module.types_expense;
-	  //      	var balance;
-	  //      	if(data.module.base){
-	  //      		balance = data.module.base;
-	  //      	}
-	  //      	else {
-	  //      		balance=0;
-	  //      	}
-	       	
-	  //      	$.each(list, function(key, val) {
-	  //           // récupération du prix total d'une catégorie
-	  //           if (val['expenses'].length != 0){
-	  //           	if(val['type']==1){
-		 //              	$.each(val['expenses'],function(key,val){
-			// 				balance += (val['price']);
-	  //             		});
-	  //             	}
-	  //             	else if (val['type']==0) {
-	  //             		$.each(val['expenses'],function(key,val){
-		 //              		balance -= val['price']*(val['quantity']-val['stock']);
-		 //              	});
-	  //             	}
-	  //           }
-	  //       });
-   // 			var content = Twig.render(tab_content,
-   //                          {
-   //                              module : data.module,
-   //                              max : data.module.max_budget,
-   //                              balance : data.balance
-   //                          });
-
-   //     		$('#tab_content').html(content);
-
-   //     		$(".tab").parent().removeClass('tab-current');
-   //     		$("#tab-"+data.type_id).attr('class', 'tab-current');
-
-			// $(".section-topline").parent().removeClass('content-current');
-			// $("#section-topline-"+data.type_id).attr('class', 'content-current');
-			// getListExpense(data.module.id);
-			// getListInflow(data.module.id);
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -118,8 +86,11 @@ function updateInflow(inflow_id){
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
-	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   		$('#balance p span').html(data.balance);
+	   		getListInflow(data.module_id);
+		  	$('#okModal').modal('show');
+		   	setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -132,8 +103,8 @@ function deleteTypeExpense(type_id){
 	   url : '/app_dev.php/api/typeexpenses/'+type_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module){ // code_html contient le HTML renvoyé
-       		location.reload();
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
