@@ -12,7 +12,6 @@ function getListInflow(id){
                 var data = {xA : []};
                 var empty;
                 // récupération des expenses
-                console.log(inflows.inflows);
                 if (inflows.inflows.length == 0 && guests_inflows == undefined) {
                   var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
                   data.xA.push(obj);

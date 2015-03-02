@@ -1,6 +1,6 @@
 PlanItModuleBundle_module:
     path:     /event/{event_id}/module/{module_id}
-    defaults: { _controller: PlanItModuleBundle:Page:module }
+    defaults: { _controller: PlanItModuleBundle:Page:module}
     requirements:
         _method:  GET
         event_id: \d+

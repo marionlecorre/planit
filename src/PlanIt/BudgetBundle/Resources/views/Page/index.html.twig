@@ -13,11 +13,22 @@
 		<div class="col-md-12"> </div>
 	</div>
 	{{ render(controller('PlanItBudgetBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
+	{% for message in app.session.flashbag.get('errors') %}
+        <p>{{ message }}</p>
+      {% endfor %}
 	<div class="row buttons">
 
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
 		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
 
+	</div>
+
+	<div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	        	OK
+	        </div>
+	  </div>
 	</div>
 	
 	<section>			

@@ -235,9 +235,15 @@ class EventRestController extends Controller
             break;
 
             case 5: //todo
-                $items = $module->getItems();
-                foreach ($items as $item) {
-                    $em->remove($item);
+                $lists = $module->getLists();
+                foreach ($lists as $list) {
+                    $items = $list->getItems();
+                    foreach ($items as $item) {
+                        $em->remove($item);
+                        $em->flush();
+                    }
+
+                    $em->remove($list);
                     $em->flush();
                 }
             break;

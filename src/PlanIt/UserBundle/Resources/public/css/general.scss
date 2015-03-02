@@ -91,6 +91,8 @@ button {
   padding: 13px 27px;
 }
 
+
+
 .modal-dialog {
   margin: 0;
     position: absolute;
@@ -152,6 +154,21 @@ button {
       }
     }
   }
+}
+
+.modal-ok{
+    .modal-content{
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20%;
+      width: 70px;
+      height: 70px;
+      padding: 25px;
+    }
+
+    .modal-backdrop{
+      background-color: transparent;
+    }
 }
 
 .modal.validate {

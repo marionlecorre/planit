@@ -4,7 +4,10 @@ function deleteExpense(expense_id){
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   		console.log(data);
+	   		//location.reload();
+	   		$('.deleteExpenseModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
        		
 	   },
 	   error : function(resultat, statut, erreur){
@@ -48,7 +51,9 @@ function updateExpense(expense_id){
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   	location.reload();
+	   	//location.reload();
+	   	$('#okModal').modal('show');
+	   	setTimeout( "$('#okModal').modal('hide');",1200 );
 	  //  		var menu = Twig.render(tab,
    //                          {
    //                              module : data.module,
