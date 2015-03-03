@@ -16,10 +16,23 @@ function guests(){
 		
 	});
 
+	$('.deleteTypeGuestModal').on("show.bs.modal",function(e){
+			var id = $(e.relatedTarget).data('id');
+			var name = $(e.relatedTarget).data('name');
+			$("#delete_confirm_typeguest").attr("onclick","deleteTypeGuest("+id+")");
+			$("#myModalLabel_deleteTypeGuest").html("Etes-vous sur de vouloir supprimer le type \""+name+"\" et les invités qui lui sont associés ?");
+		
+	});
+
 	$('.addGuestModal').on("show.bs.modal",function(e){
 		var typeguest = $(e.relatedTarget).data('type');
 		$("#form-post-guest").attr("action","/app_dev.php/api/guests/"+typeguest);
 	});
+}
+function showModalDeleteType(id, name){
+	$('.deleteTypeGuestModal').modal('show');
+	$("#delete_confirm_typeguest").attr("onclick","deleteTypeguest("+id+")");
+	$("#myModalLabel_deleteTypeGuest").html("Etes-vous sur de vouloir supprimer le type \""+name+"\" et les invités qui lui sont associés ?");
 }
 
 function showModalMultiple(type_id){

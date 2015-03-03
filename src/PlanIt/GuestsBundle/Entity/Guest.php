@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -25,16 +27,19 @@ class Guest
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Length(max="30", maxMessage="Attention, la prénom ne doit pas dépasser 30 caractères")
      */
     protected $firstname;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Length(max="30", maxMessage="Attention, la nom ne doit pas dépasser 30 caractères")
      */
     protected $lastname;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Length(max="30", maxMessage="Attention, l'adresse mail ne doit pas dépasser 30 caractères")
      */
     protected $email;
 
@@ -267,29 +272,6 @@ class Guest
     public function getSent()
     {
         return $this->sent;
-    }
-
-
-
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('firstname', new NotBlank(array(
-            'message' => 'Merci de renseigner le prénom de l\'invité'
-        )));
-        $metadata->addPropertyConstraint('firstname', new Length(array(
-            'max' => "30"
-        )));
-
-        $metadata->addPropertyConstraint('lastname', new NotBlank(array(
-            'message' => 'Merci de renseigner le nom de famille de l\'invité'
-        )));
-        $metadata->addPropertyConstraint('lastname', new Length(array(
-            'max' => "30"
-        )));
-
-        $metadata->addPropertyConstraint('email', new Email(array(
-            'message' => 'Merci de renseigner une adresse mail valide'
-        )));
     }
 
     /**

@@ -38,6 +38,12 @@ class GuestRestController extends Controller
                 'module_id'   => $guest->getModule()->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $guest );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $guest->getModule()->getEvent()->getId(),
             'module_id'   => $guest->getModule()->getId()
@@ -51,6 +57,7 @@ class GuestRestController extends Controller
                        ->getEntityManager();
         $em->remove($guest);
         $em->flush();
+        return $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($guest->getTypeguest()->getModule()->getEvent()->getId());
     }
 
     public function putGuestAction(Request $request, $guest_id)

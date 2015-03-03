@@ -5,6 +5,7 @@ use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -16,10 +17,12 @@ class BudgetModule extends Module
 {
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du champs budget est incorrecte. Le budget doit être un nombre.")
      */
     protected $max_budget;
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du champs apport est incorrecte. L'apport doit être un nombre.")
      */
     protected $base;
     /**
@@ -227,6 +230,7 @@ class BudgetModule extends Module
     {
         return $this->inflows;
     }
+
     public function getBalance()
     {
         $balance = $this->getBase();
@@ -242,6 +246,26 @@ class BudgetModule extends Module
         return $balance;
     }
 
+    public function getTotalInflows()
+    {
+        $total = 0;
+        foreach ($this->getInflows() as $inflow) {
+            $total += $inflow->getAmount();
+        }
+        return $total;
+    }
+
+    public function getTotalExpenses()
+    {
+        $total = $this->getBase();
+        foreach ($this->getTypesExpense() as $typeExpense){
+            foreach ($typeExpense->getExpenses() as $expense){
+                $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());
+                $total += $expenses;
+            }
+        }
+        return $total;
+    }
 
     /**
      * Set inttype

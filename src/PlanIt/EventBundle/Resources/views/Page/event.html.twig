@@ -11,7 +11,13 @@
 		<div class="row" id="separator">
 			<div class="col-md-12"> </div>
 		</div>
-
+		<div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		        	OK
+		        </div>
+		    </div>
+		</div>
 		<div class="row">
 			<div class="col-md-4 descr_event" id="description">
 					<img src="/images/event/events_pictures/{{event.image}}"/> 
@@ -43,20 +49,21 @@
 		<div class="row" id="mes_modules">
 			<div class="col-md-12">{{'my_modules'|trans}}</div>
 		</div>
-
+		{% for message in app.session.flashbag.get('errors') %}
+	    	<p>{{ message }}</p>
+	    {% endfor %}
 		<div class="row">
 			<div id="modules">
 				{% for module in event.modules %}				
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">
-							<div id="module_{{module.inttype}}" class="module_button">								
-                                <div class="delete_module" onclick="deleteModule({{module.id}})"></div>   
-                                <a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">
-									<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
-									<p>{{module.name|trans}}</p> 
-								</a>   	
-							</div>	
-						</div>
-				
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module" id="module-{{module.id}}">
+						<div id="module_{{module.inttype}}" class="module_button">								
+                            <div class="delete_module" data-toggle="modal" data-target=".deleteModuleModal" data-name="{{module.name}}" data-id="{{module.id}}"></div>   
+                            <a href="{{ path('PlanItModuleBundle_module', { 'event_id': event.id, 'module_id':module.id }) }}">
+								<img src="/images/event/pictos_modules/picto_{{module.inttype}}.png" /> 	
+								<p>{{module.name|trans}}</p> 
+							</a>   	
+						</div>	
+					</div>
 				{% endfor %}
 			</div>
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
@@ -100,6 +107,20 @@
 		            </div>
 		        </div>
 		    </div>
+		    <div class="modal fade deleteModuleModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel_deleteModule"></h4>
+                    </div>
+                    <div class="modal-body row">
+                        <button id="delete_confirm_module" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
+                        <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
+
+                    </div>
+                </div>
+          </div>
+        </div>
 		</div>
     </div>
     
@@ -111,6 +132,7 @@
     '@PlanItEventBundle/Resources/public/js/chart.js' %}
 	      <script language="javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
+	<script>events();</script>
 	<script>
 		$('.benef').tooltip();
 		 if( parseInt($("#balance p span").text()) > 0 ){

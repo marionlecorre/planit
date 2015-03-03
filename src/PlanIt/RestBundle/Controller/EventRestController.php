@@ -75,10 +75,14 @@ class EventRestController extends Controller
 	      throw $this->createNotFoundException();
 	    }
         $balance = "Empty";
-        foreach ($event->getModules() as $value) {
-            if ($value->getIntType() == 2){
-                $balance = $value->getBalance();
-                $balance += $this->get("budget_api_controller")->getGuestsinflowAction($value->getId());
+        $total_expenses = 0;
+        $total_inflows = 0;
+        foreach ($event->getModules() as $module) {
+            if ($module->getIntType() == 2){
+                $total_expenses = $module->getTotalExpenses();
+                $total_inflows = $module->getTotalInflows();
+                $balance = $module->getBalance();
+                $balance += $this->get("budget_api_controller")->getGuestsinflowAction($module->getId());
             }            
         }
         $modules = array();
@@ -103,6 +107,8 @@ class EventRestController extends Controller
                         'user' => $event->getUser()
                     ),
                     'balance' => $balance,
+                    'total_expenses' => $total_expenses,
+                    'total_inflows' => $total_inflows
                 );
 	}
 
@@ -141,37 +147,47 @@ class EventRestController extends Controller
         }else{
             $form    = $this->createForm(new EventType("add"), $event);
             $form->handleRequest($request);
-            if ($form->isValid()) {
-                if($form['begin_date']->getData() <= $form['end_date']->getData()){
-                    $data = $form->getData();
-                    $event->setSlug($data->getName());
-
-                    $file = $form['image']->getData();
-                    $extension = $file->guessExtension();
-                    if (!$extension) {
-                        $extension = 'bin';
-                    }
-
-                    $rand = rand(1, 99999);
-                    $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-                    $event->setImage($user_id.'-'.$rand.'.'.$extension);
-                    $em = $this->getDoctrine()
-                               ->getEntityManager();
-                    $em->persist($event);
-                    $em->flush();
-
-                   return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
-                        'id'    => $event->getId()
+            $session = $request->getSession();
+            if(!empty($form['end_date']->getData()) && $form['begin_date']->getData() >= $form['end_date']->getData()){
+                $session->getFlashBag()->add('errors', 'Attention, la date de fin doit être postérieure à la date de début');
+                return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                        'id'    => $user_id
                     )));
-                }
             }
+            if ($form->isValid()) {
+                $data = $form->getData();
+                if(empty($form['end_date']->getData())){
+                    $event->setEndDate($form['begin_date']->getData());
+                }
+                $event->setSlug($data->getName());
+
+                $file = $form['image']->getData();
+                $extension = $file->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
+
+                $rand = rand(1, 99999);
+                $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+                $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($event);
+                $em->flush();
+
+               return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                    'id'    => $event->getId()
+                )));
+            }
+            $errors = $this->get('validator')->validate( $event );
+            foreach( $errors as $error )
+            {
+                $session->getFlashBag()->add('errors', $error->getMessage());
+            }
+            return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                        'id'    => $user_id
+                    )));
         }
-        
-        return 'formulaire invalide';
-        // return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
-        //     'event_id'    => $guest->getModule()->getEvent()->getId(),
-        //     'module_id'   => $comment->getModule()->getId()
-        // ));
     }
 
     public function deleteModuleAction($module_id)
@@ -252,10 +268,7 @@ class EventRestController extends Controller
         }
         $em->remove($module);
         $em->flush();
-        return array(
-                    'nbGuests' => $nbGuests,
-                    'event' => $event
-                );
+        return $this->getEventNotusemodulesAction($event->getId());
 
     }
 

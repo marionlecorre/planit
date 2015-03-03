@@ -44,6 +44,15 @@ class BudgetModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $budget_module );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
+        return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                'id'    => $event->getId()
+            )));
     }
 
     public function postBudgetmoduleUpdateAction(Request $request, $module_id)
@@ -90,8 +99,6 @@ class BudgetModuleRestController extends Controller
             $em->persist($expense);
             $em->flush();
 
-            $session = $request->getSession();
-            $session->getFlashBag()->add('info', 'Annonce bien enregistrée');
 
             return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
                 'event_id'    => $expense->getTypeExpense()->getModule()->getEvent()->getId(),

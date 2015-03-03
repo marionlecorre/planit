@@ -31,6 +31,12 @@ class TypeGuestRestController extends Controller
                 'module_id'   => $module->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $typeguest );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $module->getEvent()->getId(),
             'module_id'   => $module->getId()
@@ -52,10 +58,15 @@ class TypeGuestRestController extends Controller
     public function deleteTypeguestAction($typeguest_id)
     {
         $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
+        foreach ($typeguest->getGuests() as $guest) {
+            $em = $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->remove($guest);
+        }
         $em = $em = $this->getDoctrine()
                        ->getEntityManager();
         $em->remove($typeguest);
         $em->flush();
-
+        return $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($typeguest->getModule()->getEvent()->getId());
     }
 }
