@@ -5,6 +5,7 @@ namespace PlanIt\PlaceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -37,16 +38,19 @@ class Place
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, la distance est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $distance;
 
      /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, le prix est incorrecte. Celui-ci doit être un nombre.")
      */
     protected $price;
 
      /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la capacité est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $capacity;
 
@@ -57,11 +61,13 @@ class Place
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="float", message="Attention, la valeur de la lattitude est incorrecte.")
      */
     protected $latitude;
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="float", message="Attention, la valeur de la longitude est incorrecte.")
      */
     protected $longitude;
 
@@ -85,6 +91,12 @@ class Place
      */
     //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
     protected $state;
+
+    /**
+     * @ORM\Column(type="integer", length=1)
+     */
+    //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
+    protected $oldstate;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\PlaceBundle\Entity\PlaceModule", inversedBy="places")
@@ -471,5 +483,28 @@ class Place
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set oldstate
+     *
+     * @param integer $oldstate
+     * @return Place
+     */
+    public function setOldstate($oldstate)
+    {
+        $this->oldstate = $oldstate;
+
+        return $this;
+    }
+
+    /**
+     * Get oldstate
+     *
+     * @return integer 
+     */
+    public function getOldstate()
+    {
+        return $this->oldstate;
     }
 }

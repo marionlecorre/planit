@@ -5,6 +5,7 @@ namespace PlanIt\PlaceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -37,16 +38,19 @@ class Place
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, la distance est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $distance;
 
      /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, le prix est incorrecte. Celui-ci doit être un nombre.")
      */
     protected $price;
 
      /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la capacité est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $capacity;
 
@@ -57,11 +61,13 @@ class Place
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="float", message="Attention, la valeur de la lattitude est incorrecte.")
      */
     protected $latitude;
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="float", message="Attention, la valeur de la longitude est incorrecte.")
      */
     protected $longitude;
 
@@ -83,8 +89,14 @@ class Place
     /**
      * @ORM\Column(type="integer", length=1)
      */
-    //0 => refusé, 1 => choisi, 2 => contacté
+    //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
     protected $state;
+
+    /**
+     * @ORM\Column(type="integer", length=1)
+     */
+    //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
+    protected $oldstate;
 
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\PlaceBundle\Entity\PlaceModule", inversedBy="places")
@@ -435,5 +447,41 @@ class Place
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
         return 'files/place/contracts';
+    }
+
+    public function getImageUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getImageUploadDir();
+    }
+
+    protected function getImageUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'images/place/places_pictures';
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Place
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

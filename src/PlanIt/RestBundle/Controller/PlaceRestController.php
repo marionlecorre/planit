@@ -55,6 +55,12 @@ class PlaceRestController extends Controller
                 'module_id'   => $place->getModule()->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $place );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $place->getModule()->getEvent()->getId(),
             'module_id'   => $place->getModule()->getId()
@@ -78,18 +84,22 @@ class PlaceRestController extends Controller
         $places = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->findByModule($choosen_place->getModule()->getId());
         foreach ($places as $place) {
             if($place->getState() == 1){
-                $place->setState(0);
+                $place->setState($place->getOldstate());
             }
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
             $em->flush();
         }
-
+        $choosen_place->setOldstate($choosen_place->getState());
         $choosen_place->setState($request->request->get('check'));
         $em = $this->getDoctrine()->getManager();
         $em->persist($choosen_place);
         $em->flush();
-        return $choosen_place->getState();
+        $states = array();
+        foreach ($places as $place) {
+            $states[$place->getId()] = $place->getState();
+        }
+        return $states;
     }
 
     public function putPlaceAction(Request $request, $place_id)

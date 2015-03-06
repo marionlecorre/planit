@@ -27,11 +27,21 @@ function chosePlace(place_id){
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : {check:check},
-	   success : function(chose){ // code_html contient le HTML renvoyé
+	   success : function(states){ // code_html contient le HTML renvoyé
+	   		console.log(states);
+	   		for(var id in states){
+	   			$("#state-place-"+id).val(states[id]);
+	   		}
 	   		$(".accordion-head").each(function(){
 	   			$(this).attr('class', 'head-list accordion-head nochecked');
 	   		});
-	   		$('#place-'+place_id+' .head-list').attr('class', 'head-list accordion-head checked');
+	   		$(".check").each(function(){
+	   			$(this).prop('checked', false);
+	   		});
+	   		if(parseInt(states[place_id]) == 1){
+	   			$('#place-'+place_id+' .head-list').attr('class', 'head-list accordion-head checked');
+	   			$('#place-'+place_id+' .div-checkbox .check').prop('checked', true);
+	   		}
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },

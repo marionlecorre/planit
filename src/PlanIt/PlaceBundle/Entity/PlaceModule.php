@@ -14,12 +14,12 @@ class PlaceModule extends Module
 {
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Type(type="numeric", message="Attention, la valeur de la capacité maximale est incorrecte. Celui-ci doit être un nombre.")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la capacité maximale est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $max_capacity_p;
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Type(type="numeric", message="Attention, la valeur du prix maximal est incorrecte. Celui-ci doit être un nombre.")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du prix maximal est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $max_price_p;
     /**

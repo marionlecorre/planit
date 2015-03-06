@@ -22,6 +22,9 @@
         </div>
     </div>
 	<section>
+	{% for message in app.session.flashbag.get('errors') %}
+        <p>{{ message }}</p>
+    {% endfor %}
 	{{ render(controller('PlanItPlaceBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
 	<div class="row">
         <div class="col-md-3 bt_place"><button data-toggle="modal" data-target=".addPlaceModal" class="col-md-3">{{'add_place'|trans}}</button></div>
@@ -30,7 +33,7 @@
 	<div class="row list" id="list">
 		{% for place in module.places%}
 		<div id="place-{{place.id}}" class="place">
-			<div>
+			<div class="div-checkbox">
 				<input type="checkbox" class="check" id="check-{{place.id}}" onClick="chosePlace({{place.id}})" {% if place.state == 1 %} checked {% endif %}>
 			</div>
 			<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% else %} nochecked {% endif %}">	
