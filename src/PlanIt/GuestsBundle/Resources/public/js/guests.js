@@ -26,7 +26,7 @@ function guests(){
 
 	$('.addGuestModal').on("show.bs.modal",function(e){
 		var typeguest = $(e.relatedTarget).data('type');
-		$("#form-post-guest").attr("action","/app_dev.php/api/guests/"+typeguest);
+		$("#form-post-guest").attr("action","/api/guests/"+typeguest);
 	});
 }
 function showModalDeleteType(id, name){

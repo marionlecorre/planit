@@ -1,6 +1,6 @@
 function deleteExpense(expense_id){
 	$.ajax({
-	   url : '/app_dev.php/api/expenses/'+expense_id, //API
+	   url : '/api/expenses/'+expense_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
@@ -20,7 +20,7 @@ function deleteExpense(expense_id){
 
 function deleteInflow(inflow_id){
 	$.ajax({
-	   url : '/app_dev.php/api/inflows/'+inflow_id, //API
+	   url : '/api/inflows/'+inflow_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
@@ -53,7 +53,7 @@ function updateExpense(expense_id){
 		"bought" : bought
 	}}
 	$.ajax({
-	   url : '/app_dev.php/api/expenses/'+expense_id, //API
+	   url : '/api/expenses/'+expense_id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
@@ -82,7 +82,7 @@ function updateInflow(inflow_id){
 		"amount" : $("#amount-inflow-"+inflow_id).val(),
 	}}
 	$.ajax({
-	   url : '/app_dev.php/api/inflows/'+inflow_id, //API
+	   url : '/api/inflows/'+inflow_id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
@@ -100,7 +100,7 @@ function updateInflow(inflow_id){
 
 function deleteTypeExpense(type_id){
 	$.ajax({
-	   url : '/app_dev.php/api/typeexpenses/'+type_id, //API
+	   url : '/api/typeexpenses/'+type_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé

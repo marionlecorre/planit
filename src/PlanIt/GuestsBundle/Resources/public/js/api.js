@@ -1,6 +1,6 @@
 function deleteGuest(id){
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+id, //API
+	   url : '/api/guests/'+id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(nb_guests){ // code_html contient le HTML renvoyé
@@ -39,7 +39,7 @@ function updateGuest(id, attr){
 		"paymentmean" : $("#paymentmean-"+id).val()
 	}}
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+id, //API
+	   url : '/api/guests/'+id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
@@ -69,7 +69,7 @@ function updatePayable(module_id){
 		payable = 0;
 	}
 	$.ajax({
-	   url : '/app_dev.php/api/guestsmodules/'+module_id+'/payable', //API
+	   url : '/api/guestsmodules/'+module_id+'/payable', //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : {payable : payable},
@@ -84,7 +84,7 @@ function updatePayable(module_id){
 
 function sendMail(guest_id){
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+guest_id+'/mails', //API
+	   url : '/api/guests/'+guest_id+'/mails', //API
 	   type : 'POST',
 	   success : function(module){ // code_html contient le HTML renvoyé
 	   		$("#sent-"+guest_id).attr('class', 'send sent-1 col-md-1 col-sm-1 col-xs-1')
@@ -120,7 +120,7 @@ function checkAll(type){
 
 function deleteTypeguest(type_id){
 	$.ajax({
-	   url : '/app_dev.php/api/typeguests/'+type_id, //API
+	   url : '/api/typeguests/'+type_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(nb_guests){ // code_html contient le HTML renvoyé
@@ -152,7 +152,7 @@ function updateTypeguest(typeguest_id){
 	}
 	
 	$.ajax({
-	   url : '/app_dev.php/api/typeguests/'+typeguest_id, //API
+	   url : '/api/typeguests/'+typeguest_id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,

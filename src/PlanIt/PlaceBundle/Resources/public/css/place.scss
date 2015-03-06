@@ -46,8 +46,8 @@ header {
 		@include border-radius(5px);
 		.check {
 				float: right;
-				margin: 47px 80px 0 0;
-			}
+				margin: 15px 80px 0 0;
+				  -webkit-appearance: radio;			}
 		.head-list {
 			background-color: $head-list;
 			padding: 13px 27px 13px 10px;

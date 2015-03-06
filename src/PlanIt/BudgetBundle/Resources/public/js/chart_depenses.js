@@ -1,6 +1,6 @@
 function getListExpense(id){
     $.ajax({
-       url : '/app_dev.php/api/lists/'+id+'/expense', //API
+       url : '/api/lists/'+id+'/expense', //API
        type : 'GET',
        dataType : 'json', // On désire recevoir du HTML
        success : function(list, statut){ // code_html contient le HTML renvoyé

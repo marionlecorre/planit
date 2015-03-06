@@ -83,7 +83,7 @@ class Place
     /**
      * @ORM\Column(type="integer", length=1)
      */
-    //0 => refusé, 1 => choisi, 2 => contacté
+    //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
     protected $state;
 
     /**

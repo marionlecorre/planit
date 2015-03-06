@@ -77,16 +77,19 @@ class PlaceRestController extends Controller
         $choosen_place = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->find($place_id);
         $places = $this->getDoctrine()->getRepository('PlanItPlaceBundle:Place')->findByModule($choosen_place->getModule()->getId());
         foreach ($places as $place) {
-            $place->setState(0);
+            if($place->getState() == 1){
+                $place->setState(0);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($place);
             $em->flush();
         }
 
-        $choosen_place->setState(1);
+        $choosen_place->setState($request->request->get('check'));
         $em = $this->getDoctrine()->getManager();
         $em->persist($choosen_place);
         $em->flush();
+        return $choosen_place->getState();
     }
 
     public function putPlaceAction(Request $request, $place_id)

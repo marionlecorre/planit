@@ -1,6 +1,6 @@
 function getModule(id){
 	$.ajax({
-	   url : '/app_dev.php/api/modules/'+id, //API
+	   url : '/api/modules/'+id, //API
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
@@ -22,7 +22,7 @@ function changeChecked(item_id){
 		checked = 0;
 	}
 	$.ajax({
-	   url : '/app_dev.php/api/items/'+item_id+'/checked', //API
+	   url : '/api/items/'+item_id+'/checked', //API
 	   type : 'PUT',
 	   dataType : 'json', // On désire recevoir du HTML
 	   data : {checked : checked},
@@ -38,7 +38,7 @@ function changeChecked(item_id){
 
 function deleteItem(item_id){
 	$.ajax({
-	   url : '/app_dev.php/api/items/'+item_id, //API
+	   url : '/api/items/'+item_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
@@ -54,7 +54,7 @@ function deleteItem(item_id){
 function updateItem(item_id){
 
 	$.ajax({
-	   url : '/app_dev.php/api/items/'+item_id, //API
+	   url : '/api/items/'+item_id, //API
 	   type : 'PUT',
 	   dataType : 'json', // On désire recevoir du HTML
 	   data : {content : $("#item-"+item_id).val()},
@@ -71,7 +71,7 @@ function updateItem(item_id){
 function updateList(list_id){
 
 	$.ajax({
-	   url : '/app_dev.php/api/tasklists/'+list_id, //API
+	   url : '/api/tasklists/'+list_id, //API
 	   type : 'PUT',
 	   dataType : 'json', // On désire recevoir du HTML
 	   data : {name : $("#list-"+list_id).val()},
@@ -87,7 +87,7 @@ function updateList(list_id){
 
 function deleteList(list_id){
 	$.ajax({
-	   url : '/app_dev.php/api/tasklists/'+list_id, //API
+	   url : '/api/tasklists/'+list_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(module, statut){ // code_html contient le HTML renvoyé
