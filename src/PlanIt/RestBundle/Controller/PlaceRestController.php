@@ -19,52 +19,93 @@ class PlaceRestController extends Controller
 
         $place = new Place();
         $place->setModule($module);
-
-        $form = $this->createForm(new PlaceType("add"), $place);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($place);
-            $em->flush();
-
-            $file = $form['contract']->getData();
+        if($request->request->get('place_form') == null){
+            $place->setName($request->request->get('name'));
+            $place->setAddress($request->request->get('address'));
+            $place->setTel($request->request->get('tel'));
+            $place->setDistance($request->request->get('distance'));
+            $place->setPrice($request->request->get('price'));
+            $place->setCapacity($request->request->get('capacity'));
+            $place->setWebsite($request->request->get('website'));
+            $place->setLatitude($request->request->get('latitude'));
+            $place->setLongitude($request->request->get('longitude'));
+            $place->setRemark($request->request->get('remark'));
+            $place->setState($request->request->get('state'));
+            $file = $request->files->get('image');
             $extension = $file->guessExtension();
             if (!$extension) {
                 $extension = 'bin';
             }
-            $rand = rand(1, 99999);
-            $file->move($place->getUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
-            $place->setContract($place->getId().'-'.$rand.'.'.$extension);
 
-            $file = $form['image']->getData();
-            $extension = $file->guessExtension();
+            $rand = rand(1, 99999);
+            $file->move($place->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+            $place->setImage($user_id.'-'.$rand.'.'.$extension);
+
+            $contract = $request->files->get('image');
+            $extension = $contract->guessExtension();
             if (!$extension) {
                 $extension = 'bin';
             }
-            $rand = rand(1, 99999);
-            $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
-            $place->setImage($place->getId().'-'.$rand.'.'.$extension);
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($place);
-            $em->flush();
 
+            $rand = rand(1, 99999);
+            $contract->move($place->getImageUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+            $place->setImage($user_id.'-'.$rand.'.'.$extension);
+            $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($place);
+                $em->flush();
+            return 'ok';           
+        }else{
+            $form = $this->createForm(new PlaceType("add"), $place);
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($place);
+                $em->flush();
+
+                if($form['contract']->getData() != null){
+                    $file = $form['contract']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
+                    $rand = rand(1, 99999);
+                    $file->move($place->getUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                    $place->setContract($place->getId().'-'.$rand.'.'.$extension);
+                }
+
+                if($form['image']->getData() != null){
+                    $file = $form['image']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
+                    $rand = rand(1, 99999);
+                    $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                    $place->setImage($place->getId().'-'.$rand.'.'.$extension);
+                }
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($place);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                    'event_id'    => $place->getModule()->getEvent()->getId(),
+                    'module_id'   => $place->getModule()->getId()
+                )));
+            }
+            $session = $request->getSession();
+            $errors = $this->get('validator')->validate( $place );
+            foreach( $errors as $error )
+            {
+                $session->getFlashBag()->add('errors', $error->getMessage());
+            }
             return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
                 'event_id'    => $place->getModule()->getEvent()->getId(),
                 'module_id'   => $place->getModule()->getId()
             )));
         }
-        $session = $request->getSession();
-        $errors = $this->get('validator')->validate( $place );
-        foreach( $errors as $error )
-        {
-            $session->getFlashBag()->add('errors', $error->getMessage());
-        }
-        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
-            'event_id'    => $place->getModule()->getEvent()->getId(),
-            'module_id'   => $place->getModule()->getId()
-        )));
     }
 
     public function deletePlaceAction($place_id)

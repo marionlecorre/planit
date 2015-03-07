@@ -18,56 +18,88 @@ class TransportationRestController extends Controller
 
         $transportation = new Transportation();
         $transportation->setModule($module);
-
-        $form = $this->createForm(new TransportationType("add"), $transportation);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($transportation);
-            $em->flush();
-
-            if($form['contract']->getData() != null){
-                $file = $form['contract']->getData();
-                $extension = $file->guessExtension();
-                if (!$extension) {
-                    $extension = 'bin';
-                }
-                $rand = rand(1, 99999);
-                $file->move($transportation->getUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
-                $transportation->setContract($transportation->getId().'-'.$rand.'.'.$extension);
+        if($request->request->get('transportation_form') == null){
+            $transportation->setName($request->request->get('name'));
+            $transportation->setTel($request->request->get('tel'));
+            $transportation->setPrice($request->request->get('price'));
+            $transportation->setCapacity($request->request->get('capacity'));
+            $transportation->setWebsite($request->request->get('website'));
+            $transportation->setState($request->request->get('state'));
+            $file = $request->files->get('image');
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
             }
 
-            if($form['image']->getData() != null){
-                $file = $form['image']->getData();
-                $extension = $file->guessExtension();
-                if (!$extension) {
-                    $extension = 'bin';
-                }
-                $rand = rand(1, 99999);
-                $file->move($transportation->getImageUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
-                $transportation->setImage($transportation->getId().'-'.$rand.'.'.$extension);
-            }
-            $em = $this->getDoctrine()
-                       ->getEntityManager();
-            $em->persist($transportation);
-            $em->flush();
+            $rand = rand(1, 99999);
+            $file->move($transportation->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+            $transportation->setImage($user_id.'-'.$rand.'.'.$extension);
 
+            $contract = $request->files->get('image');
+            $extension = $contract->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+
+            $rand = rand(1, 99999);
+            $contract->move($transportation->getImageUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+            $transportation->setImage($user_id.'-'.$rand.'.'.$extension);
+            $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($transportation);
+                $em->flush();
+            return 'ok';           
+        }else{
+            $form = $this->createForm(new TransportationType("add"), $transportation);
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($transportation);
+                $em->flush();
+
+                if($form['contract']->getData() != null){
+                    $file = $form['contract']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
+                    $rand = rand(1, 99999);
+                    $file->move($transportation->getUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
+                    $transportation->setContract($transportation->getId().'-'.$rand.'.'.$extension);
+                }
+
+                if($form['image']->getData() != null){
+                    $file = $form['image']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
+                    $rand = rand(1, 99999);
+                    $file->move($transportation->getImageUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
+                    $transportation->setImage($transportation->getId().'-'.$rand.'.'.$extension);
+                }
+                $em = $this->getDoctrine()
+                           ->getEntityManager();
+                $em->persist($transportation);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                    'event_id'    => $transportation->getModule()->getEvent()->getId(),
+                    'module_id'   => $transportation->getModule()->getId()
+                )));
+            }
+            $session = $request->getSession();
+            $errors = $this->get('validator')->validate( $transportation );
+            foreach( $errors as $error )
+            {
+                $session->getFlashBag()->add('errors', $error->getMessage());
+            }
             return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
                 'event_id'    => $transportation->getModule()->getEvent()->getId(),
                 'module_id'   => $transportation->getModule()->getId()
             )));
         }
-        $session = $request->getSession();
-        $errors = $this->get('validator')->validate( $transportation );
-        foreach( $errors as $error )
-        {
-            $session->getFlashBag()->add('errors', $error->getMessage());
-        }
-        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
-            'event_id'    => $transportation->getModule()->getEvent()->getId(),
-            'module_id'   => $transportation->getModule()->getId()
-        )));
     }
 
     public function deleteTransportationAction($transportation_id)
