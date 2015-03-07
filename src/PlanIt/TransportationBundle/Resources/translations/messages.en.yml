@@ -1,0 +1,14 @@
+transportation: TRANSPORTATION MANAGEMENT
+add_transportation: Add a company
+form:
+    contract:
+        file: Select a file *
+    module:
+        max_capacity: Maximum capacity
+        price: Maximum price
+        time: Maximum travel time	
+    transportation:
+        name: Name of the company *
+        price: Price
+        image: Image
+        state: State *

@@ -1,0 +1,24 @@
+
+$color: #dd488a;
+$neutral: #d8d7d7;
+$head-list: #d8d7d7;
+$row-list: #f1f1f1;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+
+.modal-header {
+	color: $color;
+	border-color: $color;
+}
+.modal-body {
+	input[type="submit"] {
+		background-color: $color;
+	}
+}
+

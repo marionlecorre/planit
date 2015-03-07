@@ -2,7 +2,7 @@
 {% block stylesheets %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     {% stylesheets 
-    '@PlanItTodoBundle/Resources/public/css/*.scss' 
+    '@PlanItTransportationBundle/Resources/public/css/*.scss' 
     filter="compass" %}
           <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -10,11 +10,8 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-    {% javascripts '@PlanItTodoBundle/Resources/views/templates/*.html.twig' filter="twig_js, ?yui_js" %}
-          <script language="javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     
-    {% javascripts '@PlanItTodoBundle/Resources/public/js/*.js'
+    {% javascripts '@PlanItTransportationBundle/Resources/public/js/*.js'
                     '%kernel.root_dir%/Resources/js/*.js'  %}
           <script language="javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

@@ -1,0 +1,15 @@
+transportation: GESTION DU TRANSPORT
+add_transportation: Ajouter une compagnie
+
+form:
+    contract:
+        file: Sélectionner un fichier *
+    module:
+        max_capacity: Capacité maximum
+        price: Prix maximum
+        time: Temps de trajet maximum
+    transportation:
+        name: Nom de la compagnie *
+        price: Prix
+        image: Image
+        state: Etat *

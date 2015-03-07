@@ -1,12 +1,12 @@
 <?php
 
-namespace PlanIt\PlaceBundle\Form;
+namespace PlanIt\TransportationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PlaceType extends AbstractType
+class TransportationType extends AbstractType
 {
     protected $type;
 
@@ -19,18 +19,13 @@ class PlaceType extends AbstractType
         
         $type = $this->type;
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.name')))
-            ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.address')))
+            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.transportation.name')))
             ->add('tel','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'tel')))
-            ->add('distance','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'distance')))
-            ->add('price','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.price')))
+            ->add('price','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.transportation.price')))
             ->add('capacity','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'capacity')))
-            ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'website')))
-            ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.latitude')))
-            ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.longitude')))
-            ->add('remark','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'remark')));
+            ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'website')));
         if($type == "add"){
-            $builder->add('image', 'file',array('label'  => 'form.place.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
+            $builder->add('image', 'file',array('label'  => 'form.transportation.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
                     ->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file')));  
         } 
         $builder->add('state','choice', array(
@@ -40,7 +35,7 @@ class PlaceType extends AbstractType
                                             2 => 'contacted',
                                             3 => 'tocontact',
                                             1   => 'accepted',
-                                        ), 'label'  => false, 'attr' => array('placeholder' => 'state')));
+                                        ), 'label'  => false, 'attr' => array('placeholder' => 'form.transportation.state')));
 
     }
     
@@ -50,7 +45,7 @@ class PlaceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PlanIt\PlaceBundle\Entity\Place',
+            'data_class' => 'PlanIt\TransportationBundle\Entity\Transportation',
             'csrf_protection' => false,
         ));
     }
@@ -60,7 +55,7 @@ class PlaceType extends AbstractType
      */
     public function getName()
     {
-        return 'place_form';
+        return 'transportation_form';
     }
 
     public function __construct($type)

@@ -40,6 +40,10 @@ class TransportationModule extends Module
      */
     protected $event;
     /**
+     * @ORM\OneToMany(targetEntity="PlanIt\TransportationBundle\Entity\Transportation", mappedBy="module")
+     */
+    protected $transportations;
+    /**
      * Set max_capacity_t
      *
      * @param integer $maxCapacityT
@@ -202,5 +206,45 @@ class TransportationModule extends Module
     public function getInttype()
     {
         return $this->inttype;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->transportations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add transportations
+     *
+     * @param \PlanIt\TransportationBundle\Entity\Transportation $transportations
+     * @return TransportationModule
+     */
+    public function addTransportation(\PlanIt\TransportationBundle\Entity\Transportation $transportations)
+    {
+        $this->transportations[] = $transportations;
+
+        return $this;
+    }
+
+    /**
+     * Remove transportations
+     *
+     * @param \PlanIt\TransportationBundle\Entity\Transportation $transportations
+     */
+    public function removeTransportation(\PlanIt\TransportationBundle\Entity\Transportation $transportations)
+    {
+        $this->transportations->removeElement($transportations);
+    }
+
+    /**
+     * Get transportations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTransportations()
+    {
+        return $this->transportations;
     }
 }

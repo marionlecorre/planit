@@ -93,7 +93,7 @@ class Place
     protected $state;
 
     /**
-     * @ORM\Column(type="integer", length=1)
+     * @ORM\Column(type="integer", length=1,nullable=true)
      */
     //0 => refusé, 1 => choisi, 2 => contacté, 3 => a contacter
     protected $oldstate;
@@ -483,5 +483,28 @@ class Place
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set oldstate
+     *
+     * @param integer $oldstate
+     * @return Place
+     */
+    public function setOldstate($oldstate)
+    {
+        $this->oldstate = $oldstate;
+
+        return $this;
+    }
+
+    /**
+     * Get oldstate
+     *
+     * @return integer 
+     */
+    public function getOldstate()
+    {
+        return $this->oldstate;
     }
 }

@@ -1,4 +1,4 @@
-<div class="modal fade addPlaceModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade addTransportationModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +6,7 @@
             <h4 class="modal-title" id="myModalLabel">{{'add_transportation'|trans}}</h4>
             </div>
             <div class="modal-body">
-                <form id="form-post-guest" action="/app_dev.php/api/places/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
+                <form id="form-post-guest" action="/app_dev.php/api/transportations/{{module_id}}" method="post" {{ form_enctype(form) }} class="blogger">
                     {{ form_widget(form) }}
 
 			    <p>

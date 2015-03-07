@@ -274,6 +274,7 @@ class BudgetModuleRestController extends Controller
             return array(
                 'module' => $module,
                 'balance' => $balance,
+                'guests_inflow' => $guests_inflow,
                 'budget' => $module->getMaxBudget(),
                 'guestsInflow' => $guests_inflow
             );

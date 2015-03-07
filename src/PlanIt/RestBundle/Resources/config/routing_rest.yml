@@ -58,6 +58,11 @@ transportation_module :
   resource:     "PlanItRestBundle:TransportationModuleRest"
   name_prefix:  api_
 
+transportations : 
+  type: rest
+  resource:     "PlanItRestBundle:TransportationRest"
+  name_prefix:  api_
+
 todo_module : 
   type: rest
   resource:     "PlanItRestBundle:TodoModuleRest"

@@ -29,3 +29,4 @@ form:
         latitude: Latitude
         longitude: Longitude
         image: Image
+        state: Etat *

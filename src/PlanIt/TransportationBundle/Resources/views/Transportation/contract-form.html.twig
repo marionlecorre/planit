@@ -1,0 +1,20 @@
+<div class="modal fade updateContractModal" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel">{{'update_contract'|trans}}</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-post-contract" action="" method="post" {{ form_enctype(form) }} class="blogger">
+                    {{ form_widget(form) }}
+
+			    <p>
+			        <input type="submit" value="{{'update'|trans}}">
+			    </p>
+                </form>
+            </div>
+        </div>
+  </div>
+</div>
+

@@ -107,6 +107,7 @@ class EventRestController extends Controller
                         'user' => $event->getUser()
                     ),
                     'balance' => $balance,
+                    'guests_inflow' => $guests_inflow,
                     'total_expenses' => $total_expenses,
                     'total_inflows' => $total_inflows
                 );
@@ -148,17 +149,17 @@ class EventRestController extends Controller
             $form    = $this->createForm(new EventType("add"), $event);
             $form->handleRequest($request);
             $session = $request->getSession();
-            if(!empty($form['end_date']->getData()) && $form['begin_date']->getData() >= $form['end_date']->getData()){
-                $session->getFlashBag()->add('errors', 'Attention, la date de fin doit être postérieure à la date de début');
-                return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
-                        'id'    => $user_id
-                    )));
-            }
+            // if(!empty($form['end_date']->getData()) && $form['begin_date']->getData() >= $form['end_date']->getData()){
+            //     $session->getFlashBag()->add('errors', 'Attention, la date de fin doit être postérieure à la date de début');
+            //     return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+            //             'id'    => $user_id
+            //         )));
+            // }
             if ($form->isValid()) {
                 $data = $form->getData();
-                if(empty($form['end_date']->getData())){
-                    $event->setEndDate($form['begin_date']->getData());
-                }
+                // if(empty($form['end_date']->getData())){
+                //     $event->setEndDate($form['begin_date']->getData());
+                // }
                 $event->setSlug($data->getName());
 
                 $file = $form['image']->getData();
