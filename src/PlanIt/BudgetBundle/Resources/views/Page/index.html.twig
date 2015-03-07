@@ -13,12 +13,6 @@
 		<div class="col-md-12"> </div>
 	</div>
 	{{ render(controller('PlanItBudgetBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
-	<div class="row buttons">
-
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_depense" data-toggle="modal" data-target=".addTypeExpenseModal" data-type="0" data-id="{{module.id}}">{{'add_expense'|trans}}</button></div>
-		<div class="col-md-3 col-sm-3 col-xs-12 bt_budget"><button id="bouton_ajout" data-toggle="modal" data-target=".addInflowModal" data-type="1" data-id="{{module.id}}">{{'add_inflow'|trans}}</button></div>
-
-	</div>
 	
 	<section>			
 		<div class="container_onglet">			
@@ -26,14 +20,10 @@
 				<div class="tabs tabs-style-topline">
 					<div class="row">
 						<nav class="col-md-12">
-							<ul id="tab">
-								<li><a class="tab" id="tab-general" href="#section-topline-general"><span>{{'recap'|trans}}</span></a></li>
-								{% for type_expense in module.typesexpense %}
-									<li id="tab-{{type_expense.id}}"><a class="tab" href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span>
-										<span class="supp-type_expense" data-toggle="modal" data-target=".deleteTypeExpenseModal" data-type="{{type_expense.id}}" data-name="{{type_expense.name}}">x</span></a> 
-									</li>
-								{% endfor %}
-								<li id="tab-apports" class="pull-right"><a href="#section-topline-apports"><span>{{'inflows'|trans}}</span></a></li>
+							<ul class="tab">
+								<li><a class="tab first_onglet" id="tab-general" href="#section-topline-general" onclick="document.getElementById('expense-menu').style.display='none';"><span>{{'recap'|trans}}</span></a></li>
+								<li id="tab-depenses"><a href="#section-topline-depenses" onclick="document.getElementById('expense-menu').style.display='block';"><span>{{'depenses'|trans}}</span></a></li>			
+								<li id="tab-apports" class="pull-right"><a class="last_onglet" href="#section-topline-apports" onclick="document.getElementById('expense-menu').style.display='none';"><span>{{'inflows'|trans}}</span></a></li>
 
 								<div class="modal fade deleteTypeExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 								    <div class="modal-dialog">
@@ -50,7 +40,14 @@
 								  </div>
 								</div>
 							</ul>
-						</nav>
+						</nav>						
+					</div>
+					<!-- sous menu depenses-->
+					<div class="row" id="expense-menu" style="display:none;">
+						<ul class="col-md-12 sous-menu-depense">
+							<li><a href="#section-topline-depenses"><span>Boissons</span></a></li>
+							<li><a href="#section-topline-depenses"><span>Alimentation</span></a></li>									
+						</ul>
 					</div>
 
 					<div class="content-wrap" id="tab_content">						
@@ -79,118 +76,117 @@
 
 						{# TYPE ITEMS #}
 						{% for type_expense in module.typesexpense %}
-							<section  id="section-topline-{{type_expense.id}}">
-								<div class="responsive-table-line section-topline">
-									<table class="table table-bordered table-condensed table-body-center" >
-										<thead>
-											<tr>
-												<th>{{'item'|trans}} *</th>
-												<th>{{'quantity'|trans}} *</th>
-												<th>{{'stock'|trans}} *</th>
-												<th>{{'to_buy'|trans}}</th>
-												<th>{{'unit_price'|trans}} *</th>
-												<th>{{'total'|trans}}</th>
-												<th>{{'consumed'|trans}} *</th>
-												<th>{{'bought'|trans}} *</th>								
-												<th>{{'delete'|trans}}</th>
-											</tr>
-										</thead>
-										
-										
-										<tbody>
-											{% for expense in type_expense.expenses %}
+							<section  id="section-topline-depenses">
+							<!-- <p>Vous n'avez pas encore créé de catégorie de dépense de dépense</p>--->
+									<!-- bt ajout cat depense-->			
+									<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addInflowModal">{{'add_typeexpense'|trans}}</button></div>
+									<!-- bt ajout depense-->
+									<div class="col-md-3 add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
+									<div class="responsive-table-line section-topline">
+										<table class="table table-condensed table-body-center	" >
+											<thead>
 												<tr>
-													<td data-title="Article">
-														<input type="text" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
-													</td>
-													<td data-title="Quantité">
-														<input type="text" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
-													</td>
-													<td data-title="En stock">
-														<input type="text" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
-													</td>
-													<td data-title="A acheter">
-														{{expense.quantity - expense.stock}}
-													</td>
-													<td data-title="Prix unitaire">
-														<input type="text" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
-													</td>
-													<td data-title="Prix total">
-														{{expense.price * (expense.quantity - expense.stock)}} €
-													</td>
-													<td data-title="Consommé">
-														<input type="text" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
-													</td>
-													<td data-title="Acheté">
-														<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought == true %} checked {%endif%}/>
-													</td>
-													<td class="delete-expense" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}" data-title="Supprimer">X</td>
+													<th>{{'item'|trans}} *</th>
+													<th>{{'quantity'|trans}} *</th>
+													<th>{{'stock'|trans}} *</th>
+													<th>{{'to_buy'|trans}}</th>
+													<th>{{'unit_price'|trans}} *</th>
+													<th>{{'total'|trans}}</th>
+													<th>{{'consumed'|trans}} *</th>
+													<th>{{'bought'|trans}} *</th>								
+													<th>{{'delete'|trans}}</th>
 												</tr>
-											{% endfor %}						
-										</tbody>
-									</table>
-									<span id="legend">* {{'changeable_data'|trans}}</span>
-									<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_item'|trans}}</button></div>
-									
-								</div>
+											</thead>
+											
+											
+											<tbody>
+												{% for expense in type_expense.expenses %}
+													<tr>
+														<td data-title="{{'item'|trans}} *">
+															<input type="text" class="input_tab article" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
+														</td>
+														<td data-title="{{'quantity'|trans}} *">
+															<input type="text" class="input_tab" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
+														</td>
+														<td data-title="{{'stock'|trans}} *">
+															<input type="text" class="input_tab" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
+														</td>
+														<td data-title="{{'to_buy'|trans}}">
+															{{expense.quantity - expense.stock}}
+														</td>
+														<td data-title="{{'unit_price'|trans}} *">
+															<input type="text" class="input_tab" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
+														</td>
+														<td data-title="{{'total'|trans}}">
+															{{expense.price * (expense.quantity - expense.stock)}} €
+														</td>
+														<td data-title="{{'consumed'|trans}} *">
+															<input type="text" class="input_tab" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
+														</td>
+														<td data-title="{{'bought'|trans}} *">
+															<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought == true %} checked {%endif%}/>
+														</td>
+														<td data-title="{{'delete'|trans}}" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}"><div class="delete-expense"> </div></td>
+													</tr>
+												{% endfor %}						
+											</tbody>
+										</table>
+										<span id="legend">* {{'changeable_data'|trans}}</span>								
+									</div>
 							</section>
 
 						{% endfor %}
-						<section id="section-topline-apports">
+						<section id="section-topline-apports">							
+							<div class="col-md-3 add-inflow"><button data-toggle="modal" data-target=".addInflowModal">{{'add_inflow'|trans}}</button></div>		
 							<div class="responsive-table-line">
-								<table class="table table-bordered table-condensed table-body-center" >
+								<table class="table table-condensed table-body-center" >
 									<thead>
 										<tr>
 											<th>{{'label'|trans}}</th>
 											<th>{{'amount'|trans}}</th>											
 											<th>{{'delete'|trans}}</th>
 										</tr>
-									</thead>
-									
+									</thead>									
 									
 									<tbody>
 										{% for inflow in module.inflows %}
 											<tr>
-												<td data-title="Intitulé">
+												<td data-title="{{'label'|trans}} *">
 													<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
 												</td>
-												<td data-title="Montant">
+												<td data-title="{{'amount'|trans}} *">
 													<input type="text" id="amount-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.amount}}">
 												</td>
-												<td class="delete-inflow" data-toggle="modal" data-target=".deleteInflowModal" data-id="{{inflow.id}}" data-name="{{inflow.name}}" data-title="Supprimer">X</td>
+												<td data-title="{{'delete'|trans}}" data-toggle="modal" data-target=".deleteInflowModal" data-id="{{inflow.id}}" data-name="{{inflow.name}}"><div class="delete-inflow"></div></td>
 											</tr>
 										{% endfor %}
 
 										{% if infos.guestsInflow is defined %}
-											<tr>
-												<td data-title="Intitulé">
+											<tr class="apport-base">
+												<td data-title="{{'label'|trans}}">
 													<span> Inscriptions </span>
 												</td>
-												<td data-title="Montant">
+												<td data-title="{{'amount'|trans}}">
 													<span> {{infos.guestsInflow}}</span>
 												</td>
-												<td class="delete-inflow"></td>
+												<td><!-- <div class="delete-inflow"></div> --></td>
 											</tr>
 										{% endif %}
 
 										{% if module.base > 0 %}
-											<tr>
-												<td data-title="Intitulé">
+											<tr class="apport-base">
+												<td data-title="{{'label'|trans}}">
 													<span> Apport personnel </span>
 												</td>
-												<td data-title="Montant">
+												<td data-title="{{'amount'|trans}}">
 													<span> {{module.base}}</span>
 												</td>
-												<td class="delete-inflow"></td>
+												<td><!-- <div class="delete-inflow"></div> --></td>
 											</tr>
 										{% endif %}					
 									</tbody>
 								</table>
-
-								<span id="legend">* {{'changeable_data'|trans}}</span>
-								<div class="col-md-2 pull-right add-expense"><button data-toggle="modal" data-target=".addInflowModal">{{'add_inflow'|trans}}</button></div>
-
-								
+								<span id="legend">* {{'changeable_data'|trans}}</span>								
 							</div>
 						</section>
 						<div class="modal fade deleteExpenseModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">

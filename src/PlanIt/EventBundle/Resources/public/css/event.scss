@@ -1,5 +1,11 @@
 @import 'general';
 
+button{
+	background-color: $blue_logo;
+	padding: 4px 17px;
+	width: 100%;
+	margin-top: 15px;
+}
 
 .descr_event{	
 	img{
@@ -102,6 +108,7 @@
 			background-color: darken($invit_module, 5%);
 			.delete_module {
 			 	display: block;
+				background-position-x : -41px;
 			}
 		}
 	}
@@ -111,7 +118,7 @@
 			background-color: darken($budget_module, 5%);
 			.delete_module {
 			 	display: block;			 	
-				background-position-x : -66px;
+				background-position-x : -107px;
 			}
 		}
 	}
@@ -121,7 +128,7 @@
 			background-color: darken($place_module, 5%);
 			.delete_module {
 			 	display: block;			 	
-				background-position-x : -44px;
+				background-position-x : -85px;
 			}
 		}
 	}
@@ -131,7 +138,7 @@
 			background-color: darken($transport_module, 5%);
 			.delete_module {
 			 	display: block;			 	
-				background-position-x : -86px;
+				background-position-x : -128px;
 			}
 		}
 	}
@@ -141,13 +148,13 @@
 			background-color: darken($todo_module, 5%);
 			.delete_module {
 			 	display: block;			 	
-				background-position-x : -21px;
+				background-position-x : -62px;
 			}
 		}
 	}
 
 	.delete_module {
-		background: url('/images/suppr-module.png') no-repeat;
+		background: url('/images/picto-suppr.png') no-repeat;
 		width: 12px;
 		height: 12px;
 		position:absolute;

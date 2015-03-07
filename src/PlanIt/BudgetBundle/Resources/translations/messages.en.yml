@@ -2,6 +2,7 @@ budget: BUDGET MANAGEMENT
 print: Print the shopping list
 recap: Summary
 inflows: Inflows
+expenses: Expenses
 delete_typeexpense_message: Do you want to delete this type of expense as well as the associated expenses?
 yes: Yes
 no: No
@@ -22,8 +23,8 @@ bought: Bought
 delete: Delete
 changeable_data: These data are modifiable you can click above to modify them.
 add_item: Add an article
-label: Entitled *
-amount: Amount *
+label: Entitled 
+amount: Amount 
 form:
     module:
         max_budget: Maximum budget (€)

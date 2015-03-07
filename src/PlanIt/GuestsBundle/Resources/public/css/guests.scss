@@ -99,30 +99,19 @@ header {
 					margin-right: 49px;
 				}
 			}
-			.modify_type, .delete_type {
-				background: url('/images/picto-modif.png') no-repeat;
-				width: 24px;
-				height: 24px;
+			.delete_type {
+				background: url('/images/picto-suppr.png') no-repeat;
+				width: 10px;
+				height: 10px;
 				margin: 2px 23px 0 0;
 				float: left;
+				background-position-x : 0px;
 				&:hover {
 					cursor: pointer;
+					background-position-x : -149px;
 				}
 			}
 
-			.delete_type{
-				background-position-x : -20px;
-				&:hover {
-					background-position-x : -69px;
-				}
-			}
-
-			.modify_type{
-				margin-right: 0px;
-				&:hover {
-					background-position-x : -49px;
-				}
-			}
 
 		}
 		.labels.row {

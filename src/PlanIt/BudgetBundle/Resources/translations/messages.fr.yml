@@ -2,6 +2,7 @@ budget: GESTION DU BUDGET
 print: Imprimer la liste de courses
 recap: Récapitulatif
 inflows: Apports
+expenses: Dépenses
 delete_typeexpense_message: Voulez-vous supprimer ce type de dépense ainsi que les dépenses associées ?
 yes: Oui
 no: Non
@@ -22,8 +23,8 @@ bought: Bought
 delete: Supprimer
 changeable_data: Ces données sont modifiables vous pouvez cliquer dessus pour les modifier.
 add_item: Ajouter un article
-label: Intitulé *
-amount: Montant *
+label: Intitulé 
+amount: Montant 
 form:
     module:
         max_budget: Budget maximum (€)

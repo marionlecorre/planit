@@ -18,10 +18,6 @@ header {
 	margin-top: 6px;
 }
 
-.buttons{
-	margin-bottom:40px;
-}
-
 
 .info_dte{	
 	background-color: $neutral;
@@ -81,18 +77,30 @@ table{
 	font-size: 12px;
 	margin-bottom: 2px;
 
+	th:nth-child(1){
+    	border-radius: 5px 0px 0px 0px;
+	}
+	th:nth-last-child(1){
+	    border-radius: 0px 5px 0px 0px;
+	}
+
+	tr:nth-last-child(1){
+	    border-radius: 5px 5px 5px 5px;
+	}
+
 	th{
 		text-align: center;
 		color:#fff;
 		background-color: $color;
 		cursor: default;
 	}
+
 	/* ntlignes paires. */
 	tbody tr:nth-child(even) { 
-		background-color:#eedcff;
+		background-color:#e0e0e0;
 		td input {
-			background-color:#eedcff;
-		}
+			background-color:#e0e0e0;
+		}		
 	}
 
 	/* impaires. */
@@ -109,8 +117,10 @@ table{
 		input {
 			border: none;
 			text-align: center;
+			cursor: pointer;
+			@include border-radius(5px);
 			&:focus {
-				border : solid 1px $color;
+				border : none;
 				background-color: #FFF !important;
 				outline : none;
 			}
@@ -119,9 +129,9 @@ table{
 
 	/* Effet de survol au passage du curseur. */
 	tbody tr:hover { 
-		background-color:$neutral;
+		background-color:rgba(132,114,153,0.5);
 		td input {
-			background-color:$neutral;
+			background-color:#d6cbe2;
 		} 
 	}
 
@@ -148,18 +158,46 @@ span#legend {
 	margin-bottom: 22px;
 }
 
-.add-expense {
-	clear: both;
+.add-expense, .add-inflow, .add_typeexpense {
+	padding-left: 0;
+	margin-bottom:20px;
 	button {
 		background-color: $color;
 		padding: 4px 17px;
 		width: 100%;
+		margin: 0;
 	}
+}
+
+.delete-expense,.delete-inflow{
+	background: url('/images/budget/icon_budget.png') no-repeat;
+	width: 22px;
+	height: 16px;
+	margin: 0 auto;
+	background-position-x : 0px;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.input_tab{
+	width:40px;
+}
+
+.article{
+	width: 120px;
+}
+
+.apport-base{
+	background-color: $neutral !important;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 
 
 /* tableau*/
+/*
+@media (max-width:1052px) {*/
 @media (max-width:770px) {
 	.responsive-table-line td:before { content: attr(data-title); }
 	.responsive-table-line table, 
@@ -167,36 +205,39 @@ span#legend {
 	.responsive-table-line tbody, 
 	.responsive-table-line th, 
 	.responsive-table-line td, 
-	.responsive-table-line tr { display: block; }
+	.responsive-table-line tr { display: block; }	/*
+	.responsive-table-line tr:nth-last-child(1) { margin-bottom: 5px; }*/
+
+	.apport-base td:nth-last-child(1) { display: none; }
 
 	.responsive-table-line thead tr { 
 		display:none;
 	}
 	.responsive-table-line td { 
 		position: relative;
-		border: none;
 		padding-left: 25% !important; 
 		white-space: normal;
 		text-align:center; 
 	}
 
-	tr{
-		border-bottom: 1px solid $neutral;
+	.responsive-table-line tr{
+		margin-bottom: 10px;;
 	}
 
-	thead tr{
-		border-bottom: 1px solid #4c2570;
+	.responsive-table-line td input {
+			background-color:transparent !important;
+		}	
+
+	.responsive-table-line tbody td:nth-child(even) { 
+		background-color:#e0e0e0 !important;
 	}
 
-	tbody td:nth-child(even) { 
-		background-color:#eedcff;
+	.responsive-table-line tbody td:nth-child(odd) { 
+		background-color:#f4f3f5 !important;
 	}
+	
+	.tabs nav {margin-left: -20px !important;	}
 
-	/* impaires. */
-	tbody td:nth-child(odd) { 
-		background-color:#f4f3f5; 
-	}
-	 
 	.responsive-table-line td:before { 
 		position: absolute;
 		top: 0px;
@@ -211,12 +252,13 @@ span#legend {
 		background-color:$color;
 		color: #fff;
 		padding:2px;
+		line-height: 2.5;
+		border-bottom: 1px solid #705f84;
 	}
+
 }
 
 
-
-/*demo.css*/
 a {
 	color: $color;
 	text-decoration: none;
@@ -237,35 +279,25 @@ a:hover, a:focus {
 }
 
 .container_onglet > section {
-	font-size: 1.25em;
+	font-size: 18px;
 	min-height: 100%;
 }
 
 .container_onglet  {
-	margin:0;
+	margin:0 auto;
 }
-
-/*p {
-	text-align: center;
-	padding: 1em;
-}*/
-
-
-/* 2eme css  tab.css*/
-
-/* Default tab style */
 
 .tabs {
 	position: relative;
-	overflow: hidden;
-	margin: 0 auto;
 	width: 100%;
 	font-weight: 300;
+	margin:0;
 }
 
 /* Nav */
 .tabs nav {
 	text-align: center;
+	margin-left: 5px;
 }
 
 .tabs nav ul {
@@ -277,7 +309,6 @@ a:hover, a:focus {
 	display: flex;
 	margin: 0 auto;
 	padding: 0;
-	max-width: 1200px;
 	list-style: none;
 	-ms-box-orient: horizontal;
 	-ms-box-pack: center;
@@ -309,13 +340,12 @@ a:hover, a:focus {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	line-height: 2.5;
+	line-height: 1.8;
+	&:hover{
+		background-color:$color;
+	}
 }
 
-.tabs nav a span {
-	vertical-align: middle;
-	font-size: 0.75em;
-}
 
 .tabs nav li.tab-current a {
 	color: #74777b;
@@ -341,7 +371,6 @@ a:hover, a:focus {
 	display: none;
 	margin: 0 auto;
 	padding-top: 1em;
-	max-width: 1200px;
 	text-align: center;
 }
 
@@ -351,45 +380,10 @@ a:hover, a:focus {
 
 }
 
-/*.content-wrap section p {
-	margin: 0;
-	line-height: 1;
-}*/
-
-/* Fallback */
-.no-js .content-wrap section {
-	display: block;
-	padding-bottom: 2em;
-}
-
-.no-flexbox nav ul {
-	display: block;
-}
-
-.no-flexbox nav ul li {
-	min-width: 15%;
-	display: inline-block;
-}
-
-@media screen and (max-width: 58em) {
-	.tabs nav a.icon span {
-		display: none;
-	}
-	.tabs nav a:before {
-		margin-right: 0;
-	}
-}
-
-
-/*tabstyles.css */ 
 
 /*****************************/
 /* Top Line */
 /*****************************/
-
-.tabs-style-topline {
-	max-width: 1200px;
-}
 
 .tabs-style-topline nav li {
 	border: 1px solid rgba(40,44,42,0.1);
@@ -397,7 +391,6 @@ a:hover, a:focus {
 
 .tabs-style-topline nav li:not(:last-child) {
 	border: none;
-	margin-right:1px;
 }
 
 .tabs-style-topline nav li.tab-current {
@@ -407,16 +400,13 @@ a:hover, a:focus {
 
 .tabs-style-topline nav a {
 	height: 41px;
-	@include border-radius(5px);
 	background-color: #d8d7d7;
 	color: #74777b;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
 }
 
 .tabs-style-topline nav a:hover,
-.tabs-style-topline nav a:focus {
-	color: $color;
+.tabs-style-topline nav a:focus {	
+	color:#fff;
 }
 
 .tabs-style-topline nav li.tab-current a {
@@ -434,5 +424,38 @@ a:hover, a:focus {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700;
-	font-size: 0.5em;
+	font-size: 0.6em;
+}
+
+.first_onglet{
+	border-radius: 5px 0 0 5px; 
+}
+
+.last_onglet{
+	border-radius: 0 5px 5px 0; 
+}
+
+/* sous menu depense */
+.sous-menu-depense{
+	margin:0 10px 0 10px;
+	text-align: left;
+	height: 50px;
+}
+
+.sous-menu-depense a{
+	color:$color;
+}
+
+.sous-menu-depense li{
+	display: inline-block;
+	font-size: 12px;
+	height: 100%;
+	margin-right:20px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding: 15px 10px;
+	cursor: pointer;
+	&:hover{
+		border-bottom:2px solid $color;
+	}
 }

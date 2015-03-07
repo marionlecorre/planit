@@ -4,26 +4,17 @@
 	cursor: pointer;
 }
 
-.modify_event, .delete_event {
-	background: url('/images/picto-modif.png') no-repeat;
-	width: 20px;
-	height: 24px;
+.delete_event {
+	background: url('/images/picto-suppr.png') no-repeat;
+	width: 10px;
+	height: 10px;
 	float: right;
+	margin:2px 0 0 15px;
+	text-align: right;
+	background-position-x : 0px;
 	&:hover {
 		cursor: pointer;
-	}
-}
-
-.delete_event{
-	background-position-x : -20px;
-	&:hover {
-		background-position-x : -122px;
-	}
-}
-.modify_event{
-	margin-left: 15px;
-	&:hover {
-		background-position-x : -102px;
+		background-position-x : -20px;
 	}
 }
 
