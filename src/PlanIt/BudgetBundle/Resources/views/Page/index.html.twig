@@ -13,7 +13,7 @@
 		<div class="col-md-12"> </div>
 	</div>
 	{{ render(controller('PlanItBudgetBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
-	
+
 	<section>			
 		<div class="container_onglet">			
 			<section>
@@ -150,8 +150,10 @@
 									
 									<tbody>
 										{% for inflow in module.inflows %}
-											<tr>
+
+											<tr id="inflow-{{inflow.id}}">
 												<td data-title="{{'label'|trans}} *">
+
 													<input type="text" id="name-inflow-{{inflow.id}}" onblur="updateInflow({{inflow.id}})" value="{{inflow.name}}">
 												</td>
 												<td data-title="{{'amount'|trans}} *">

@@ -3,7 +3,7 @@ namespace PlanIt\PlaceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use JMS\Serializer\Annotation\Exclude;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\PlaceBundle\Repository\PlaceModuleRepository")
@@ -14,10 +14,12 @@ class PlaceModule extends Module
 {
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la capacité maximale est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $max_capacity_p;
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du prix maximal est incorrecte. Celle-ci doit être un nombre.")
      */
     protected $max_price_p;
     /**

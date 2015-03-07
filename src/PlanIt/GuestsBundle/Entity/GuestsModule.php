@@ -5,6 +5,7 @@ use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestsModuleRepository")
@@ -15,6 +16,7 @@ class GuestsModule extends Module
 {
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du nombre d'invités maximum est incorrecte. Celui-ci doit être un nombre.")
      */
     protected $maxguests;
     /**

@@ -48,7 +48,12 @@ class GuestsModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
-
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $guests_module );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
         return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
             'id'    => $event_id
         )));
@@ -89,6 +94,12 @@ class GuestsModuleRestController extends Controller
                 'event_id'    => $module->getEvent()->getId(),
                 'module_id'   => $module->getId()
             )));
+        }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $module );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
         }
 
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(

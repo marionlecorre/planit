@@ -5,11 +5,12 @@ namespace PlanIt\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
- * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  */
 class Event
 {
@@ -46,7 +47,7 @@ class Event
      *
      * @var \DateTime
      */
-    protected $begin_date;
+    protected $beginDate;
 
     /**
      * @ORM\Column(type="datetime")
@@ -139,7 +140,7 @@ class Event
      *
      * @return string 
      */
-    public function getDescription($length = 3)
+    public function getDescription($length = null)
     {
         if (false === is_null($length) && $length > 0)
             return substr($this->description, 0, $length);
@@ -155,7 +156,7 @@ class Event
      */
     public function setBeginDate($beginDate)
     {
-        $this->begin_date = $beginDate;
+        $this->beginDate = $beginDate;
 
         return $this;
     }
@@ -167,7 +168,7 @@ class Event
      */
     public function getBeginDate()
     {
-        return $this->begin_date;
+        return $this->beginDate;
     }
 
     /**
@@ -298,4 +299,5 @@ class Event
         // le document/image dans la vue.
         return 'images/event/events_pictures';
     }
+
 }

@@ -4,7 +4,10 @@ function deletePlace(place_id){
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   		$('#place-'+place_id).remove();
+	   		$('.deletePlaceModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
@@ -13,12 +16,34 @@ function deletePlace(place_id){
 }
 
 function chosePlace(place_id){
+
+	if($("#check-"+place_id).prop('checked') == true){
+		var check = 1;
+	}else{
+		var check = 0;
+	}
 	$.ajax({
 	   url : '/app_dev.php/api/places/'+place_id+'/chose', //API
 	   type : 'PUT',
 	   dataType : 'json',
-	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   data : {check:check},
+	   success : function(states){ // code_html contient le HTML renvoyé
+	   		console.log(states);
+	   		for(var id in states){
+	   			$("#state-place-"+id).val(states[id]);
+	   		}
+	   		$(".accordion-head").each(function(){
+	   			$(this).attr('class', 'head-list accordion-head nochecked');
+	   		});
+	   		$(".check").each(function(){
+	   			$(this).prop('checked', false);
+	   		});
+	   		if(parseInt(states[place_id]) == 1){
+	   			$('#place-'+place_id+' .head-list').attr('class', 'head-list accordion-head checked');
+	   			$('#place-'+place_id+' .div-checkbox .check').prop('checked', true);
+	   		}
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -44,7 +69,9 @@ function updatePlace(id){
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   	location.reload();
+	   		$('.deletePlaceModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

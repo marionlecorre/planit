@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Ven 20 Février 2015 à 10:33
+-- Généré le :  Jeu 26 Février 2015 à 16:49
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `event` (
   `beginDate` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `event`
@@ -44,12 +44,12 @@ CREATE TABLE `event` (
 INSERT INTO `event` (`id`, `user_id`, `name`, `slug`, `description`, `beginDate`, `end_date`, `image`) VALUES
 (1, 1, 'Nouvel An', 'nouvelan', 'On va boire du champagne faire la fête et tout et tout', '2014-12-31 00:00:00', '2015-01-01 00:00:00', 'nouvel-an.jpg'),
 (2, 2, 'Noël', 'noel', 'Petit papa noel quand tu descendras du ciel... tu m''amèneras un macbook Pro stp', '2014-12-24 00:00:00', '2014-12-25 00:00:00', 'noel.jpg'),
-(3, 3, 'Anniversaire Florent', 'annivflorent', 'Hapyy birthday to youuu Diabeto <3 get on the flow', '2014-11-19 00:00:00', '2014-11-20 00:00:00', 'photo_evenement.jpg'),
+(3, 3, 'Anniversaire Florent', 'annivflorent', 'Hapyy birthday to youuu Diabeto <3 get on the flow', '2014-11-20 00:00:00', '2014-11-21 00:00:00', 'photo_evenement.jpg'),
 (4, 3, 'Mariage d''Aurélie', 'mariageaurelie', 'Beau mariage à Lavaur avec Marina en demoiselle d''honneur en robe rose', '2015-04-16 00:00:00', '2015-04-17 00:00:00', 'mariage.jpg'),
 (5, 3, 'Gala', 'Gala', 'Soirée de ouf sur une péniche', '2015-01-23 20:00:00', '2015-01-24 05:00:00', '3-5245.jpeg'),
 (6, 1, 'Allez je fais du sport', 'Allez je fais du sport', 'pour ne plus être grosse', '2015-01-22 00:06:32', '2015-01-23 00:06:32', '1-62570.jpeg'),
 (7, 1, 'Boire du café', 'Boire du café', 'Le café c''est la vie', '2015-02-12 00:00:00', '2015-02-13 00:00:00', '1-44121.jpeg'),
-(8, 3, 'Anniversaire de Pépé', 'Anniversaire de Pépé', 'Il est encore vivant', '2015-02-15 00:00:00', '2015-02-15 00:00:00', '3-25454.jpeg');
+(11, 4, 'Emy''s Birthday', 'Emy''s Birthday', 'Emy''s Birthday at home', '2015-03-24 00:00:00', '2015-03-24 00:00:00', '4-69131.jpeg');
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,9 @@ CREATE TABLE `expense` (
   `stock` double NOT NULL,
   `quantity` double NOT NULL,
   `consummate` double NOT NULL,
-  `bought` tinyint(1) NOT NULL,
+  `bought` int(11) NOT NULL,
   `unit` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `expense`
@@ -75,7 +75,9 @@ CREATE TABLE `expense` (
 
 INSERT INTO `expense` (`id`, `type_expense_id`, `name`, `price`, `stock`, `quantity`, `consummate`, `bought`, `unit`) VALUES
 (1, 1, 'Vodka', 10, 5, 22, 4, 1, 'Bouteilles'),
-(2, 2, 'Paté', 0.2, 0, 500, 0, 0, 'Grammes');
+(2, 2, 'Paté', 0.2, 0, 500, 0, 0, 'Grammes'),
+(4, 4, 'Coca Cola', 0.8, 0, 7, 0, 0, 'Bottles'),
+(5, 4, 'Orange Juice', 0.47, 2, 6, 0, 1, 'Bottles');
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,7 @@ CREATE TABLE `guest` (
   `confirmed` int(11) NOT NULL,
   `payed` int(11) NOT NULL,
   `sent` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `guest`
@@ -104,11 +106,18 @@ INSERT INTO `guest` (`id`, `type_guest_id`, `module_id`, `paymentmean_id`, `firs
 (6, 1, 6, 1, 'test', 'test', 'test@g.com', 0, 2, 0),
 (7, 1, 6, 1, 'test', 'test', 'test@g.com', 0, 2, 0),
 (9, 6, 2, NULL, 'Audrey', 'Cougot', 'audreycougot@gmail.com', 2, 0, 0),
-(11, 1, 4, 3, 'Ali', 'Babouche', 'alibabouche@gmail.com', 0, 0, 0),
-(12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 0, 0, 0),
+(11, 1, 4, NULL, 'Ali', 'Babouche', 'alibabouche@gmail.com', 1, 0, 0),
+(12, 1, 4, NULL, 'Marina', 'Avataneo', 'avataneo.marina@orange.fr', 1, 0, 0),
 (13, 1, 4, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 1, 1, 0),
-(23, 9, 22, 2, 'Misel', 'Le Correff', 'lecorre.mar@gmail.com', 1, 0, 0),
-(24, 9, 22, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 0, 0, 1);
+(23, 9, 22, 2, 'Misel', 'Le Correffg', 'lecorre.mar@gmail.com', 1, 0, 1),
+(24, 9, 22, NULL, 'Marion', 'Le Corre', 'marionlecorre@live.fr', 0, 0, 1),
+(25, 12, 30, NULL, 'Clara', 'Hood', 'clarahood@gmail.com', 0, 0, 0),
+(26, 12, 30, NULL, 'Luc', 'Skywalker', 'luc@gmail.com', 0, 0, 0),
+(28, 3, 4, NULL, 'test', 'test', 'test@gmail.com', 1, 0, 1),
+(29, 1, 4, NULL, 'Hugo', 'Garrido', 'hugo@gmail.com', 1, 0, 1),
+(30, 9, 22, 2, 'Hugo', 'Garrido', 'lecorre.mar@gmail.com', 1, 0, 1),
+(31, 8, 4, NULL, 'test', 'test', 'test@gmail.com', 1, 0, 1),
+(33, 9, 22, NULL, 'test', 'test', 'marionlecorre@gmail.com', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +130,7 @@ CREATE TABLE `inflow` (
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `amount` double NOT NULL,
   `module_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `inflow`
@@ -129,7 +138,8 @@ CREATE TABLE `inflow` (
 
 INSERT INTO `inflow` (`id`, `name`, `amount`, `module_id`) VALUES
 (1, 'Mamie', 1000, 12),
-(2, 'Maman robe', 500, 12);
+(2, 'Maman robe', 500, 12),
+(3, 'Donation for gift', 200, 34);
 
 -- --------------------------------------------------------
 
@@ -139,23 +149,17 @@ INSERT INTO `inflow` (`id`, `name`, `amount`, `module_id`) VALUES
 
 CREATE TABLE `item` (
 `id` int(11) NOT NULL,
-  `module_id` int(11) DEFAULT NULL,
+  `list_id` int(11) DEFAULT NULL,
   `content` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `checked` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `item`
 --
 
-INSERT INTO `item` (`id`, `module_id`, `content`, `checked`) VALUES
-(1, 13, 'Choisir Bar', 1),
-(2, 13, 'Acheter cadeau', 0),
-(3, 13, 'Appeler maman', 0),
-(4, 13, 'Récupérer sous', 0),
-(5, 13, 'Manger', 1),
-(9, 13, 'Se faire beau', 1),
-(10, 13, 'Se faire beau', 0);
+INSERT INTO `item` (`id`, `list_id`, `content`, `checked`) VALUES
+(1, 1, 'Se faire beaux', 0);
 
 -- --------------------------------------------------------
 
@@ -190,7 +194,7 @@ CREATE TABLE `module` (
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
   `maxguests` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -199,17 +203,21 @@ CREATE TABLE `module` (
 INSERT INTO `module` (`id`, `name`, `slug`, `event_id`, `inttype`, `type`, `payable`, `moduletype`, `max_budget`, `base`, `max_capacity_p`, `max_price_p`, `max_time_to_go`, `max_capacity_t`, `max_price_t`, `maxguests`) VALUES
 (2, 'Gestion des invités', 'gestion-des-invites', 1, 1, 'guests', 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200),
 (3, 'Listes de tâches', 'listes-de-taches', 2, 2, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Gestion des invités', 'gestion-des-invites', 3, 1, 'guests', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200),
+(4, 'Gestion des invités', 'gestion-des-invites', 3, 1, 'guests', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 140),
 (5, 'Gestion des invités', 'gestion-des-invites', 4, 1, 'guests', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 100),
 (6, 'Gestion des invités', 'gestion-des-invites', 2, 1, 'guests', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 50),
 (8, 'Gestion du budget', 'gestion-du-budget', 6, 2, 'budget', NULL, NULL, 1000, 300, NULL, NULL, NULL, NULL, NULL, NULL),
 (9, 'Gestion du lieu', 'gestion-du-lieu', 6, 3, 'place', NULL, NULL, NULL, NULL, 100, 600, '2', NULL, NULL, NULL),
 (10, 'Gestion du transport', 'gestion-du-transport', 6, 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 60, 500, NULL),
 (11, 'Listes de tâches', 'listes-de-taches', 6, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 'Gestion du budget', 'gestion-du-budget', 5, 2, 'budget', NULL, NULL, 2000, 300, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'Gestion du budget', 'gestion-du-budget', 5, 2, 'budget', NULL, NULL, 2000, 400, NULL, NULL, NULL, NULL, NULL, NULL),
 (13, 'Listes de tâches', 'listes-de-taches', 3, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 'Gestion du lieu', 'gestion-du-lieu', 3, 3, 'place', NULL, NULL, NULL, NULL, 300, 4000, '1h30', NULL, NULL, NULL),
-(22, 'Gestion des invités', 'gestion-des-invites', 5, 1, 'guests', 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 140);
+(14, 'Gestion du lieu', 'gestion-du-lieu', 3, 3, 'place', NULL, NULL, NULL, NULL, 400, 4000, '1h30', NULL, NULL, NULL),
+(22, 'Gestion des invités', 'gestion-des-invites', 5, 1, 'guests', 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 140),
+(30, 'Gestion des invités', 'gestion-des-invites', 11, 1, 'guests', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 30),
+(34, 'Gestion du budget', 'gestion-du-budget', 11, 2, 'budget', NULL, NULL, 300, 100, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, 'Listes de tâches', 'listes-de-taches', 11, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(37, 'Gestion du budget', 'gestion-du-budget', 3, 2, 'budget', NULL, NULL, 1200, 300, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -269,21 +277,43 @@ CREATE TABLE `place` (
   `capacity` double DEFAULT NULL,
   `website` longtext COLLATE utf8_unicode_ci,
   `remark` longtext COLLATE utf8_unicode_ci,
-  `state` int(11) DEFAULT NULL,
+  `state` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
-  `contract` longtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `contract` longtext COLLATE utf8_unicode_ci,
+  `image` longtext COLLATE utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `place`
 --
 
-INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`) VALUES
-(2, 'Car en bolag', '55 rue du culotte', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 1, 14, 0, 0, '2-11124.jpeg'),
-(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 0, 14, 0, 0, '3-59506.jpeg'),
-(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg');
+INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`, `image`) VALUES
+(2, 'Car en bolage', '55 rue du culotte', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 1, 14, NULL, NULL, '2-11124.jpeg', '2-71053.jpeg'),
+(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 0, 14, NULL, NULL, '3-59506.jpeg', '3-16081.jpeg'),
+(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg', NULL),
+(8, 'test', '17 bis rue du pressoir', NULL, NULL, NULL, NULL, NULL, NULL, 2, 14, NULL, NULL, '8-14654.pdf', '8-31608.jpeg'),
+(9, 'test', '17 bis rue du pressoir', NULL, NULL, NULL, NULL, NULL, NULL, 2, 14, NULL, NULL, '9-81296.pdf', '9-22427.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `task_list`
+--
+
+CREATE TABLE `task_list` (
+`id` int(11) NOT NULL,
+  `name` tinytext COLLATE utf8_unicode_ci NOT NULL,
+  `module_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `task_list`
+--
+
+INSERT INTO `task_list` (`id`, `name`, `module_id`) VALUES
+(1, 'A faire avant', 13);
 
 -- --------------------------------------------------------
 
@@ -295,7 +325,7 @@ CREATE TABLE `type_expense` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_expense`
@@ -303,7 +333,8 @@ CREATE TABLE `type_expense` (
 
 INSERT INTO `type_expense` (`id`, `module_id`, `name`) VALUES
 (1, 12, 'Boissons'),
-(2, 12, 'Bouffe');
+(2, 12, 'Bouffe'),
+(4, 34, 'Drinks');
 
 -- --------------------------------------------------------
 
@@ -315,23 +346,26 @@ CREATE TABLE `type_guest` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `label` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `message` tinytext COLLATE utf8_unicode_ci NOT NULL,
-  `price` double NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `message` text COLLATE utf8_unicode_ci,
+  `price` double DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_guest`
 --
 
 INSERT INTO `type_guest` (`id`, `module_id`, `label`, `message`, `price`) VALUES
-(1, 4, 'Amis IMAC', 'coucou mes amis imac', 20),
+(1, 4, 'Amis IMAC', 'coucou mes amis imac', NULL),
 (2, 4, 'Amis SRC', 'coucou mes amis src', 30),
-(3, 4, 'Famille', 'Coucou', 70),
+(3, 4, 'Famille', 'Coucou', NULL),
 (5, 6, 'Famille', 'Coucou ma famille', 0),
 (6, 2, 'Amis de Toulouse', 'bonne année !!!!', 3),
 (8, 4, 'Non adhérent', '', 70),
-(9, 22, 'Non adhérent', 'T''es moche', 0),
-(10, 22, 'les moches', 'Yoo les moches', 60);
+(9, 22, 'Non adhérent', 'T''es moche', 40),
+(10, 22, 'les moches', 'Yoo les moches', 60),
+(12, 30, 'Family', 'You are invited to celebrate the 31st Emy''s Birthday with us !', 0),
+(14, 30, 'Friends', 'Hello !\r\nYou are invited to celebrate the 31st Emy''s birthday with her family', 0),
+(16, 5, 'Friends', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -346,7 +380,7 @@ CREATE TABLE `user` (
   `mail` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `user`
@@ -355,7 +389,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `surname`, `mail`, `password`, `image`) VALUES
 (1, 'Babouche', 'Ali', 'alizee.camarasa@gmail.com', '28012904', 'kira.jpg'),
 (2, 'LeCorre', 'Marion', 'marion@lecorre.com', '0000', 'jackson.jpg'),
-(3, 'Avataneo', 'Warina', 'marina@avtaneo.com', '0000', 'grisou.jpg');
+(3, 'Avataneo', 'Warina', 'marina@avtaneo.com', '0000', 'grisou.jpg'),
+(4, 'John', 'Doe', 'john@doe.com', 'john', 'image-profil.jpg');
 
 --
 -- Index pour les tables exportées
@@ -389,7 +424,7 @@ ALTER TABLE `inflow`
 -- Index pour la table `item`
 --
 ALTER TABLE `item`
- ADD PRIMARY KEY (`id`), ADD KEY `IDX_1F1B251EAFC2B591` (`module_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_1F1B251E3DAE168B` (`list_id`);
 
 --
 -- Index pour la table `migration_versions`
@@ -422,6 +457,12 @@ ALTER TABLE `place`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_741D53CDAFC2B591` (`module_id`);
 
 --
+-- Index pour la table `task_list`
+--
+ALTER TABLE `task_list`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_377B6C63AFC2B591` (`module_id`);
+
+--
 -- Index pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
@@ -447,32 +488,32 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `expense`
 --
 ALTER TABLE `expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `guest`
 --
 ALTER TABLE `guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT pour la table `inflow`
 --
 ALTER TABLE `inflow`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT pour la table `payment_means`
 --
@@ -482,22 +523,27 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `place`
 --
 ALTER TABLE `place`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT pour la table `task_list`
+--
+ALTER TABLE `task_list`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `type_guest`
 --
 ALTER TABLE `type_guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Contraintes pour les tables exportées
 --
@@ -532,7 +578,7 @@ ADD CONSTRAINT `FK_CBBF3F71AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `modul
 -- Contraintes pour la table `item`
 --
 ALTER TABLE `item`
-ADD CONSTRAINT `FK_1F1B251EAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+ADD CONSTRAINT `FK_1F1B251E3DAE168B` FOREIGN KEY (`list_id`) REFERENCES `task_list` (`id`);
 
 --
 -- Contraintes pour la table `module`
@@ -552,6 +598,12 @@ ADD CONSTRAINT `FK_A4BA4E099F63E055` FOREIGN KEY (`paymentmeans_id`) REFERENCES 
 --
 ALTER TABLE `place`
 ADD CONSTRAINT `FK_741D53CDAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+
+--
+-- Contraintes pour la table `task_list`
+--
+ALTER TABLE `task_list`
+ADD CONSTRAINT `FK_377B6C63AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `type_expense`

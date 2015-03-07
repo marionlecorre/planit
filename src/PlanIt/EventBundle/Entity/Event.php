@@ -6,11 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="PlanIt\EventBundle\Repository\EventRepository")
  */
 class Event
 {
@@ -23,6 +24,7 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Length(max="30", maxMessage="Attention, le nom de l'événement ne doit pas dépasser 30 caractères")
      */
     protected $name;
 

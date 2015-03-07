@@ -9,6 +9,7 @@ remark: Remark
 state: State
 refused: Refused
 contacted: Contacted
+tocontact: To contact
 accepted: Accepted
 contract: Contract
 update_contract: Modify the contract

@@ -12,16 +12,35 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
-    public function findByUser($user_id)
+  public function findNotFinishedByUserid($user_id)
     {
         $qb = $this->createQueryBuilder('e')
                    ->select('e')
                    ->where('e.user = :user_id')
-                   ->addOrderBy('e.begin_date')
-                   ->setParameter('user_id', $user_id);
+                   ->andWhere('e.beginDate >= :today')
+                   ->addOrderBy('e.beginDate', 'ASC')
+                   ->setParameter('user_id', $user_id)
+                   ->setParameter('today', date('Y-m-j H:i:s'));
         //Ajouter vérificaiton pour afficher que les évenments à venir pas les terminés
 
         return $qb->getQuery()
-                  ->getResult();
+                  ->getResult()
+        ;
+    }
+
+    public function findFinishedByUserid($user_id)
+    {
+        $qb = $this->createQueryBuilder('e')
+                   ->select('e')
+                   ->where('e.user = :user_id')
+                   ->andWhere('e.beginDate < :today')
+                   ->addOrderBy('e.beginDate', 'ASC')
+                   ->setParameter('user_id', $user_id)
+                   ->setParameter('today', date('Y-m-j H:i:s'));
+        //Ajouter vérificaiton pour afficher que les évenments à venir pas les terminés
+
+        return $qb->getQuery()
+                  ->getResult()
+        ;
     }
 }

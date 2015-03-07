@@ -19,7 +19,22 @@ function places(){
 		var id = $(e.relatedTarget).data('id');
 		$("#form-post-image").attr("action","/app_dev.php/api/places/"+id+"/images");
 	});
+
+	$('.deletePlaceModal').on("show.bs.modal",function(e){
+		var id = $(e.relatedTarget).data('id');
+		var name = $(e.relatedTarget).data('name');
+		$("#delete_confirm_place").attr("onclick","deleteGuest("+id+")");
+		$("#myModalLabel_deletePlace").html("Etes-vous sur de vouloir supprimer le lieu \""+name+"\" ?");
+		
+	});
 }
+
+function showModalDeletePlace(id, name){
+	$('.deletePlaceModal').modal('show');
+	$("#delete_confirm_place").attr("onclick","deletePlace("+id+")");
+	$("#myModalLabel_deletePlace").html("Etes-vous sur de vouloir supprimer le lieu \""+name+"\" ?");
+}
+
 //input file
 // ajout de la classe JS à HTML
 document.querySelector("html").classList.add('js');

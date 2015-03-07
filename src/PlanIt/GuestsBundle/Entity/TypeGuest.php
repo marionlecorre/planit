@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -23,16 +24,19 @@ class TypeGuest
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\Length(max="30", maxMessage="Attention, la nom de la catégorie ne doit pas dépasser 30 caractères")
      */
     protected $label;
 
     /**
      * @ORM\Column(type="text", length=300,nullable=true)
+     * @Assert\Length(max="30", maxMessage="Attention, le message ne doit pas dépasser 300 caractères")
      */
     protected $message;
 
     /**
      * @ORM\Column(type="float",nullable=true)
+     * @Assert\Type(type="numeric", message="Attention, la valeur du champs prix est incorrecte. Le prix doit être un nombre.")
      */
     protected $price;
 
@@ -196,17 +200,4 @@ class TypeGuest
         return $this->getLabel();
     }
 
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('label', new NotBlank(array(
-            'message' => 'Merci de renseigner le nom du type d\'invité'
-        )));
-        $metadata->addPropertyConstraint('message', new Length(array(
-            'max' => "300"
-        )));
-
-        $metadata->addPropertyConstraint('price', new NotBlank(array(
-            'message' => 'Merci de renseigner le prix pour ce type d\'invité'
-        )));
-    }
 }

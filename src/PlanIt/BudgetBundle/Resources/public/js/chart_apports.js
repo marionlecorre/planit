@@ -1,18 +1,17 @@
 function getListInflow(id){
     $.ajax({
-       url : '/app_dev.php/api/lists/'+id+'/inflow', //API
+       url : '/api/lists/'+id+'/inflow', //API
        type : 'GET',
        dataType : 'json', // On désire recevoir du HTML
        success : function(inflows, statut){ // code_html contient le HTML renvoyé
             $.ajax({
-               url : '/app_dev.php/api/guestsinflows/'+id, //API
+               url : '/api/guestsinflows/'+id, //API
                type : 'GET',
                dataType : 'json', // On désire recevoir du HTML
                success : function(guests_inflows, statut){ // code_html contient le HTML renvoyé
                 var data = {xA : []};
                 var empty;
                 // récupération des expenses
-                console.log(inflows.inflows);
                 if (inflows.inflows.length == 0 && guests_inflows == undefined) {
                   var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};
                   data.xA.push(obj);

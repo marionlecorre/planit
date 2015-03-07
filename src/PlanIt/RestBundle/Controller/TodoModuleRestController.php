@@ -86,6 +86,7 @@ class TodoModuleRestController extends Controller
                    ->getEntityManager();
         $em->persist($item);
         $em->flush();
+        return $item->getList()->getId();
     }
 
     public function deleteItemAction($item_id)

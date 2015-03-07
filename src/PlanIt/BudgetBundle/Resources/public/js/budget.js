@@ -1,7 +1,7 @@
 function budget(){
 	$('.addExpenseModal').on("show.bs.modal",function(e){
 		var type = $(e.relatedTarget).data('type');
-		$("#form-post-expense").attr("action","/app_dev.php/api/expenses/"+type);
+		$("#form-post-expense").attr("action","/api/expenses/"+type);
 	});
 
 	$('.deleteTypeExpenseModal').on("show.bs.modal",function(e){

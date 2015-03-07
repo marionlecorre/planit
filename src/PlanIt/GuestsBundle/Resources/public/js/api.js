@@ -1,10 +1,14 @@
 function deleteGuest(id){
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+id, //API
+	   url : '/api/guests/'+id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   success : function(nb_guests){ // code_html contient le HTML renvoyé
+	   		$('#guest-'+id).remove();
+	   		$('#nb_guests').html(nb_guests);
+	   		$('.deleteGuestModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
@@ -35,21 +39,21 @@ function updateGuest(id, attr){
 		"paymentmean" : $("#paymentmean-"+id).val()
 	}}
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+id, //API
+	   url : '/api/guests/'+id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   	if(attr == "confirmed"){
-			$("#confirmed-"+id).attr('class', "light state-"+confirmed);
-			$("#confirmed-"+id).attr('data-type', confirmed);
+		   	if(attr == "confirmed"){
+				$("#confirmed-"+id).attr('class', "light state-"+confirmed);
+				$("#confirmed-"+id).attr('data-type', confirmed);
 
-		}else if(attr == "payed"){
-			$("#payed-"+id).attr('class', "light state-"+payed);
-			$("#payed-"+id).attr('data-type', payed);
-		}else{
-			location.reload();
-		}
+			}else if(attr == "payed"){
+				$("#payed-"+id).attr('class', "light state-"+payed);
+				$("#payed-"+id).attr('data-type', payed);
+			}
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -65,7 +69,7 @@ function updatePayable(module_id){
 		payable = 0;
 	}
 	$.ajax({
-	   url : '/app_dev.php/api/guestsmodules/'+module_id+'/payable', //API
+	   url : '/api/guestsmodules/'+module_id+'/payable', //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : {payable : payable},
@@ -80,10 +84,12 @@ function updatePayable(module_id){
 
 function sendMail(guest_id){
 	$.ajax({
-	   url : '/app_dev.php/api/guests/'+guest_id+'/mails', //API
+	   url : '/api/guests/'+guest_id+'/mails', //API
 	   type : 'POST',
 	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   		$("#sent-"+guest_id).attr('class', 'send sent-1 col-md-1 col-sm-1 col-xs-1')
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
@@ -114,11 +120,15 @@ function checkAll(type){
 
 function deleteTypeguest(type_id){
 	$.ajax({
-	   url : '/app_dev.php/api/typeguests/'+type_id, //API
+	   url : '/api/typeguests/'+type_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module){ // code_html contient le HTML renvoyé
-	   		location.reload();
+	   success : function(nb_guests){ // code_html contient le HTML renvoyé
+	   		$('#typeguest-'+type_id).remove();
+	   		$('#nb_guests').html(nb_guests);
+	   		$('.deleteTypeGuestModal').modal('hide');
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         alert(erreur);
@@ -142,13 +152,13 @@ function updateTypeguest(typeguest_id){
 	}
 	
 	$.ajax({
-	   url : '/app_dev.php/api/typeguests/'+typeguest_id, //API
+	   url : '/api/typeguests/'+typeguest_id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(data){ // code_html contient le HTML renvoyé
-	   		//location.reload();
-	   		console.log(data);
+	   		$('#okModal').modal('show');
+	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

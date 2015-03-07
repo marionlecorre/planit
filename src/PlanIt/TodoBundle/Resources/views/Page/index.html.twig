@@ -9,7 +9,13 @@
 	<div class="row" id="separator">
 		<div class="col-md-12"> </div>
 	</div>
-
+    <div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                OK
+            </div>
+        </div>
+    </div>
 	<div class="row buttons">
         <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addListModal">{{'add_tasklist'|trans}}</button></div>
         <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}">{{'print'|trans}}</a></div>
@@ -21,20 +27,20 @@
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
     {% for list in module.lists %}
-    <div>
+    <div id="blocklist-{{list.id}}">
     	<div>
     		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
 	    	<div class="pull-right" >
                 <div class="delete" data-toggle="modal" data-target=".deleteListModal" data-content="{{list.name}}" data-id="{{list.id}}"></div>                                    
             </div>
         </div>
-    	<ul class="sortable" id="todo-list">
+    	<ul class="sortable todo-list" id="todo-list">
 		    {% for item in list.items %}
 				{% if not item.checked %}
-					<li>
+					<li id="blockitem-{{item.id}}">
 						<div class="row">
 							<div class="col-md-12 todo">
-								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}})">
+								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}}, '{{item.content}}')">
 								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
 								<div class="pull-right" >
                                     <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>                                    
@@ -47,10 +53,10 @@
 
 			{% for item in list.items %}
 				{% if item.checked %} 
-					<li>
+					<li id="blockitem-{{item.id}}">
 						<div class="row">
 							<div class="col-md-12 todo checked">
-								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}})"> 
+								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
 							</div>
 						</div>			
 					</li>

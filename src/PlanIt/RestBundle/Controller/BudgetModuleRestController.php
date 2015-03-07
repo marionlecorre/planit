@@ -44,6 +44,15 @@ class BudgetModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
         }
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $budget_module );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
+        return $this->redirect($this->generateUrl('PlanItEventBundle_event', array(
+                'id'    => $event->getId()
+            )));
     }
 
     public function postBudgetmoduleUpdateAction(Request $request, $module_id)
@@ -90,11 +99,20 @@ class BudgetModuleRestController extends Controller
             $em->persist($expense);
             $em->flush();
 
+
             return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
                 'event_id'    => $expense->getTypeExpense()->getModule()->getEvent()->getId(),
                 'module_id'   => $expense->getTypeExpense()->getModule()->getId()
             )));
         }
+        
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $expense );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
+
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $expense->getTypeExpense()->getModule()->getEvent()->getId(),
             'module_id'   => $expense->getTypeExpense()->getModule()->getId()
@@ -113,9 +131,10 @@ class BudgetModuleRestController extends Controller
             $em->persist($expense);
             $em->flush();
             return array(
-                        'module' => $expense->getTypeExpense()->getModule(),
-                        'type_id' => $type_id
-                    );
+                'balance' => $this->getInfosAction($expense->getTypeExpense()->getModule()->getId())['balance'],
+                'expense' => $expense,
+                'module_id' => $expense->getTypeExpense()->getModule()->getId()
+            );
         }
     }
 
@@ -128,9 +147,9 @@ class BudgetModuleRestController extends Controller
         $em->remove($expense);
         $em->flush();
         return array(
-                    'module' => $expense->getTypeExpense()->getModule(),
-                    'type_id' => $type_id
-                );
+            'balance' => $this->getInfosAction($expense->getTypeExpense()->getModule()->getId())['balance'],
+            'module_id' => $expense->getTypeExpense()->getModule()->getId()
+        );
 
     }
 
@@ -155,6 +174,13 @@ class BudgetModuleRestController extends Controller
                 'module_id'   => $inflow->getModule()->getId()
             )));
         }
+
+        $session = $request->getSession();
+        $errors = $this->get('validator')->validate( $inflow );
+        foreach( $errors as $error )
+        {
+            $session->getFlashBag()->add('errors', $error->getMessage());
+        }
         return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
             'event_id'    => $inflow->getModule()->getEvent()->getId(),
             'module_id'   => $inflow->getModule()->getId()
@@ -170,7 +196,10 @@ class BudgetModuleRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($inflow);
             $em->flush();
-            return $inflow->getModule();
+            return array(
+                'balance' => $this->getInfosAction($inflow->getModule()->getId())['balance'],
+                'module_id' => $inflow->getModule()->getId()
+            );
         }
     }
 
@@ -181,7 +210,10 @@ class BudgetModuleRestController extends Controller
                        ->getEntityManager();
         $em->remove($inflow);
         $em->flush();
-        return $inflow->getModule();
+        return array(
+            'balance' => $this->getInfosAction($inflow->getModule()->getId())['balance'],
+            'module_id' => $inflow->getModule()->getId()
+        );
 
     }
 
@@ -238,6 +270,7 @@ class BudgetModuleRestController extends Controller
 
         $guests_inflow = $this->getGuestsinflowAction($module_id);
         if(isset($guests_inflow)){
+            $balance += $guests_inflow;
             return array(
                 'module' => $module,
                 'balance' => $balance,

@@ -1,7 +1,7 @@
 function todo(){
 	$('.addItemModal').on("show.bs.modal",function(e){
 		var list_id = $(e.relatedTarget).data('list');
-		$("#form-post-item").attr("action","/app_dev.php/api/items/"+list_id);
+		$("#form-post-item").attr("action","/api/items/"+list_id);
 	});
 
 	$('.deleteItemModal').on("show.bs.modal",function(e){
