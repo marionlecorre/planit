@@ -21,32 +21,33 @@
 		return a;
 	}
 
-	function CBPFWTabs( el, options ) {
+	function CBPFWSTabs( el, options ) {
 		this.el = el;
 		this.options = extend( {}, this.options );
   		extend( this.options, options );
   		this._init();
 	}
 
-	CBPFWTabs.prototype.options = {
+	CBPFWSTabs.prototype.options = {
 		start : 0
 	};
 
-	CBPFWTabs.prototype._init = function() {
+	CBPFWSTabs.prototype._init = function() {
 		// tabs elems
-		this.tabs = [].slice.call( this.el.querySelectorAll( 'nav > ul > li' ) );
+		this.tabs = [].slice.call( this.el.querySelectorAll( 'div > ul > li' ) );
 		// content expenses
-		this.expenses = [].slice.call( this.el.querySelectorAll( '.content-wrap > section' ) );
+		this.expenses = [].slice.call( this.el.querySelectorAll( '.sous-content-wrap > section' ) );
 		// current index
 		this.current = -1;
+		console.log(this.expenses);
 		// show current content item
 		this._show();
 		// init events
 		this._initEvents();
-		console.log(this.tabs);
+
 	};
 
-	CBPFWTabs.prototype._initEvents = function() {
+	CBPFWSTabs.prototype._initEvents = function() {
 		var self = this;
 		this.tabs.forEach( function( tab, idx ) {
 			tab.addEventListener( 'click', function( ev ) {
@@ -56,7 +57,7 @@
 		} );
 	};
 
-	CBPFWTabs.prototype._show = function( idx ) {
+	CBPFWSTabs.prototype._show = function( idx ) {
 		if( this.current >= 0 ) {
 			for( var tab in this.tabs ) { 
 				this.tabs[ tab ].className = this.expenses[ tab ].className = '';
@@ -70,6 +71,6 @@
 	};
 
 	// add to global namespace
-	window.CBPFWTabs = CBPFWTabs;
+	window.CBPFWSTabs = CBPFWSTabs;
 
 })( window );

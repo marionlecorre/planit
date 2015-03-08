@@ -44,12 +44,12 @@
 						</nav>						
 					</div>
 					<!-- sous menu depenses-->
-					<div class="row" id="expense-menu" style="display:none;">
-						<ul class="col-md-12 sous-menu-depense">
-							{% for type_expense in module.typesexpense %}
-							<li><a href="#section-topline-depenses-{{type_expense.id}}"><span>{{type_expense.name}}</span></a></li>
-							{% endfor %}								
-						</ul>
+					<div class="row sous-menu" id="expense-menu" style="display:none;">
+							<ul class="col-md-12 sous-menu-depense">
+								{% for type_expense in module.typesexpense %}
+								<li id="tab-{{type_expense.name|lower}}"><a href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a></li>
+								{% endfor %}								
+							</ul>
 					</div>
 
 					<div class="content-wrap" id="tab_content">						
@@ -133,12 +133,12 @@
 						</section>
 
 						{# TYPE ITEMS #}
-							<section  id="section-topline-depenses">
+							<section  class="stabs" id="section-topline-depenses">
 								
 								<!--	<p>Vous n'avez pas encore créé de catégorie de dépense de dépense</p>  -->
-																	
+								<div class="sous-content-wrap">							
 								{% for type_expense in module.typesexpense %}								 	
-									<section id="section-topline-depenses-{{type_expense.id}}">	
+									<section id="section-topline-{{type_expense.id}}">	
 										<!--bt ajout cat depense-->
 										<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addInflowModal">{{'add_typeexpense'|trans}}</button></div>
 										<!-- bt ajout depense-->
@@ -197,6 +197,7 @@
 										</div>
 									</section>
 								{% endfor %}
+							</div>
 							</section>
 
 						
@@ -253,6 +254,12 @@
 		(function() {
 			[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
 				new CBPFWTabs( el );
+			});
+		})();
+
+		(function() {
+			[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+				new CBPFWSTabs( el );
 			});
 		})();
 
