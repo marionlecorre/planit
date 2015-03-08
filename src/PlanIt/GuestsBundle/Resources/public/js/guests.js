@@ -29,6 +29,38 @@ function guests(){
 		$("#form-post-guest").attr("action","/api/guests/"+typeguest);
 	});
 }
+function showModalUpdateType(id){
+	$.ajax({
+	   url : '/api/typeguests/'+id, //API
+	   type : 'GET',
+	   dataType : 'json',
+	   success : function(data){ // code_html contient le HTML renvoyé
+	   		$("#updateTypeGuestModal input[name=typename]").attr('id', 'typename-'+id);
+	   		$("#updateTypeGuestModal input[name=typename]").val(data.type.label);
+	   		if(data.payable == '0'){
+	   			$("#updateTypeGuestModal input[name=typeprice]").remove();
+	   		}else{
+	   			$("#updateTypeGuestModal input[name=typeprice]").attr('id', 'typeprice-'+id);
+	   			$("#updateTypeGuestModal input[name=typeprice]").val(data.type.price);
+	   		}
+
+	   		if(data.module_type == '1'){
+	   			$("#updateTypeGuestModal textarea[name=typemail]").remove();
+	   		}else{
+	   			$("#updateTypeGuestModal textarea[name=typemail]").attr('id', 'typemail-'+id);
+	   			$("#updateTypeGuestModal textarea[name=typemail]").text(data.type.message);
+	   		}
+	   		$("#updateTypeGuestModal input[type=submit]").attr("onclick","updateTypeguest("+id+")");
+	   		$('#updateTypeGuestModal').modal('show');
+
+	   },
+	   error : function(resultat, statut, erreur){
+	         alert(erreur);
+	       },
+	});
+	$("#form-update-typeguest input[type=submit]").attr("onclick","/app_dev.php/api/typeguests/"+id+"/updates");
+}
+
 function showModalDeleteType(id, name){
 	$('.deleteTypeGuestModal').modal('show');
 	$("#delete_confirm_typeguest").attr("onclick","deleteTypeguest("+id+")");

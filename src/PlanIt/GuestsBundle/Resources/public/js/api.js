@@ -138,25 +138,53 @@ function deleteTypeguest(type_id){
 
 function updateTypeguest(typeguest_id){
 	var price = $("#typeprice-"+typeguest_id).val();
+	var message = $("#typemail-"+typeguest_id).val();
+	var name = $("#typename-"+typeguest_id).val();
 	if(price == undefined){
-		var dataSend = {
-			"type" : "notpayable",
-			"name" : $("#typename-"+typeguest_id).val(),
+		if(message == undefined){
+			var dataSend = {
+				"payable" : "false",
+				"type": "1",
+				"name" : name,
+			}
+		}else{
+			var dataSend = {
+				"payable" : "false",
+				"type": "0",
+				"name" : name,
+				"message" : message
+			}
 		}
 	}else{
-		var dataSend = {
-			"type" : "payable",
-			"name" : $("#typename-"+typeguest_id).val(),
-			"price" : price
+		if(message == undefined){
+			var dataSend = {
+				"payable" : "true",
+				"type": "1",
+				"name" : name,
+				"price" : price
+			}
+		}else{
+			var dataSend = {
+				"payable" : "true",
+				"type": "0",
+				"name" : name,
+				"price" : price,
+				"message" : message
+			}
 		}
 	}
-	
 	$.ajax({
 	   url : '/api/typeguests/'+typeguest_id, //API
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
 	   success : function(data){ // code_html contient le HTML renvoyé
+	   		$('#updateTypeGuestModal').modal('hide');
+	   		if(price != undefined){
+	   			$("#price-"+typeguest_id).html(price+"€/pers");
+	   		}
+	   		$("#name-"+typeguest_id).html(name);
+
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	   },

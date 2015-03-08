@@ -88,16 +88,16 @@
                                                 <option data-toggle="modal" data-target=".deleteGuestModal" data-multiple="1" data-action="delete" data-type="{{type_guest.id}}" value="delete">{{'delete'|trans}}</option>
                                         </select>
                                     </form>
-                                    <div class="typename"><input onblur="updateTypeguest({{type_guest.id}})" type="text" id="typename-{{type_guest.id}}" value="{{type_guest.label}}"></div>
+                                    <div id="name-{{type_guest.id}}" class="typename">{{type_guest.label}}</div>
                                 </div>
                                 
                                 {% if module.payable %}
-                                <div class="price col-md-2 col-sm-2 col-md-offset-2 col-sm-offset-0 typeprice">
-                                    <input onblur="updateTypeguest({{type_guest.id}})" type="text" id="typeprice-{{type_guest.id}}" value="{{type_guest.price}}"/><span>€/pers</span>
+                                <div id="price-{{type_guest.id}}" class="price col-md-2 col-sm-2 col-md-offset-2 col-sm-offset-0 typeprice">
+                                <span>{{type_guest.price}}€/pers</span>
                                 </div>
                                 {% endif %}
                                 <div class="right pull-right col-md-2 col-sm-3" >
-                                    <!-- <div class="modify_type"></div> -->
+                                    <div class="modify_type" onclick="showModalUpdateType({{type_guest.id}})">M</div>
 
                                     <div class="delete_type" onclick="showModalDeleteType({{type_guest.id}},'{{type_guest.label}}')"></div>                                    
 
@@ -182,7 +182,6 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-
                 <div class="modal fade deleteGuestModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -206,6 +205,29 @@
                             <div class="modal-body row">
                                 <button id="delete_confirm_typeguest" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
                                 <button id="delete_cancel" class="btn btn-default" class ="col-md-6" data-dismiss="modal"> {{'no'|trans}} </button>
+
+                            </div>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="updateTypeGuestModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title" id="myModalLabel">{{'add_typeguest' |trans}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <div id="updatetypeguest_form">
+                                        <input type="text" name="typename" value=""/>
+                                        <textarea name="typemail"></textarea>
+                                        <input type="text" name="typeprice"/>
+                                    </div>
+
+                                <p>
+                                    <input type="submit" value="{{'add' |trans}}">
+                                </p>
 
                             </div>
                         </div>

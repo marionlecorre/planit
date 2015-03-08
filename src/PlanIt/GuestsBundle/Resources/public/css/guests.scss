@@ -99,11 +99,16 @@ header {
 					margin-right: 49px;
 				}
 			}
+			.modify_type{
+				width:10px;
+				height: 10px;
+				float: left;
+			}
 			.delete_type {
 				background: url('/images/picto-suppr.png') no-repeat;
 				width: 10px;
 				height: 10px;
-				margin: 2px 23px 0 0;
+				margin: 2px 23px 0 10px;
 				float: left;
 				background-position-x : 0px;
 				&:hover {

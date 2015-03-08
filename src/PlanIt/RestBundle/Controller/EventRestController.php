@@ -107,7 +107,7 @@ class EventRestController extends Controller
                         'user' => $event->getUser()
                     ),
                     'balance' => $balance,
-                    'guests_inflow' => $guests_inflow,
+                    'guests_inflow' => $this->get("budget_api_controller")->getGuestsinflowAction($module->getId()),
                     'total_expenses' => $total_expenses,
                     'total_inflows' => $total_inflows
                 );

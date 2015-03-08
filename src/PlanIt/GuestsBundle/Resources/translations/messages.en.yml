@@ -1,6 +1,7 @@
 update_module: Modify the module
 guests: Guests
 add_typeguest: Add a category of guests
+update_typeguest: Update the category
 url: Generate the URL of registration
 add_payment: Add a means of payment
 payable: Paid event

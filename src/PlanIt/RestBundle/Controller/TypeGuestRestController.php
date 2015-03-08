@@ -10,7 +10,17 @@ use PlanIt\GuestsBundle\Form\TypeGuestType;
 class TypeGuestRestController extends Controller
 {
 
-	public function postTypeguestAction(Request $request, $module_id)
+	public function getTypeguestAction($type_id){
+        $type = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($type_id);
+        $payable = $type->getModule()->getPayable();
+        $module_type = $type->getModule()->getModuleType();
+        return array(
+            'type' => $type,
+            'payable' => $payable,
+            'module_type' => $module_type
+        );
+    }
+    public function postTypeguestAction(Request $request, $module_id)
     {
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
 
@@ -47,8 +57,11 @@ class TypeGuestRestController extends Controller
     {
         $typeguest = $this->getDoctrine()->getRepository('PlanItGuestsBundle:TypeGuest')->find($typeguest_id);
         $typeguest->setLabel($request->request->get('name'));
-        if($request->request->get('type') == 'payable'){
+        if($request->request->get('payable') == 'true'){
             $typeguest->setPrice($request->request->get('price'));
+        }
+        if($request->request->get('type') == '0'){
+            $typeguest->setMessage($request->request->get('message'));
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($typeguest);
