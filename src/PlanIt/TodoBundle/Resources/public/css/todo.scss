@@ -12,16 +12,20 @@ header {
 	background-color: $color;
 	color: #ffffff;
 	padding:10px 30px 10px 30px;
-	margin: 10px 15px 0px 15px;
+	/*margin: 10px 15px 0px 15px;*/
+	margin: 10px 0 0 -10px;
 	@include border-radius(5px);
 	input{
 		float:left;
 		border:none;
 		background-color: #ff9f37;
 		margin-right: 20px;
+		cursor: pointer;
 		&:focus {
-			background-color: #FFF !important;
-			color: #000000;
+			background-color: #fdb362 !important;
+			color: #212121;
+			padding:2px 5px;			
+			@include border-radius(5px);
 			outline : none;
 		}
 	}
@@ -46,37 +50,31 @@ header {
 
 .add-item {
 	margin-top: 7px;
-	margin-right: -45px;
+	margin-right: -20px;
 }
 
-.modify_item, .delete {
-	background: url('/images/picto-modif.png') no-repeat;
-	width: 24px;
-	height: 24px;
-	margin: 2px 23px 0 0;
+.delete, .delete-type {
+	background: url('/images/picto-suppr.png') no-repeat;
+	width: 10px;
+	height: 10px;
+	margin: 7px 25px 0 0;
 	float: left;
+	background-position-x : -63px;
 	&:hover {
 		cursor: pointer;
 	}
 }
 
-.delete{
-	background-position-x : -20px;
-	&:hover {
-		background-position-x : -69px;
-	}
-}
-
-.modify_item{
-	margin-right: 0px;
-	&:hover {
-		background-position-x : -49px;
-	}
+.delete-type{
+	background-position-x : 0px;
 }
 
 
 /* LISTE DRAG AND DROP */
-.sortable, .exclude {
+.sortable li, .exclude li {
+	list-style: none;	
+}
+/*.sortable, .exclude {
 	margin: auto;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -112,4 +110,24 @@ li.sortable-placeholder {
 	padding:0;
 	margin: -10px 0px 20px 0px;
 	height:40px;
+}
+*/
+
+.title-list-task{
+	background-color: $neutral;
+	@include border-radius(5px);  
+	text-align: center;
+	padding: 5px 25px;
+	margin-top: 20px;
+	input{
+		border: none;
+		cursor: pointer;
+		padding: 2px 5px;
+		text-align: center;
+		background-color: #f0f0f0;
+		@include border-radius(5px);
+	}
+}
+.type-list{
+	margin-top: 70px;
 }

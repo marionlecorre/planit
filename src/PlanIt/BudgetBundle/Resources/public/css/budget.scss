@@ -97,17 +97,17 @@ table{
 
 	/* ntlignes paires. */
 	tbody tr:nth-child(even) { 
-		background-color:#e0e0e0;
+		background-color:#f4f3f5;
 		td input {
-			background-color:#e0e0e0;
+			background-color:#f4f3f5;
 		}		
 	}
 
 	/* impaires. */
 	tbody tr:nth-child(odd) { 
-		background-color:#f4f3f5;
+		background-color:#e0e0e0;
 		td input {
-			background-color:#f4f3f5;
+			background-color:#e0e0e0;
 		} 
 	}
 
@@ -190,7 +190,7 @@ span#legend {
 
 .apport-base{
 	background-color: $neutral !important;
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e2e2e2;
 }
 
 

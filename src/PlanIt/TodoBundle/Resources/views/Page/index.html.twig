@@ -18,7 +18,7 @@
     </div>
 	<div class="row buttons">
         <div class="col-md-3 bt_todo"><button data-toggle="modal" data-target=".addListModal">{{'add_tasklist'|trans}}</button></div>
-        <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}">{{'print'|trans}}</a></div>
+        <div class="col-md-3 bt_todo"><a href="{{ path('PlanItTodoBundle_pdf', { 'module_id': module.id }) }}"><button>{{'print'|trans}}</button></a></div>
 
 
         <!--<div class="col-md-3 bt_todo"><button>Valider</button></div>-->
@@ -27,11 +27,11 @@
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
     {% for list in module.lists %}
-    <div id="blocklist-{{list.id}}">
-    	<div>
+    <div class="type-list" id="blocklist-{{list.id}}">
+    	<div class="title-list-task">
     		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
 	    	<div class="pull-right" >
-                <div class="delete" data-toggle="modal" data-target=".deleteListModal" data-content="{{list.name}}" data-id="{{list.id}}"></div>                                    
+                <div class="delete-type" data-toggle="modal" data-target=".deleteListModal" data-content="{{list.name}}" data-id="{{list.id}}"></div>                                    
             </div>
         </div>
     	<ul class="sortable todo-list" id="todo-list">
