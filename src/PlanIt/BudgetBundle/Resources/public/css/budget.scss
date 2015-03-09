@@ -440,22 +440,23 @@ a:hover, a:focus {
 	margin:0 10px 0 10px;
 	text-align: left;
 	height: 50px;
-}
-
-.sous-menu-depense a{
-	color:$color;
-}
-
-.sous-menu-depense li{
-	display: inline-block;
-	font-size: 12px;
-	height: 100%;
-	margin-right:20px;
-	font-weight: bold;
-	vertical-align: middle;
-	padding: 15px 10px;
-	cursor: pointer;
-	&:hover{
+	a{
+		color:$color;
+	}
+	li{
+		display: inline-block;
+		font-size: 12px;
+		height: 100%;
+		margin-right:20px;
+		font-weight: bold;
+		vertical-align: middle;
+		padding: 15px 10px;
+		cursor: pointer;
+		&:hover{
+			border-bottom:2px solid $color;
+		}
+	}
+	.tab-current{
 		border-bottom:2px solid $color;
 	}
 }

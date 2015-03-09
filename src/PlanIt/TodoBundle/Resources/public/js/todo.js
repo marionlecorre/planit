@@ -24,4 +24,24 @@ function todo(){
 	// 	width = $( this ).val().length*6.5;
 	// 	$( this ).css({width: width});
 	// });
+	accordeontTodo();
+}
+
+function accordeontTodo(){
+	$('.accordion-body:not(:first)').hide();
+	$('.accordion-head:first').addClass("open");
+	$('.accordion-head').click(function(e){
+		if(e.pageX>325) {
+			$(this).toggleClass("open").next().slideToggle()
+			.siblings('.accordion-body').slideUp();
+			$(this).siblings('.accordion-head').removeClass("open");
+			return false;
+		}
+	});
+}
+
+function showModalDeleteList(id, name){
+	$('.deleteListModal').modal('show');
+	$("#delete_confirm_list").attr("onclick","deleteList("+id+")");
+	$("#myModalLabel_deleteList").html("Etes-vous sur de vouloir supprimer la liste \""+name+"\" et les tâches qui lui sont associées ?");
 }

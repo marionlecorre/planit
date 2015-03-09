@@ -99,21 +99,24 @@ header {
 					margin-right: 49px;
 				}
 			}
-			.modify_type{
-				width:10px;
-				height: 10px;
-				float: left;
-			}
-			.delete_type {
-				background: url('/images/picto-suppr.png') no-repeat;
-				width: 10px;
-				height: 10px;
+			.modify_type, .delete_type{
+				background: url('/images/guests/picto-modif-suppr.png') no-repeat;
+				width:15px;
+				height: 15px;
 				margin: 2px 23px 0 10px;
 				float: left;
 				background-position-x : 0px;
 				&:hover {
 					cursor: pointer;
-					background-position-x : -149px;
+					background-position-x : -24px;
+				}
+			}
+
+			.delete_type {
+				background-position-x : -50px;
+				&:hover {
+					cursor: pointer;
+					background-position-x : -82px;
 				}
 			}
 

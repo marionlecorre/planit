@@ -28,42 +28,46 @@
 
     {% for list in module.lists %}
     <div class="type-list" id="blocklist-{{list.id}}">
-    	<div class="title-list-task">
+    	<div class="accordion-head">
     		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
 	    	<div class="pull-right" >
-                <div class="delete-type" data-toggle="modal" data-target=".deleteListModal" data-content="{{list.name}}" data-id="{{list.id}}"></div>                                    
+                <div class="delete-type" onclick="showModalDeleteList({{list.id}},'{{list.name}}')"></div>  
+
             </div>
         </div>
-    	<ul class="sortable todo-list" id="todo-list">
-		    {% for item in list.items %}
-				{% if not item.checked %}
-					<li id="blockitem-{{item.id}}">
-						<div class="row">
-							<div class="col-md-12 todo">
-								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}}, '{{item.content}}')">
-								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
-								<div class="pull-right" >
-                                    <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>                                    
-                                </div>
-							</div>
-						</div>			
-					</li>
-				{% endif %}
-			{% endfor %}
+        <div class="accordion-body">
+        	<ul>
+    		    {% for item in list.items %}
+    				{% if not item.checked %}
+    					<li id="blockitem-{{item.id}}">						
+    							<div class="todo">
+    								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}}, '{{item.content}}')">
+    								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+    								<div class="pull-right" >
+                                        <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
+                                    </div>
+    							</div>							
+    					</li>
+    				{% endif %}
+    			{% endfor %}
 
-			{% for item in list.items %}
-				{% if item.checked %} 
-					<li id="blockitem-{{item.id}}">
-						<div class="row">
-							<div class="col-md-12 todo checked">
-								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
-							</div>
-						</div>			
-					</li>
-				{% endif %}
-			{% endfor %}
-		</ul>
-		<div class="col-md-3 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+    			{% for item in list.items %}
+    				{% if item.checked %} 
+    					<li id="blockitem-{{item.id}}">
+    						<div class="row">
+    							<div class="col-md-12 todo checked">
+    								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
+    							</div>
+    						</div>			
+    					</li>
+    				{% endif %}
+    			{% endfor %}
+                    <!-- <p>Vous n'avez pas encore ajouté de tâche</p> -->               
+    		</ul>
+            <div class="row">
+    	       	<div class="col-md-3 col-sm-4 col-xs-6 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+            </div>
+        </div><!--accordeon body-->
 	</div>
 	{% endfor %}
 
@@ -102,10 +106,5 @@
 
 {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
-   	<script>
-	    $('.sortable').sortable({
-	    	items: ':not(.disabled)'
-		});
-	</script>
 	<script>todo();</script>
 {% endblock %}

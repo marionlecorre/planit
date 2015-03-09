@@ -11,30 +11,32 @@ header {
 .todo{
 	background-color: $color;
 	color: #ffffff;
-	padding:10px 30px 10px 30px;
-	/*margin: 10px 15px 0px 15px;*/
-	margin: 10px 0 0 -10px;
+	padding: 10px 30px;
+	margin: 10px 0px 10px 0px;
 	@include border-radius(5px);
 	input{
-		float:left;
 		border:none;
 		background-color: #ff9f37;
 		margin-right: 20px;
 		cursor: pointer;
 		&:focus {
-			background-color: #fdb362 !important;
+			background-color: lighten($color, 7%);
 			color: #212121;
-			padding:2px 5px;			
+			padding:1px 5px;			
 			@include border-radius(5px);
 			outline : none;
 		}
 	}
 }
 
-/*
-.todo input[type="checkbox"]{
-    background: white;
-}*/
+li {
+	list-style: none;	
+}
+
+ul{
+	padding:0;
+}
+
 
 .checked{
 	background-color: $neutral;
@@ -50,14 +52,13 @@ header {
 
 .add-item {
 	margin-top: 7px;
-	margin-right: -20px;
 }
 
 .delete, .delete-type {
 	background: url('/images/picto-suppr.png') no-repeat;
 	width: 10px;
 	height: 10px;
-	margin: 7px 25px 0 0;
+	margin-top: 11px;
 	float: left;
 	background-position-x : -63px;
 	&:hover {
@@ -67,67 +68,39 @@ header {
 
 .delete-type{
 	background-position-x : 0px;
+	margin-right: 30px;
+	&:hover {
+		background-position-x : -63px;
+	}
 }
 
 
-/* LISTE DRAG AND DROP */
-.sortable li, .exclude li {
-	list-style: none;	
-}
-/*.sortable, .exclude {
-	margin: auto;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	padding: 0;
-	-webkit-padding-start: 0px;
+.type-list{
+	margin-top: 30px;
 }
 
-.sortable.grid {
-	overflow: hidden;
-}
 
-.sortable li, .exclude li {
-	list-style: none;		
-	margin-bottom: 10px;
-	height: 40px;
-}
-
-.handles span {
-	cursor: move;
-}
-
-li.disabled {
-	opacity: 1;
-}
-
-li.sortable-placeholder {
-	border: 1px dashed #CCC;
-	background: none;	
-	padding:0;
-	margin: -10px 0px 20px 0px;
-	height:40px;
-}
-*/
-
-.title-list-task{
+.accordion-head {
+	border:0;
+	height: 41px;
+	background: url('/images/accordion.png') no-repeat;
+	background-position: 98% -19px;
 	background-color: $neutral;
-	@include border-radius(5px);  
+	@include border-radius(5px);
+	cursor: pointer;  
 	text-align: center;
-	padding: 5px 25px;
-	margin-top: 20px;
+	padding: 5px 30px;
 	input{
 		border: none;
+		margin-top:3px;
 		cursor: pointer;
 		padding: 2px 5px;
 		text-align: center;
 		background-color: #f0f0f0;
 		@include border-radius(5px);
 	}
-}
-.type-list{
-	margin-top: 70px;
+	&.open {
+		background-position: 98% 18px;
+	}
+
 }
