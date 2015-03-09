@@ -19,7 +19,7 @@ form:
     contract:
         file: Select a file *
     module:
-        max_capacity: Maximum capacity
+        max_capacity: Minimum capacity
         price: Maximum price
         time: Maximum travel time	
     place:
