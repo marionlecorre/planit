@@ -77,12 +77,14 @@ class EventRestController extends Controller
         $balance = "Empty";
         $total_expenses = 0;
         $total_inflows = 0;
+        $guests_inflow = 0;
         foreach ($event->getModules() as $module) {
             if ($module->getIntType() == 2){
                 $total_expenses = $module->getTotalExpenses();
                 $total_inflows = $module->getTotalInflows();
                 $balance = $module->getBalance();
-                $balance += $this->get("budget_api_controller")->getGuestsinflowAction($module->getId());
+                $guests_inflow = $this->get("budget_api_controller")->getGuestsinflowAction($module->getId());
+                $balance += $guests_inflow;
             }            
         }
         $modules = array();
@@ -107,7 +109,7 @@ class EventRestController extends Controller
                         'user' => $event->getUser()
                     ),
                     'balance' => $balance,
-                    'guests_inflow' => $this->get("budget_api_controller")->getGuestsinflowAction($module->getId()),
+                    'guests_inflow' => $guests_inflow,
                     'total_expenses' => $total_expenses,
                     'total_inflows' => $total_inflows
                 );

@@ -13,6 +13,17 @@
 		<div class="col-md-12"> </div>
 	</div>
 	{{ render(controller('PlanItBudgetBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
+	{% for message in app.session.flashbag.get('errors') %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+     <div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	        	OK
+	        </div>
+	  </div>
+	</div>
 
 	<section>			
 		<div class="container_onglet">			
@@ -66,7 +77,7 @@
 
 								<div class="col-md-4" id="infos"> 
 									<div class="info_dte info_color" id="balance">
-										<p class="benef" data-placement="top" data-original-title="(Apport personnel + Apports) - Dépenses"> {{'benefices'|trans}} </br> <span >{{infos.balance}} €</span> </p>
+										<p class="benef" data-placement="top" data-original-title="Apports (hors apport personnel) - Dépenses"> {{'benefices'|trans}} </br> <span >{{infos.balance}} €</span> </p>
 									</div>							
 									<div class="info_dte">
 										<img src="/images/budget/info_dte_limite.png" /> 
@@ -140,7 +151,7 @@
 								{% for type_expense in module.typesexpense %}								 	
 									<section id="section-topline-{{type_expense.id}}">	
 										<!--bt ajout cat depense-->
-										<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addInflowModal">{{'add_typeexpense'|trans}}</button></div>
+										<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addTypeExpenseModal">{{'add_typeexpense'|trans}}</button></div>
 										<!-- bt ajout depense-->
 										<div class="col-md-3 add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
 
@@ -163,7 +174,7 @@
 												
 												<tbody>
 													{% for expense in type_expense.expenses %}
-														<tr>
+														<tr id="expense-{{expense.id}}">
 															<td data-title="{{'item'|trans}} *">
 																<input type="text" class="input_tab article" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
 															</td>

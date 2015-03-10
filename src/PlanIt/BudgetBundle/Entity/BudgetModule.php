@@ -233,7 +233,7 @@ class BudgetModule extends Module
 
     public function getBalance()
     {
-        $balance = $this->getBase();
+        $balance = 0;
         foreach ($this->getInflows() as $inflow) {
             $balance += $inflow->getAmount();
         }

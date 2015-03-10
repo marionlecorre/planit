@@ -33,28 +33,34 @@ class PlaceRestController extends Controller
             $place->setState($request->request->get('state'));
             $file = $request->files->get('image');
             $extension = $file->guessExtension();
-            if (!$extension) {
-                $extension = 'bin';
+            if($request->files->get('image') != null){
+                $file = $request->files->get('image');
+                $extension = $file->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
+
+                $rand = rand(1, 99999);
+                $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                $place->setImage($place->getId().'-'.$rand.'.'.$extension);
             }
 
-            $rand = rand(1, 99999);
-            $file->move($place->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-            $place->setImage($user_id.'-'.$rand.'.'.$extension);
+            if($request->files->get('contract') != null){
+                $contract = $request->files->get('contract');
+                $extension = $contract->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
 
-            $contract = $request->files->get('image');
-            $extension = $contract->guessExtension();
-            if (!$extension) {
-                $extension = 'bin';
+                $rand = rand(1, 99999);
+                $contract->move($place->getUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                $place->setContract($place->getId().'-'.$rand.'.'.$extension);
             }
-
-            $rand = rand(1, 99999);
-            $contract->move($place->getImageUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-            $place->setImage($user_id.'-'.$rand.'.'.$extension);
             $em = $this->getDoctrine()
                            ->getEntityManager();
                 $em->persist($place);
                 $em->flush();
-            return 'ok';           
+            return 'ok';            
         }else{
             $form = $this->createForm(new PlaceType("add"), $place);
             $form->handleRequest($request);

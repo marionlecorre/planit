@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Jeu 26 Février 2015 à 16:49
+-- Généré le :  Lun 09 Mars 2015 à 22:16
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.6.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `event` (
   `beginDate` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `event`
@@ -152,14 +152,15 @@ CREATE TABLE `item` (
   `list_id` int(11) DEFAULT NULL,
   `content` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `checked` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `item`
 --
 
 INSERT INTO `item` (`id`, `list_id`, `content`, `checked`) VALUES
-(1, 1, 'Se faire beaux', 0);
+(1, 1, 'Se faire beaux', 0),
+(8, 1, 'Appeler méméee', 0);
 
 -- --------------------------------------------------------
 
@@ -194,7 +195,7 @@ CREATE TABLE `module` (
   `max_capacity_t` int(11) DEFAULT NULL,
   `max_price_t` int(11) DEFAULT NULL,
   `maxguests` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `module`
@@ -217,7 +218,8 @@ INSERT INTO `module` (`id`, `name`, `slug`, `event_id`, `inttype`, `type`, `paya
 (30, 'Gestion des invités', 'gestion-des-invites', 11, 1, 'guests', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 30),
 (34, 'Gestion du budget', 'gestion-du-budget', 11, 2, 'budget', NULL, NULL, 300, 100, NULL, NULL, NULL, NULL, NULL, NULL),
 (36, 'Listes de tâches', 'listes-de-taches', 11, 5, 'todo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(37, 'Gestion du budget', 'gestion-du-budget', 3, 2, 'budget', NULL, NULL, 1200, 300, NULL, NULL, NULL, NULL, NULL, NULL);
+(37, 'Gestion du budget', 'gestion-du-budget', 3, 2, 'budget', NULL, NULL, 1200, 300, NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 'Gestion du transport', 'gestion-du-transport', 3, 4, 'transportation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 70, 1000, NULL);
 
 -- --------------------------------------------------------
 
@@ -282,19 +284,19 @@ CREATE TABLE `place` (
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `contract` longtext COLLATE utf8_unicode_ci,
-  `image` longtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `image` longtext COLLATE utf8_unicode_ci,
+  `oldstate` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `place`
 --
 
-INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`, `image`) VALUES
-(2, 'Car en bolage', '55 rue du culotte', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 1, 14, NULL, NULL, '2-11124.jpeg', '2-71053.jpeg'),
-(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 0, 14, NULL, NULL, '3-59506.jpeg', '3-16081.jpeg'),
-(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, '', 'Ils sont gentils', 0, 14, 0, 0, '4-19154.jpeg', NULL),
-(8, 'test', '17 bis rue du pressoir', NULL, NULL, NULL, NULL, NULL, NULL, 2, 14, NULL, NULL, '8-14654.pdf', '8-31608.jpeg'),
-(9, 'test', '17 bis rue du pressoir', NULL, NULL, NULL, NULL, NULL, NULL, 2, 14, NULL, NULL, '9-81296.pdf', '9-22427.jpeg');
+INSERT INTO `place` (`id`, `name`, `address`, `tel`, `distance`, `price`, `capacity`, `website`, `remark`, `state`, `module_id`, `latitude`, `longitude`, `contract`, `image`, `oldstate`) VALUES
+(2, 'Car en bolage', '55 rue du culotte', '023478946738', 135, 2000, 100, 'www.carenbolage.fr', 'Mouais', 3, 14, NULL, NULL, '2-11124.jpeg', '2-71053.jpeg', 0),
+(3, 'MFR Vertus', '33 rue du trone 94560 Hugres', '098765432123', 34, 3200, 200, 'www.mfrvertus.fr', 'Chouette', 1, 14, NULL, NULL, '3-59506.jpeg', '3-16081.jpeg', 0),
+(4, 'La maison de Jackie', '45 avenue du cheval 89760 lol', '0874563782', 45, 4000, 250, NULL, 'Ils sont gentils', 2, 14, NULL, NULL, '4-19154.jpeg', NULL, 2),
+(5, 'Test', '65 rue du paradis', NULL, NULL, NULL, NULL, NULL, NULL, 2, 14, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,6 +320,35 @@ INSERT INTO `task_list` (`id`, `name`, `module_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `transportation`
+--
+
+CREATE TABLE `transportation` (
+`id` int(11) NOT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `capacity` double DEFAULT NULL,
+  `website` longtext COLLATE utf8_unicode_ci,
+  `image` longtext COLLATE utf8_unicode_ci,
+  `contract` longtext COLLATE utf8_unicode_ci,
+  `state` int(11) NOT NULL,
+  `oldstate` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `transportation`
+--
+
+INSERT INTO `transportation` (`id`, `module_id`, `name`, `tel`, `price`, `capacity`, `website`, `image`, `contract`, `state`, `oldstate`) VALUES
+(3, 39, 'Car ki roule', NULL, 500, 500, NULL, '3-3354.jpeg', '3-63686.pdf', 1, 3),
+(8, 39, 'Car ki roule', NULL, 300, NULL, NULL, NULL, NULL, 3, 2),
+(9, 39, 'Car en bolage', '0345678356', 1000, 100, 'www.carenbolage.com', '9-65517.jpeg', '9-20811.jpeg', 3, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `type_expense`
 --
 
@@ -325,7 +356,7 @@ CREATE TABLE `type_expense` (
 `id` int(11) NOT NULL,
   `module_id` int(11) DEFAULT NULL,
   `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `type_expense`
@@ -361,7 +392,7 @@ INSERT INTO `type_guest` (`id`, `module_id`, `label`, `message`, `price`) VALUES
 (5, 6, 'Famille', 'Coucou ma famille', 0),
 (6, 2, 'Amis de Toulouse', 'bonne année !!!!', 3),
 (8, 4, 'Non adhérent', '', 70),
-(9, 22, 'Non adhérent', 'T''es moche', 40),
+(9, 22, 'Non adhérent', 'T''es moche !', 40),
 (10, 22, 'les moches', 'Yoo les moches', 60),
 (12, 30, 'Family', 'You are invited to celebrate the 31st Emy''s Birthday with us !', 0),
 (14, 30, 'Friends', 'Hello !\r\nYou are invited to celebrate the 31st Emy''s birthday with her family', 0),
@@ -463,6 +494,12 @@ ALTER TABLE `task_list`
  ADD PRIMARY KEY (`id`), ADD KEY `IDX_377B6C63AFC2B591` (`module_id`);
 
 --
+-- Index pour la table `transportation`
+--
+ALTER TABLE `transportation`
+ ADD PRIMARY KEY (`id`), ADD KEY `IDX_9B1722DAFC2B591` (`module_id`);
+
+--
 -- Index pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
@@ -488,7 +525,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `event`
 --
 ALTER TABLE `event`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `expense`
 --
@@ -508,12 +545,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT pour la table `payment_means`
 --
@@ -523,17 +560,22 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `place`
 --
 ALTER TABLE `place`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `task_list`
 --
 ALTER TABLE `task_list`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT pour la table `transportation`
+--
+ALTER TABLE `transportation`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT pour la table `type_expense`
 --
 ALTER TABLE `type_expense`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `type_guest`
 --
@@ -604,6 +646,12 @@ ADD CONSTRAINT `FK_741D53CDAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `modul
 --
 ALTER TABLE `task_list`
 ADD CONSTRAINT `FK_377B6C63AFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
+
+--
+-- Contraintes pour la table `transportation`
+--
+ALTER TABLE `transportation`
+ADD CONSTRAINT `FK_9B1722DAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`);
 
 --
 -- Contraintes pour la table `type_expense`
