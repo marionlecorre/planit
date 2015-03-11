@@ -3,7 +3,7 @@ function accordeon(){
 	$('#accordion li.event').click(function(){
 		$(this).toggleClass("open").next().slideToggle()
 		.siblings('ul.modules').slideUp();
-		//$(this).siblings('li.event').removeClass("open");
+		$(this).siblings('li.event').removeClass("open");
 		return false;
 	});
 }

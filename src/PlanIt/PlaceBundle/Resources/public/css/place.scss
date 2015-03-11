@@ -4,11 +4,29 @@ header {
 	border-color: $color;
 }
 
-.bt_place button{
-	background-color: $color;
-	padding: 4px 18px;
-	width: 100%;	
-	margin-bottom: 40px;
+input{
+	@include border-radius(5px);
+	padding: 2px 5px;
+}
+
+.selectize-input{
+	width: 30% !important;
+}
+
+.bt_place{
+	button{
+		background-color: $color;
+		padding: 4px 18px;
+		width: 100%;	
+		margin-bottom: 10px;
+	}
+	#modify_contract{
+		width:80% !important;
+		/*float: right;*/
+	}
+}
+.short_input{
+	width:50px;
 }
 
 .img_place{
@@ -20,9 +38,13 @@ header {
     position: relative;
 }
 
+#bt_img{
+	margin-top: 10px;
+}
+
 #infos{
 	p{
-		margin-bottom:15px;
+		margin-bottom:3.5px;
 	}
 	.label_descr{
 		font-weight: bold;
@@ -31,7 +53,7 @@ header {
 
 .accordion-head {
 		background: url('/images/accordion.png') no-repeat;
-		background-position: 97% -18px;
+		background-position: 97% -19px;
 		border: 0;
 		cursor: pointer;
 		margin-top: 30px;
@@ -41,17 +63,44 @@ header {
 		}	
 }
 
+
 	.list {
 		margin: 0px 0 10px;
 		@include border-radius(5px);
 		.check {
-				float: right;
-				margin: 15px 80px 0 0;
+				float: left;
+				margin: 15px 0 0 20px;
 				  -webkit-appearance: radio;			}
 		.head-list {
 			background-color: $head-list;
 			padding: 13px 27px 13px 10px;
-			@include border-radius(5px);		
+			@include border-radius(5px);
+			&:hover input{
+				background-color: lighten($head-list, 5%);
+			}
+			input{
+				float:left;
+				border:none;
+				margin-right: 20px;					
+				margin-top:-4px;
+				padding: 2px 5px !important;
+				@include border-radius(5px);
+				background-color: $head-list;/*
+				&:focus{
+					background-color: lighten($head-list, 5%);
+				}*/
+			}
+			.delete_place{
+				margin: 3px 50px 0 0;
+				background: url("/images/picto-suppr.png") no-repeat;
+				width:15px;
+				height: 15px;				
+				background-position-x : 0px;
+				&:hover {
+					cursor: pointer;
+					background-position-x : -63px;
+				}
+			}
 			.name {
 				float:left;
 				margin-left: 20px;
@@ -60,7 +109,10 @@ header {
 			}			
 			.price {
 				float: right;
-				margin-right: 49px;
+				margin: -3px 49px 0 0;
+				input{
+					margin: -2px 5px 0 0!important;
+				}
 			}
 			
 		}
@@ -68,16 +120,14 @@ header {
 	.checked {
 			background-color: $color !important;
 			color:#fff;
-				input{
-					float:left;
-					border:none;
-					background-color: $color;
-					margin-right: 20px;
-					&:focus {
-						background-color: #FFF !important;
-						color: #000000;
-						outline : none;
-					}
+			&:hover input{
+				background-color: lighten($color, 5%) !important;
+			}
+				input{				
+					background-color: $color !important;
+				/*	&:focus{
+						background-color: lighten($color, 5%) !important;
+					}	*/			
 				}
 			}
 	.nochecked {
@@ -106,7 +156,7 @@ header {
 		input{
 			border:none;
 			&:focus {
-				border: solid 1px $color;
+				border: solid 1px $neutral;
 				background-color: #FFF !important;
 				color: #000000;
 				outline : none;

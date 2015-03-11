@@ -58,7 +58,7 @@ ul{
 	background: url('/images/picto-suppr.png') no-repeat;
 	width: 10px;
 	height: 10px;
-	margin-top: 11px;
+	margin-top: 7px;
 	float: left;
 	background-position-x : -63px;
 	&:hover {
@@ -69,6 +69,7 @@ ul{
 .delete-type{
 	background-position-x : 0px;
 	margin-right: 30px;
+	margin-top: 11px;
 	&:hover {
 		background-position-x : -63px;
 	}

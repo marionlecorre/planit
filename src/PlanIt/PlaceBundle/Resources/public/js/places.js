@@ -1,4 +1,5 @@
 function accordeonPlace(){
+
 	$('.accordion-body:not(:first)').hide();
 	$('.accordion-head:first').addClass("open");
 	$('.accordion-head').click(function(e){

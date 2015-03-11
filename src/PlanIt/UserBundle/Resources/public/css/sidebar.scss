@@ -96,6 +96,11 @@
 	ul.modules li {
 		background-color: $menu_module;
 		border: solid 1px $menu;
+		height: auto !important;
+		a{
+			height: auto !important;
+			padding: 7px 0 7px 40px !important;
+		}
 	}
 	ul.events { 
 		li.event {

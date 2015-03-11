@@ -38,8 +38,8 @@
 			</div>
 			<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% else %} nochecked {% endif %}">	
 				<div class="name"><input type="text" id="name-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.name}}"></div>
-			    <div class="price"><input type="text" id="price-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.price}}">€</div>
-			    <button onclick="showModalDeletePlace({{place.id}}, '{{place.name}}')">X</button>
+			    <div class="pull-right delete_place" onclick="showModalDeletePlace({{place.id}}, '{{place.name}}')"></div> 
+			    <div class="price"><input type="text" class="short_input" id="price-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.price}}">€</div>
 			</div>
 			<div class="accordion-body">
 			    <div class="labels row">
@@ -50,13 +50,13 @@
 			    			<img src="/images/no-image.jpg" width="100%"/>
 			    		{% endif %}
 							<div class="bt_place">
-			                    <button data-toggle="modal" data-target=".updateImageModal" data-id="{{place.id}}">{{'update_image'|trans}}</button> 
+			                    <button data-toggle="modal" id="bt_img" data-target=".updateImageModal" data-id="{{place.id}}">{{'update_image'|trans}}</button> 
 			                </div>
 			        </div>
 			    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
 			        	<p><span class="label_descr">{{'address'|trans}}</span> : <input type="text" id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.address}}"></p>
-			        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
-			        	<p><span class="label_descr">{{'distance'|trans}}</span> : <input type="text" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
+			        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" class="short_input" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
+			        	<p><span class="label_descr">{{'distance'|trans}}</span> : <input type="text" class="short_input" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
 			        	<p><span class="label_descr">{{'tel'|trans}}</span> : <input type="text" id="tel-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.tel}}"></p>
 			        	<p><span class="label_descr">{{'website'|trans}}</span> : <input type="text" id="website-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.website}}"> </p>
 			        	<p><span class="label_descr">{{'remark'|trans}}</span> : <input type="text" id="remark-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.remark}}"> </p>
@@ -70,7 +70,7 @@
 			        	</p>
 			        	<p><span class="label_descr">{{'contract'|trans}}</span> : <a target="_blank" href="/files/place/contracts/{{place.contract}}">{{place.contract}} </a>
 			                <div class="bt_place">
-			                    <button data-toggle="modal" data-target=".updateContractModal" data-id="{{place.id}}">{{'update_contract'|trans}}</button> 
+			                    <button data-toggle="modal" id="modify_contract" data-target=".updateContractModal" data-id="{{place.id}}">{{'update_contract'|trans}}</button> 
 			                </div>
 			        	</p>
 			    	</div>

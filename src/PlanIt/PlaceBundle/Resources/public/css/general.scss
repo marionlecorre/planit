@@ -1,5 +1,5 @@
 
-$color: #f9de2f;
+$color: #FFCB07;
 $neutral: #d8d7d7;
 $head-list: #d8d7d7;
 $row-list: #f1f1f1;
@@ -19,6 +19,9 @@ $row-list: #f1f1f1;
 .modal-body {
 	input[type="submit"] {
 		background-color: $color;
+		&:hover {
+			background-color: darken($color, 3%);
+		}
 	}
 }
 
