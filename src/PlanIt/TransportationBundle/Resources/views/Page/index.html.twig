@@ -53,6 +53,7 @@
 				        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" id="capacity-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.capacity}}"></p>
 				        	<p><span class="label_descr">{{'tel'|trans}}</span> : <input type="text" id="tel-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.tel}}"></p>
 				        	<p><span class="label_descr">{{'website'|trans}}</span> : <input type="text" id="website-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.website}}"> </p>
+				        	<p><span class="label_descr">{{'remark'|trans}}</span> : <input type="text" id="remark-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.remark}}"> </p>
 				        	<p><span class="label_descr">{{'state'|trans}}</span> : 
 				        		<select id="state-transportation-{{transportation.id}}" onchange="updateTransportation({{transportation.id}})">
 				        			<option value="0" {% if transportation.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>

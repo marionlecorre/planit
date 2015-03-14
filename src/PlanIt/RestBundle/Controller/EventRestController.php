@@ -250,6 +250,11 @@ class EventRestController extends Controller
             break;
 
             case 4:
+                $transportations = $module->getTransportations();
+                foreach ($transportations as $transportation) {
+                    $em->remove($transportation);
+                    $em->flush();
+                }
 
             break;
 

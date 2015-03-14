@@ -13,6 +13,10 @@ use PlanIt\PlaceBundle\Form\ImageType;
 class PlaceRestController extends Controller
 {
 
+    public function getPlacesAction(Request $request, $module_id){
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        return $module->getPlaces();
+    }
     public function postPlaceAction(Request $request, $module_id)
     {
         $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);

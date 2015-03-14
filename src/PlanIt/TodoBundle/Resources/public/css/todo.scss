@@ -37,6 +37,19 @@ ul{
 	padding:0;
 }
 
+.block-jauge{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	.elmt-jauge{
+		margin-left: 5px;
+		display:block;
+		float:left;
+		width:10%;
+		height:5px;
+		background-color: $neutral;
+	}
+}
+
 
 .checked{
 	background-color: $neutral;

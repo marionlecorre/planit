@@ -24,31 +24,38 @@ class TransportationRestController extends Controller
             $transportation->setPrice($request->request->get('price'));
             $transportation->setCapacity($request->request->get('capacity'));
             $transportation->setWebsite($request->request->get('website'));
+            $transportation->setRemark($request->request->get('remark'));
             $transportation->setState($request->request->get('state'));
             $file = $request->files->get('image');
             $extension = $file->guessExtension();
-            if (!$extension) {
-                $extension = 'bin';
+            if($request->files->get('image') != null){
+                $file = $request->files->get('image');
+                $extension = $file->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
+
+                $rand = rand(1, 99999);
+                $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                $place->setImage($place->getId().'-'.$rand.'.'.$extension);
             }
 
-            $rand = rand(1, 99999);
-            $file->move($transportation->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-            $transportation->setImage($user_id.'-'.$rand.'.'.$extension);
+            if($request->files->get('contract') != null){
+                $contract = $request->files->get('contract');
+                $extension = $contract->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
 
-            $contract = $request->files->get('image');
-            $extension = $contract->guessExtension();
-            if (!$extension) {
-                $extension = 'bin';
+                $rand = rand(1, 99999);
+                $contract->move($place->getUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+                $place->setContract($place->getId().'-'.$rand.'.'.$extension);
             }
-
-            $rand = rand(1, 99999);
-            $contract->move($transportation->getImageUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-            $transportation->setImage($user_id.'-'.$rand.'.'.$extension);
             $em = $this->getDoctrine()
                            ->getEntityManager();
-                $em->persist($transportation);
+                $em->persist($place);
                 $em->flush();
-            return 'ok';           
+            return 'ok';      
         }else{
             $form = $this->createForm(new TransportationType("add"), $transportation);
             $form->handleRequest($request);

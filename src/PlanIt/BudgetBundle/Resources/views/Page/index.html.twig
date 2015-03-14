@@ -147,65 +147,68 @@
 							<section  class="stabs" id="section-topline-depenses">
 								
 								<!--	<p>Vous n'avez pas encore créé de catégorie de dépense de dépense</p>  -->
-								<div class="sous-content-wrap">							
-								{% for type_expense in module.typesexpense %}								 	
+								<div class="sous-content-wrap">						
+								{% for type_expense in module.typesexpense %}							 	
 									<section id="section-topline-{{type_expense.id}}">	
 										<!--bt ajout cat depense-->
 										<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addTypeExpenseModal">{{'add_typeexpense'|trans}}</button></div>
 										<!-- bt ajout depense-->
 										<div class="col-md-3 add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
-
-										<div class="responsive-table-line section-topline">
-											<table class="table table-condensed table-body-center">
-												<thead>
-													<tr>
-														<th>{{'item'|trans}} *</th>
-														<th>{{'quantity'|trans}} *</th>
-														<th>{{'stock'|trans}} *</th>
-														<th>{{'to_buy'|trans}}</th>
-														<th>{{'unit_price'|trans}} *</th>
-														<th>{{'total'|trans}}</th>
-														<th>{{'consumed'|trans}} *</th>
-														<th>{{'bought'|trans}} *</th>								
-														<th>{{'delete'|trans}}</th>
-													</tr>
-												</thead>
-												
-												
-												<tbody>
-													{% for expense in type_expense.expenses %}
-														<tr id="expense-{{expense.id}}">
-															<td data-title="{{'item'|trans}} *">
-																<input type="text" class="input_tab article" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
-															</td>
-															<td data-title="{{'quantity'|trans}} *">
-																<input type="text" class="input_tab" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
-															</td>
-															<td data-title="{{'stock'|trans}} *">
-																<input type="text" class="input_tab" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
-															</td>
-															<td data-title="{{'to_buy'|trans}}">
-																{{expense.quantity - expense.stock}}
-															</td>
-															<td data-title="{{'unit_price'|trans}} *">
-																<input type="text" class="input_tab" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
-															</td>
-															<td data-title="{{'total'|trans}}">
-																{{expense.price * (expense.quantity - expense.stock)}} €
-															</td>
-															<td data-title="{{'consumed'|trans}} *">
-																<input type="text" class="input_tab" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
-															</td>
-															<td data-title="{{'bought'|trans}} *">
-																<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought == true %} checked {%endif%}/>
-															</td>
-															<td data-title="{{'delete'|trans}}" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}"><div class="delete-expense"> </div></td>
+										{% if type_expense.expenses is not empty %}	
+											<div class="responsive-table-line section-topline">
+												<table class="table table-condensed table-body-center">
+													<thead>
+														<tr>
+															<th>{{'item'|trans}} *</th>
+															<th>{{'quantity'|trans}} *</th>
+															<th>{{'stock'|trans}} *</th>
+															<th>{{'to_buy'|trans}}</th>
+															<th>{{'unit_price'|trans}} *</th>
+															<th>{{'total'|trans}}</th>
+															<th>{{'consumed'|trans}} *</th>
+															<th>{{'bought'|trans}} *</th>								
+															<th>{{'delete'|trans}}</th>
 														</tr>
-													{% endfor %}						
-												</tbody>
-											</table>
-											<span id="legend">* {{'changeable_data'|trans}}</span>							
-										</div>
+													</thead>
+													
+													
+													<tbody>
+														{% for expense in type_expense.expenses %}
+															<tr id="expense-{{expense.id}}">
+																<td data-title="{{'item'|trans}} *">
+																	<input type="text" class="input_tab article" id="name-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.name}}">
+																</td>
+																<td data-title="{{'quantity'|trans}} *">
+																	<input type="text" class="input_tab" id="quantity-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.quantity}}"> {{expense.unit}}
+																</td>
+																<td data-title="{{'stock'|trans}} *">
+																	<input type="text" class="input_tab" id="stock-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.stock}}">
+																</td>
+																<td data-title="{{'to_buy'|trans}}">
+																	{{expense.quantity - expense.stock}}
+																</td>
+																<td data-title="{{'unit_price'|trans}} *">
+																	<input type="text" class="input_tab" id="price-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.price}}">
+																</td>
+																<td data-title="{{'total'|trans}}">
+																	{{expense.price * (expense.quantity - expense.stock)}} €
+																</td>
+																<td data-title="{{'consumed'|trans}} *">
+																	<input type="text" class="input_tab" id="consummate-expense-{{expense.id}}" onblur="updateExpense({{expense.id}})" value="{{expense.consummate}}">
+																</td>
+																<td data-title="{{'bought'|trans}} *">
+																	<input id="bought-expense-{{expense.id}}" onclick="updateExpense({{expense.id}})" type="checkbox" {% if expense.bought == true %} checked {%endif%}/>
+																</td>
+																<td data-title="{{'delete'|trans}}" data-toggle="modal" data-target=".deleteExpenseModal" data-id="{{expense.id}}" data-name="{{expense.name}}"><div class="delete-expense"> </div></td>
+															</tr>
+														{% endfor %}						
+													</tbody>
+												</table>
+												<span id="legend">* {{'changeable_data'|trans}}</span>							
+											</div>
+										{% else %}
+											<p> Pas de dépense bébé </p>
+										{% endif %}
 									</section>
 								{% endfor %}
 							</div>

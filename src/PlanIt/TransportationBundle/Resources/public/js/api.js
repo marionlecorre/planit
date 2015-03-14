@@ -58,6 +58,7 @@ function updateTransportation(id){
 		"capacity" : $("#capacity-transportation-"+id).val(),
 		"tel" : $("#tel-transportation-"+id).val(),
 		"website" : $("#website-transportation-"+id).val(),
+		"remark" : $("#remark-transportation-"+id).val(),
 		"state" : $("#state-transportation-"+id).val(),
 	}}
 	$.ajax({

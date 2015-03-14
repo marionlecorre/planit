@@ -61,13 +61,13 @@ class Place
 
     /**
      * @ORM\Column(type="float",nullable=true)
-     * @Assert\Type(type="float", message="Attention, la valeur de la lattitude est incorrecte.")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la lattitude est incorrecte.")
      */
     protected $latitude;
 
     /**
      * @ORM\Column(type="float",nullable=true)
-     * @Assert\Type(type="float", message="Attention, la valeur de la longitude est incorrecte.")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la longitude est incorrecte.")
      */
     protected $longitude;
 
