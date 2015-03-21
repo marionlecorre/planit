@@ -85,10 +85,7 @@ input{
 				margin-top:-4px;
 				padding: 2px 5px !important;
 				@include border-radius(5px);
-				background-color: $head-list;/*
-				&:focus{
-					background-color: lighten($head-list, 5%);
-				}*/
+				background-color: $head-list;
 			}
 			.delete_place{
 				margin: 3px 50px 0 0;
@@ -96,10 +93,6 @@ input{
 				width:15px;
 				height: 15px;				
 				background-position-x : 0px;
-				&:hover {
-					cursor: pointer;
-					background-position-x : -63px;
-				}
 			}
 			.name {
 				float:left;
@@ -120,29 +113,17 @@ input{
 	.checked {
 			background-color: $color !important;
 			color:#fff;
+			.delete_place{				
+				background-position-x : -63px !important;
+			}
+			input{				
+				background-color: $color !important;
+				color:#fff;			
+			}
 			&:hover input{
-				background-color: lighten($color, 5%) !important;
+				background-color: lighten($color, 7%) !important;
 			}
-				input{				
-					background-color: $color !important;
-				/*	&:focus{
-						background-color: lighten($color, 5%) !important;
-					}	*/			
-				}
-			}
-	.nochecked {
-				input{
-					float:left;
-					border:none;
-					background-color: $head-list;
-					margin-right: 20px;
-					&:focus {
-						background-color: #FFF !important;
-						color: #000000;
-						outline : none;
-					}
-				}
-			}
+	}
 	.labels.row {
 			margin: 0;
 			padding: 15px 15px 10px 15px;
