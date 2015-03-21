@@ -10,6 +10,7 @@ header {
 		background-color: $color;
 		padding: 4px 17px;
 		width: 100%;
+		font-size: 12px;
 		margin-top: 6px;
 	}
 	#paying-checkbox {
@@ -18,6 +19,13 @@ header {
 		input[type=checkbox] {
 			margin-right: 13px;
 		}
+	}
+
+	#guests_list .empty {
+		text-align: center;
+	  	margin-top: 40px;
+	  	color: $color;
+	  	font-size: 16px;
 	}
 
 	.list {
@@ -138,11 +146,18 @@ header {
 				text-align: center;
 			}
 		}
+		.empty {
+			text-align: center;
+		  	margin-top: 12px;
+		  	color: $color;
+		  	font-size: 16px;
+		}
 	 	.row-list.row {
 			margin:0 0 10px 0;
 			background-color: $row-list;
 			padding: 7px 0;
 			height: 40px;
+
 			@include border-radius(5px); 
 			.col-xs-1, .left.col-xs-6 {
 				padding:0;
