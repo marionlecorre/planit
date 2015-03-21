@@ -1,6 +1,6 @@
 function deleteEvent(event_id){
 	$.ajax({
-	   url : '/api/events/'+event_id, //API
+	   url : '/app_dev.php/api/events/'+event_id, //API
 	   type : 'DELETE',
 	   dataType : 'json',
 	   success : function(module){ // code_html contient le HTML renvoyé

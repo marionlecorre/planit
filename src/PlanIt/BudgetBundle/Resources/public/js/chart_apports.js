@@ -1,11 +1,11 @@
 function getListInflow(id){
     $.ajax({
-       url : '/api/lists/'+id+'/inflow', //API
+       url : '/app_dev.php/api/lists/'+id+'/inflow', //API
        type : 'GET',
        dataType : 'json', // On désire recevoir du HTML
        success : function(inflows, statut){ // code_html contient le HTML renvoyé
             $.ajax({
-               url : '/api/guestsinflows/'+id, //API
+               url : '/app_dev.php/api/guestsinflows/'+id, //API
                type : 'GET',
                dataType : 'json', // On désire recevoir du HTML
                success : function(guests_inflows, statut){ // code_html contient le HTML renvoyé

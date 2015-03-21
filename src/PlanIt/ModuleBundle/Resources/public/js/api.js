@@ -1,6 +1,6 @@
 function getModule(id){
 	$.ajax({
-	   url : '/api/modules/'+id, //API
+	   url : '/app_dev.php/api/modules/'+id, //API
 	   type : 'GET',
 	   dataType : 'json', // On désire recevoir du HTML
 	   success : function(module, statut){ // code_html contient le HTML renvoyé

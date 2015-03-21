@@ -60,11 +60,13 @@
     			{% for item in list.items %}
     				{% if item.checked %} 
     					<li id="blockitem-{{item.id}}">
-    						<div class="row">
-    							<div class="col-md-12 todo checked">
-    								{{item.content}} <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
-    							</div>
-    						</div>			
+    							<div class="todo checked">
+    								<input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
+                                    <input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+                                    <div class="pull-right" >
+                                        <div class="delete_checked" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
+                                    </div>
+    							</div>	
     					</li>
     				{% endif %}
     			{% endfor %}
