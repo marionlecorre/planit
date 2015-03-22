@@ -107,6 +107,14 @@ fos_rest:
     routing_loader:
         default_format: json
 
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: PlanIt\UserBundle\Entity\User
+    use_username_form_type: false
+    registration:
+        form:
+            type: planit_user_registration
 
 knp_snappy:
     pdf:

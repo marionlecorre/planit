@@ -23,7 +23,10 @@
                 <header>
                     <div class="user">
                         <img src="/images/{{ user.image }}" />
-                        <span class="name">{{user.name}} {{user.surname}}</span> 
+                        <span class="name">{{user.firstname}} {{user.lastname}}</span> 
+                        <a href="{{ path('PlanItUserBundle_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
                     </div>
                 </header>
             {% endblock %}
@@ -39,7 +42,7 @@
                     </div>
                     <div class="user">
                         <img  src="/images/{{ user.image }}"/>
-                        <span class="name">{{user.name}} {{ user.surname }}</span> 
+                        <span class="name">{{user.firstname}} {{ user.lastname }}</span> 
                         <span class="counter-event">{{'nb_events'|trans({'%nb%': user.events|length}) }}</span>
                     </div>
                     {% block navigation %}

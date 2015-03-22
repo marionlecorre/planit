@@ -1,6 +1,6 @@
 add_task: Ajouter une tâche
 add_tasklist: Ajouter une liste de tâches
-print: Imprimer la liste des tâches
+print_task: Imprimer la liste des tâches
 add: Ajouter
 form:
     item:

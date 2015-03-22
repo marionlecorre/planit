@@ -3,7 +3,6 @@
 namespace PlanIt\TodoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use PlanIt\ModuleBundle\Entity\TaskList;
 
 /**
  * @ORM\Entity

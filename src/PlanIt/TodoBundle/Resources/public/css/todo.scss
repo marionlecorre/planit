@@ -67,7 +67,7 @@ ul{
 	margin-top: 7px;
 }
 
-.delete, .delete-type {
+.delete, .delete-type, .delete-checked {
 	background: url('/images/picto-suppr.png') no-repeat;
 	width: 10px;
 	height: 10px;
@@ -86,6 +86,10 @@ ul{
 	&:hover {
 		background-position-x : -63px;
 	}
+}
+
+.delete-checked{
+	background-position-x : 0px;
 }
 
 

@@ -2,3 +2,8 @@ title: EVENTS
 add_event: Add an event
 update_event: Update the event
 J: D
+form:
+    registration:
+        firstname: Firstname
+        lastname: Lastname
+        image: Image

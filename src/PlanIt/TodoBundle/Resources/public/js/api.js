@@ -6,16 +6,16 @@ function changeChecked(item_id, content){
 		checked = 0;
 	}
 	$.ajax({
-	   url : '/api/items/'+item_id+'/checked', //API
+	   url : '/api/items/'+item_id+'/checked',
 	   type : 'PUT',
-	   dataType : 'json', // On désire recevoir du HTML
+	   dataType : 'json',
 	   data : {checked : checked},
-	   success : function(list_id){ // code_html contient le HTML renvoyé
+	   success : function(list_id){ 
 	       	$('#blockitem-'+item_id).remove();
 	       	if(checked == 1){
-	       		$("#blocklist-"+list_id+" .todo-list").append('<li><div class="row"><div class="col-md-12 todo checked">'+content+' <input type="checkbox" id="checkbox-'+item_id+'" checked name="todo1" onClick="changeChecked('+item_id+', \''+content+'\')"></div></div></li>')
+	       		$("#blocklist-"+list_id+" .todo-list").append('<li id="blockitem-'+item_id+'"><div class="col-md-12 todo checked"><input type="checkbox" id="checkbox-'+item_id+'" checked name="todo1" onClick="changeChecked('+item_id+', \''+content+'\')">'+content+' </div></li>')
 	       	}else{
-				$("#blocklist-"+list_id+" .todo-list").prepend('<li id="blockitem-'+item_id+'"><div class="row"><div class="col-md-12 todo"><input type="checkbox" id="checkbox-'+item_id+'" name="todo1" onClick="changeChecked('+item_id+', \''+content+'\')"><input type="text" class="updatable-input" id="item-'+item_id+'" onblur="updateItem('+item_id+')" value="'+content+'"><div class="pull-right" ><div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="'+content+'" data-id="'+item_id+'"></div></div></div></div></li>');
+				$("#blocklist-"+list_id+" .todo-list").prepend('<li id="blockitem-'+item_id+'"><div class="todo"><input type="checkbox" id="checkbox-'+item_id+'" name="todo1" onClick="changeChecked('+item_id+', \''+content+'\')"><input type="text" class="updatable-input" id="item-'+item_id+'" onblur="updateItem('+item_id+')" value="'+content+'"><div class="pull-right" ><div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="'+content+'" data-id="'+item_id+'"></div></div></div></li>');
 	       	}
 	       /**/
 	   },
@@ -27,10 +27,10 @@ function changeChecked(item_id, content){
 
 function deleteItem(item_id){
 	$.ajax({
-	   url : '/api/items/'+item_id, //API
+	   url : '/api/items/'+item_id,
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	   success : function(module, statut){ 
 	       	$('#blockitem-'+item_id).remove();
 	   		$('.deleteItemModal').modal('hide');
 	   		$('#okModal').modal('show');
@@ -46,11 +46,11 @@ function deleteItem(item_id){
 function updateItem(item_id){
 
 	$.ajax({
-	   url : '/api/items/'+item_id, //API
+	   url : '/api/items/'+item_id,
 	   type : 'PUT',
-	   dataType : 'json', // On désire recevoir du HTML
+	   dataType : 'json',
 	   data : {content : $("#item-"+item_id).val()},
-	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	   success : function(module, statut){
 	       	$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	       /**/
@@ -64,11 +64,11 @@ function updateItem(item_id){
 function updateList(list_id){
 
 	$.ajax({
-	   url : '/api/tasklists/'+list_id, //API
+	   url : '/api/tasklists/'+list_id,
 	   type : 'PUT',
-	   dataType : 'json', // On désire recevoir du HTML
+	   dataType : 'json',
 	   data : {name : $("#list-"+list_id).val()},
-	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	   success : function(module, statut){
 	       	$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
 	       /**/
@@ -81,10 +81,10 @@ function updateList(list_id){
 
 function deleteList(list_id){
 	$.ajax({
-	   url : '/api/tasklists/'+list_id, //API
+	   url : '/api/tasklists/'+list_id,
 	   type : 'DELETE',
 	   dataType : 'json',
-	   success : function(module, statut){ // code_html contient le HTML renvoyé
+	   success : function(module, statut){ 
 	       	$('#blocklist-'+list_id).remove();
 	   		$('.deleteListModal').modal('hide');
 	   		$('#okModal').modal('show');

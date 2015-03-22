@@ -3,3 +3,7 @@ services:
         class: PlanIt\UserBundle\Twig\Extensions\UserExtension
         tags:
             - { name: twig.extension }
+    acme_user.registration.form.type:
+        class: PlanIt\UserBundle\Form\RegistrationFormType
+        tags:
+            - { name: form.type, alias: planit_user_registration }

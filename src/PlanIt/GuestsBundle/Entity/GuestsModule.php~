@@ -4,6 +4,9 @@ use Doctrine\ORM\Mapping as ORM;
 use PlanIt\ModuleBundle\Entity\Module;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use JMS\Serializer\Annotation\Exclude;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\GuestsBundle\Repository\GuestsModuleRepository")
  * @ORM\Entity
@@ -13,6 +16,7 @@ class GuestsModule extends Module
 {
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du nombre d'invités maximum est incorrecte. Celui-ci doit être un nombre.")
      */
     protected $maxguests;
     /**
@@ -42,10 +46,12 @@ class GuestsModule extends Module
     protected $inttype;
     /**
      * @var \PlanIt\EventBundle\Entity\Event
+     * @Exclude
      */
     protected $event;
     /**
      * @ORM\OneToMany(targetEntity="PlanIt\GuestsBundle\Entity\Guest", mappedBy="module")
+     * @Exclude
      */
     protected $guests;
     /**
@@ -347,5 +353,20 @@ class GuestsModule extends Module
     public function getInttype()
     {
         return $this->inttype;
+    }
+
+    public function getTotalPrice(){
+        $total = 0;
+        $typeguests = $this->getTypesguests();
+        foreach ($typeguests as $type) {
+            $guests = $type->getGuests();
+            foreach ($guests as $guest) {
+                if($guest->getConfirmed() == 1){
+                    $total += $type->getPrice();
+                }
+            }
+        }
+
+        return $total;
     }
 }

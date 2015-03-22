@@ -346,4 +346,27 @@ class Transportation
         // le document/image dans la vue.
         return 'images/transportation/transportations_pictures';
     }
+
+    /**
+     * Set remark
+     *
+     * @param string $remark
+     * @return Transportation
+     */
+    public function setRemark($remark)
+    {
+        $this->remark = $remark;
+
+        return $this;
+    }
+
+    /**
+     * Get remark
+     *
+     * @return string 
+     */
+    public function getRemark()
+    {
+        return $this->remark;
+    }
 }

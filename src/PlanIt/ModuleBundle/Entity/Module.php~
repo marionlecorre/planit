@@ -4,6 +4,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use JMS\Serializer\Annotation\Exclude;
+
+
 /**
  * @ORM\Entity(repositoryClass="PlanIt\ModuleBundle\Repository\ModuleRepository")
  * @ORM\Entity
@@ -35,6 +38,7 @@ class Module
     /**
      * @ORM\ManyToOne(targetEntity="PlanIt\EventBundle\Entity\Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * @Exclude
      */
     protected $event;
     /**

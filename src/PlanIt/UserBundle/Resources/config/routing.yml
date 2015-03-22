@@ -4,3 +4,21 @@ PlanItUserBundle_homepage:
     requirements:
         _method:  GET
         id: \d+
+PlanItUserBundle_login:
+    path:     /login
+    defaults: { _controller: PlanItUserBundle:Page:login }
+    requirements:
+        _method:  GET
+        id: \d+
+PlanItUserBundle_register:
+    path:     /register
+    defaults: { _controller: PlanItUserBundle:Page:register }
+    requirements:
+        _method:  GET
+        id: \d+
+PlanItUserBundle_logout:
+    path:     /logout
+    defaults: { _controller: PlanItUserBundle:Page:logout }
+    requirements:
+        _method:  GET
+        id: \d+
