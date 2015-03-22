@@ -28,6 +28,20 @@ function places(){
 		$("#myModalLabel_deletePlace").html("Etes-vous sur de vouloir supprimer le lieu \""+name+"\" ?");
 		
 	});
+
+
+	// var previous;
+ //    $(".selectize-input").click(function () {
+ //        previous = $(this).children(".item").attr("data-value");
+ //    }).change(function() {
+ //        console.log(previous);
+ //        if (previous==1){
+ //        	console.log("couocu");
+ //        	$(this).parent("#head_list").css("background-color","blue");
+ //        	console.log($(this).parent("#head_list"));
+ //        }
+ //    });
+
 }
 
 function showModalDeletePlace(id, name){

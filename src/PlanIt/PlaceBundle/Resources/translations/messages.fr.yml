@@ -1,18 +1,21 @@
 place: GESTION DU LIEU
 add_place: Ajouter un lieu
-address: Adresse
-capacity: Capacité
-distance: Distance
-tel: Téléphone
-website: Site web
-remark: Remarque
-state: Etat
+address: Adresse : 
+address_placeholder: Veuillez ajouter l'adresse ici...
+capacity: Capacité : 
+distance: Distance : 
+tel: Téléphone : 
+website: Site web : 
+remark: Remarque : 
+remark_placeholder: Vous pouvez ajouter une remarque ici...
+state: Etat : 
 refused: Refusé
 contacted: Contacté
 tocontact: A contacter
 accepted: Accepté
-contract: Contrat
+contract: Contrat : 
 update_contract: Modifier le contrat
+add_contract : Ajouter un contrat
 update_image: Modifier l'image
 update: Modifier
 form:

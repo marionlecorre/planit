@@ -72,6 +72,9 @@ function updatePlace(id){
 	   		$('.deletePlaceModal').modal('hide');
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
+	   		// if($("#state-place-"+id).val() ==1){
+	   		// 	location.reload();
+	   		// }
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
