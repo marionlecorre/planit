@@ -1,6 +1,8 @@
 title: EVENTS
 add_event: Add an event
 update_event: Update the event
+register: Registration
+login: Log In
 J: D
 form:
     registration:

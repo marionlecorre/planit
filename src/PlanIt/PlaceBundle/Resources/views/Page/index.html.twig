@@ -61,13 +61,21 @@
 			        	<p><span class="label_descr">{{'tel'|trans}}</span> : <input type="text" id="tel-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.tel}}"></p>
 			        	<p><span class="label_descr">{{'website'|trans}}</span> : <input type="text" id="website-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.website}}"> </p>
 			        	<p><span class="label_descr">{{'remark'|trans}}</span> : <input type="text" id="remark-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.remark}}"> </p>
-			        	<p><span class="label_descr">{{'state'|trans}}</span> : 
-			        		<select id="state-place-{{place.id}}" onchange="updatePlace({{place.id}})">
-			        			<option value="0" {% if place.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
-			        			<option value="2" {% if place.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
-			        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
-			        			<option value="1" {% if place.state == 1 %} selected {% endif %}>{{'accepted'|trans}}</option>
-			        		</select>
+			        	<p id="p-state-place-{{place.id}}"><span class="label_descr">{{'state'|trans}}</span> : 
+			        		{% if place.state == 1 %}
+			        			<span class="accepted"> {{'accepted'|trans}} </span>
+			        			<select id="state-place-{{place.id}}" style="display:none" onchange="updatePlace({{place.id}})">
+				        			<option value="0" {% if place.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
+				        			<option value="2" {% if place.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
+				        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
+				        		</select>
+			        		{% else %}
+				        		<select id="state-place-{{place.id}}" onchange="updatePlace({{place.id}})">
+				        			<option value="0" {% if place.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
+				        			<option value="2" {% if place.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
+				        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
+				        		</select>
+			        		{% endif %}
 			        	</p>
 			        	<p><span class="label_descr">{{'contract'|trans}}</span> : <a target="_blank" href="/files/place/contracts/{{place.contract}}">{{place.contract}} </a>
 			                <div class="bt_place">

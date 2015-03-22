@@ -33,7 +33,7 @@ class User extends BaseUser
     protected $lastname;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30,nullable=true)
      */
     protected $image;
 
@@ -167,5 +167,18 @@ class User extends BaseUser
     public function setEmail($email){
         parent::setEmail($email);
         parent::setUsername($email);
+    }
+
+    public function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'images/user/user_pictures';
     }
 }

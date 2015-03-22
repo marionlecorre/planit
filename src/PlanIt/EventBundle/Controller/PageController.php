@@ -19,6 +19,16 @@ class PageController extends Controller
 	public function eventAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $event = $em->getRepository('PlanItEventBundle:Event')->find($id);
+        $user_id_module = $event->getUser()->getId();
+        if(!$user || $user == "anon."){
+            return $this->redirect($this->generateUrl('PlanItUserBundle_login'));
+        }else{
+            if($user->getId() != $user_id_module){
+                return $this->render('PlanItUserBundle:Page:forbidden.html.twig');
+            }
+        }
 
         $infos = $this->get("event_api_controller")->getEventAction($id);
         $notUsesModules = $this->get("event_api_controller")->getEventNotusemodulesAction($id);

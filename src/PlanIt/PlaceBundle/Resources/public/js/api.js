@@ -28,9 +28,16 @@ function chosePlace(place_id){
 	   dataType : 'json',
 	   data : {check:check},
 	   success : function(states){ // code_html contient le HTML renvoyé
-	   		console.log(states);
 	   		for(var id in states){
-	   			$("#state-place-"+id).val(states[id]);
+	   			$("#state-place-"+id).hide();
+	   			if(states[id] == 1){
+	   				$("#p-state-place-"+id).append('Accepté');
+	   			}else{
+	   				$("#state-place-"+id).show();
+	   				$("#p-state-place-"+id+" .accepted").remove();
+	   				$("#state-place-"+id).val(states[id]);
+	   				
+	   			}
 	   		}
 	   		$(".accordion-head").each(function(){
 	   			$(this).attr('class', 'head-list accordion-head nochecked');

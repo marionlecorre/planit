@@ -10,18 +10,19 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+
 
 class PageController extends Controller
 {
     public function indexAction($id)
     {
-        $me = $this->getUser();
         $user = $this->container->get('security.context')->getToken()->getUser();
         if(!$user || $user == "anon."){
             return $this->redirect($this->generateUrl('PlanItUserBundle_login'));
         }else{
             if($user->getId() != $id){
-                echo 'NOOOOON';
+                return $this->render('PlanItUserBundle:Page:forbidden.html.twig');
             }
         }
         $em = $this->getDoctrine()->getManager();
@@ -102,6 +103,15 @@ class PageController extends Controller
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
             $userManager->updateUser($user);
+            $file = $form['image']->getData();
+            $extension = $file->guessExtension();
+            if (!$extension) {
+                $extension = 'bin';
+            }
+
+            $rand = rand(1, 99999);
+            $file->move($user->getUploadRootDir(), $user->getId().'-'.$rand.'.'.$extension);
+            $user->setImage($user->getId().'-'.$rand.'.'.$extension);
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
@@ -109,6 +119,9 @@ class PageController extends Controller
             }
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+            return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                    'id'    => $user->getId()
+                )));
 
             return $response;
         }

@@ -9,15 +9,17 @@ use PlanIt\BudgetBundle\Form\BudgetModuleType;
 
 class PageController extends Controller
 {
-    public function indexAction($id)
-    {
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$module = $this->get("budget_api_controller")->getUserAction($id);
-        return $this->render('PlanItBudgetBundle:Page:index.html.twig', array(
-            'event_id' => $id,
-            'user_id' => $event->getUser()->getId()
-        ));
-    }
+    // public function indexAction($id)
+    // {
+    // 	$em = $this->getDoctrine()->getEntityManager();
+    // 	$module = $this->get("budget_api_controller")->getUserAction($id);
+    //     var_dump($event);
+    //     exit();
+    //     return $this->render('PlanItBudgetBundle:Page:index.html.twig', array(
+    //         'event_id' => $id,
+    //         'user_id' => $event->getUser()->getId()
+    //     ));
+    // }
 
     public function pdfAction($module_id){
     	$module = $this->getDoctrine()->getEntityManager()->getRepository('PlanItModuleBundle:Module')->find($module_id);
