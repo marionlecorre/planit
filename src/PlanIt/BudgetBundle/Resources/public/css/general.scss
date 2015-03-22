@@ -64,3 +64,15 @@ $color: #847299;
 		}
 	}
 }
+
+.addExpenseModal {
+	#expense_form {
+		width : 100%;
+		div {
+			width : 100%;
+			input {
+				width : 50%;
+			}
+		}
+	}
+}
