@@ -52,3 +52,15 @@ $color: #847299;
     	}
 	}
 }
+
+.modal.addTypeExpenseModal{
+	#typeexpense_form {
+		width: 100%;
+		div {
+			width : 100%;
+			input {
+				width: 75%;
+			}
+		}
+	}
+}

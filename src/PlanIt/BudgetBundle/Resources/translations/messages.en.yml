@@ -10,6 +10,8 @@ add: Add
 add_expense: Add an expense
 add_inflow: Add an inflow
 add_typeexpense: Add an expenditure category
+empty_cat: Please add an expense
+no_typeexpense: Please add an expenditure category
 benefices: BENEFITS PLANNED
 max_budget: LIMIT BUDGET
 item: Item
