@@ -12,7 +12,8 @@
     <div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                OK
+                <img src="/images/modal-ok.png"/>
+                Modifications enregistrées  
             </div>
         </div>
     </div>
@@ -60,13 +61,13 @@
     			{% for item in list.items %}
     				{% if item.checked %} 
     					<li id="blockitem-{{item.id}}">
-    							<div class="col-md-12 todo checked">
-    								 <input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
-                                     {{item.content}}
-                                     <div class="pull-right" >
-                                        <div class="delete-checked" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
-                                    </div>
-    							</div>
+						<div class="todo checked">
+							<input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
+                            <input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+                            <div class="pull-right" >
+                                <div class="delete_checked" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
+                            </div>
+						</div>	
     					</li>
     				{% endif %}
     			{% endfor %}
@@ -83,7 +84,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel_deleteItem"></h4>
+                    <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel_deleteItem"></h4>
                 </div>
                 <div class="modal-body row">
                     <button id="delete_confirm_item" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>
@@ -98,7 +100,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel_deleteList"></h4>
+                    <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel_deleteList"></h4>
                 </div>
                 <div class="modal-body row">
                     <button id="delete_confirm_list" class="btn btn-default col-md-6"> {{'yes'|trans}} </button>

@@ -34,12 +34,12 @@
             {% block sidebar %}
                 <div id="sidebar">
                     <a href="{{ path('PlanItUserBundle_homepage', { 'id': user.id }) }}"><div id="logo">PLAN <span class="blue">IT</span></div></a>
-                    <div id="search">
+                    {# <div id="search">
                         <form>
                           <input name="search" type="search" class="search" placeholder="Rechercher">
                           <input type="submit" value="Find" class="go">
                         </form>
-                    </div>
+                    </div> #}
                     <div class="user">
                         <img  src="/images/{{ user.image }}"/>
                         <span class="name">{{user.firstname}} {{ user.lastname }}</span> 

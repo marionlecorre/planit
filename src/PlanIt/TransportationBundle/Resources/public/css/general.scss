@@ -25,5 +25,12 @@ $row-list: #f1f1f1;
 	}
 }
 
-
+.modal.validate {
+	button {
+		&#delete_confirm_transportation:before {
+	      background-position: 50% -69px;
+	      background-size: 92%;
+    	}
+	}
+}
 

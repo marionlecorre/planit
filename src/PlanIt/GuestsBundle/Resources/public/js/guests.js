@@ -26,12 +26,12 @@ function guests(){
 
 	$('.addGuestModal').on("show.bs.modal",function(e){
 		var typeguest = $(e.relatedTarget).data('type');
-		$("#form-post-guest").attr("action","/api/guests/"+typeguest);
+		$("#form-post-guest").attr("action","/app_dev.php/api/guests/"+typeguest);
 	});
 }
 function showModalUpdateType(id){
 	$.ajax({
-	   url : '/api/typeguests/'+id, //API
+	   url : '/app_dev.php/api/typeguests/'+id, //app_dev.php/API
 	   type : 'GET',
 	   dataType : 'json',
 	   success : function(data){ // code_html contient le HTML renvoyé
@@ -58,7 +58,7 @@ function showModalUpdateType(id){
 	         alert(erreur);
 	       },
 	});
-	$("#form-update-typeguest input[type=submit]").attr("onclick","/app_dev.php/api/typeguests/"+id+"/updates");
+	$("#form-update-typeguest input[type=submit]").attr("onclick","/app_dev.php/app_dev.php/api/typeguests/"+id+"/updates");
 }
 
 function showModalDeleteType(id, name){

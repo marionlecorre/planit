@@ -10,6 +10,8 @@ add: Ajouter
 add_expense: Ajouter une dépense
 add_inflow: Ajouter un apport
 add_typeexpense: Ajouter une catégorie de dépenses
+empty_cat: Veuillez ajouter une dépense
+no_typeexpense: Veuillez ajouter une catégorie de dépenses
 benefices: BENEFICES PREVUS
 max_budget: BUDGET LIMITE
 item: Article

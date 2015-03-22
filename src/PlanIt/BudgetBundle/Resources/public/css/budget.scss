@@ -168,6 +168,22 @@ span#legend {
 		margin: 0;
 	}
 }
+.add_typeexpense button {
+	font-size:12px;
+}
+
+#no-cat,
+#no-expense {
+	.empty {
+		clear: both;
+		color: $color;
+	}
+	.add_typeexpense {
+		margin: auto;
+	  	float: none;
+	  	padding: 0;
+	}
+}
 
 .delete-expense,.delete-inflow{
 	background: url('/images/budget/icon_budget.png') no-repeat;

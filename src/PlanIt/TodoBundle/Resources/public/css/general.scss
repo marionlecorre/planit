@@ -23,3 +23,13 @@ $neutral: #d8d7d7;
 		}
 	}
 }
+
+.modal.validate {
+	button {
+		&#delete_confirm_list:before,
+		&#delete_confirm_item:before {
+	      background-position: 50% -69px;
+	      background-size: 92%;
+    	}
+	}
+}
