@@ -31,11 +31,6 @@
         <p class="empty_module">{{'empty_list'|trans}}</p>
     {% else %}
         {% for list in module.lists %}
-            <div class="block-jauge">
-                {% for item in list.items %}
-                    <span class="elmt-jauge {% if item.checked %} jauge-checked {% endif %}"> </span>
-                {% endfor %}
-            </div>
                 
             <div class="type-list" id="blocklist-{{list.id}}">
                 <div class="accordion-head">

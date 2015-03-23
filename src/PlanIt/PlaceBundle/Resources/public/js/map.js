@@ -7,7 +7,6 @@
 //       mapOptions);
 // }
 function initialize(id) {
-  geocoder = new google.maps.Geocoder();
   var latlng = new google.maps.LatLng(-34.397, 150.644);
   var mapOptions = {
     zoom: 8,
@@ -18,6 +17,7 @@ function initialize(id) {
 
 function codeAddress(id, address) {
   var address = 'Paris';
+  geocoder = new google.maps.Geocoder();
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
