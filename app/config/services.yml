@@ -14,3 +14,6 @@ services:
     budget_api_controller:
         class: PlanIt\RestBundle\Controller\BudgetModuleRestController
         arguments: [@service_container]
+    expenses_api_controller:
+        class: PlanIt\RestBundle\Controller\TypeExpenseModuleRestController
+        arguments: [@service_container]
