@@ -57,6 +57,7 @@ function updatePlace(id){
 	   		$('.deletePlaceModal').modal('hide');
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );
+	   		getPlaces(module.id);
 	   		// if($("#state-place-"+id).val() ==1){
 	   		// 	location.reload();
 	   		// }

@@ -1,5 +1,4 @@
-function accordeonPlace(){
-	
+function accordeonPlace(module_id){
 	$('.accordion-body:not(:first)').hide();
 	$('.accordion-head:first').addClass("open");
 	var sel1 = $('.accordion-body:first').find('textarea');
@@ -11,6 +10,8 @@ function accordeonPlace(){
 			$(this).siblings('.accordion-head').removeClass("open");
 			var sel=$(this).next().find('textarea');
 			autosize(sel);
+			getPlaces(module_id);
+			//updatePlace(module_id);
 			return false;
 		}
 	}).children().click(function(e) {
