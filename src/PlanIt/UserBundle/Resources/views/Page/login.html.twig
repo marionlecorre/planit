@@ -8,7 +8,7 @@
 {% endif %}
 
 <h1> Connectez-vous </h1>
-<form action="/app_dev.php/api/logins" method="post">
+<form action="{{ path("PlanItUserBundle_check") }}" method="post">
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
