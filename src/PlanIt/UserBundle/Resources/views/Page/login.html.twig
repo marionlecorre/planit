@@ -9,7 +9,7 @@
 <a href="{{ path('PlanItUserBundle_register') }}">
                     Inscription
                 </a>
-<form action="/app_dev.php/api/logins" method="post">
+<form action="{{ path("PlanItUserBundle_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
     <label for="username">{{ 'security.login.username'|trans }}</label>

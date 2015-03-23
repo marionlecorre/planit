@@ -62,7 +62,8 @@ class UserRestController extends Controller
 	    $em = $this->getDoctrine();
 	    $user = $this->getDoctrine()->getManager()->getRepository('PlanItUserBundle:User')->findOneByEmail($email);
 	    if (!$user) {
-	        return array('fail' => "User not found");
+	        $reponse = array("error"=>"User not found", "id"=>null);
+	        return json_encode($reponse);
 	    } else {
 	        // Get the encoder for the users password
 	        $encoder = $this->get('security.encoder_factory')->getEncoder($user);
@@ -78,12 +79,12 @@ class UserRestController extends Controller
 	          $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 	        } else {
 	          // Password bad
-	          return array('success' => "fail");
+	          $reponse = array("error"=>"Wrong password", "id"=>null);
+	          return json_encode($reponse);
 	        }
 	        
 	    }
-	    return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
-            'id'    => $user->getId()
-        )));
+	    $reponse = array("error"=>null, "id"=>$user->getId());
+	    return json_encode($reponse);
    }
 }
