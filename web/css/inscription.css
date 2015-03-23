@@ -42,7 +42,7 @@ h1{
  	width:100%;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
 	@include border-radius(3px); 
 	padding: 8px;
 	width: 95%;
@@ -58,6 +58,7 @@ input[type="submit"] {
 	border:0;
 	background-color: #61c0a5;
 	color:#fff;
+	cursor: pointer;
 }
 
 
@@ -87,7 +88,7 @@ label{
 	position: relative;
 	color:#252525;
 	font-size: 14px;
-	padding-bottom:50px;
+	margin-bottom:50px !important;
 }
 
 header{

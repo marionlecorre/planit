@@ -9,3 +9,4 @@ form:
         firstnames: Prénom
         lastnames: Nom
         image: Image
+        submit: Valider
