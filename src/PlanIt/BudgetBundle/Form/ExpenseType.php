@@ -15,11 +15,11 @@ class ExpenseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.expense.item')))
-            ->add('quantity','text', array('label'  => false, 'attr' => array('placeholder' => 'form.expense.quantity')))
-            ->add('unit','text', array('label'  => false, 'attr' => array('placeholder' => 'form.expense.unit')))
-            ->add('stock','text', array('label'  => false, 'attr' => array('placeholder' => 'form.expense.stock')))
-            ->add('price','text', array('label'  => false, 'attr' => array('placeholder' => 'form.expense.unit_price')))
+            ->add('name','text', array('label'  => 'form.expense.item'))
+            ->add('quantity','text', array('label'  => 'form.expense.quantity'))
+            ->add('unit','text', array('label'  => 'form.expense.unit', 'attr' => array('placeholder' => 'form.expense.unit_placeholder')))
+            ->add('stock','text', array('label'  => 'form.expense.stock'))
+            ->add('price','text', array('label'  => 'form.expense.unit_price'))
 
         ;
     }

@@ -92,7 +92,14 @@ button {
 }
 
 
-
+ .modal.fade.in{
+   top:0;
+   left:0;
+  .modal-backdrop.fade.in {
+    position: fixed;
+    bottom:0;
+  }
+}
 .modal-dialog {
   margin: 0;
     position: absolute;
@@ -122,7 +129,10 @@ button {
         width: 200px;
         label {
           font-weight: normal;
-          margin-right: 20px;
+          text-align: center;
+          margin: 0;
+          display: block;
+          font-size: 14px;
         }
       }
       input[type="text"], input[type="email"] {
@@ -130,7 +140,7 @@ button {
         @include border-radius(3px); 
         padding: 6px;
         display: block;
-        margin: 12px auto;
+        margin: 8px auto 12px auto;
         width: 200px;
       }
       input[type="submit"] {
@@ -178,7 +188,7 @@ button {
 
 .modal.validate {
   .modal-dialog {
-    width: 300px;
+    width: 330px;
     position: initial;
     margin: 10% auto;
   }
@@ -198,6 +208,10 @@ button {
       display: block;
       background: url("/images/utils.png") no-repeat;
       margin: auto;
+    }
+    &#delete_confirm_module:before {
+      background-position: 50% -222px;
+      background-size: 92%;
     }
     &#delete_cancel:before {
       background-position: 50% -182px;

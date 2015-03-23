@@ -28,6 +28,13 @@ $color: #847299;
           box-shadow: $vertical $horizontal $scale $blur $color;
 }
 
+header {
+.logout {
+		color : $color !important;
+		font-size:14px;
+	}
+}
+
 .modal-header {
 	color: $color;
 	border-color: $color;
@@ -46,7 +53,8 @@ $color: #847299;
 
 .modal.validate {
 	button {
-		&#delete_confirm_expense:before{
+		&#delete_confirm_expense:before,
+		&#delete_confirm_inflow:before{
 	      background-position: 50% 4px;
 	      background-size: 92%;
     	}

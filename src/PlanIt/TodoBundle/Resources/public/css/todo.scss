@@ -73,6 +73,13 @@ ul{
 	margin-top: 7px;
 }
 
+.empty_listtask {
+	text-align: center;
+  	margin-top: 50px;
+  	color: $color;
+  	font-size: 16px;
+}
+
 .delete, .delete-type, .delete_checked {
 	background: url('/images/picto-suppr.png') no-repeat;
 	width: 10px;

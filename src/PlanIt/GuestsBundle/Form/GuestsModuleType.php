@@ -17,8 +17,8 @@ class GuestsModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('moduletype', 'choice', array('label'  => false,'choices'  => array('0' => 'form.module.invitation', '1' => 'form.module.inscription')))
-            ->add('maxguests' , 'text', array('label'  => false, 'attr' => array('placeholder' => 'form.module.nb_guests')))
+            ->add('moduletype', 'choice', array('label'  => false ,'choices'  => array('0' => 'form.module.invitation', '1' => 'form.module.inscription')))
+            ->add('maxguests' , 'text', array('label'  => 'form.module.nb_guests'))
             ->add('payable', 'checkbox', array('required' => false, 'label'  => 'form.module.payable'))
         ;
     }

@@ -35,6 +35,7 @@
         <div class="col-md-3 bt_place"><button data-toggle="modal" data-target=".addPlaceModal" class="col-md-3">{{'add_place'|trans}}</button></div>
     </div>
 
+<<<<<<< Updated upstream
 	<div class="row list" id="list">
 		{% for place in module.places%}
 		<div id="place-{{place.id}}" class="place">
@@ -105,10 +106,84 @@
 			    	<div class="col-lg-5 col-md-6 col-sm-12 map_canvas" id="map_canvas_{{place.id}}">
 			    	</div>
 			    </div>
+=======
+	{% if module.places is empty %}
+		<p class="empty_module">{{'empty_module'|trans}}</p>
+	{% else %}
+		<div class="row list" id="list">
+			{% for place in module.places %}
+			<div id="place-{{place.id}}" class="place">
+				<div class="div-checkbox">
+					<input type="checkbox" class="check" id="check-{{place.id}}" onClick="chosePlace({{place.id}})" {% if place.state == 1 %} checked {% endif %}>
+				</div>
+				<div id="head_list" class="head-list accordion-head {% if place.state == 1 %} checked {% else %} nochecked {% endif %}">	
+					<div class="name"><input type="text" id="name-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.name}}"></div>
+				    <div class="pull-right delete_place" onclick="showModalDeletePlace({{place.id}}, '{{place.name}}')"></div> 
+				    <div class="price"><input type="text" class="short_input" id="price-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.price}}">€</div>
+				</div>
+				<div class="accordion-body">
+				    <div class="labels row">
+				    	<div class="col-lg-3 col-md-12 col-sm-12 img_place">
+				    		<div class="container-img-place">
+					    		{% if place.image != null %}
+					    			<img src="/images/place/places_pictures/{{place.image}}" />
+					    		{% else %}
+					    			<img src="/images/no-image.jpg"/>
+					    		{% endif %}
+				    		</div>
+								<div class="bt_place">
+				                    <button data-toggle="modal" id="bt_img" data-target=".updateImageModal" data-id="{{place.id}}">{{'update_image'|trans}}</button> 
+				                </div>
+				        </div>
+				    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
+				        	<p><span class="label_descr">{{'capacity'|trans}}</span><input type="text" class="short_input" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
+				        	<p><span class="label_descr">{{'distance'|trans}}</span><input type="text" class="short_input" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
+				        	<p><span class="label_descr">{{'tel'|trans}}</span><input type="text" id="tel-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.tel}}"></p>
+				        	<p><span class="label_descr">{{'website'|trans}}</span><input type="text" id="website-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.website}}"> </p>
+				        	<p id="state_place"><span class="label_descr" id="state_label">{{'state'|trans}}</span>
+				        		<select id="state-place-{{place.id}}" onchange="updatePlace({{place.id}});location.reload()">
+				        			<option value="0" {% if place.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
+				        			<option value="2" {% if place.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
+				        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
+				        			<option value="1" {% if place.state == 1 %} selected {% endif %}>{{'accepted'|trans}}</option>
+				        		</select>
+				        	</p>
+				        	<p>
+				        		<span class="label_descr">{{'contract'|trans}}</span> 
+				        		{% if place.contract %}
+					        		<a target="_blank" href="/files/place/contracts/{{place.contract}}">
+					        			{{place.contract}}
+					        		</a>
+					        		<div class="bt_place">
+					                    <button data-toggle="modal" id="modify_contract" data-target=".updateContractModal" data-id="{{place.id}}">{{'update_contract'|trans}}</button> 
+					                </div>
+				        		{% else %}
+				        			<span>Aucun contrat</span>
+				        			<div class="bt_place">
+					                    <button data-toggle="modal" id="modify_contract" data-target=".updateContractModal" data-id="{{place.id}}">{{'add_contract'|trans}}</button> 
+					                </div>
+				        		{% endif %} 
+				        		
+				                
+				        	</p>
+				    	</div>
+				    	<div class="col-lg-5 col-md-6 col-sm-12 map_canvas" id="map_canvas_{{place.id}}">
+				    	</div>
+				    	<p class="address col-lg-6 col-md-6 col-sm-12">
+				    		<span class="label_descr">{{'address'|trans}}</span>
+				    		<textarea id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" placeholder="{{'address_placeholder'|trans}}">{{place.address}}</textarea>
+				    	</p>
+				    	<p class="remark col-lg-6 col-md-6 col-sm-12">
+				    		<span class="label_descr">{{'remark'|trans}}</span>
+				    		<textarea id="remark-place-{{place.id}}" onblur="updatePlace({{place.id}})" placeholder="{{'remark_placeholder'|trans}}">{{place.remark}}</textarea>
+				    	</p>
+				    </div>
+				</div>
+>>>>>>> Stashed changes
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
-	</div>
+	{% endif %}
 	<div class="modal fade deletePlaceModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">

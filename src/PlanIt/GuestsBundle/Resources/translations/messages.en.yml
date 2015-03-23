@@ -41,8 +41,8 @@ form:
     module:
         invitation: By invitation
         inscription: On inscription
-        nb_guests: Maximum number of guests
-        payable: Paid event
+        nb_guests: Maximum number of guests: 
+        payable: Paid event: 
     typeguest:
         category: Category Name *
         mail: Content of the invitation email *

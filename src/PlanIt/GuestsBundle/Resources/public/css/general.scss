@@ -15,6 +15,11 @@ $header: #f1f1f1;
           border-radius: $radius;
 }
 
+header {
+	.logout {
+			color : $color !important;
+		}
+}
 
 .modal-header {
 	color: $color;

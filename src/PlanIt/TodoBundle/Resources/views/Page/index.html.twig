@@ -27,58 +27,66 @@
      {{ render(controller('PlanItTodoBundle:Item:formlist', { 'module_id' : module.id } ))}}
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
-    {% for list in module.lists %}
-    <div class="block-jauge">
-        {% for item in list.items %}
-            <span class="elmt-jauge {% if item.checked %} jauge-checked {% endif %}"> </span>
-        {% endfor %}
-    </div>
-        
-    <div class="type-list" id="blocklist-{{list.id}}">
-    	<div class="accordion-head">
-    		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
-	    	<div class="pull-right" >
-                <div class="delete-type" onclick="showModalDeleteList({{list.id}},'{{list.name}}')"></div>  
-
+    {% if module.lists is empty %}
+        <p class="empty_listtask">{{'empty_list'|trans}}</p>
+    {% else %}
+        {% for list in module.lists %}
+            <div class="block-jauge">
+                {% for item in list.items %}
+                    <span class="elmt-jauge {% if item.checked %} jauge-checked {% endif %}"> </span>
+                {% endfor %}
             </div>
-        </div>
-        <div class="accordion-body">
-        	<ul class="todo-list">
-    		    {% for item in list.items %}
-    				{% if not item.checked %}
-    					<li id="blockitem-{{item.id}}">						
-    							<div class="todo">
-    								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}}, '{{item.content}}')">
-    								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
-    								<div class="pull-right" >
-                                        <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
-                                    </div>
-    							</div>							
-    					</li>
-    				{% endif %}
-    			{% endfor %}
+                
+            <div class="type-list" id="blocklist-{{list.id}}">
+            	<div class="accordion-head">
+            		<input type="text" class="updatable-input" id="list-{{list.id}}" onblur="updateList({{list.id}})" value="{{list.name}}">
+        	    	<div class="pull-right" >
+                        <div class="delete-type" onclick="showModalDeleteList({{list.id}},'{{list.name}}')"></div>  
 
-    			{% for item in list.items %}
-    				{% if item.checked %} 
-    					<li id="blockitem-{{item.id}}">
-						<div class="todo checked">
-							<input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
-                            <input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
-                            <div class="pull-right" >
-                                <div class="delete_checked" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
-                            </div>
-						</div>	
-    					</li>
-    				{% endif %}
-    			{% endfor %}
-                    <!-- <p>Vous n'avez pas encore ajouté de tâche</p> -->               
-    		</ul>
-            <div class="row">
-    	       	<div class="col-md-3 col-sm-4 col-xs-6 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
-            </div>
-        </div><!--accordeon body-->
-	</div>
-	{% endfor %}
+                    </div>
+                </div>
+                <div class="accordion-body">
+                	<ul class="todo-list">
+            		    {% for item in list.items %}
+            				{% if not item.checked %}
+            					<li id="blockitem-{{item.id}}">						
+            							<div class="todo">
+            								<input type="checkbox" id="checkbox-{{item.id}}" name="todo1" onClick="changeChecked({{item.id}}, '{{item.content}}')">
+            								<input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+            								<div class="pull-right" >
+                                                <div class="delete" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
+                                            </div>
+            							</div>							
+            					</li>
+            				{% endif %}
+            			{% endfor %}
+
+                        {% if list.items is empty %}
+                            <p class="empty_listtask">{{'empty_module'|trans}}</p>
+                        {% else %}
+                			{% for item in list.items %}
+                				{% if item.checked %} 
+                					<li id="blockitem-{{item.id}}">
+            						<div class="todo checked">
+            							<input type="checkbox" id="checkbox-{{item.id}}" checked name="todo1" onClick="changeChecked({{item.id}},'{{item.content}}')"> 
+                                        <input type="text" class="updatable-input" id="item-{{item.id}}" onblur="updateItem({{item.id}})" value="{{item.content}}">
+                                        <div class="pull-right" >
+                                            <div class="delete_checked" data-toggle="modal" data-target=".deleteItemModal" data-content="{{item.content}}" data-id="{{item.id}}"></div>  
+                                        </div>
+            						</div>	
+                					</li>
+                				{% endif %}
+                			{% endfor %}
+                        {% endif %}
+                            <!-- <p>Vous n'avez pas encore ajouté de tâche</p> -->               
+            		</ul>
+                    <div class="row">
+            	       	<div class="col-md-3 col-sm-4 col-xs-6 bt_todo pull-right add-item"><button data-toggle="modal" data-list="{{list.id}}" data-target=".addItemModal">{{'add_task'|trans}}</button></div>
+                    </div>
+                </div><!--accordeon body-->
+        	</div>
+    	{% endfor %}
+    {% endif %}
 
 	<div class="modal fade deleteItemModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">

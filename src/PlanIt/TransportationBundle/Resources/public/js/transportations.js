@@ -8,6 +8,8 @@ function accordeonTransportation(){
 			$(this).siblings('.accordion-head').removeClass("open");
 			return false;
 		}
+	}).children().click(function(e) {
+	  return false;
 	});
 }
 function transportations(){

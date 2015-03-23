@@ -17,8 +17,13 @@ header {
 		.name {
 			line-height: 30px;
 			font: 14px 'PT Sans';
+			float:left;
+			margin-right: 5px;
 			color: #535252;
 			vertical-align: text-bottom;
+		}
+		.logout {
+			color : $blue_logo;
 		}
 	}
 }
