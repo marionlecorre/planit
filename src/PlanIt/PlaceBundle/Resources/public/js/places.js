@@ -1,13 +1,16 @@
 function accordeonPlace(){
-
-	autosize($('textarea'));
+	
 	$('.accordion-body:not(:first)').hide();
 	$('.accordion-head:first').addClass("open");
+	var sel1 = $('.accordion-body:first').find('textarea');
+	autosize(sel1);
 	$('.accordion-head').click(function(e){
 		if(e.pageX>325) {
 			$(this).toggleClass("open").next().slideToggle()
 			.siblings('.accordion-body').slideUp();
 			$(this).siblings('.accordion-head').removeClass("open");
+			var sel=$(this).next().find('textarea');
+			autosize(sel);
 			return false;
 		}
 	}).children().click(function(e) {
@@ -31,19 +34,6 @@ function places(){
 		$("#myModalLabel_deletePlace").html("Etes-vous sur de vouloir supprimer le lieu \""+name+"\" ?");
 		
 	});
-
-
-	// var previous;
- //    $(".selectize-input").click(function () {
- //        previous = $(this).children(".item").attr("data-value");
- //    }).change(function() {
- //        console.log(previous);
- //        if (previous==1){
- //        	console.log("couocu");
- //        	$(this).parent("#head_list").css("background-color","blue");
- //        	console.log($(this).parent("#head_list"));
- //        }
- //    });
 
 }
 

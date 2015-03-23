@@ -79,6 +79,16 @@ input{
 	.label_descr{
 		font-weight: bold;
 	}
+	.state-infos {
+		.label_descr {
+			float: left;
+		}
+		.selectize-control {
+			display: inline-block;
+		  	width: 40%;
+		  	margin-left: 20px;
+		}
+	}
 }
 
 .address { clear:both;}
