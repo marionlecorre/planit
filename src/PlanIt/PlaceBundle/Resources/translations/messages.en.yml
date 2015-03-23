@@ -34,3 +34,5 @@ form:
         longitude: Longitude
         image: Image
         state: State *
+        website: Website: 
+        remark : Remark: 

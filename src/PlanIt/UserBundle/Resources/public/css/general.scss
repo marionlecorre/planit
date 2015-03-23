@@ -92,20 +92,19 @@ button {
 }
 
 
- .modal.fade.in{
-   top:0;
-   left:0;
-  .modal-backdrop.fade.in {
-    position: fixed;
-    bottom:0;
-  }
-}
+//  .modal.fade.in{
+//    top:0;
+//    left:0;
+//   // .modal-backdrop.fade.in {
+//   //   position: fixed;
+//   //   bottom:0;
+//   // }
+// }
 .modal-dialog {
   margin: 0;
-  position: absolute;
+  position: relative;
   top: 30%;
   left: 30%;
-  overflow-y: hidden;
   .modal-content{
     .modal-header {
       background-color: $header; 
@@ -143,6 +142,10 @@ button {
         display: block;
         margin: 8px auto 12px auto;
         width: 200px;
+      }
+      label[for="guestsmodule_form_payable"]{
+        display: inline !important;
+        margin-right: 13px !important;
       }
       textarea{
         border: solid 1px #d8d7d7;

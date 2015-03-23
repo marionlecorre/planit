@@ -17,8 +17,8 @@ class TransportationModuleType extends ModuleType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('max_capacity_t', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Capacité minimum')))
-            ->add('max_price_t', 'text', array('label'  => false, 'attr' => array('placeholder' => 'Prix maximum')))
+            ->add('max_capacity_t', 'text', array('label'  => 'form.module.max_capacity'))
+            ->add('max_price_t', 'text', array('label'  => 'form.module.price'))
         ;
     }
     
