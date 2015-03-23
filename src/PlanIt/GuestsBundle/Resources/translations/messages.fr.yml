@@ -41,6 +41,7 @@ form:
     module:
         invitation: Sur invitation
         inscription: Sur inscription
+        type_event: Type d'événement : 
         nb_guests: Nombre maximum d'invités: 
         payable: Evénement payant: 
     typeguest:

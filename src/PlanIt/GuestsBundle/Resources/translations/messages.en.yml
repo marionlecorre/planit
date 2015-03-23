@@ -42,6 +42,7 @@ form:
         invitation: By invitation
         inscription: On inscription
         nb_guests: Maximum number of guests: 
+        type_event: Event's type : 
         payable: Paid event: 
     typeguest:
         category: Category Name *

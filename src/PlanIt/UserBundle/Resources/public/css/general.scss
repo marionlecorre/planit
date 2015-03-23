@@ -129,8 +129,10 @@ button {
         width: 200px;
         label {
           font-weight: normal;
-          text-align: center;
+          text-align: left !important;
+          color:#9B9B9B;
           margin: 0;
+          margin-bottom: 3px;
           display: block;
           font-size: 14px;
         }
@@ -140,7 +142,7 @@ button {
         @include border-radius(3px); 
         padding: 6px;
         display: block;
-        margin: 8px auto 12px auto;
+        margin: 0px auto 12px auto;
         width: 200px;
       }
       label[for="guestsmodule_form_payable"]{
@@ -152,7 +154,7 @@ button {
         @include border-radius(3px); 
         padding: 6px;
         display: block;
-        margin: 8px auto 12px auto;
+        margin: 0px auto 12px auto;
         width: 200px;
       }
       input[type="submit"] {
