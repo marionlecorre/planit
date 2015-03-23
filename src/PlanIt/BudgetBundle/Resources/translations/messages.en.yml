@@ -29,19 +29,21 @@ label: Entitled
 amount: Amount 
 form:
     module:
-        max_budget: Maximum budget (€)
-        inflow: Personal inflow (€)
+        max_budget: Maximum budget (€) :
+        inflow: Personal inflow (€) :
     expense:
         item: Item *
         quantity: Quantity *
-        unit: Unit (ex: Liters, Bottles, etc.) *
+        unit: Unit 
+        unit_placeholder: (ex: Liters, Bottles, etc.) *
         stock: Already in stock *
         unit_price: Unit price
     inflow:
         label: Entitled *
         amount: Amount *
     type_expense:
-        name: Name of the category * (Ex: Drinks, Material, etc.)
+        name: Name of the category * 
+        nameplaceholder: (Ex: Drinks, Material, etc.)
 
 'Gestion des invités': Guests management
 'Gestion du budget': Budget management

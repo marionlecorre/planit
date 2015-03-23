@@ -29,17 +29,19 @@ label: Intitulé
 amount: Montant 
 form:
     module:
-        max_budget: Budget maximum (€)
-        inflow: Apport personnel (€)
+        max_budget: Budget maximum (€) :
+        inflow: Apport personnel (€) :
     expense:
         item: Article *
         quantity: Quantité *
-        unit: Unité (ex: Litres, Bouteilles, etc.) *
+        unit: Unité 
+        unit_placeholder: (ex: Litres, Bouteilles, etc.) *
         stock: Déjà en stock *
         unit_price: Prix unitaire
     inflow:
         label: Intitulé *
         amount: Montant *
     type_expense:
-        name: Nom de la catégorie * (Ex: Boissons, Matériel, etc.)
+        name: Nom de la catégorie * 
+        nameplaceholder : (Ex: Boissons, Matériel, etc.)
 

@@ -23,8 +23,8 @@
                 <header>
                     <div class="user">
                         <img src="/images/user/user_pictures/{{ user.image }}" />
-                        <span class="name">{{user.firstname}} {{user.lastname}}</span> 
-                        <a href="{{ path('PlanItUserBundle_logout') }}">
+                        <span class="name">{{user.firstname}} {{user.lastname}} | </span> 
+                        <a href="{{ path('PlanItUserBundle_logout') }}" class="logout">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </a>
                     </div>

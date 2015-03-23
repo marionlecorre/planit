@@ -45,9 +45,12 @@ function chosePlace(place_id){
 	   		$(".check").each(function(){
 	   			$(this).prop('checked', false);
 	   		});
+	   		$(".accordion-body").hide();
 	   		if(parseInt(states[place_id]) == 1){
 	   			$('#place-'+place_id+' .head-list').attr('class', 'head-list accordion-head checked');
 	   			$('#place-'+place_id+' .div-checkbox .check').prop('checked', true);
+	   			$('#place-'+place_id).prependTo("#list");
+	   			$('#place-'+place_id+' .accordion-head').trigger("click");
 	   		}
 	   		$('#okModal').modal('show');
 	   		setTimeout( "$('#okModal').modal('hide');",1200 );

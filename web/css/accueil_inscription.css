@@ -1,0 +1,293 @@
+[class*="col-"], footer {
+ 	text-align: center;
+  /*border:1px solid red;*/
+}
+
+@font-face {  font-family: "GothamHTF-Bold";  src: url('/fonts/GothamHTF-Bold.otf') format("opentype"); }
+@font-face {  font-family: "GothamHTF-Light";  src: url('/fonts/GothamHTF-Light.otf') format("opentype"); }
+@font-face {  font-family: "GothamHTF-Medium";  src: url('/fonts/GothamHTF-Medium.otf') format("opentype"); }
+
+body{  
+  font-family: GothamHTF-Light;
+}
+
+h1{  
+  font-family: GothamHTF-Medium !important;
+  font-size: 35px;
+  margin-bottom:20px !important;
+  text-align: center;
+  text-shadow: 0px 0px 8px #777777;
+  color: #fff !important;
+  width:100%;
+  cursor: default;
+}
+
+h2{  
+  font-family: GothamHTF-Light !important;
+  font-size: 35px;
+  padding:10px;
+  text-align: center;
+  text-shadow: 0px 0px 8px #777777;
+  color: #fff;
+  width:100%;
+}
+
+a{
+  color:#fff !important;
+  text-decoration: none !important;
+  border: 0;
+}
+
+input{
+  background-color: #ffffff;
+  border:0;
+  padding:5px;
+  width:100%;
+  margin-bottom: 10px;
+}
+
+section{
+  padding: 50px 0 50px 0;
+}
+
+footer{
+  margin-top: 5%;
+  color:#ededed;
+  font-size: 10px;
+}
+
+::selection {
+  background:none; /* WebKit/Blink Browsers */
+  color:#61c0a5;
+}
+::-moz-selection {
+  background: none; /* Gecko Browsers */
+  color:#61c0a5;
+}
+
+input[type="submit"]{
+  background-color: #61c0a5;
+  color:#ffffff;
+}
+
+input[type="submit"]:hover{
+  background-color: #55b298;
+}
+
+input[type="file"]{
+  background-color: transparent !important;
+  color:#ffffff;
+  margin-top:10px;
+}
+
+input[type="submit"], input[type="text"], input[type="password"], input[type="email"]{
+  margin-top:10px;
+  /*border-radius: 3px;*/
+}
+ 
+ .form{
+  margin: 70px 0;
+ }
+
+.img_module{
+  margin: 0 10px 10px 0;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100% !important;
+}
+
+#page1{
+  background-image: url(/images/accueil/image1.jpg);
+  background-size: cover;
+  /*height: 800px;*/
+  height: auto;
+}
+
+#page1 h2{  
+  text-align: left;
+}
+
+#logo{
+  padding:20px 0 20px 0;
+}
+
+
+.text_accueil{
+  margin-bottom: 10px;
+}
+
+#page2{
+ /* background-color:#fcfcfc;*/
+  height: auto;
+}
+
+#page2 p{
+  font-size: 18px;
+  text-align: justify;
+}
+
+#page2 h1{
+  color:#777 !important;
+  margin-bottom:50px !important;
+  text-shadow: 0px 0px 8px #fff;
+}
+
+#page3{
+  background-image: url(/images/accueil/image2.jpg);
+  background-size: cover;
+  height: auto;
+  color:#ffffff;
+  padding-bottom:0px;
+}
+
+#page3 h1{
+  margin-bottom:50px !important;
+}
+
+.description_membre{
+  background-color:rgba(190,190, 190, 0.1); 
+  padding:10px;  
+  margin-bottom: 30px;
+}
+
+.erreur_contact{
+  color:#ffffff;
+  font-size: 10px;
+  position: absolute;
+  margin-top:-15px;
+}
+
+#display_erreur, #display_envoie{
+  color:#ffffff;
+}
+
+@media (min-width: 299px) {
+
+  #texte_accueil{
+  font-size: 30px;
+  margin:100px 0 -50px 0;
+  text-align: center;
+  }
+
+  #texte_accueil span{
+    font-size: 50px;
+  }
+
+  .reponse_envoie_mail{  
+  margin:-20px 0 -20px 0;
+  }
+}
+
+@media (min-width: 299px) and (max-width: 345px){
+
+ #texte_accueil{
+  font-size: 25px;
+  text-align: center;
+  }
+
+  #texte_accueil span{
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 768px) {
+  
+  #texte_accueil{
+  font-size: 25px;   
+  margin:80px 0 80px 0; 
+  }
+
+  #texte_accueil span{
+    font-size: 45px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 850px){
+
+  #texte_accueil{
+    font-size: 23px;
+    width:250px;
+  }
+
+  #texte_accueil span{
+    font-size: 40px;
+  }
+
+  .reponse_envoie_mail h2{  
+    font-size: 18px;
+  }
+
+  .reponse_envoie_mail p{  
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px){
+
+  .reponse_envoie_mail{  
+    margin:-40px 0 -40px 0;
+  }
+}
+
+
+@media (min-width: 992px) {
+   .col_gauche_modules, .col_dte_modules{
+    position:relative; height:300px;
+  }
+
+  #module1{
+    position:absolute; 
+    right:0;
+  }
+
+  #module2{
+    position:absolute; 
+    right:0; 
+    bottom:0;
+  }
+
+  #module5{
+    position:absolute; 
+    left:0;
+  }
+
+  #module6{
+    position:absolute; 
+    left:0; 
+    bottom:0;
+  }
+  .img_membre{
+    width:100%;
+  }
+
+ .description_membre{
+    margin-bottom: 0px;
+    background-color:rgba(190,190, 190, 0.4);
+    text-shadow: 0px 0px 8px #777777;
+  }
+
+  #texte_accueil{
+    font-size: 30px; 
+  }
+
+  #texte_accueil span{
+    font-size: 50px;
+  }
+
+}
+
+@media (min-width: 1200px) {
+   #texte_accueil{
+  font-size: 33px;
+  }
+
+  #texte_accueil span{
+    font-size: 60px; 
+  }
+}

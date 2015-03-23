@@ -18,6 +18,8 @@ update_contract: Modifier le contrat
 add_contract : Ajouter un contrat
 update_image: Modifier l'image
 update: Modifier
+empty_module: Il n'y a pas de lieux dans ce module
+
 form:
     contract:
         file: Sélectionner un fichier *

@@ -15,8 +15,8 @@ class InflowType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.inflow.label')))
-            ->add('amount','text', array('label'  => false, 'attr' => array('placeholder' => 'form.inflow.amount')))
+            ->add('name','text', array('label'  => 'form.inflow.label'))
+            ->add('amount','text', array('label'  => 'form.inflow.amount'))
         ;
     }
     

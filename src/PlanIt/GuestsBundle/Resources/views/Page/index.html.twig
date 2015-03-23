@@ -152,7 +152,7 @@
                                             <div class="payment col-md-2 col-sm-2 col-xs-2">
                                                 <form action="" id="payment">
                                                     {% if module.paymentmeans is empty %}
-                                                        <span> {{'no_payment'|trans}} </span>
+                                                        <span class="no_payment"> {{'no_payment'|trans}} </span>
                                                     {%else %}
                                                     <select id="paymentmean-{{guest.id}}" onchange="updateGuest({{guest.id}}, 'paymentmean')" name="payment">
                                                         <option></option>

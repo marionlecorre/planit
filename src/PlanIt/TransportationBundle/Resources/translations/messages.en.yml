@@ -1,5 +1,7 @@
 transportation: TRANSPORTATION MANAGEMENT
 add_transportation: Add a company
+empty_module: There is no transportation compagnies in this module
+
 form:
     contract:
         file: Select a file *

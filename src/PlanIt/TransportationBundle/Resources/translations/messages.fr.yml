@@ -1,5 +1,6 @@
 transportation: GESTION DU TRANSPORT
 add_transportation: Ajouter une compagnie
+empty_module: Il n'y a pas de compagnies de transport dans ce module
 
 form:
     contract:

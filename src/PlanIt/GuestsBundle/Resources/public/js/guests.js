@@ -89,4 +89,13 @@ function accordeonGuest(){
 			return false;
 		}
 	});
+	$('.accordion-head').find(".hidden-phone").click(function(e) {
+	  return false;
+	});
+	$('.accordion-head').find(".delete_type").click(function(e) {
+	  return false;
+	});
+	$('.accordion-head').find(".modify_type").click(function(e) {
+	  return false;
+	});
 }
