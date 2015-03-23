@@ -17,7 +17,6 @@ function initialize(id) {
 }
 
 function codeAddress(id, address) {
-  alert(address);
   var address = 'Paris';
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {

@@ -54,7 +54,7 @@
                             <li class="events"><a href="{{ path('PlanItUserBundle_homepage', { 'id': user.id }) }}">{{'events'|trans}}</a></li>
                             <ul class="events" id="accordion">
                                 {% for event in user.events %}
-                                    <li class="active event">{{event.name |truncate(20)}}</li>
+                                    <li class="active event {%if event_id is defined%}{%if event_id ==event.id%} open{%endif%}{%endif%}">{{event.name |truncate(20)}}</li>
                                     <ul class="modules">
                                         <li><a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}">{{'general'|trans}}</a></li>
                                         {% for module in event.modules %}

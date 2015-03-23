@@ -22,11 +22,6 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5 col-md-6 col-sm-12 map_canvas" id="map-canvas">
-			    	</div>
-	<input id="address" type="textbox" value="Sydney, NSW">
-      <input type="button" value="Geocode" onclick="codeAddress()">
-	<section>
 	{% for message in app.session.flashbag.get('errors') %}
         <p>{{ message }}</p>
     {% endfor %}

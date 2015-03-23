@@ -28,11 +28,6 @@
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
     {% for list in module.lists %}
-    <div class="block-jauge">
-        {% for item in list.items %}
-            <span class="elmt-jauge {% if item.checked %} jauge-checked {% endif %}"> </span>
-        {% endfor %}
-    </div>
         
     <div class="type-list" id="blocklist-{{list.id}}">
     	<div class="accordion-head">

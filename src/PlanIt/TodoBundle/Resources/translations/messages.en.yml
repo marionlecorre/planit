@@ -1,6 +1,6 @@
 add_task: Add a task
 add_tasklist: Add a tasks list
-print_task: Print the task list
+print_task: Download the task list
 add: Add
 form:
     item:

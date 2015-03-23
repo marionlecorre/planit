@@ -33,6 +33,7 @@ class PageController extends Controller
         $infos = $this->get("event_api_controller")->getEventAction($id);
         $notUsesModules = $this->get("event_api_controller")->getEventNotusemodulesAction($id);
         return $this->render('PlanItEventBundle:Page:event.html.twig', array(
+            'event_id' => $infos['event']['id'],
             'event' => $infos['event'],
             'nbGuests' => $infos['nbGuests'],
             'balance' => $infos['balance'],
