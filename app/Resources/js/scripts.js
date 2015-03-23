@@ -9,6 +9,10 @@ function accordeon(){
 }
 
 
+$('select').selectize({
+    create: true,
+    sortField: 'text',
+});
 
 $('#basicModal').on("hover",function(){
     $('#basicModal').modal({"backdrop" : true});

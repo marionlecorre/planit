@@ -1,5 +1,4 @@
 {% extends '::base.html.twig' %}
-
  {% block javascripts %}
     {{ parent() }} <!-- pour ne pas effacer les autres feuilles de style -->
     {% javascripts '@PlanItUserBundle/Resources/public/js/*.js'

@@ -39,7 +39,6 @@ class PlaceType extends AbstractType
                                             0   => 'refused',
                                             2 => 'contacted',
                                             3 => 'tocontact',
-                                            1   => 'accepted',
                                         ), 'label'  => false, 'attr' => array('placeholder' => 'state')));
 
     }

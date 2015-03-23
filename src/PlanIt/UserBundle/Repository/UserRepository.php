@@ -12,19 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-    /*public function getEventsForUser($user_id)
+    public function findByEmail($email)
     {
-        $qb = $this->createQueryBuilder('c')
-                   ->select('c')
-                   ->where('c.blog = :blog_id')
-                   ->addOrderBy('c.created')
-                   ->setParameter('blog_id', $blogId);
-
-        if (false === is_null($approved))
-            $qb->andWhere('c.approved = :approved')
-               ->setParameter('approved', $approved);
+        $qb = $this->createQueryBuilder('u')
+                   ->select('u')
+                   ->where('u.email = :email')
+                   ->setParameter('email', $email);
 
         return $qb->getQuery()
                   ->getResult();
-    }*/
+    }
 }

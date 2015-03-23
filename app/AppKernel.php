@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new PlanIt\UserBundle\PlanItUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new JMS\TwigJsBundle\JMSTwigJsBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),

@@ -106,7 +106,7 @@ button {
       border-bottom: solid 2px;
     }
     #close-modal {
-      background : url("/images/utils.png") no-repeat;
+      background : url("/images/utils-old.png") no-repeat;
       background-position: 46% -236px;
       float: right;
       height: 19px;
@@ -116,6 +116,7 @@ button {
       }
     }
     .modal-body {
+      margin-left:0px;
       div {
         margin:auto;
         width: 200px;
@@ -176,19 +177,31 @@ button {
 }
 
 .modal.validate {
-  button {
-    background: url("/images/utils.png") no-repeat;
-    width: 50%;
+  .modal-dialog {
+    width: 300px;
+    position: initial;
+    margin: 10% auto;
+  }
+  button.btn {
+    background-color: inherit;
+    width: 49%;
     height: 87px;
     display: inline-block;
-    background-size: 17%;
-    padding-top: 71px;
     font-size: 13px;
     border: none;
-    background-position: 50% -1px;
-    &#delete_cancel {
-      background-position: 50% -142px;
-      background-size: 20%;
+    outline: none !important;
+    box-shadow: none;
+    &:before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      display: block;
+      background: url("/images/utils.png") no-repeat;
+      margin: auto;
+    }
+    &#delete_cancel:before {
+      background-position: 50% -182px;
+      background-size: 92%;
     }
   }
 }

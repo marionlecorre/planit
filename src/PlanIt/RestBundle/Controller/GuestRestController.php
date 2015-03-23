@@ -10,6 +10,7 @@ use PlanIt\GuestsBundle\Form\UpdateGuestType;
 use PlanIt\GuestsBundle\Form\GuestAnswerType;
 use PlanIt\GuestsBundle\Form\GuestInscriptionType;
 
+
 class GuestRestController extends Controller
 {
 

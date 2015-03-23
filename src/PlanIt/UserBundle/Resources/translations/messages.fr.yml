@@ -1,4 +1,11 @@
 title: EVENEMENTS
 add_event: Ajouter un événement
 update_event: Modifier l'événement
+register: Inscription
+login: Connexion
 J: J
+form:
+    registration:
+        firstnames: Prénom
+        lastnames: Nom
+        image: Image

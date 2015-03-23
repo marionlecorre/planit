@@ -14,6 +14,16 @@ class PageController extends Controller
 
         $event = $em->getRepository('PlanItEventBundle:Event')->find($event_id);
         $module = $this->get("module_api_controller")->getModuleAction($module_id);
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $user_id_module = $event->getUser()->getId();
+        if(!$user || $user == "anon."){
+            return $this->redirect($this->generateUrl('PlanItUserBundle_login'));
+        }else{
+            if($user->getId() != $user_id_module){
+                return $this->render('PlanItUserBundle:Page:forbidden.html.twig');
+            }
+        }
         switch($module->getIntType()){
             case 1:
                 $link = $this->get("guests_api_controller")->getGuestsmoduleInscriptionlinkAction($module_id);

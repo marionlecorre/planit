@@ -67,11 +67,13 @@
 					</div>
 				{% endfor %}
 			</div>
+			{% if notUsesModules is not empty %}
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 module">	
 				<div id="ajout_module" class="module_button" data-toggle="modal" data-target="#basicModal"> 
 		    		<p>+</p> 
 				</div>     		
 			</div>
+			{% endif %}
 			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		        <div class="modal-dialog">
 		            <div class="modal-content">

@@ -3,6 +3,7 @@
 namespace PlanIt\BudgetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,6 +21,7 @@ class Expense
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Attention le nom de la dépense doit être renseignée")
      */
     protected $name;
 
@@ -30,16 +32,19 @@ class Expense
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(type="numeric", message="Attention, la valeur du champs prix est incorrecte. Le prix doit être un nombre.")
      */
     protected $price;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la quantité déjà en stock est incorrecte. Celle ci doit être un nombre.")
      */
     protected $stock;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(type="numeric", message="Attention, la valeur de la quantité est incorrecte. Celle ci doit être un nombre.")
      */
     protected $quantity;
 
