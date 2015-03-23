@@ -74,6 +74,19 @@ class PageController extends Controller
         ));
     }
 
+     public function checkAction(Request $request){
+        $reponse = $this->get("user_api_controller")->postLoginAction($request);
+        $reponse = json_decode($reponse, true);
+        if($reponse['id'] != null){
+            return $this->redirect($this->generateUrl('PlanItUserBundle_homepage', array(
+                'id'    => $reponse['id']
+            )));
+        }else{
+            return $reponse['erreur'];
+        }
+        
+    }
+
     public function registerAction(Request $request)
     {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */

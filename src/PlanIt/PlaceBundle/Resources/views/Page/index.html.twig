@@ -22,6 +22,10 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-5 col-md-6 col-sm-12 map_canvas" id="map-canvas">
+			    	</div>
+	<input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Geocode" onclick="codeAddress()">
 	<section>
 	{% for message in app.session.flashbag.get('errors') %}
         <p>{{ message }}</p>
@@ -57,7 +61,6 @@
 			                </div>
 			        </div>
 			    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
-<<<<<<< HEAD
 			        	<p><span class="label_descr">{{'address'|trans}}</span> : <input type="text" id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.address}}"></p>
 			        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" class="short_input" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
 			        	<p><span class="label_descr">{{'distance'|trans}}</span> : <input type="text" class="short_input" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
@@ -79,19 +82,6 @@
 				        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
 				        		</select>
 			        		{% endif %}
-=======
-			        	<p><span class="label_descr">{{'capacity'|trans}}</span><input type="text" class="short_input" id="capacity-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.capacity}}"></p>
-			        	<p><span class="label_descr">{{'distance'|trans}}</span><input type="text" class="short_input" id="distance-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.distance}}">km</p>
-			        	<p><span class="label_descr">{{'tel'|trans}}</span><input type="text" id="tel-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.tel}}"></p>
-			        	<p><span class="label_descr">{{'website'|trans}}</span><input type="text" id="website-place-{{place.id}}" onblur="updatePlace({{place.id}})" value="{{place.website}}"> </p>
-			        	<p id="state_place"><span class="label_descr" id="state_label">{{'state'|trans}}</span>
-			        		<select id="state-place-{{place.id}}" onchange="updatePlace({{place.id}})">
-			        			<option value="0" {% if place.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
-			        			<option value="2" {% if place.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
-			        			<option value="3" {% if place.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
-			        			<option value="1" {% if place.state == 1 %} selected {% endif %}>{{'accepted'|trans}}</option>
-			        		</select>
->>>>>>> origin/master
 			        	</p>
 			        	<p>
 			        		<span class="label_descr">{{'contract'|trans}}</span> 
@@ -114,17 +104,6 @@
 			    	</div>
 			    	<div class="col-lg-5 col-md-6 col-sm-12 map_canvas" id="map_canvas_{{place.id}}">
 			    	</div>
-{# 			    	<div class="row">
- #}				    	<p class="address col-lg-6 col-md-6 col-sm-12">
-				    		<span class="label_descr">{{'address'|trans}}</span>
-				    		<textarea id="address-place-{{place.id}}" onblur="updatePlace({{place.id}})" placeholder="{{'address_placeholder'|trans}}">{{place.address}}</textarea>
-				    	</p>
-				    	<p class="remark col-lg-6 col-md-6 col-sm-12">
-				    		<span class="label_descr">{{'remark'|trans}}</span>
-				    		<textarea id="remark-place-{{place.id}}" onblur="updatePlace({{place.id}})" placeholder="{{'remark_placeholder'|trans}}">{{place.remark}}</textarea>
-				    	</p>
-{# 			    	</div>
- #}
 			    </div>
 			</div>
 		</div>

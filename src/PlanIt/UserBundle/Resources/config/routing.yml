@@ -9,6 +9,11 @@ PlanItUserBundle_login:
     defaults: { _controller: PlanItUserBundle:Page:login }
     requirements:
         _method:  GET
+PlanItUserBundle_check:
+    path:     /check
+    defaults: { _controller: PlanItUserBundle:Page:check }
+    requirements:
+        _method:  POST
 PlanItUserBundle_register:
     path:     /register
     defaults: { _controller: PlanItUserBundle:Page:register }

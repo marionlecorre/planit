@@ -21,8 +21,14 @@ class PageController extends Controller
 
     public function pdfAction($module_id){
     	$module = $this->getDoctrine()->getEntityManager()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        $items = array();
+        foreach($module->getLists() as $list){
+            foreach ($list->getItems() as $item) {
+                $items[]=$item;
+            }
+        }
     	$html = $this->renderView('PlanItTodoBundle:Page:pdf.html.twig', array(
-					    	'items'  => $module->getItems()
+					    	'items'  => $items
 						));
 
 		return new Response(
