@@ -22,15 +22,9 @@
             {% block header %}
                 <header>
                     <div class="user">
-<<<<<<< Updated upstream
                         <img src="/images/user/user_pictures/{{ user.image }}" />
-                        <span class="name">{{user.firstname}} {{user.lastname}}</span> 
-                        <a href="{{ path('PlanItUserBundle_logout') }}">
-=======
-                        <img src="/images/{{ user.image }}" />
                         <span class="name">{{user.firstname}} {{user.lastname}} | </span> 
                         <a href="{{ path('PlanItUserBundle_logout') }}" class="logout">
->>>>>>> Stashed changes
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </a>
                     </div>
