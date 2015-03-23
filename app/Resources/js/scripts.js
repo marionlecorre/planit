@@ -1,5 +1,9 @@
-function accordeon(){
+function accordeon(id){
 	$('#accordion ul.modules').hide();
+	if(id != 0){
+		$('#modules-'+id).show();
+		$('#li-'+id).addClass("open");
+	}
 	$('#accordion li.event').click(function(){
 		$(this).toggleClass("open").next().slideToggle()
 		.siblings('ul.modules').slideUp();

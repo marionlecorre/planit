@@ -91,6 +91,9 @@
 			&.last {
 				@include box-shadow(0,0,0,0,#1c1c1c);
 			}
+			.module_active{
+				  color: #61c0a5;
+			}
 		}
 	}
 	ul.modules li {

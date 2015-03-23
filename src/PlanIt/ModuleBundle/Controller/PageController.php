@@ -31,6 +31,7 @@ class PageController extends Controller
                 $nb_guests = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($event_id);
                 return $this->render('PlanItGuestsBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
+                    'module_id' => $module->getId(),
                     'module' => $module,
                     'link' => $link,
                     'paymentmeans' =>$paymentmeans,
@@ -43,6 +44,7 @@ class PageController extends Controller
                 $infos = $this->get("budget_api_controller")->getInfosAction($module_id);
                 return $this->render('PlanItBudgetBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
+                    'module_id' => $module->getId(),
                     'module' => $module,
                     'user' => $event->getUser(),
                     'infos' => $infos
@@ -52,6 +54,7 @@ class PageController extends Controller
             case 3:
                 return $this->render('PlanItPlaceBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
+                    'module_id' => $module->getId(),
                     'module' => $module,
                     'user' => $event->getUser()
                 ));
@@ -60,6 +63,7 @@ class PageController extends Controller
             case 4:
                 return $this->render('PlanItTransportationBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
+                    'module_id' => $module->getId(),
                     'module' => $module,
                     'user' => $event->getUser()
                 ));
@@ -68,6 +72,7 @@ class PageController extends Controller
             case 5:
                 return $this->render('PlanItTodoBundle:Page:index.html.twig', array(
                     'event_id' => $event_id,
+                    'module_id' => $module->getId(),
                     'module' => $module,
                     'user' => $event->getUser()
                 ));
