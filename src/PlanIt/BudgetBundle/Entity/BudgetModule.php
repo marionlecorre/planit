@@ -257,7 +257,7 @@ class BudgetModule extends Module
 
     public function getTotalExpenses()
     {
-        $total = $this->getBase();
+        $total = 0;
         foreach ($this->getTypesExpense() as $typeExpense){
             foreach ($typeExpense->getExpenses() as $expense){
                 $expenses = $expense->getPrice()* ($expense->getQuantity() - $expense->getStock());

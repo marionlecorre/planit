@@ -23,6 +23,7 @@
     {% for message in app.session.flashbag.get('errors') %}
         <p>{{ message }}</p>
     {% endfor %}
+    {{ render(controller('PlanItTransportationBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
 	<section>
 		<div class="row">
 	        <div class="col-md-3 bt_place"><button data-toggle="modal" data-target=".addTransportationModal" class="col-md-3">{{'add_transportation'|trans}}</button></div>

@@ -127,13 +127,13 @@ class GuestRestController extends Controller
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($guest->getModule()->getEvent()->getId());
         $message = \Swift_Message::newInstance()
             ->setSubject('Invitation à l\'évènement : '.$event->getName())
-            ->setFrom($event->getUser()->getMail())
+            ->setFrom($event->getUser()->getEmail())
             ->setTo($guest->getEmail())
             ->setBody($guest->getTypeguest()->getMessage().'<br/> 
                 Le prix de l\'évènement est de '.$guest->getTypeguest()->getPrice().'€ par personne <br/> 
                 Merci de confirmer votre présence grâce au lien suivant : <br/>
                 http://planit.dev:8888/app_dev.php/'.$request->getLocale().'/answer/'.base64_encode($guest->getId()).'/'.base64_encode('form').'<br>'
-                .$event->getUser()->getName().' '.$event->getUser()->getSurname(), 'text/html');
+                .$event->getUser()->getFirstname().' '.$event->getUser()->getLastname(), 'text/html');
         $this->get('mailer')->send($message);
         $guest->setSent(1);
         $em = $this->getDoctrine()->getManager();

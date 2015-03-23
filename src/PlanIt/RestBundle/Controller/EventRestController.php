@@ -23,6 +23,7 @@ class EventRestController extends Controller
         $this->container = $container;
     }
 
+
     public function getEventNotusemodulesAction($event_id){
         $event = $this->getDoctrine()->getRepository('PlanItEventBundle:Event')->find($event_id);
         $modules_tab = array(
@@ -316,4 +317,5 @@ class EventRestController extends Controller
     public function getEventNbguestsAction($event_id){
         return $nbGuests = $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($event_id);
     }
+
 }

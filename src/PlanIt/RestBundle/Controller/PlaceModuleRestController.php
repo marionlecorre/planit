@@ -41,4 +41,29 @@ class PlaceModuleRestController extends Controller
                 'id'    => $event->getId()
             )));
     }
+
+    public function postPlacemoduleUpdateAction(Request $request, $module_id)
+    {
+        
+        $module = $this->getDoctrine()->getRepository('PlanItModuleBundle:Module')->find($module_id);
+        $form    = $this->createForm(new PlaceModuleType(), $module);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $em = $this->getDoctrine()
+                       ->getEntityManager();
+            $em->persist($module);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $module->getEvent()->getId(),
+                'module_id'   => $module->getId()
+            )));
+        }
+
+        return $this->redirect($this->generateUrl('PlanItModuleBundle_module', array(
+                'event_id'    => $module->getEvent()->getId(),
+                'module_id'   => $module->getId()
+            )));
+    }
 }

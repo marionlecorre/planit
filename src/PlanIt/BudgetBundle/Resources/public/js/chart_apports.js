@@ -11,6 +11,7 @@ function getListInflow(id){
                success : function(guests_inflows, statut){ // code_html contient le HTML renvoyé
                 var data = {xA : []};
                 var empty;
+                var color;
                 // récupération des expenses
                 if (inflows.inflows.length == 0 && guests_inflows == undefined) {
                   var obj =  {name: "Aucun apport",y: 1,sliced: false, selected: false};

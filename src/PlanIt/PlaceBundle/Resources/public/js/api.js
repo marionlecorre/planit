@@ -28,32 +28,7 @@ function chosePlace(place_id){
 	   dataType : 'json',
 	   data : {check:check},
 	   success : function(states){ // code_html contient le HTML renvoyé
-	   		for(var id in states){
-	   			$("#state-place-"+id).hide();
-	   			if(states[id] == 1){
-	   				$("#p-state-place-"+id).append('Accepté');
-	   			}else{
-	   				$("#state-place-"+id).show();
-	   				$("#p-state-place-"+id+" .accepted").remove();
-	   				$("#state-place-"+id).val(states[id]);
-	   				
-	   			}
-	   		}
-	   		$(".accordion-head").each(function(){
-	   			$(this).attr('class', 'head-list accordion-head nochecked');
-	   		});
-	   		$(".check").each(function(){
-	   			$(this).prop('checked', false);
-	   		});
-	   		$(".accordion-body").hide();
-	   		if(parseInt(states[place_id]) == 1){
-	   			$('#place-'+place_id+' .head-list').attr('class', 'head-list accordion-head checked');
-	   			$('#place-'+place_id+' .div-checkbox .check').prop('checked', true);
-	   			$('#place-'+place_id).prependTo("#list");
-	   			$('#place-'+place_id+' .accordion-head').trigger("click");
-	   		}
-	   		$('#okModal').modal('show');
-	   		setTimeout( "$('#okModal').modal('hide');",1200 );
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);
