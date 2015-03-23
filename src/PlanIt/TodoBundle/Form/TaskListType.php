@@ -17,7 +17,7 @@ class TaskListType extends AbstractType
     {
         
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.list.name')));
+            ->add('name','text', array('label'  => 'form.list.name'));
 
     }
     

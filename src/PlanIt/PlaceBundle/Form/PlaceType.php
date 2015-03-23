@@ -19,16 +19,16 @@ class PlaceType extends AbstractType
         
         $type = $this->type;
         $builder
-            ->add('name','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.name')))
-            ->add('address','text', array('label'  => false, 'attr' => array('placeholder' => 'form.place.address')))
-            ->add('tel','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'tel')))
-            ->add('distance','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'distance')))
-            ->add('price','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.price')))
-            ->add('capacity','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'capacity')))
-            ->add('website','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'website')))
-            ->add('latitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.latitude')))
-            ->add('longitude','text', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'form.place.longitude')))
-            ->add('remark','textarea', array('label'  => false, 'required' => false, 'attr' => array('placeholder' => 'remark')));
+            ->add('name','text', array('label'  => 'form.place.name'))
+            ->add('address','text', array('label'  => 'form.place.address'))
+            ->add('tel','text', array('label'  => 'tel', 'required' => false))
+            ->add('distance','text', array('label'  => 'distance', 'required' => false))
+            ->add('price','text', array('label'  => 'form.place.price', 'required' => false))
+            ->add('capacity','text', array('label'  => 'capacity', 'required' => false))
+            ->add('website','text', array('label'  => 'form.place.website', 'required' => false))
+            ->add('latitude','text', array('label'  => 'form.place.latitude', 'required' => false))
+            ->add('longitude','text', array('label'  => 'form.place.longitude', 'required' => false))
+            ->add('remark','textarea', array('label'  => 'form.place.remark', 'required' => false));
         if($type == "add"){
             $builder->add('image', 'file',array('label'  => 'form.place.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
                     ->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file')));  

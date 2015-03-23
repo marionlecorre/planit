@@ -102,9 +102,10 @@ button {
 }
 .modal-dialog {
   margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 30%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  overflow-y: hidden;
   .modal-content{
     .modal-header {
       background-color: $header; 
@@ -136,6 +137,14 @@ button {
         }
       }
       input[type="text"], input[type="email"] {
+        border: solid 1px #d8d7d7;
+        @include border-radius(3px); 
+        padding: 6px;
+        display: block;
+        margin: 8px auto 12px auto;
+        width: 200px;
+      }
+      textarea{
         border: solid 1px #d8d7d7;
         @include border-radius(3px); 
         padding: 6px;

@@ -23,9 +23,9 @@ form:
     contract:
         file: Select a file *
     module:
-        max_capacity: Minimum capacity
-        price: Maximum price
-        time: Maximum travel time	
+        max_capacity: Maximum capacity: 
+        price: Maximum price: 
+        time: Maximum travel time	: 
     place:
         name: Name of the place *
         address: Adress *

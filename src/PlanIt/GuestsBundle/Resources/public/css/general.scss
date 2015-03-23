@@ -35,6 +35,10 @@ header {
 	input[type="text"],input[type="email"] { 
 		display: block;
 	}
+	label[for="guestsmodule_form_payable"]{
+		display: inline !important;
+  		margin-right: 13px !important;
+	}
 }
 
 .modal.validate {

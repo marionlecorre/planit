@@ -21,13 +21,13 @@ class TypeGuestType extends AbstractType
         $payable = $this->payable;
 
         $builder
-            ->add('label','text', array('label'  => false, 'attr' => array('placeholder' => 'form.typeguest.category')));
+            ->add('label','text', array('label'  => 'form.typeguest.category'));
         if($module_type == 0){
-            $builder->add('message','textarea', array('label'  => false, 'attr' => array('placeholder' => 'form.typeguest.mail')));
+            $builder->add('message','textarea', array('label'  => 'form.typeguest.mail'));
 
         }
         if($payable == 1){
-            $builder->add('price', 'text', array('label'  => false, 'attr' => array('placeholder' => 'form.typeguest.price')));
+            $builder->add('price', 'text', array('label'  => 'form.typeguest.price'));
         }
     }
     

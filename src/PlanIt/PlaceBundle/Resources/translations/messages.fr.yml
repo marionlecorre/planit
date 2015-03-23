@@ -24,9 +24,9 @@ form:
     contract:
         file: Sélectionner un fichier *
     module:
-        max_capacity: Capacité minimum
-        price: Prix maximum
-        time: Temps de trajet maximum
+        max_capacity: Capacité maximum: 
+        price: Prix maximum: 
+        time: Temps de trajet maximum: 
     place:
         name: Nom du lieu *
         address: Adresse *
