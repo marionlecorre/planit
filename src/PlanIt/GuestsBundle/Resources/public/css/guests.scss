@@ -39,6 +39,7 @@ header {
 			.typename{
 				float:left;
 				margin-left: 20px;
+				margin-top:-2px;
 				input{
 					border:none;
 					background-color: $head-list;
@@ -63,7 +64,8 @@ header {
 					background-color: $head-list;
 					font-size: 14px;
 					width: 30%;
-					text-align:right;
+					text-align:right;					
+					margin-top:-2px;
 					&:focus {
 						background-color: #FFF !important;
 						color: #000000;
@@ -103,15 +105,20 @@ header {
 			}
 			.price {
 				float: left;
-				@media (min-width: 931px) {
+				/*@media (min-width: 931px) {
 					margin-right: 49px;
-				}
+				}*/
 			}
+
+			.modify-delete-type{
+				width:120px;
+			}
+
 			.modify_type, .delete_type{
 				background: url('/images/guests/picto-modif-suppr.png') no-repeat;
 				width:15px;
 				height: 15px;
-				margin: 2px 23px 0 10px;
+				margin: 2px 15px 0 0;
 				float: left;
 				background-position-x : 0px;
 				&:hover {
