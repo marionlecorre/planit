@@ -82,12 +82,17 @@ input{
 	.state-infos {
 		.label_descr {
 			float: left;
+			margin-right: 5px;
 		}
 		.selectize-control {
 			display: inline-block;
 		  	width: 40%;
 		  	margin-left: 20px;
 		}
+	}
+	.accepted {
+		display: block;
+  		margin-bottom: 17px;
 	}
 }
 
@@ -112,6 +117,12 @@ input{
 			outline : none;
 		}
 	}
+}
+
+.separator {
+	height: 1px;
+  	background-color: $color;
+  	margin-bottom: 15px;
 }
 
 .accordion-head {
