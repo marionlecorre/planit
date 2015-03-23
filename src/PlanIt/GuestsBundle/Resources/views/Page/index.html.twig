@@ -14,15 +14,16 @@
 	   <div class="container guest-module">
             <div class="row" id="title">
                 <div class="col-md-10" > <h1>{{module.name|trans|upper}}</h1> </div>
-                <div class="col-md-2" > {{'guests'|trans}} : <span id="nb_guests">{{nb_guests}}</span>/{{module.maxguests}} </div>
                 <div class="col-md-2 pull-right">
                     <button data-toggle="modal" data-target=".updateModuleModal" data-type="">{{'update_module'|trans}}</button>
                 </div>
             </div>
 
             <div class="row" id="separator">
-                <div class="col-md-12"> </div>
+                <div class="col-md-12"> </div>                
             </div>
+   
+
 
             <div class="modal fade modal-ok" id="okModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
@@ -32,23 +33,23 @@
                     </div>
                 </div>
             </div>
-            {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module.id } ))}}
+            {{ render(controller('PlanItGuestsBundle:TypeGuest:form', { 'module_id' : module.id } ))}} 
             <div id="header_list" class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addTypeGuestModal">{{'add_typeguest'|trans}}</button></div>
                 {% if module.moduletype == 1 %}
-                    <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".getInscrptionLink">{{'url' |trans}}</button></div>
+                    <div class="col-md-2 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".getInscrptionLink">{{'url' |trans}}</button></div>
                 {% endif %}
                 {% if module.payable %}
                     {% if paymentmeans is not empty %}
                         <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addPaymentMeansModal">{{'add_payment' |trans}}</button></div>
                     {% endif %}    
                 {% endif %}
+                <div class="col-md-2 compteur_guest pull-right" > <button> {{'guests'|trans}} : {{nb_guests}}/{{module.maxguests}} </button> </div>   
                 <div class="col-md-2 pull-right " id="checkbox_payable">                  
                     <form id="paying-checkbox" action="">
                         <input id="payable-{{module.id}}" onclick="updatePayable({{module.id}})" type="checkbox" {% if module.payable %} checked {%endif%}>{{'payable'|trans}}
                     </form>
                 </div>
-
                 <div class="modal fade getInscrptionLink" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

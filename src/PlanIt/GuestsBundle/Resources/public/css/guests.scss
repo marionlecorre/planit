@@ -13,6 +13,12 @@ header {
 		font-size: 12px;
 		margin-top: 6px;
 	}
+	.compteur_guest button{
+		background-color: $neutral;
+		color:#333;
+		cursor: default;
+		margin-bottom: 25px;
+	}
 	#paying-checkbox {
 		margin-top: 6px;
 		font-size: 12px;
