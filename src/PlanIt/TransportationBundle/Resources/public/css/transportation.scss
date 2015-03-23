@@ -27,6 +27,13 @@ header {
   	font-size: 16px;
 }
 
+#transportationimage_form, #transportationcontract_form{
+	background-color: lighten($neutral,10%);
+	@include border-radius(3px);
+	cursor: pointer;
+	padding: 2px 5px;
+}
+
 #infos{
 	p{
 		margin-bottom:15px;
