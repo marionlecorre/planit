@@ -51,6 +51,12 @@ a:link
  text-decoration:none; 
 } 
 
+::-webkit-input-placeholder { font-size: 14px }
+::-moz-placeholder { font-size: 14px } /* firefox 19+ */
+:-ms-input-placeholder { font-size: 14px } /* ie */
+input:-moz-placeholder { font-size: 14px }
+
+
 .container {
   margin-left: 200px;
   width: inherit;
@@ -126,7 +132,7 @@ button {
       margin-left:0px;
       div {
         margin:auto;
-        width: 200px;
+        width: 200px !important;
         label {
           font-weight: normal;
           text-align: left !important;
@@ -143,7 +149,7 @@ button {
         padding: 6px;
         display: block;
         margin: 0px auto 12px auto;
-        width: 200px;
+        width: 200px !important;
       }
       label[for="guestsmodule_form_payable"]{
         display: inline !important;

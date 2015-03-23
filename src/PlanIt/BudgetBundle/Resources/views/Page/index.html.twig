@@ -88,8 +88,7 @@
 							</div>
 						</section>
 
-						<section id="section-topline-apports">							
-							<div class="col-md-3 add-inflow"><button data-toggle="modal" data-target=".addInflowModal">{{'add_inflow'|trans}}</button></div>		
+						<section id="section-topline-apports">		
 							<div class="responsive-table-line">
 								<table class="table table-condensed table-body-center" >
 									<thead>
@@ -140,7 +139,9 @@
 										{% endif %}					
 									</tbody>
 								</table>
-								<span id="legend">* {{'changeable_data'|trans}}</span>								
+								<span id="legend" class="pull-right">* {{'changeable_data'|trans}}</span>	
+								<div style="clear:both"></div>	
+								<div class="col-md-3 add-inflow pull-right"><button data-toggle="modal" data-target=".addInflowModal">{{'add_inflow'|trans}}</button></div>							
 							</div>
 						</section>
 
@@ -151,9 +152,7 @@
 									{% for type_expense in module.typesexpense %}					
 										<section id="section-topline-{{type_expense.id}}">	
 											<!--bt ajout cat depense-->
-											<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addTypeExpenseModal">{{'add_typeexpense'|trans}}</button></div>
-											<!-- bt ajout depense-->
-											<div class="col-md-3 add-expense"><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
+											<div class="col-md-3 add_typeexpense"><button data-toggle="modal" data-target=".addTypeExpenseModal">{{'add_typeexpense'|trans}}</button></div>				
 
 											{% if type_expense.expenses is not empty %}	
 												<div class="responsive-table-line section-topline">
@@ -203,9 +202,13 @@
 																</tr>
 															{% endfor %}						
 														</tbody>
-													</table>
-													<span id="legend">* {{'changeable_data'|trans}}</span>	
+													</table>													
 												</div>
+													<span id="legend" class="pull-right">* {{'changeable_data'|trans}}</span>
+													<div style="clear:both"></div>											
+													<!-- bt ajout depense-->
+													<div class="col-md-3 add-expense pull-right "><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
+													
 											{% else %}
 												<div id="no-expense">
 													<p class="empty"> {{'empty_cat'|trans}} </p>
