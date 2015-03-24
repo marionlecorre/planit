@@ -28,8 +28,8 @@ class PlaceType extends AbstractType
             ->add('website','text', array('label'  => 'form.place.website', 'required' => false))
             ->add('remark','textarea', array('label'  => 'form.place.remark', 'required' => false));
         if($type == "add"){
-            $builder->add('image', 'file',array('label'  => 'form.place.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
-                    ->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file')));  
+            $builder->add('image', 'file',array('label'  => 'form.place.image', 'required' => false, 'label_attr' => array('class'=>'file bt_file')))            
+                    ->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file bt_file')));  
         } 
         $builder->add('state','choice', array(
                                         'choices'   => array(

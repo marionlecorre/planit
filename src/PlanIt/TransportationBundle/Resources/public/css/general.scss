@@ -17,6 +17,14 @@ header {
 	}
 }
 
+.bt_file{
+	background-color: lighten($color,10%);
+	@include border-radius(3px);
+	padding:2px 5px;
+	margin-bottom:10px !important;
+	color:#fff !important;
+}
+
 .modal-header {
 	color: $color;
 	border-color: $color;
