@@ -51,10 +51,10 @@ a:link
  text-decoration:none; 
 } 
 
-::-webkit-input-placeholder { font-size: 14px }
-::-moz-placeholder { font-size: 14px } /* firefox 19+ */
-:-ms-input-placeholder { font-size: 14px } /* ie */
-input:-moz-placeholder { font-size: 14px }
+::-webkit-input-placeholder { font-size: 14px; padding:3px 0; }
+::-moz-placeholder { font-size: 14px; padding:3px 0; } /* firefox 19+ */
+:-ms-input-placeholder { font-size: 14px ; padding:3px 0; } /* ie */
+input:-moz-placeholder { font-size: 14px ; padding:3px 0;}
 
 
 .container {

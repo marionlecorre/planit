@@ -59,7 +59,10 @@
 					<div class="row sous-menu" id="expense-menu" style="display:none;">
 							<ul class="col-md-12 sous-menu-depense">
 								{% for type_expense in module.typesexpense %}
-								<li id="tab-{{type_expense.name|lower}}"><a href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a></li>
+								<li id="tab-{{type_expense.name|lower}}">
+									<a href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a>
+									<a onclick="alert('coucou')" class="delete_type_expense pull-right">x</a>
+								</li>
 								{% endfor %}								
 							</ul>
 					</div>
