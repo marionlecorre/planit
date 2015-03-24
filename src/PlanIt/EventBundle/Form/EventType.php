@@ -20,14 +20,16 @@ class EventType extends AbstractType
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
                                 'format' => 'dd/MM/yyyy',
-                                'attr' => array('class' => 'date', 'label' =>'form.event.begin_date')
+                                'label' =>'form.event.begin_date',
+                                'attr' => array('class' => 'date')
                                 ))
             ->add('end_date','date', array(
                                 'required' => false,
                                 'widget' => 'single_text',
                                 'input' => 'datetime',
                                 'format' => 'dd/MM/yyyy',
-                                'attr' => array('class' => 'date','label' => 'form.event.end_date')
+                                'label' =>'form.event.end_date',
+                                'attr' => array('class' => 'date')
                                 ));
             if($type == "add"){
                 $builder->add('image', 'file',array('required' => false, 'label'  => 'form.event.image', 'label_attr' => array('class'=>'file')));

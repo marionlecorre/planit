@@ -33,7 +33,7 @@ class Transportation
 
      /**
      * @ORM\Column(type="float",nullable=true)
-     * @Assert\Type(type="numeric", message="Attention, le prix est incorrecte. Celui-ci doit être un nombre.")
+     * @Assert\Type(type="numeric", message="Attention, le prix est incorrect. Celui-ci doit être un nombre.")
      */
     protected $price;
 
