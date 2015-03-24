@@ -42,22 +42,6 @@ class TransportationController extends Controller
         ));
     }
 
-    public function imageAction($module_id)
-    {
-        $module = $this->getModule($module_id);
-
-
-        $transportation = new Transportation();
-        $transportation->setModule($module);
-        $form   = $this->createForm(new ImageType(), $transportation);
-
-        return $this->render('PlanItTransportationBundle:Transportation:image-form.html.twig', array(
-            'transportation' => $transportation,
-            'form'   => $form->createView(),
-            'module_id' => $module_id,
-        ));
-    }
-
     protected function getModule($module_id)
     {
         $em = $this->getDoctrine()

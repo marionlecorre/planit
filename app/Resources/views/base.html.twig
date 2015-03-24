@@ -22,7 +22,11 @@
             {% block header %}
                 <header>
                     <div class="user">
+                        {% if user.image != null %}
                         <img src="/images/user/user_pictures/{{ user.image }}" />
+                        {% else %}
+                            <img src="/images/image-profil.jpg"/>
+                        {% endif %}
                         <span class="name">{{user.firstname}} {{user.lastname}} | </span> 
                         <a href="{{ path('PlanItUserBundle_logout') }}" class="logout">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -45,7 +49,11 @@
                     </div> #}
 
                     <div class="user">
-                        <img  src="/images/user/user_pictures/{{ user.image }}"/>
+                        {% if user.image != null %}
+                        <img src="/images/user/user_pictures/{{ user.image }}" />
+                        {% else %}
+                            <img src="/images/image-profil.jpg"/>
+                        {% endif %}
                         <span class="name">{{user.firstname}} {{ user.lastname }}</span> 
                         <span class="counter-event">{{'nb_events'|trans({'%nb%': user.events|length}) }}</span>
                     </div>

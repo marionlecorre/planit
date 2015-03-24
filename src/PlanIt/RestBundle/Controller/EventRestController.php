@@ -130,15 +130,17 @@ class EventRestController extends Controller
                 $event->setDescription($request->request->get('description'));
                 $event->setBeginDate(\DateTime::createFromFormat('j/m/Y', $request->request->get('begin_date')));
                 $event->setEndDate(\DateTime::createFromFormat('j/m/Y', $request->request->get('end_date')));
-                $file = $request->files->get('image');
-                $extension = $file->guessExtension();
-                if (!$extension) {
-                    $extension = 'bin';
-                }
+                if($request->files->get('image') != null){
+                    $file = $request->files->get('image');
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
 
-                $rand = rand(1, 99999);
-                $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-                $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                    $rand = rand(1, 99999);
+                    $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+                    $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                }
                 $em = $this->getDoctrine()
                                ->getEntityManager();
                     $em->persist($event);
@@ -165,15 +167,17 @@ class EventRestController extends Controller
                 // }
                 $event->setSlug($data->getName());
 
-                $file = $form['image']->getData();
-                $extension = $file->guessExtension();
-                if (!$extension) {
-                    $extension = 'bin';
-                }
+                if($form['image']->getData() != null){
+                    $file = $form['image']->getData();
+                    $extension = $file->guessExtension();
+                    if (!$extension) {
+                        $extension = 'bin';
+                    }
 
-                $rand = rand(1, 99999);
-                $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
-                $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                    $rand = rand(1, 99999);
+                    $file->move($event->getUploadRootDir(), $user_id.'-'.$rand.'.'.$extension);
+                    $event->setImage($user_id.'-'.$rand.'.'.$extension);
+                }
                 $em = $this->getDoctrine()
                            ->getEntityManager();
                 $em->persist($event);

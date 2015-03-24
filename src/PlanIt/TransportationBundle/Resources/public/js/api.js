@@ -28,22 +28,7 @@ function choseTransportation(transportation_id){
 	   dataType : 'json',
 	   data : {check:check},
 	   success : function(states){ // code_html contient le HTML renvoyé
-	   		console.log(states);
-	   		for(var id in states){
-	   			$("#state-transportation-"+id).val(states[id]);
-	   		}
-	   		$(".accordion-head").each(function(){
-	   			$(this).attr('class', 'head-list accordion-head nochecked');
-	   		});
-	   		$(".check").each(function(){
-	   			$(this).prop('checked', false);
-	   		});
-	   		if(parseInt(states[transportation_id]) == 1){
-	   			$('#transportation-'+transportation_id+' .head-list').attr('class', 'head-list accordion-head checked');
-	   			$('#transportation-'+transportation_id+' .div-checkbox .check').prop('checked', true);
-	   		}
-	   		$('#okModal').modal('show');
-	   		setTimeout( "$('#okModal').modal('hide');",1200 );
+	   		location.reload();
 	   },
 	   error : function(resultat, statut, erreur){
 	         console.log(resultat);

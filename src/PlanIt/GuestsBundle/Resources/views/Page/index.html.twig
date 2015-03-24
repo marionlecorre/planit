@@ -44,7 +44,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12"><button data-toggle="modal" data-target=".addPaymentMeansModal">{{'add_payment' |trans}}</button></div>
                     {% endif %}    
                 {% endif %}
-                <div class="col-md-2 compteur_guest pull-right" > <button> {{'guests'|trans}} : {{nb_guests}}/{{module.maxguests}} </button> </div>   
+                <div class="col-md-2 compteur_guest pull-right" > <button> {{'guests'|trans}} : <span id="nb_guests">{{nb_guests}}</span>/{{module.maxguests}} </button> </div>   
                 <div class="col-md-2 pull-right " id="checkbox_payable">                  
                     <form id="paying-checkbox" action="">
                         <input id="payable-{{module.id}}" onclick="updatePayable({{module.id}})" type="checkbox" {% if module.payable %} checked {%endif%}>{{'payable'|trans}}

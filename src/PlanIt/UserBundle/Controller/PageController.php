@@ -116,16 +116,17 @@ class PageController extends Controller
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
             $userManager->updateUser($user);
-            $file = $form['image']->getData();
-            $extension = $file->guessExtension();
-            if (!$extension) {
-                $extension = 'bin';
+            if($file = $form['image']->getData() != null){
+                $file = $form['image']->getData();
+                $extension = $file->guessExtension();
+                if (!$extension) {
+                    $extension = 'bin';
+                }
+
+                $rand = rand(1, 99999);
+                $file->move($user->getUploadRootDir(), $user->getId().'-'.$rand.'.'.$extension);
+                $user->setImage($user->getId().'-'.$rand.'.'.$extension);
             }
-
-            $rand = rand(1, 99999);
-            $file->move($user->getUploadRootDir(), $user->getId().'-'.$rand.'.'.$extension);
-            $user->setImage($user->getId().'-'.$rand.'.'.$extension);
-
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
                 $response = new RedirectResponse($url);

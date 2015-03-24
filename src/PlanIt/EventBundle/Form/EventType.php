@@ -32,7 +32,7 @@ class EventType extends AbstractType
                                 'attr' => array('class' => 'date','placeholder' => 'form.event.end_date')
                                 ));
             if($type == "add"){
-                $builder->add('image', 'file',array('label'  => 'form.event.image', 'label_attr' => array('class'=>'file')));
+                $builder->add('image', 'file',array('required' => false, 'label'  => 'form.event.image', 'label_attr' => array('class'=>'file')));
             }
             
     }

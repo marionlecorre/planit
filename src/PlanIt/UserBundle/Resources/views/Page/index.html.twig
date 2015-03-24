@@ -41,10 +41,17 @@
 						 <span class="date"> {{'J'| trans}}{{ event.beginDate | offsetDate() }}</span>
 					</div>
 					<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
+						
 						<div class="content">
+							{% if event.image != null %}
 							<div class="image-cropper">
-				    		<img src="/images/event/events_pictures/{{event.image}}" /> 
+				    			<img src="/images/event/events_pictures/{{event.image}}" /> 
 				    		</div>
+	                    {% else %}
+	                        <div class="image-cropper">
+	                        	<img src="/images/no-image.jpg"/>
+				    		</div>
+	                    {% endif %}
 				    		<p class="description">{{event.description |truncate(100)}}</p>
 						</div>
 					</a>

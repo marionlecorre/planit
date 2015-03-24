@@ -31,8 +31,6 @@ form:
         name: Nom du lieu *
         address: Adresse *
         price: Prix
-        latitude: Latitude
-        longitude: Longitude
         image: Image
         state: Etat *
         website: Site web: 

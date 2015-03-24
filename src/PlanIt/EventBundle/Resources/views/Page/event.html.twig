@@ -21,7 +21,11 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4 descr_event" id="description">
-					<img src="/images/event/events_pictures/{{event.image}}"/> 
+					{% if event.image != null %}
+						<img src="/images/event/events_pictures/{{event.image}}"/> 
+                    {% else %}
+                        <img src="/images/no-image.jpg"/>
+                    {% endif %}
 					<p>{{event.description}} </p>
 			</div>
 			<div class="col-md-4"> 

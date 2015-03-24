@@ -28,17 +28,6 @@ class TransportationRestController extends Controller
             $transportation->setState($request->request->get('state'));
             $file = $request->files->get('image');
             $extension = $file->guessExtension();
-            // if($request->files->get('image') != null){
-            //     $file = $request->files->get('image');
-            //     $extension = $file->guessExtension();
-            //     if (!$extension) {
-            //         $extension = 'bin';
-            //     }
-
-            //     $rand = rand(1, 99999);
-            //     $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
-            //     $place->setImage($place->getId().'-'.$rand.'.'.$extension);
-            // }
 
             if($request->files->get('contract') != null){
                 $contract = $request->files->get('contract');
@@ -75,17 +64,6 @@ class TransportationRestController extends Controller
                     $file->move($transportation->getUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
                     $transportation->setContract($transportation->getId().'-'.$rand.'.'.$extension);
                 }
-
-                if($form['image']->getData() != null){
-                    $file = $form['image']->getData();
-                    $extension = $file->guessExtension();
-                    if (!$extension) {
-                        $extension = 'bin';
-                    }
-                    $rand = rand(1, 99999);
-                    $file->move($transportation->getImageUploadRootDir(), $transportation->getId().'-'.$rand.'.'.$extension);
-                    $transportation->setImage($transportation->getId().'-'.$rand.'.'.$extension);
-                }
                 $em = $this->getDoctrine()
                            ->getEntityManager();
                 $em->persist($transportation);
@@ -116,7 +94,7 @@ class TransportationRestController extends Controller
                        ->getEntityManager();
         $em->remove($transportation);
         $em->flush();
-        return $transportation->getModule();
+        return 'ok';
 
     }
 

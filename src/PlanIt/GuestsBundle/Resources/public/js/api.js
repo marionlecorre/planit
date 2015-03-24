@@ -43,10 +43,11 @@ function updateGuest(id, attr){
 	   type : 'PUT',
 	   dataType : 'json',
 	   data : dataSend,
-	   success : function(module){ // code_html contient le HTML renvoyé
+	   success : function(nb_guests){ // code_html contient le HTML renvoyé
 		   	if(attr == "confirmed"){
 				$("#confirmed-"+id).attr('class', "light state-"+confirmed);
 				$("#confirmed-"+id).attr('data-type', confirmed);
+				$('#nb_guests').html(nb_guests);
 
 			}else if(attr == "payed"){
 				$("#payed-"+id).attr('class', "light state-"+payed);

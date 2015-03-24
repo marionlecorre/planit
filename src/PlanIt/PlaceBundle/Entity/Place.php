@@ -60,18 +60,6 @@ class Place
     protected $website;
 
     /**
-     * @ORM\Column(type="float",nullable=true)
-     * @Assert\Type(type="numeric", message="Attention, la valeur de la lattitude est incorrecte.")
-     */
-    protected $latitude;
-
-    /**
-     * @ORM\Column(type="float",nullable=true)
-     * @Assert\Type(type="numeric", message="Attention, la valeur de la longitude est incorrecte.")
-     */
-    protected $longitude;
-
-    /**
      * @ORM\Column(type="text",nullable=true)
      */
     protected $remark;

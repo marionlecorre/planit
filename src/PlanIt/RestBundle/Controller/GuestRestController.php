@@ -70,6 +70,8 @@ class GuestRestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($guest);
             $em->flush();
+            return $this->getDoctrine()->getRepository('PlanItGuestsBundle:Guest')->countGuests($guest->getTypeguest()->getModule()->getEvent()->getId());
+
         }
     }
 

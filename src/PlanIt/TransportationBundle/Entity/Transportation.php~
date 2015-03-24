@@ -56,11 +56,6 @@ class Transportation
     /**
      * @ORM\Column(type="text",nullable=true)
      */
-    protected $image;
-
-    /**
-     * @ORM\Column(type="text",nullable=true)
-     */
     protected $contract;
 
     /**

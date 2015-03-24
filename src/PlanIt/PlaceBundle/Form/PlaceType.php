@@ -26,8 +26,6 @@ class PlaceType extends AbstractType
             ->add('price','text', array('label'  => 'form.place.price', 'required' => false))
             ->add('capacity','text', array('label'  => 'capacity', 'required' => false))
             ->add('website','text', array('label'  => 'form.place.website', 'required' => false))
-            ->add('latitude','text', array('label'  => 'form.place.latitude', 'required' => false))
-            ->add('longitude','text', array('label'  => 'form.place.longitude', 'required' => false))
             ->add('remark','textarea', array('label'  => 'form.place.remark', 'required' => false));
         if($type == "add"){
             $builder->add('image', 'file',array('label'  => 'form.place.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
@@ -39,7 +37,7 @@ class PlaceType extends AbstractType
                                             0   => 'refused',
                                             2 => 'contacted',
                                             3 => 'tocontact',
-                                        ), 'label'  => false, 'attr' => array('placeholder' => 'state')));
+                                        ), 'label'  => false, 'attr' => array('placeholder' => 'form.place.state')));
 
     }
     
