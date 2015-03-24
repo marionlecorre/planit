@@ -28,7 +28,7 @@
      {{ render(controller('PlanItTodoBundle:Item:form', { 'module_id' : module.id } ))}}
 
     {% if module.lists is empty %}
-        <p class="empty_module">{{'empty_list'|trans}}</p>
+        <p class="empty_module">{{'empty_module_todo'|trans}}</p>
     {% else %}
         {% for list in module.lists %}
                 
@@ -57,7 +57,7 @@
                         {% endfor %}
 
                         {% if list.items is empty %}
-                            <p class="empty_listtask">{{'empty_module'|trans}}</p>
+                            <p class="empty_listtask">{{'empty_list'|trans}}</p>
                         {% else %}
                             {% for item in list.items %}
                                 {% if item.checked %} 

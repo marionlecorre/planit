@@ -18,7 +18,7 @@ update_contract: Modify the contract
 add_contract : Add a contract
 update_image: Modify the image
 update: Modify
-empty_module: There is no places in this module
+empty_module_place: There is no places in this module
 form:
     contract:
         file: Select a file *

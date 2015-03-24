@@ -3,7 +3,7 @@ add_tasklist: Ajouter une liste de tâches
 print_task: Télécharger la liste des tâches
 add: Ajouter
 empty_list: Il n'y a pas de tâches dans cette liste
-empty_module: Il n'y a pas de liste dans ce module
+empty_module_todo: Il n'y a pas de liste dans ce module
 form:
     item:
         label: Tâche *

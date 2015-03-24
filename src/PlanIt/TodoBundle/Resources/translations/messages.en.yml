@@ -3,7 +3,7 @@ add_tasklist: Add a tasks list
 print_task: Download the task list
 add: Add
 empty_list: There is no task in this list
-empty_module: There is no task list in this module
+empty_module_todo: There is no task list in this module
 form:
     item:
         label: Task *

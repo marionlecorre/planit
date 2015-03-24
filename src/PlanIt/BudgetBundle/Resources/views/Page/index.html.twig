@@ -212,6 +212,8 @@
 											{% else %}
 												<div id="no-expense">
 													<p class="empty"> {{'empty_cat'|trans}} </p>
+													<!-- bt ajout depense-->
+													<div class="col-md-3 add-expense empty_cat_add_expense "><button data-toggle="modal" data-type="{{type_expense.id}}" data-target=".addExpenseModal">{{'add_expense'|trans}}</button></div>
 												</div>
 											{% endif %}
 										</section>

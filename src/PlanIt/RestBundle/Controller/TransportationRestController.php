@@ -28,17 +28,17 @@ class TransportationRestController extends Controller
             $transportation->setState($request->request->get('state'));
             $file = $request->files->get('image');
             $extension = $file->guessExtension();
-            if($request->files->get('image') != null){
-                $file = $request->files->get('image');
-                $extension = $file->guessExtension();
-                if (!$extension) {
-                    $extension = 'bin';
-                }
+            // if($request->files->get('image') != null){
+            //     $file = $request->files->get('image');
+            //     $extension = $file->guessExtension();
+            //     if (!$extension) {
+            //         $extension = 'bin';
+            //     }
 
-                $rand = rand(1, 99999);
-                $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
-                $place->setImage($place->getId().'-'.$rand.'.'.$extension);
-            }
+            //     $rand = rand(1, 99999);
+            //     $file->move($place->getImageUploadRootDir(), $place->getId().'-'.$rand.'.'.$extension);
+            //     $place->setImage($place->getId().'-'.$rand.'.'.$extension);
+            // }
 
             if($request->files->get('contract') != null){
                 $contract = $request->files->get('contract');

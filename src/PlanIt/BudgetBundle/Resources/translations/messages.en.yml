@@ -34,10 +34,10 @@ form:
     expense:
         item: Item *
         quantity: Quantity *
-        unit: Unit 
+        unit: Unit *
         unit_placeholder: (ex: Liters, Bottles, etc.) *
         stock: Already in stock *
-        unit_price: Unit price
+        unit_price: Unit price *
     inflow:
         label: Entitled *
         amount: Amount *
