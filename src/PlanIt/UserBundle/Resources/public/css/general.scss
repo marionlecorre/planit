@@ -101,15 +101,15 @@ button {
 //  .modal.fade.in{
 //    top:0;
 //    left:0;
-//   // .modal-backdrop.fade.in {
-//   //   position: fixed;
-//   //   bottom:0;
-//   // }
+  .modal-backdrop.fade.in {
+    position: fixed;
+    bottom:0;
+  }
 // }
 .modal-dialog {
   margin: 0;
   position: relative;
-  top: 30%;
+  top: 50px;
   left: 30%;
   .modal-content{
     .modal-header {
