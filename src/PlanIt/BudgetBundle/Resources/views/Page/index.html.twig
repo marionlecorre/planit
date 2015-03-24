@@ -61,7 +61,7 @@
 								{% for type_expense in module.typesexpense %}
 								<li id="tab-{{type_expense.name|lower}}">
 									<a href="#section-topline-{{type_expense.id}}"><span>{{type_expense.name}}</span></a>
-									<a onclick="alert('coucou')" class="delete_type_expense pull-right">x</a>
+									<a data-toggle="modal" data-target=".deleteTypeExpenseModal" data-id="{{type_expense.id}}" data-name="{{type_expense.name}}" class="delete_type_expense pull-right">x</a>
 								</li>
 								{% endfor %}								
 							</ul>

@@ -5,7 +5,7 @@ function budget(){
 	});
 
 	$('.deleteTypeExpenseModal').on("show.bs.modal",function(e){
-		var type_id = $(e.relatedTarget).data('type');
+		var type_id = $(e.relatedTarget).data('id');
 		var name = $(e.relatedTarget).data('name');
 		$("#delete_confirm_typeexpense").attr("onclick","deleteTypeExpense("+type_id+")");
 		$("#myModalLabel_deleteTypeExpense").html("Etes-vous sur de vouloir supprimer le type \""+name+"\" et les articles qui lui sont associés ?");
