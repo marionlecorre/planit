@@ -4,6 +4,9 @@ update_event: Modifier l'événement
 register: Inscription
 login: Connexion
 J: J
+
+error: Erreur
+forbidden: Vous n'avez pas accès à cette page
 form:
     registration:
         firstnames: Prénom

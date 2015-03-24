@@ -1,4 +1,21 @@
-{% extends "PlanItUserBundle::layout-login.html.twig" %}
-{% block fos_user_content %}
-	<p> Interdit ! T'as pas le droit t'es moche </p>
-{% endblock fos_user_content %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  type="text/css" href="/css/page403.css">
+    <title>{{'inscription'|trans}}</title>
+    <meta name="description" content="">
+  </head>
+<body>
+		<header>
+			<a href="http://planit.dev/app_dev.php/home/3"><div id="logo">PLAN <span class="blue">IT</span></div></a>
+		</header>
+
+		<div id="content">
+			<h1>{{'error'|trans}}</h1>
+			<div class="separator"></div>
+				<p class="forbidden_message"> {{'forbidden'|trans}} </p>
+		</div>
+
+</body>
+</html>

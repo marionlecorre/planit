@@ -34,7 +34,7 @@
 				<div class="event-thumbnail">
 					<div class="head">
 						<a href="{{ path('PlanItEventBundle_event', { 'id': event.id }) }}" class="event_button">
-							<h2>{{event.name |truncate(14)}}</h2>
+							<h2>{{event.name |truncate(12)}}</h2>
 						</a>				 
                         <div class="delete_event" data-toggle="modal" data-target=".deleteEventModal" data-name="{{event.name}}" data-id="{{event.id}}"></div>
 						<!-- <div class="modify_event" data-toggle="modal" data-target="#updateEvent-{{event.id}}"></div> -->

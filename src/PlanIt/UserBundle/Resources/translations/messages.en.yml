@@ -4,6 +4,8 @@ update_event: Update the event
 register: Registration
 login: Log In
 J: D
+error: Error
+forbidden: Access forbidden
 form:
     registration:
         firstname: Firstname
