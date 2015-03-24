@@ -26,8 +26,7 @@ class TransportationType extends AbstractType
             ->add('website','text', array('label'  => 'form.transportation.website', 'required' => false))
             ->add('remark','text', array('label'  => 'form.transportation.remark', 'required' => false));
         if($type == "add"){
-            $builder->add('image', 'file',array('label'  => 'form.transportation.image', 'required' => false, 'label_attr' => array('class'=>'file')))            
-                    ->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file')));  
+            $builder->add('contract', 'file',array('label'  => 'contract', 'required' => false, 'label_attr' => array('class'=>'file')));  
         } 
         $builder->add('state','choice', array(
                                         'choices'   => array(

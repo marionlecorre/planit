@@ -13,7 +13,7 @@ body{
 
 h1{  
   font-family: GothamHTF-Medium !important;
-  font-size: 35px;
+  font-size: 34px !important;
   margin-bottom:20px !important;
   text-align: center;
   text-shadow: 0px 0px 8px #777777;
@@ -24,7 +24,7 @@ h1{
 
 h2{  
   font-family: GothamHTF-Light !important;
-  font-size: 35px;
+  font-size: 27px !important;
   padding:10px;
   text-align: center;
   text-shadow: 0px 0px 8px #777777;
