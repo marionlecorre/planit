@@ -26,63 +26,79 @@
     {{ render(controller('PlanItTransportationBundle:Page:updatemodule', { 'module_id' : module.id } ))}}
 	<section>
 		<div class="row">
-	        <div class="col-md-3 bt_place"><button data-toggle="modal" data-target=".addTransportationModal" class="col-md-3">{{'add_transportation'|trans}}</button></div>
+	        <div class="col-md-3 bt_transportation"><button data-toggle="modal" data-target=".addTransportationModal" class="col-md-3">{{'add_transportation'|trans}}</button></div>
 	    </div>
 
 	    {% if module.transportations is empty %}
-			<p class="empty_module">{{'empty_module'|trans}}</p>
-		{% else %}
-		    <div class="row list" id="list">
-				{% for transportation in module.transportations%}
-				<div id="transportation-{{transportation.id}}">
-					<div class="div-checkbox">
-						<input type="checkbox" class="check" id="check-{{transportation.id}}" onClick="choseTransportation({{transportation.id}})" {% if transportation.state == 1 %} checked {% endif %}>
-					</div>
-					<div id="head_list" class="head-list accordion-head {% if transportation.state == 1 %} checked {% else %} nochecked {% endif %}">	
-						<div class="name"><input type="text" id="name-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.name}}"></div>
-					    <div class="price"><input type="text" id="price-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.price}}">€</div>
-					    <button onclick="showModalDeleteTransportation({{transportation.id}}, '{{transportation.name}}')">X</button>
-					</div>
-					<div class="accordion-body">
-					    <div class="labels row">
-					    	<div class="col-lg-3 col-md-12 col-sm-12 img_place">
-					    		{% if transportation.image != null %}
-					    			<img src="/images/transportation/transportations_pictures/{{transportation.image}}" width="100%"/>
-					    		{% else %}
-					    			<img src="/images/no-image.jpg" width="100%"/>
-					    		{% endif %}
-									<div class="bt_place">
-					                    <button data-toggle="modal" data-target=".updateImageModal" data-id="{{transportation.id}}">{{'update_image'|trans}}</button> 
-					                </div>
-					        </div>
-					    	<div class="col-lg-4 col-md-6 col-sm-12" id="infos">
-					        	<p><span class="label_descr">{{'capacity'|trans}}</span> : <input type="text" id="capacity-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.capacity}}"></p>
-					        	<p><span class="label_descr">{{'tel'|trans}}</span> : <input type="text" id="tel-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.tel}}"></p>
-					        	<p><span class="label_descr">{{'website'|trans}}</span> : <input type="text" id="website-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.website}}"> </p>
-					        	<p><span class="label_descr">{{'remark'|trans}}</span> : <input type="text" id="remark-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.remark}}"> </p>
-					        	<p><span class="label_descr">{{'state'|trans}}</span> : 
+		<p class="empty_module">{{'empty_module'|trans}}</p>
+	{% else %}
+		<div class="row list" id="list">
+			{% for transportation in module.transportations %}
+			<div id="transportation-{{transportation.id}}">
+				<div class="div-checkbox">
+					<input type="checkbox" class="check" id="check-{{transportation.id}}" onClick="choseTransportation({{transportation.id}})" {% if transportation.state == 1 %} checked {% endif %}>
+				</div>
+				<div id="head_list" class="head-list accordion-head {% if transportation.state == 1 %} checked {% else %} nochecked {% endif %}">
+					{# NAME #}	
+					<div class="name"><input type="text" id="name-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.name}}"></div>
+					{# DELETE #}
+				    <div class="pull-right delete_transportation" onclick="showModalDeleteTransportation({{transportation.id}}, '{{transportation.name}}')"></div>
+				    {# PRICE #} 
+				    <div class="price"><input type="text" class="short_input" id="price-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.price}}">€</div>
+				</div>
+				<div class="accordion-body">
+				    <div class="labels row">
+
+				    	<div class="col-lg-6 col-md-6 col-sm-12" id="infos1">
+				        	{# CAPACITY #}
+				        	<p><span class="label_descr">{{'capacity'|trans}}</span> <input type="text" class="short_input" id="capacity-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.capacity}}">personnes</p>
+				        	{# TEL #}
+				        	<p><span class="label_descr">{{'tel'|trans}}</span> <input type="text" id="tel-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.tel}}" placeholder="ex: 06 78 56 43 44"></p>
+				        	{# WEBSITE #}
+				        	<p><span class="label_descr">{{'website'|trans}}</span> <input type="text" id="website-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" value="{{transportation.website}}" placeholder= "ex: www.car_en_barre.com" size="30"> </p>
+				        	{# STATE #}
+				        	<p id="p-state-transportation-{{transportation.id}}" class="state-infos"><span class="label_descr">{{'state'|trans}}</span>
+				        		{% if transportation.state == 1 %}
+				        			<span class="accepted"> {{'accepted'|trans}} </span>
+				        		{% else %}
 					        		<select id="state-transportation-{{transportation.id}}" onchange="updateTransportation({{transportation.id}})">
 					        			<option value="0" {% if transportation.state == 0 %} selected {% endif %}>{{'refused'|trans}}</option>
 					        			<option value="2" {% if transportation.state == 2 %} selected {% endif %}>{{'contacted'|trans}}</option>
 					        			<option value="3" {% if transportation.state == 3 %} selected {% endif %}>{{'tocontact'|trans}}</option>
-					        			<option value="1" {% if transportation.state == 1 %} selected {% endif %}>{{'accepted'|trans}}</option>
 					        		</select>
-					        	</p>
-					        	<p><span class="label_descr">{{'contract'|trans}}</span> : <a target="_blank" href="/files/transportation/contracts/{{transportation.contract}}">{{transportation.contract}} </a>
-					                <div class="bt_place">
-					                    <button data-toggle="modal" data-target=".updateContractModal" data-id="{{transportation.id}}">{{'update_contract'|trans}}</button> 
+				        		{% endif %}
+				        	</p>
+				        </div>
+				        <div class="col-lg-6 col-md-6 col-sm-12" id="infos2">
+			        		{# REMARK #}
+					    	<p class="remark">
+					    		<span class="label_descr">{{'remark'|trans}}</span>
+					    		<textarea id="remark-transportation-{{transportation.id}}" onblur="updateTransportation({{transportation.id}})" placeholder="{{'remark_placeholder'|trans}}">{{transportation.remark}}</textarea>
+					    	</p> 
+			        		{# CONTRAT #}
+			        		<p class="contract">
+				        		<span class="label_descr">{{'contract'|trans}}</span> 
+				        		{% if transportation.contract %}
+					        		<a target="_blank" href="/files/transportation/contracts/{{transportation.contract}}">{{transportation.contract}}</a>
+					        		<div class="bt_transportation file">
+					                    <button data-toggle="modal" id="modify_contract" data-target=".updateContractModal" data-id="{{transportation.id}}">{{'update_contract'|trans}}</button> 
 					                </div>
-					        	</p>
-					    	</div>
-					    	<div class="col-lg-5 col-md-6 col-sm-12" id="map_canvas_{{transportation.id}}">
-					    	</div>
+				        		{% else %}
+				        			<span>Aucun contrat</span>
+				        			<div class="bt_transportation file">
+					                    <button data-toggle="modal" id="modify_contract" data-target=".updateContractModal" data-id="{{transportation.id}}">{{'add_contract'|trans}}</button> 
+					                </div>
+				        		{% endif %} 
+				        	</p>
+				    	</div>
 
-					    </div>
-					</div>
+				    </div>
 				</div>
-				{% endfor %}
-			</div>
-		{% endif %}
+		</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
 		<div class="modal fade deleteTransportationModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		    <div class="modal-dialog">
 		        <div class="modal-content">

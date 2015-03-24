@@ -29,6 +29,7 @@
 	<div class="row">
         <div class="col-md-3 bt_place"><button data-toggle="modal" data-target=".addPlaceModal" class="col-md-3">{{'add_place'|trans}}</button></div>
     </div>
+
 	{% if module.places is empty %}
 		<p class="empty_module">{{'empty_module'|trans}}</p>
 	{% else %}
@@ -118,6 +119,7 @@
 			{% endfor %}
 		</div>
 	{% endif %}
+	
 	<div class="modal fade deletePlaceModal validate" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">

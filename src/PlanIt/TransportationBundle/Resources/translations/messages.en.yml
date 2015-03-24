@@ -1,7 +1,7 @@
 transportation: TRANSPORTATION MANAGEMENT
 add_transportation: Add a company
 empty_module: There is no transportation compagnies in this module
-
+remark_placeholder: You can add a remark here...
 form:
     contract:
         file: Select a file *
